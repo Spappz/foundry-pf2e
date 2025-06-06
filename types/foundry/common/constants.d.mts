@@ -2217,6 +2217,8 @@ export const SETTING_SCOPES: Readonly<{
     USER: "user";
 }>;
 
+export type SettingScopeType = (typeof SETTING_SCOPES)[keyof typeof SETTING_SCOPES];
+
 /**
  * The scaling factor that is used for Clipper polygons/paths consistently everywhere core performs Clipper operations.
  * @type {number}

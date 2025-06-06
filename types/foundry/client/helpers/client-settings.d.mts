@@ -3,7 +3,7 @@ import SettingsConfig from "@client/applications/settings/config.mjs";
 import Application from "@client/appv1/api/application-v1.mjs";
 import Setting from "@client/documents/setting.mjs";
 import { SettingConfig, SettingSubmenuConfig } from "@common/_types.mjs";
-import { RollMode } from "@common/constants.mjs";
+import { RollMode, SettingScopeType } from "@common/constants.mjs";
 import Collection from "@common/utils/collection.mjs";
 
 export interface ClientSettingsStorage extends Map<"client" | "world" | "user", Storage | WorldSettings> {
@@ -129,7 +129,7 @@ interface SettingRegistration<
     TChoices extends Record<string, unknown> | undefined = Record<string, unknown> | undefined,
 > extends Omit<SettingConfig<TChoices>, "config" | "key" | "namespace" | "scope"> {
     config?: boolean;
-    scope?: "client" | "world";
+    scope?: SettingScopeType;
 }
 
 interface ClientSettingsMap extends Map<string, SettingConfig> {
