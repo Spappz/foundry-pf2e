@@ -1,11 +1,11 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { FeatGroup } from "../../actor/character/feats/index.ts";
-import { ItemPF2e } from "../index.ts";
-import { ActionCost, Frequency } from "../base/data/index.ts";
-import { UserPF2e } from "../../user/index.ts";
+import { ActorPF2e } from "@actor";
+import { FeatGroup } from "@actor/character/feats/index.ts";
+import { DocumentHTMLEmbedConfig } from "@client/applications/ux/text-editor.mjs";
+import { DatabaseCreateCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
+import { ItemPF2e } from "@item";
+import { ActionCost, Frequency } from "@item/base/data/index.ts";
 import { CampaignFeatureSource, CampaignFeatureSystemData } from "./data.ts";
 import { BehaviorType, KingmakerCategory, KingmakerTrait } from "./types.ts";
-
 declare class CampaignFeaturePF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     group: FeatGroup<ActorPF2e, CampaignFeaturePF2e> | null;
     grants: CampaignFeaturePF2e[];
@@ -28,12 +28,27 @@ declare class CampaignFeaturePF2e<TParent extends ActorPF2e | null = ActorPF2e |
     prepareActorData(this: CampaignFeaturePF2e<ActorPF2e>): void;
     prepareSiblingData(): void;
     /** Generate a list of strings for use in predication */
-    getRollOptions(prefix?: string, options?: {
-        includeGranter?: boolean;
-    }): string[];
-    protected _preCreate(data: this["_source"], operation: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<CampaignFeatureSource>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected embedHTMLString(_config: DocumentHTMLEmbedConfig, _options: EnrichmentOptions): string;
+    getRollOptions(
+        prefix?: string,
+        options?: {
+            includeGranter?: boolean;
+        },
+    ): string[];
+    protected _preCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: DatabaseUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected embedHTMLString(
+        config: DocumentHTMLEmbedConfig & {
+            hr?: boolean;
+        },
+    ): string;
 }
 interface CampaignFeaturePF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     readonly _source: CampaignFeatureSource;

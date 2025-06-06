@@ -1,14 +1,16 @@
-import { ActorPF2e, CreaturePF2e } from "../index.ts";
-import { ActorSheetDataPF2e } from "../sheet/data-types.ts";
-import { ItemPF2e } from "../../item/index.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { SpellcastingSheetData } from "../../item/spellcasting-entry/index.ts";
-import { DropCanvasItemDataPF2e } from "../../canvas/drop-canvas-data.ts";
-import { ZeroToFour } from "../../data.ts";
+import { ActorPF2e, CreaturePF2e } from "@actor";
+import { ActorSheetDataPF2e } from "@actor/sheet/data-types.ts";
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
+import { ApplicationV1HeaderButton } from "@client/appv1/api/application-v1.mjs";
+import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
+import { ItemPF2e } from "@item";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { SpellcastingSheetData } from "@item/spellcasting-entry/index.ts";
+import { DropCanvasItemDataPF2e } from "@module/canvas/drop-canvas-data.ts";
+import { ZeroToFour } from "@module/data.ts";
 import { ActorSheetPF2e, SheetClickActionHandlers } from "../sheet/base.ts";
 import { CreatureConfig } from "./config.ts";
 import { Language, ResourceData } from "./index.ts";
-
 /**
  * Base class for NPC and character sheets
  * @category Actor
@@ -27,9 +29,13 @@ declare abstract class CreatureSheetPF2e<TActor extends CreaturePF2e> extends Ac
     /** Adds support for moving spells between spell levels, spell collections, and spell preparation */
     protected _onSortItem(event: DragEvent, itemData: ItemSourcePF2e): Promise<ItemPF2e[]>;
     /** Handle dragging spells onto spell slots. */
-    protected _handleDroppedItem(event: DragEvent, item: ItemPF2e<ActorPF2e | null>, data: DropCanvasItemDataPF2e): Promise<ItemPF2e<ActorPF2e | null>[]>;
+    protected _handleDroppedItem(
+        event: DragEvent,
+        item: ItemPF2e<ActorPF2e | null>,
+        data: DropCanvasItemDataPF2e,
+    ): Promise<ItemPF2e<ActorPF2e | null>[]>;
     /** Replace sheet config with a special PC config form application */
-    protected _getHeaderButtons(): ApplicationHeaderButton[];
+    protected _getHeaderButtons(): ApplicationV1HeaderButton[];
     /** Redirect an update to shield HP to the actual item */
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 }

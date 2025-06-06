@@ -1,9 +1,7 @@
-import { ActorType, CreaturePF2e } from "../../actor/index.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { BooleanField } from "../../../../foundry/common/data/fields.ts";
+import { ActorType, CreaturePF2e } from "@actor";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema } from "./data.ts";
-
 import fields = foundry.data.fields;
 /** Reduce current hit points without applying damage */
 declare class LoseHitPointsRuleElement extends RuleElementPF2e<LoseHitPointsRuleSchema> {
@@ -13,7 +11,9 @@ declare class LoseHitPointsRuleElement extends RuleElementPF2e<LoseHitPointsRule
     beforePrepareData(): void;
     preUpdate(changes: DeepPartial<ItemSourcePF2e>): Promise<void>;
 }
-interface LoseHitPointsRuleElement extends RuleElementPF2e<LoseHitPointsRuleSchema>, ModelPropsFromRESchema<LoseHitPointsRuleSchema> {
+interface LoseHitPointsRuleElement
+    extends RuleElementPF2e<LoseHitPointsRuleSchema>,
+        ModelPropsFromRESchema<LoseHitPointsRuleSchema> {
     get actor(): CreaturePF2e;
 }
 type LoseHitPointsRuleSchema = RuleElementSchema & {
@@ -24,6 +24,6 @@ type LoseHitPointsRuleSchema = RuleElementSchema & {
      * Lost hitpoints should reevaluate on item update, with the parent actor losing the difference in HP between the
      * new and old values.
      */
-    reevaluateOnUpdate: BooleanField<boolean, boolean, false>;
+    reevaluateOnUpdate: fields.BooleanField<boolean, boolean, false>;
 };
 export { LoseHitPointsRuleElement };

@@ -1,11 +1,10 @@
-import { ActorPF2e, CharacterPF2e } from "../../actor/index.ts";
-import { CreatureTrait } from "../../actor/creature/types.ts";
-import { AttributeString } from "../../actor/types.ts";
-import { ABCItemPF2e, FeatPF2e } from "../index.ts";
-import { Size } from "../../data.ts";
-import { UserPF2e } from "../../user/document.ts";
+import { ActorPF2e, CharacterPF2e } from "@actor";
+import { CreatureTrait } from "@actor/creature/types.ts";
+import { AttributeString } from "@actor/types.ts";
+import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
+import { ABCItemPF2e, FeatPF2e } from "@item";
+import { Size } from "@module/data.ts";
 import { AncestrySource, AncestrySystemData } from "./data.ts";
-
 declare class AncestryPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ABCItemPF2e<TParent> {
     static get validTraits(): Record<CreatureTrait, string>;
     get traits(): Set<CreatureTrait>;
@@ -22,7 +21,11 @@ declare class AncestryPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> 
     /** Prepare a character's data derived from their ancestry */
     prepareActorData(this: AncestryPF2e<CharacterPF2e>): void;
     /** Ensure certain fields are positive integers. */
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: DatabaseUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
 }
 interface AncestryPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ABCItemPF2e<TParent> {
     readonly _source: AncestrySource;

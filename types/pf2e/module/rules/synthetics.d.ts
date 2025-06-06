@@ -1,25 +1,34 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { DexterityModifierCapData } from "../actor/character/types.ts";
-import { LabeledSpeed, SenseData } from "../actor/creature/data.ts";
-import { DamageDicePF2e, DeferredDamageDiceOptions, DeferredPromise, DeferredValue, ModifierAdjustment, ModifierPF2e } from "../actor/modifiers.ts";
-import { MovementType } from "../actor/types.ts";
-import { MeleePF2e, WeaponPF2e } from "../item/index.ts";
-import { AbilityTrait } from "../item/ability/index.ts";
-import { ConditionSource, EffectSource } from "../item/base/data/index.ts";
-import { WeaponRuneSource } from "../item/weapon/data.ts";
-import { WeaponPropertyRuneType } from "../item/weapon/types.ts";
-import { ActiveEffectPF2e } from "../active-effect.ts";
-import { RollNotePF2e } from "../notes.ts";
-import { MaterialDamageEffect } from "../system/damage/types.ts";
-import { DegreeOfSuccessAdjustment } from "../system/degree-of-success.ts";
-import { Predicate } from "../system/predication.ts";
-import { Statistic } from "../system/statistic/index.ts";
-import { TokenSource } from "../../../foundry/common/documents/token.ts";
+import { ActorPF2e } from "@actor";
+import { DexterityModifierCapData } from "@actor/character/types.ts";
+import { LabeledSpeed, SenseData } from "@actor/creature/data.ts";
+import {
+    DamageDicePF2e,
+    DeferredDamageDiceOptions,
+    DeferredPromise,
+    DeferredValue,
+    ModifierAdjustment,
+    ModifierPF2e,
+} from "@actor/modifiers.ts";
+import { MovementType } from "@actor/types.ts";
+import { TokenDocumentUUID } from "@client/documents/_module.mjs";
+import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import { TokenSource } from "@common/documents/token.mjs";
+import { MeleePF2e, WeaponPF2e } from "@item";
+import { AbilityTrait } from "@item/ability/index.ts";
+import { ConditionSource, EffectSource } from "@item/base/data/index.ts";
+import { WeaponRuneSource } from "@item/weapon/data.ts";
+import { WeaponPropertyRuneType } from "@item/weapon/types.ts";
+import { ActiveEffectPF2e } from "@module/active-effect.ts";
+import { TokenAnimationOptionsPF2e } from "@module/canvas/token/object.ts";
+import { RollNotePF2e } from "@module/notes.ts";
+import { MaterialDamageEffect } from "@system/damage/types.ts";
+import { DegreeOfSuccessAdjustment } from "@system/degree-of-success.ts";
+import { Predicate } from "@system/predication.ts";
+import { Statistic } from "@system/statistic/index.ts";
 import { DamageAlteration } from "./rule-element/damage-alteration/alteration.ts";
 import { ItemAlterationRuleElement } from "./rule-element/item-alteration/rule-element.ts";
 import { Suboption } from "./rule-element/roll-option/data.ts";
 import { SpecialResourceRuleElement } from "./rule-element/special-resource.ts";
-
 /** Defines a list of data provided by rule elements that an actor can pull from during its data preparation lifecycle */
 interface RuleElementSynthetics<TActor extends ActorPF2e = ActorPF2e> {
     criticalSpecializations: {
@@ -31,10 +40,14 @@ interface RuleElementSynthetics<TActor extends ActorPF2e = ActorPF2e> {
     degreeOfSuccessAdjustments: Record<string, DegreeOfSuccessAdjustment[]>;
     dexterityModifierCaps: DexterityModifierCapData[];
     itemAlterations: ItemAlterationRuleElement[];
-    ephemeralEffects: Record<string, {
-        target: DeferredEphemeralEffect[];
-        origin: DeferredEphemeralEffect[];
-    } | undefined>;
+    ephemeralEffects: Record<
+        string,
+        | {
+              target: DeferredEphemeralEffect[];
+              origin: DeferredEphemeralEffect[];
+          }
+        | undefined
+    >;
     modifierAdjustments: ModifierAdjustmentSynthetics;
     modifiers: ModifierSynthetics;
     movementTypes: {
@@ -52,23 +65,26 @@ interface RuleElementSynthetics<TActor extends ActorPF2e = ActorPF2e> {
     striking: Record<string, StrikingSynthetic[]>;
     toggles: Record<string, Record<string, RollOptionToggle>>;
     tokenEffectIcons: ActiveEffectPF2e<TActor>[];
-    tokenMarks: Map<TokenDocumentUUID, string>;
+    tokenMarks: Map<TokenDocumentUUID, string[]>;
     tokenOverrides: DeepPartial<Pick<TokenSource, "light" | "name">> & {
         alpha?: number | null;
-        texture?: {
-            src: ImageFilePath | VideoFilePath;
-            tint?: Color | null;
-        } | {
-            src: ImageFilePath | VideoFilePath;
-            tint?: Color | null;
-            scaleX: number;
-            scaleY: number;
-        };
+        texture?:
+            | {
+                  src: ImageFilePath | VideoFilePath;
+                  tint?: Color | null;
+              }
+            | {
+                  src: ImageFilePath | VideoFilePath;
+                  tint?: Color | null;
+                  scaleX: number;
+                  scaleY: number;
+              };
         ring?: {
             subject: TokenDocument["ring"]["subject"];
             colors: TokenDocument["ring"]["colors"];
+            effects: TokenDocument["ring"]["effects"];
         };
-        animation?: TokenAnimationOptions;
+        animation?: TokenAnimationOptionsPF2e;
     };
     weaponPotency: Record<string, PotencySynthetic[]>;
 }
@@ -131,9 +147,14 @@ interface SenseSynthetic {
     force: boolean;
 }
 interface StrikeAdjustment {
-    adjustDamageRoll?: (weapon: WeaponPF2e | MeleePF2e, { materials }: {
-        materials?: Set<MaterialDamageEffect>;
-    }) => void;
+    adjustDamageRoll?: (
+        weapon: WeaponPF2e | MeleePF2e,
+        {
+            materials,
+        }: {
+            materials?: Set<MaterialDamageEffect>;
+        },
+    ) => void;
     adjustWeapon?: (weapon: WeaponPF2e | MeleePF2e) => void;
     adjustTraits?: (weapon: WeaponPF2e | MeleePF2e, traits: AbilityTrait[]) => void;
 }
@@ -149,4 +170,23 @@ interface PotencySynthetic {
     predicate: Predicate;
     property?: WeaponPropertyRuneType[];
 }
-export type { BaseSpeedSynthetic, CritSpecEffect, DamageDiceSynthetics, DeferredDamageDice, DeferredEphemeralEffect, DeferredModifier, DeferredMovementType, MAPSynthetic, ModifierAdjustmentSynthetics, ModifierSynthetics, PotencySynthetic, RollOptionToggle, RollSubstitution, RollTwiceSynthetic, RuleElementSynthetics, SenseSynthetic, StrikeAdjustment, StrikingSynthetic, };
+export type {
+    BaseSpeedSynthetic,
+    CritSpecEffect,
+    DamageDiceSynthetics,
+    DeferredDamageDice,
+    DeferredEphemeralEffect,
+    DeferredModifier,
+    DeferredMovementType,
+    MAPSynthetic,
+    ModifierAdjustmentSynthetics,
+    ModifierSynthetics,
+    PotencySynthetic,
+    RollOptionToggle,
+    RollSubstitution,
+    RollTwiceSynthetic,
+    RuleElementSynthetics,
+    SenseSynthetic,
+    StrikeAdjustment,
+    StrikingSynthetic,
+};

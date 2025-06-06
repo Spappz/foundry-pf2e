@@ -1,39 +1,54 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { SkillSlug } from "../actor/types.ts";
-import { TokenDocumentPF2e } from "../scene/index.ts";
+import { ActorPF2e } from "@actor";
+import { SkillSlug } from "@actor/types.ts";
+import {
+    DatabaseCreateOperation,
+    DatabaseDeleteCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "@common/abstract/_types.mjs";
+import { default as Document } from "@common/abstract/document.mjs";
+import { DocumentFlags } from "@common/data/_module.mjs";
+import { TokenDocumentPF2e } from "@scene/index.ts";
 import { EncounterPF2e } from "./index.ts";
-
-declare class CombatantPF2e<TParent extends EncounterPF2e | null = EncounterPF2e | null, TTokenDocument extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends Combatant<TParent, TTokenDocument> {
+declare class CombatantPF2e<
+    TParent extends EncounterPF2e | null = EncounterPF2e | null,
+    TTokenDocument extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,
+> extends Combatant<TParent, TTokenDocument> {
     #private;
-    /** Has this document completed `DataModel` initialization? */
-    initialized: boolean;
-    static createDocuments<TDocument extends foundry.abstract.Document>(this: ConstructorOf<TDocument>, data?: (TDocument | PreCreate<TDocument["_source"]>)[], operation?: Partial<DatabaseCreateOperation<TDocument["parent"]>>): Promise<TDocument[]>;
+    static createDocuments<TDocument extends Document>(
+        this: ConstructorOf<TDocument>,
+        data?: (TDocument | DeepPartial<TDocument["_source"]>)[],
+        operation?: Partial<DatabaseCreateOperation<TDocument["parent"]>>,
+    ): Promise<TDocument[]>;
     /** Get the active Combatant for the given actor, creating one if necessary */
-    static fromActor(actor: ActorPF2e, render?: boolean, options?: {
-        combat?: EncounterPF2e;
-    }): Promise<CombatantPF2e<EncounterPF2e> | null>;
+    static fromActor(
+        actor: ActorPF2e,
+        render?: boolean,
+        options?: {
+            combat?: EncounterPF2e;
+        },
+    ): Promise<CombatantPF2e<EncounterPF2e> | null>;
     get encounter(): TParent;
     /** The round this combatant last had a turn */
     get roundOfLastTurn(): number | null;
     /** Can the user see this combatant's name? */
     get playersCanSeeName(): boolean;
     overridePriority(initiative: number): number | null;
-    hasHigherInitiative(this: RolledCombatant<NonNullable<TParent>>, { than }: {
-        than: RolledCombatant<NonNullable<TParent>>;
-    }): boolean;
+    hasHigherInitiative(
+        this: RolledCombatant<NonNullable<TParent>>,
+        {
+            than,
+        }: {
+            than: RolledCombatant<NonNullable<TParent>>;
+        },
+    ): boolean;
     startTurn(): Promise<void>;
-    endTurn(options: {
-        round: number;
-    }): Promise<void>;
-    protected _initialize(options?: Record<string, unknown>): void;
-    /**
-     * If embedded, don't prepare data if the parent hasn't finished initializing.
-     * @todo remove in V13
-     */
-    prepareData(): void;
+    endTurn(options: { round: number }): Promise<void>;
     prepareBaseData(): void;
     /** Toggle the defeated status of this combatant, applying or removing the overlay icon on its token */
-    toggleDefeated({ to, overlayIcon }?: {
+    toggleDefeated({
+        to,
+        overlayIcon,
+    }?: {
         to?: boolean | undefined;
         overlayIcon?: boolean | undefined;
     }): Promise<void>;
@@ -47,20 +62,27 @@ declare class CombatantPF2e<TParent extends EncounterPF2e | null = EncounterPF2e
     _getInitiativeFormula(): string;
     /** Toggle the visibility of names to players */
     toggleNameVisibility(): Promise<void>;
-    protected _onUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, userId: string): void;
-    protected _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
+    protected _onUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: DatabaseUpdateCallbackOptions,
+        userId: string,
+    ): void;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
-interface CombatantPF2e<TParent extends EncounterPF2e | null = EncounterPF2e | null, TTokenDocument extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends Combatant<TParent, TTokenDocument> {
+interface CombatantPF2e<
+    TParent extends EncounterPF2e | null = EncounterPF2e | null,
+    TTokenDocument extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,
+> extends Combatant<TParent, TTokenDocument> {
     flags: CombatantFlags;
 }
-interface CombatantFlags extends DocumentFlags {
+type CombatantFlags = DocumentFlags & {
     pf2e: {
         initiativeStatistic: SkillSlug | "perception" | null;
         roundOfLastTurn: number | null;
         roundOfLastTurnEnd: number | null;
         overridePriority: Record<number, number | null | undefined>;
     };
-}
+};
 type RolledCombatant<TEncounter extends EncounterPF2e> = CombatantPF2e<TEncounter, TokenDocumentPF2e> & {
     initiative: number;
 };

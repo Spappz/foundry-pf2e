@@ -1,17 +1,18 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { StrikeData } from "../actor/data/base.ts";
-import { ItemPF2e } from "../item/index.ts";
-import { UserPF2e } from "../user/index.ts";
-import { ScenePF2e, TokenDocumentPF2e } from "../scene/index.ts";
+import { ActorPF2e } from "@actor";
+import { StrikeData } from "@actor/data/base.ts";
+import { DataModelConstructionContext } from "@common/abstract/_module.mjs";
+import { ChatMessageCreateCallbackOptions, ChatMessageCreateOperation } from "@common/documents/chat-message.mjs";
+import { ItemPF2e } from "@item";
+import { UserPF2e } from "@module/user/index.ts";
+import { ScenePF2e, TokenDocumentPF2e } from "@scene/index.ts";
 import { ChatMessageFlagsPF2e, ChatMessageSourcePF2e } from "./data.ts";
-
 declare class ChatMessagePF2e extends ChatMessage {
     #private;
     /** Set some flags/flag scopes early. */
-    protected _initializeSource(data: object, options?: DataModelConstructionOptions<null>): this["_source"];
+    protected _initializeSource(data: object, options?: DataModelConstructionContext<null>): this["_source"];
     /** Is this a damage (or a manually-inputed non-D20) roll? */
     get isDamageRoll(): boolean;
-    /** Get the actor associated with this chat message */
+    /** An alias for `speakerActor` */
     get actor(): ActorPF2e | null;
     /** If this is a check or damage roll, it will have target information */
     get target(): {
@@ -19,7 +20,7 @@ declare class ChatMessagePF2e extends ChatMessage {
         token: TokenDocumentPF2e<ScenePF2e>;
     } | null;
     /** If the message came from dynamic inline content in a journal entry, the entry's ID may be used to retrieve it */
-    get journalEntry(): JournalEntry | null;
+    get journalEntry(): fd.JournalEntry | null;
     /** Does this message include a check (1d20 + c) roll? */
     get isCheckRoll(): boolean;
     /** Does the message include a rerolled check? */
@@ -34,16 +35,27 @@ declare class ChatMessagePF2e extends ChatMessage {
     /** Get the token of the speaker if possible */
     get token(): TokenDocumentPF2e<ScenePF2e> | null;
     getRollData(): Record<string, unknown>;
-    getHTML(): Promise<JQuery>;
-    protected _onCreate(data: this["_source"], operation: MessageCreateOperationPF2e, userId: string): void;
+    renderHTML(options?: { canDelete?: boolean; canClose?: boolean }): Promise<HTMLElement>;
+    protected _onCreate(
+        data: this["_source"],
+        options: ChatMessageCreateCallbackOptions & {
+            restForTheNight?: boolean;
+        },
+        userId: string,
+    ): void;
 }
 interface ChatMessagePF2e extends ChatMessage {
     author: UserPF2e | null;
     flags: ChatMessageFlagsPF2e;
     readonly _source: ChatMessageSourcePF2e;
+    get speakerActor(): ActorPF2e | null;
 }
 declare namespace ChatMessagePF2e {
-    function createDocuments<TDocument extends foundry.abstract.Document>(this: ConstructorOf<TDocument>, data?: (TDocument | PreCreate<TDocument["_source"]>)[], operation?: Partial<MessageCreateOperationPF2e>): Promise<TDocument[]>;
+    function createDocuments<TDocument extends foundry.abstract.Document>(
+        this: ConstructorOf<TDocument>,
+        data?: (TDocument | DeepPartial<TDocument["_source"]>)[],
+        operation?: Partial<MessageCreateOperationPF2e>,
+    ): Promise<TDocument[]>;
     function getSpeakerActor(speaker: foundry.documents.ChatSpeakerData): ActorPF2e | null;
 }
 interface MessageCreateOperationPF2e extends ChatMessageCreateOperation {

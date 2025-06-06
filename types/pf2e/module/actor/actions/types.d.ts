@@ -1,9 +1,8 @@
-import { ActorPF2e } from "../index.ts";
-import { AbilityTrait } from "../../item/ability/index.ts";
-import { ProficiencyRank } from "../../item/base/data/index.ts";
-import { TokenPF2e } from "../../canvas/index.ts";
-import { ChatMessagePF2e } from "../../chat-message/document.ts";
-
+import { ActorPF2e } from "@actor";
+import { AbilityTrait } from "@item/ability/index.ts";
+import { ProficiencyRank } from "@item/base/data/index.ts";
+import { TokenPF2e } from "@module/canvas/index.ts";
+import { ChatMessagePF2e } from "@module/chat-message/document.ts";
 type ActionCost = "free" | "reaction" | 0 | 1 | 2 | 3;
 type ActionSection = "basic" | "skill" | "specialty-basic";
 interface ActionMessageOptions {
@@ -43,9 +42,17 @@ interface Action {
     section?: ActionSection;
     slug: string;
     traits: AbilityTrait[];
-    variants: Collection<ActionVariant>;
+    variants: Collection<string, ActionVariant>;
     toMessage(options?: Partial<ActionMessageOptions>): Promise<ChatMessagePF2e | undefined>;
     /** Uses the default variant for this action, which will usually be the first one in the collection. */
     use(options?: Partial<ActionUseOptions>): Promise<unknown>;
 }
-export type { Action, ActionCost, ActionMessageOptions, ActionSection, ActionUseOptions, ActionVariant, ActionVariantUseOptions, };
+export type {
+    Action,
+    ActionCost,
+    ActionMessageOptions,
+    ActionSection,
+    ActionUseOptions,
+    ActionVariant,
+    ActionVariantUseOptions,
+};

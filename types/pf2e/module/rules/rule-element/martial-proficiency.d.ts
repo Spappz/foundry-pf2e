@@ -1,11 +1,10 @@
-import { ActorType, CharacterPF2e } from "../../actor/index.ts";
-import { ArmorCategory } from "../../item/armor/types.ts";
-import { ProficiencyRank } from "../../item/base/data/index.ts";
-import { WeaponCategory } from "../../item/weapon/types.ts";
-import { PredicateField } from "../../system/schema-data-fields.ts";
+import { ActorType, CharacterPF2e } from "@actor";
+import { ArmorCategory } from "@item/armor/types.ts";
+import { ProficiencyRank } from "@item/base/data/index.ts";
+import { WeaponCategory } from "@item/weapon/types.ts";
+import { PredicateField } from "@system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
-
 import fields = foundry.data.fields;
 declare class MartialProficiencyRuleElement extends RuleElementPF2e<MartialProficiencySchema> {
     protected static validActorTypes: ActorType[];
@@ -14,7 +13,9 @@ declare class MartialProficiencyRuleElement extends RuleElementPF2e<MartialProfi
     static defineSchema(): MartialProficiencySchema;
     onApplyActiveEffects(): void;
 }
-interface MartialProficiencyRuleElement extends RuleElementPF2e<MartialProficiencySchema>, ModelPropsFromRESchema<MartialProficiencySchema> {
+interface MartialProficiencyRuleElement
+    extends RuleElementPF2e<MartialProficiencySchema>,
+        ModelPropsFromRESchema<MartialProficiencySchema> {
     get actor(): CharacterPF2e;
 }
 type MartialProficiencySchema = RuleElementSchema & {
@@ -25,8 +26,16 @@ type MartialProficiencySchema = RuleElementSchema & {
     /** The attack category to which this proficiency's rank is linked */
     sameAs: fields.StringField<WeaponCategory | ArmorCategory, WeaponCategory | ArmorCategory, false, false, false>;
     /** The maximum rank this proficiency can reach, if any */
-    maxRank: fields.StringField<Exclude<ProficiencyRank, "untrained">, Exclude<ProficiencyRank, "untrained">, false, false, false>;
+    maxRank: fields.StringField<
+        Exclude<ProficiencyRank, "untrained">,
+        Exclude<ProficiencyRank, "untrained">,
+        false,
+        false,
+        false
+    >;
     /** Initially a number indicating rank, changed into a `MartialProficiency` object for overriding as an AE-like */
     value: ResolvableValueField<false, false, false>;
+    /** Whether this proficiency is visible on the character sheet */
+    visible: fields.BooleanField<boolean, boolean, false, false, true>;
 };
 export { MartialProficiencyRuleElement };

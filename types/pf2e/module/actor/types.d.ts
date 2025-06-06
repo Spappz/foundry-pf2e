@@ -1,17 +1,26 @@
-import { ActorPF2e } from "./index.ts";
-import { ItemPF2e } from "../item/index.ts";
-import { EffectTrait } from "../item/abstract-effect/types.ts";
-import { ItemSourcePF2e } from "../item/base/data/index.ts";
-import { ItemInstances } from "../item/types.ts";
-import { RollNotePF2e } from "../notes.ts";
-import { ItemAlteration } from "../rules/rule-element/item-alteration/alteration.ts";
-import { TokenDocumentPF2e } from "../scene/index.ts";
-import { immunityTypes, resistanceTypes, weaknessTypes } from "../../scripts/config/iwr.ts";
-import { DamageRoll } from "../system/damage/roll.ts";
-import { DegreeOfSuccessString } from "../system/degree-of-success.ts";
-import { Predicate } from "../system/predication.ts";
-import { ACTOR_TYPES, ATTRIBUTE_ABBREVIATIONS, CORE_SKILL_SLUGS, MOVEMENT_TYPES, SAVE_TYPES, UNAFFECTED_TYPES } from "./values.ts";
-import type * as ActorInstance from "./index.ts";
+import { ActorPF2e } from "@actor";
+import { Rolled } from "@client/dice/roll.mjs";
+import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import { ItemPF2e } from "@item";
+import { EffectTrait } from "@item/abstract-effect/types.ts";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { ItemInstances } from "@item/types.ts";
+import { RollNotePF2e } from "@module/notes.ts";
+import { ItemAlteration } from "@module/rules/rule-element/item-alteration/alteration.ts";
+import { TokenDocumentPF2e } from "@scene";
+import { immunityTypes, resistanceTypes, weaknessTypes } from "@scripts/config/iwr.ts";
+import { DamageRoll } from "@system/damage/roll.ts";
+import { DegreeOfSuccessString } from "@system/degree-of-success.ts";
+import { Predicate } from "@system/predication.ts";
+import {
+    ACTOR_TYPES,
+    ATTRIBUTE_ABBREVIATIONS,
+    CORE_SKILL_SLUGS,
+    MOVEMENT_TYPES,
+    SAVE_TYPES,
+    UNAFFECTED_TYPES,
+} from "./values.ts";
+import type * as ActorInstance from "@actor";
 type ActorType = (typeof ACTOR_TYPES)[number];
 /** Used exclusively to resolve `ActorPF2e#isOfType` */
 interface ActorInstances<TParent extends TokenDocumentPF2e | null> {
@@ -115,4 +124,26 @@ type ResistanceType = keyof typeof resistanceTypes;
 /** Damage types a creature or hazard is possibly unaffected by, outside the IWR framework */
 type UnaffectedType = SetElement<typeof UNAFFECTED_TYPES>;
 type IWRType = ImmunityType | WeaknessType | ResistanceType;
-export type { ActorAlliance, ActorCommitData, ActorDimensions, ActorInstances, ActorRechargeData, ActorType, ApplyDamageParams, AttributeString, AuraAppearanceData, AuraData, AuraEffectData, DCSlug, EmbeddedItemInstances, ImmunityType, IWRType, MovementType, ResistanceType, SaveType, SkillSlug, UnaffectedType, WeaknessType, };
+export type {
+    ActorAlliance,
+    ActorCommitData,
+    ActorDimensions,
+    ActorInstances,
+    ActorRechargeData,
+    ActorType,
+    ApplyDamageParams,
+    AttributeString,
+    AuraAppearanceData,
+    AuraData,
+    AuraEffectData,
+    DCSlug,
+    EmbeddedItemInstances,
+    ImmunityType,
+    IWRType,
+    MovementType,
+    ResistanceType,
+    SaveType,
+    SkillSlug,
+    UnaffectedType,
+    WeaknessType,
+};

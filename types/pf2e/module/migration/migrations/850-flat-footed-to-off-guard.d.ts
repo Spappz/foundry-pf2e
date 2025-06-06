@@ -1,8 +1,7 @@
-import { ActorSourcePF2e } from "../../actor/data/index.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { JournalEntrySource } from "../../../../foundry/common/documents/journal-entry.ts";
+import { ActorSourcePF2e } from "@actor/data/index.ts";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { JournalEntrySource } from "@common/documents/journal-entry.mjs";
 import { MigrationBase } from "../base.ts";
-
 /** Rename all uses and mentions of "flat-footed" to "off-guard"  */
 export declare class Migration850FlatFootedToOffGuard extends MigrationBase {
     #private;

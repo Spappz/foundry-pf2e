@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 export {};
 
 declare global {
@@ -35,12 +36,12 @@ declare global {
         >;
 
         register(name: string, func: Function): void;
-        executeAsGM<T = unknown>(handler: string | Function, ...args: any[]): Promise<T>;
-        executeAsUser<T = unknown>(handler: string | Function, userId: string, ...args: any[]): Promise<T>;
-        executeForAllGMs<T = unknown>(handler: string | Function, ...args: any[]): Promise<T>;
-        executeForOtherGMs<T = unknown>(handler: string | Function, ...args: any[]): Promise<T>;
-        executeForEveryone<T = unknown>(handler: string | Function, ...args: any[]): Promise<T>;
-        executeForOthers<T = unknown>(handler: string | Function, ...args: any[]): Promise<T>;
-        executeForUsers<T = unknown>(handler: string | Function, recipients: string[], ...args: any[]): Promise<T>;
+        executeAsGM<T = unknown>(handler: string | Function, ...args: unknown[]): Promise<T>;
+        executeAsUser<T = unknown>(handler: string | Function, userId: string, ...args: unknown[]): Promise<T>;
+        executeForAllGMs<T = unknown>(handler: string | Function, ...args: unknown[]): Promise<T>;
+        executeForOtherGMs<T = unknown>(handler: string | Function, ...args: unknown[]): Promise<T>;
+        executeForEveryone<T = unknown>(handler: string | Function, ...args: unknown[]): Promise<T>;
+        executeForOthers<T = unknown>(handler: string | Function, ...args: unknown[]): Promise<T>;
+        executeForUsers<T = unknown>(handler: string | Function, recipients: string[], ...args: unknown[]): Promise<T>;
     }
 }

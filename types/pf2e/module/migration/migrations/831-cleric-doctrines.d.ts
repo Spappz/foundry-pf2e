@@ -1,6 +1,5 @@
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
 import { MigrationBase } from "../base.ts";
-
 /**
  * Update rule elements on the Cleric doctrines to include references to the granted doctrines.
  */

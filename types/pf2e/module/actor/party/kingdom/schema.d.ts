@@ -1,8 +1,18 @@
-import { RawModifier } from "../../modifiers.ts";
-import { ZeroToFour } from "../../../data.ts";
-import { DataUnionField, RecordField, StrictBooleanField, StrictStringField } from "../../../system/schema-data-fields.ts";
-import { FameType, KingdomAbility, KingdomBoostCategory, KingdomCommodity, KingdomLeadershipRole, KingdomSettlementType, KingdomSkill } from "./types.ts";
-
+import { RawModifier } from "@actor/modifiers.ts";
+import { DataSchema } from "@common/abstract/_types.mjs";
+import { ImageFilePath } from "@common/constants.mjs";
+import { ItemUUID } from "@common/documents/_module.mjs";
+import { ZeroToFour } from "@module/data.ts";
+import { DataUnionField, RecordField, StrictBooleanField, StrictStringField } from "@system/schema-data-fields.ts";
+import {
+    FameType,
+    KingdomAbility,
+    KingdomBoostCategory,
+    KingdomCommodity,
+    KingdomLeadershipRole,
+    KingdomSettlementType,
+    KingdomSkill,
+} from "./types.ts";
 import fields = foundry.data.fields;
 declare function defineKingdomSchema(): KingdomSchema;
 type CHGSchema = {
@@ -19,18 +29,32 @@ type GovernmentSchema = CHGSchema & {
     skills: fields.ArrayField<fields.StringField<KingdomSkill, KingdomSkill, true, false>>;
     feat: fields.DocumentUUIDField<ItemUUID>;
 };
-type NullableSchemaField<TSchema extends fields.DataSchema> = fields.SchemaField<TSchema, SourceFromSchema<TSchema>, ModelPropsFromSchema<TSchema>, true, true, true>;
+type NullableSchemaField<TSchema extends DataSchema> = fields.SchemaField<
+    TSchema,
+    fields.SourceFromSchema<TSchema>,
+    fields.ModelPropsFromSchema<TSchema>,
+    true,
+    true,
+    true
+>;
 type BuildSchema = {
     /** Determines if the ability scores are manually set or automatically determined. */
     manual: fields.BooleanField;
     charter: NullableSchemaField<CharterSchema>;
     heartland: NullableSchemaField<CHGSchema>;
     government: NullableSchemaField<GovernmentSchema>;
-    skills: fields.SchemaField<Record<KingdomSkill, fields.SchemaField<{
-        rank: fields.NumberField<ZeroToFour, ZeroToFour, true, false, true>;
-    }>>>;
+    skills: fields.SchemaField<
+        Record<
+            KingdomSkill,
+            fields.SchemaField<{
+                rank: fields.NumberField<ZeroToFour, ZeroToFour, true, false, true>;
+            }>
+        >
+    >;
     /** Boost selections made by the user, both during the build process and levelling */
-    boosts: fields.SchemaField<Record<KingdomBoostCategory, fields.ArrayField<fields.StringField<KingdomAbility, KingdomAbility, true, false>>>>;
+    boosts: fields.SchemaField<
+        Record<KingdomBoostCategory, fields.ArrayField<fields.StringField<KingdomAbility, KingdomAbility, true, false>>>
+    >;
 };
 type ResourceSchema = {
     dice: fields.SchemaField<{
@@ -43,38 +67,48 @@ type ResourceSchema = {
         value: fields.NumberField<number, number, true, false, true>;
         max: fields.NumberField<number, number, true, false, true>;
     }>;
-    commodities: fields.SchemaField<Record<KingdomCommodity, fields.SchemaField<{
-        value: fields.NumberField<number, number, true, false, true>;
-        max: fields.NumberField<number, number, true, false, true>;
-    }>>>;
-    points: fields.NumberField<number, number, false, false, true>;
+    commodities: fields.SchemaField<
+        Record<
+            KingdomCommodity,
+            fields.SchemaField<{
+                value: fields.NumberField<number, number, true, false, true>;
+                max: fields.NumberField<number, number, true, false, true>;
+            }>
+        >
+    >;
+    points: fields.NumberField<number, number, true, false, true>;
     /** Worksites by commodity type, for the commodities that can have work sites */
-    workSites: fields.SchemaField<Record<KingdomCommodity, fields.SchemaField<{
-        /** The number of regular non-resource work sites */
-        value: fields.NumberField<number, number, false, false, true>;
-        /** The number of worksites that are on resource hexes (these grant double) */
-        resource: fields.NumberField<number, number, false, false, true>;
-    }>>>;
+    workSites: fields.SchemaField<
+        Record<
+            KingdomCommodity,
+            fields.SchemaField<{
+                /** The number of regular non-resource work sites */
+                value: fields.NumberField<number, number, true, false, true>;
+                /** The number of worksites that are on resource hexes (these grant double) */
+                resource: fields.NumberField<number, number, true, false, true>;
+            }>
+        >
+    >;
 };
 type SettlementSchema = {
     name: fields.StringField<string, string, true, false, true>;
     type: fields.StringField<KingdomSettlementType, KingdomSettlementType, false, false, true>;
     level: fields.NumberField<number, number, true, false, true>;
     overcrowded: fields.BooleanField;
-    description: fields.StringField<string, string, false, false, true>;
+    description: fields.StringField<string, string, true, false, true>;
     sort: fields.IntegerSortField;
     consumption: fields.SchemaField<{
-        base: fields.NumberField<number, number, false, false, true>;
+        base: fields.NumberField<number, number, true, false, true>;
         /** Some settlements reduce consumption, this is the number of reductions that may exist */
-        reduction: fields.NumberField<number, number, false, false>;
-        total: fields.NumberField<number, number, false, false>;
+        reduction: fields.NumberField<number, number, true, false, true>;
+        total: fields.NumberField<number, number, true, false, true>;
     }>;
-    storage: fields.SchemaField<Record<KingdomCommodity, fields.NumberField<number, number, false, false, true>>>;
+    storage: fields.SchemaField<Record<KingdomCommodity, fields.NumberField<number, number, true, false, true>>>;
 };
 type LeadershipSchema = {
     uuid: fields.DocumentUUIDField<ItemUUID>;
     vacant: fields.BooleanField;
-    invested: fields.BooleanField<boolean, boolean, false, false, true>;
+    invested: fields.BooleanField;
 };
 type RuinSchema = {
     value: fields.NumberField<number, number, true, false, true>;
@@ -82,29 +116,41 @@ type RuinSchema = {
 };
 type KingdomSchema = {
     type: fields.StringField<"kingmaker", "kingmaker", true, false, true>;
-    active: DataUnionField<StrictStringField<"building", "building", false, false, boolean> | StrictBooleanField<boolean, boolean, true>, false, false, boolean>;
+    active: DataUnionField<
+        StrictStringField<"building", "building", false, false, boolean> | StrictBooleanField<boolean, boolean, true>,
+        false,
+        false,
+        boolean
+    >;
     name: fields.StringField<string, string, true, false, true>;
     img: fields.FilePathField<ImageFilePath, ImageFilePath, true, false, true>;
     capital: fields.StringField<string, string, true, false, true>;
     size: fields.NumberField<number, number, true, false, true>;
     level: fields.NumberField<number, number, true, false, true>;
-    xp: fields.SchemaField<{
-        value: fields.NumberField<number, number, true, false, true>;
-        max: fields.NumberField<number, number, true, false, true>;
-    }, {
-        value: number;
-        max: number;
-    }, {
-        value: number;
-        max: number;
-    }, true, false, true>;
+    xp: fields.SchemaField<
+        {
+            value: fields.NumberField<number, number, true, false, true>;
+            max: fields.NumberField<number, number, true, false, true>;
+        },
+        {
+            value: number;
+            max: number;
+        },
+        {
+            value: number;
+            max: number;
+        },
+        true,
+        false,
+        true
+    >;
     aspiration: fields.StringField<FameType, FameType, true, false, true>;
     abilities: fields.SchemaField<{
         [key in KingdomAbility]: fields.SchemaField<{
-            value: fields.NumberField<number, number, false, false, true>;
-            mod: fields.NumberField<number, number, false, false, true>;
+            value: fields.NumberField<number, number, true, false, true>;
+            mod: fields.NumberField<number, number, true, false, true>;
             ruin: fields.SchemaField<RuinSchema>;
-            penalty: fields.NumberField<number, number, false, false, true>;
+            penalty: fields.NumberField<number, number, true, false, true>;
         }>;
     }>;
     build: fields.SchemaField<BuildSchema>;
@@ -112,25 +158,28 @@ type KingdomSchema = {
     leadership: fields.SchemaField<Record<KingdomLeadershipRole, fields.SchemaField<LeadershipSchema>>>;
     resources: fields.SchemaField<ResourceSchema>;
     /** A collection of settlements controlled by this kingdom, and its related data */
-    settlements: RecordField<fields.StringField<string, string, true, false, false>, fields.SchemaField<SettlementSchema>>;
+    settlements: RecordField<
+        fields.StringField<string, string, true, false, false>,
+        fields.SchemaField<SettlementSchema>
+    >;
     consumption: fields.SchemaField<{
-        settlement: fields.NumberField<number, number, false, false, true>;
-        army: fields.NumberField<number, number, false, false>;
-        value: fields.NumberField<number, number, false, false>;
+        settlement: fields.NumberField<number, number, true, false, true>;
+        army: fields.NumberField<number, number, true, false, true>;
+        value: fields.NumberField<number, number, true, false, true>;
         breakdown: fields.StringField;
     }>;
     unrest: fields.SchemaField<{
-        value: fields.NumberField<number, number, false, false, true>;
-        anarchyThreshold: fields.NumberField<number, number, false, false, true>;
+        value: fields.NumberField<number, number, true, false, true>;
+        anarchyThreshold: fields.NumberField<number, number, true, false, true>;
     }>;
     event: fields.SchemaField<{
-        dc: fields.NumberField<number, number, false, false, true>;
-        text: fields.StringField<string, string, false, false, true>;
+        dc: fields.NumberField<number, number, true, false, true>;
+        text: fields.StringField<string, string, true, false, true>;
     }>;
     /** Any kingmaker specific module configuration and tweaks. Not used otherwise */
     module: fields.ObjectField<object>;
 };
-interface KingdomCHG extends ModelPropsFromSchema<CHGSchema> {
+interface KingdomCHG extends fields.ModelPropsFromSchema<CHGSchema> {
     feat?: ItemUUID | null;
     flaw?: KingdomAbility | null;
 }
@@ -138,26 +187,38 @@ interface KingdomCharter extends KingdomCHG {
     feat?: never;
     flaw: KingdomAbility | null;
 }
-interface KingdomHeartland extends ModelPropsFromSchema<CHGSchema> {
+interface KingdomHeartland extends fields.ModelPropsFromSchema<CHGSchema> {
     feat?: never;
     flaw?: never;
 }
-interface KingdomGovernment extends ModelPropsFromSchema<GovernmentSchema> {
+interface KingdomGovernment extends fields.ModelPropsFromSchema<GovernmentSchema> {
     skills: KingdomSkill[];
     feat: ItemUUID | null;
     flaw?: never;
 }
-interface KingdomBuildData extends ModelPropsFromSchema<BuildSchema> {
+interface KingdomBuildData extends fields.ModelPropsFromSchema<BuildSchema> {
     charter: KingdomCharter | null;
     heartland: KingdomHeartland | null;
     government: KingdomGovernment | null;
 }
-interface KingdomData extends ModelPropsFromSchema<KingdomSchema> {
+interface KingdomData extends fields.ModelPropsFromSchema<KingdomSchema> {
     build: KingdomBuildData;
 }
 type KingdomAbilityData = KingdomData["abilities"][KingdomAbility];
 type KingdomLeadershipData = KingdomData["leadership"][KingdomLeadershipRole];
-type KingdomSettlementData = ModelPropsFromSchema<SettlementSchema>;
-type KingdomSource = SourceFromSchema<KingdomSchema>;
+type KingdomSettlementData = fields.ModelPropsFromSchema<SettlementSchema>;
+type KingdomSource = fields.SourceFromSchema<KingdomSchema>;
 export { defineKingdomSchema };
-export type { KingdomAbilityData, KingdomBuildData, KingdomCHG, KingdomCharter, KingdomData, KingdomGovernment, KingdomHeartland, KingdomLeadershipData, KingdomSchema, KingdomSettlementData, KingdomSource, };
+export type {
+    KingdomAbilityData,
+    KingdomBuildData,
+    KingdomCharter,
+    KingdomCHG,
+    KingdomData,
+    KingdomGovernment,
+    KingdomHeartland,
+    KingdomLeadershipData,
+    KingdomSchema,
+    KingdomSettlementData,
+    KingdomSource,
+};

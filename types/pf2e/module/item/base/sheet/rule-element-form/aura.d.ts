@@ -1,7 +1,10 @@
-import { ItemPF2e } from "../../../index.ts";
-import { AuraRuleElement, AuraRuleElementSchema } from "../../../../rules/rule-element/aura.ts";
+import { ClientDocument } from "@client/documents/abstract/_module.mjs";
+import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
+import { HexColorString } from "@common/constants.mjs";
+import { SourceFromSchema } from "@common/data/fields.mjs";
+import { ItemPF2e } from "@item";
+import { AuraRuleElement, AuraRuleElementSchema } from "@module/rules/rule-element/aura.ts";
 import { RuleElementForm, RuleElementFormSheetData, RuleElementFormTabData } from "./base.ts";
-
 declare class AuraForm extends RuleElementForm<AuraRuleElementSource, AuraRuleElement> {
     #private;
     template: string;
@@ -16,9 +19,10 @@ declare class AuraForm extends RuleElementForm<AuraRuleElementSource, AuraRuleEl
 }
 interface AuraSheetData extends RuleElementFormSheetData<AuraRuleElementSource, AuraRuleElement> {
     affectsOptions: Record<string, string>;
-    effects: AuraRuleElementSource["effects"] & {
-        item: ClientDocument | CompendiumIndexData | null;
-    }[];
+    effects: AuraRuleElementSource["effects"] &
+        {
+            item: ClientDocument | CompendiumIndexData | null;
+        }[];
     borderColor: HexColorString | null;
     highlightColor: HexColorString;
     saveTypes: ConfigPF2e["PF2E"]["saves"];

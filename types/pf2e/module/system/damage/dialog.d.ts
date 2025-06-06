@@ -1,11 +1,11 @@
-import { DegreeOfSuccessIndex } from "../degree-of-success.ts";
+import { RollMode } from "@common/constants.mjs";
+import { DegreeOfSuccessIndex } from "@system/degree-of-success.ts";
 import { DamageCategoryUnique, DamageDamageContext, DamageFormulaData, DamageType } from "./types.ts";
-
 /**
  * Dialog for excluding certain modifiers before rolling damage.
  * @category Other
  */
-declare class DamageModifierDialog extends Application {
+declare class DamageModifierDialog extends fav1.api.Application {
     #private;
     formulaData: DamageFormulaData;
     context: DamageDamageContext;
@@ -16,16 +16,14 @@ declare class DamageModifierDialog extends Application {
     /** Was the roll button pressed? */
     isRolled: boolean;
     constructor(params: DamageDialogParams);
-    static get defaultOptions(): ApplicationOptions;
+    static get defaultOptions(): fav1.api.ApplicationV1Options;
     get title(): string;
     get isCritical(): boolean;
     getData(): Promise<DamageDialogData>;
     activateListeners($html: JQuery): void;
     /** Show the damage roll dialog and wait for it to close */
     resolve(): Promise<boolean>;
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    close(options?: { force?: boolean }): Promise<void>;
     /** Overriden to add some additional first-render behavior */
     protected _injectHTML($html: JQuery<HTMLElement>): void;
 }

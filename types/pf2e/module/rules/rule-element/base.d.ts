@@ -1,13 +1,19 @@
-import { ActorPF2e, ActorType } from "../../actor/index.ts";
-import { CheckModifier, DamageDicePF2e, ModifierPF2e } from "../../actor/modifiers.ts";
-import { ItemPF2e, WeaponPF2e } from "../../item/index.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
-import { CheckCheckContext, CheckRoll } from "../../system/check/index.ts";
-import { LaxSchemaField } from "../../system/schema-data-fields.ts";
-import { DataModelValidationOptions } from "../../../../foundry/common/abstract/data.ts";
+import { ActorPF2e, ActorType } from "@actor";
+import { CheckModifier, DamageDicePF2e, ModifierPF2e } from "@actor/modifiers.ts";
+import { Rolled } from "@client/dice/roll.mjs";
+import {
+    DatabaseCreateOperation,
+    DatabaseDeleteOperation,
+    DataModelConstructionContext,
+    DataModelValidationOptions,
+} from "@common/abstract/_types.mjs";
+import { ModelPropsFromSchema } from "@common/data/fields.mjs";
+import { ItemPF2e, WeaponPF2e } from "@item";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { TokenDocumentPF2e } from "@scene/index.ts";
+import { CheckCheckContext, CheckRoll } from "@system/check/index.ts";
+import { LaxSchemaField } from "@system/schema-data-fields.ts";
 import { BracketedValue, RuleElementSchema, RuleElementSource, RuleValue } from "./data.ts";
-
 /**
  * Rule Elements allow you to modify actorData and tokenData values when present on items. They can be configured
  * in the item's Rules tab which has to be enabled using the "Advanced Rule Element UI" system setting.
@@ -63,10 +69,13 @@ declare abstract class RuleElementPF2e<TSchema extends RuleElementSchema = RuleE
      * @param options.warn Whether to warn on a failed resolution
      * @return the looked up value on the specific object
      */
-    resolveInjectedProperties<T extends string | number | object | null | undefined>(source: T, options?: {
-        injectables?: Record<string, unknown>;
-        warn?: boolean;
-    }): T;
+    resolveInjectedProperties<T extends string | number | object | null | undefined>(
+        source: T,
+        options?: {
+            injectables?: Record<string, unknown>;
+            warn?: boolean;
+        },
+    ): T;
     /**
      * Parses the value attribute on a rule.
      *
@@ -82,10 +91,16 @@ declare abstract class RuleElementPF2e<TSchema extends RuleElementSchema = RuleE
      * @param defaultValue if no value is found, use that one
      * @return the evaluated value
      */
-    resolveValue(value: unknown, defaultValue?: Exclude<RuleValue, BracketedValue> | null, { evaluate, resolvables, warn }?: ResolveValueParams): number | string | boolean | object | null;
+    resolveValue(
+        value: unknown,
+        defaultValue?: Exclude<RuleValue, BracketedValue> | null,
+        { evaluate, resolvables, warn }?: ResolveValueParams,
+    ): number | string | boolean | object | null;
     protected isBracketedValue(value: unknown): value is BracketedValue;
 }
-interface RuleElementPF2e<TSchema extends RuleElementSchema> extends foundry.abstract.DataModel<ItemPF2e<ActorPF2e>, TSchema>, ModelPropsFromSchema<RuleElementSchema> {
+interface RuleElementPF2e<TSchema extends RuleElementSchema>
+    extends foundry.abstract.DataModel<ItemPF2e<ActorPF2e>, TSchema>,
+        ModelPropsFromSchema<RuleElementSchema> {
     constructor: typeof RuleElementPF2e<TSchema>;
     get schema(): LaxSchemaField<TSchema>;
     /**
@@ -206,7 +221,7 @@ interface ResolveValueParams {
     resolvables?: Record<string, unknown>;
     warn?: boolean;
 }
-interface RuleElementOptions extends ParentedDataModelConstructionOptions<ItemPF2e<ActorPF2e>> {
+interface RuleElementOptions extends DataModelConstructionContext<ItemPF2e<ActorPF2e>> {
     /** If created from an item, the index in the source data */
     sourceIndex?: number;
     /** If data validation fails for any reason, do not emit console warnings */

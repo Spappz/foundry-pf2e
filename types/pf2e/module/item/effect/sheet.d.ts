@@ -1,6 +1,6 @@
-import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "../base/sheet/sheet.ts";
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
+import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
 import { EffectPF2e } from "./document.ts";
-
 export declare class EffectSheetPF2e extends ItemSheetPF2e<EffectPF2e> {
     static get defaultOptions(): ItemSheetOptions;
     protected get validTraits(): Record<string, string>;

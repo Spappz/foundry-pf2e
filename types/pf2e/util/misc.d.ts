@@ -1,6 +1,7 @@
-import { ActionCost } from "../module/item/base/data/system.ts";
+import { default as Localization, TranslationDictionaryValue } from "@client/helpers/localization.mjs";
+import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import { ActionCost } from "@item/base/data/system.ts";
 import { default as Sortable } from "sortablejs";
-
 /**
  * Given an array and a key function, create a map where the key is the value that
  * gets returned when each item is pushed into the function. Accumulate
@@ -10,13 +11,6 @@ import { default as Sortable } from "sortablejs";
  * @return
  */
 declare function groupBy<T, R>(array: T[], criterion: (value: T) => R): Map<R, T[]>;
-/**
- * Given an array, adds a certain amount of elements to it
- * until the desired length is being reached
- */
-declare function padArray<T>(array: T[], requiredLength: number, padWith: T): T[];
-/** Given an object, returns a new object with the same keys, but with each value converted by a function. */
-declare function mapValues<K extends string | number | symbol, V, R>(object: Record<K, V>, mapping: (value: V, key: K) => R): Record<K, R>;
 /**
  * Continually apply a function on the result of itself until times is reached
  *
@@ -42,24 +36,41 @@ declare function setHasElement<T extends Set<unknown>>(set: T, value: unknown): 
  * @param options.emptyStringZero If the value is zero, return an empty string
  * @param options.zeroIsNegative Treat zero as a negative value
  */
-declare function signedInteger(value: number, { emptyStringZero, zeroIsNegative }?: {
-    emptyStringZero?: boolean | undefined;
-    zeroIsNegative?: boolean | undefined;
-}): string;
+declare function signedInteger(
+    value: number,
+    {
+        emptyStringZero,
+        zeroIsNegative,
+    }?: {
+        emptyStringZero?: boolean | undefined;
+        zeroIsNegative?: boolean | undefined;
+    },
+): string;
 /**
  * The system's sluggification algorithm for labels and other terms.
  * @param text The text to sluggify
  * @param [options.camel=null] The sluggification style to use
  */
-declare function sluggify(text: string, { camel }?: {
-    camel?: SlugCamel;
-}): string;
+declare function sluggify(
+    text: string,
+    {
+        camel,
+    }?: {
+        camel?: SlugCamel;
+    },
+): string;
 type SlugCamel = "dromedary" | "bactrian" | null;
 /** Parse a string containing html */
 declare function parseHTML(unparsed: string): HTMLElement;
-declare function getActionTypeLabel(type: Maybe<"action" | "free" | "reaction" | "passive">, cost: Maybe<number>): string | null;
+declare function getActionTypeLabel(
+    type: Maybe<"action" | "free" | "reaction" | "passive">,
+    cost: Maybe<number>,
+): string | null;
 declare function getActionIcon(actionType: string | ActionCost | null, fallback: ImageFilePath): ImageFilePath;
-declare function getActionIcon(actionType: string | ActionCost | null, fallback: ImageFilePath | null): ImageFilePath | null;
+declare function getActionIcon(
+    actionType: string | ActionCost | null,
+    fallback: ImageFilePath | null,
+): ImageFilePath | null;
 declare function getActionIcon(actionType: string | ActionCost | null): ImageFilePath;
 /**
  * Returns a character that can be used with the Pathfinder action font
@@ -70,9 +81,14 @@ declare function ErrorPF2e(message: string): Error;
 /** Returns the number in an ordinal format, like 1st, 2nd, 3rd, 4th, etc. */
 declare function ordinalString(value: number): string;
 /** Localizes a list of strings into a (possibly comma-delimited) list for the current language */
-declare function localizeList(items: string[], { conjunction }?: {
-    conjunction?: "and" | "or";
-}): string;
+declare function localizeList(
+    items: string[],
+    {
+        conjunction,
+    }?: {
+        conjunction?: "and" | "or";
+    },
+): string;
 /**
  * Split and sanitize a list in string form. The empty string is always excluded from the resulting array.
  * @param [options.delimiter] The delimiter by which to split (default of ",")
@@ -85,19 +101,32 @@ interface SplitListStringOptions {
 }
 /** Generate and return an HTML element for a FontAwesome icon */
 type FontAwesomeStyle = "solid" | "regular" | "duotone";
-declare function fontAwesomeIcon(glyph: string, { style, fixedWidth }?: {
-    style?: FontAwesomeStyle;
-    fixedWidth?: boolean;
-}): HTMLElement;
+declare function fontAwesomeIcon(
+    glyph: string,
+    {
+        style,
+        fixedWidth,
+    }?: {
+        style?: FontAwesomeStyle;
+        fixedWidth?: boolean;
+    },
+): HTMLElement;
 /** Short form of type and non-null check */
 declare function isObject<T extends object>(value: unknown): value is DeepPartial<T>;
-declare function isObject<T extends string>(value: unknown): value is {
+declare function isObject<T extends string>(
+    value: unknown,
+): value is {
     [K in T]?: unknown;
 };
 /** Create a copy of a record with its insertion order sorted by label */
-declare function sortLabeledRecord<T extends Record<string, {
-    label: string;
-}>>(record: T): T;
+declare function sortLabeledRecord<
+    T extends Record<
+        string,
+        {
+            label: string;
+        }
+    >,
+>(record: T): T;
 /** Localize the values of a `Record<string, string>` and sort by those values */
 declare function sortStringRecord<T extends Record<string, string>>(record: T): T;
 /** JSON.stringify with recursive key sorting */
@@ -107,11 +136,43 @@ declare function recursiveReplaceString<T>(source: T, replace: (s: string) => st
 /** Create a localization function with a prefixed localization object path */
 declare function localizer(prefix: string): (...args: Parameters<Localization["format"]>) => string;
 /** Walk a localization object and recursively map the keys as localization strings starting with a given prefix */
-declare function configFromLocalization<T extends Record<string, TranslationDictionaryValue>>(localization: T, prefix: string): T;
+declare function configFromLocalization<T extends Record<string, TranslationDictionaryValue>>(
+    localization: T,
+    prefix: string,
+): T;
 /** Does the parameter look like an image file path? */
 declare function isImageFilePath(path: unknown): path is ImageFilePath;
 /** Does the parameter look like a video file path? */
 declare function isVideoFilePath(path: unknown): path is VideoFilePath;
 declare function isImageOrVideoPath(path: unknown): path is ImageFilePath | VideoFilePath;
 declare const SORTABLE_BASE_OPTIONS: Sortable.Options;
-export { ErrorPF2e, SORTABLE_BASE_OPTIONS, applyNTimes, configFromLocalization, fontAwesomeIcon, getActionGlyph, getActionIcon, getActionTypeLabel, groupBy, isImageFilePath, isImageOrVideoPath, isObject, isVideoFilePath, localizeList, localizer, mapValues, objectHasKey, ordinalString, padArray, parseHTML, recursiveReplaceString, setHasElement, signedInteger, sluggify, sortLabeledRecord, sortObjByKey, sortStringRecord, splitListString, tupleHasValue, type SlugCamel, };
+export {
+    applyNTimes,
+    configFromLocalization,
+    ErrorPF2e,
+    fontAwesomeIcon,
+    getActionGlyph,
+    getActionIcon,
+    getActionTypeLabel,
+    groupBy,
+    isImageFilePath,
+    isImageOrVideoPath,
+    isObject,
+    isVideoFilePath,
+    localizeList,
+    localizer,
+    objectHasKey,
+    ordinalString,
+    parseHTML,
+    recursiveReplaceString,
+    setHasElement,
+    signedInteger,
+    sluggify,
+    SORTABLE_BASE_OPTIONS,
+    sortLabeledRecord,
+    sortObjByKey,
+    sortStringRecord,
+    splitListString,
+    tupleHasValue,
+    type SlugCamel,
+};

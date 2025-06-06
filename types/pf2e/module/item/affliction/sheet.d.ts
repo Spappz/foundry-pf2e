@@ -1,14 +1,17 @@
-import { AfflictionPF2e, ConditionPF2e } from "../index.ts";
-import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "../base/sheet/sheet.ts";
-import { DamageCategoryUnique } from "../../system/damage/types.ts";
+import { ItemUUID } from "@client/documents/_module.mjs";
+import { AfflictionPF2e, ConditionPF2e } from "@item";
+import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
+import { DamageCategoryUnique } from "@system/damage/types.ts";
 import { AfflictionConditionData, AfflictionStageData } from "./data.ts";
-
 declare class AfflictionSheetPF2e extends ItemSheetPF2e<AfflictionPF2e> {
+    #private;
     static get defaultOptions(): ItemSheetOptions;
     getData(options?: Partial<ItemSheetOptions>): Promise<AfflictionSheetData>;
-    protected prepareStages(): Promise<Record<string, AfflictionStageSheetData>>;
+    protected prepareStages(): Promise<AfflictionStageSheetData[]>;
     activateListeners($html: JQuery<HTMLElement>): void;
+    /** Handle effects being dropped  */
     _onDrop(event: DragEvent): Promise<void>;
+    /** Ensure stage updates during submit deep merge. We don't have to convert to arrays, data models handle that */
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 }
 interface AfflictionSheetData extends ItemSheetDataPF2e<AfflictionPF2e> {
@@ -18,12 +21,12 @@ interface AfflictionSheetData extends ItemSheetDataPF2e<AfflictionPF2e> {
     durationUnits: Omit<ConfigPF2e["PF2E"]["timeUnits"], "encounter">;
     onsetUnits: Omit<ConfigPF2e["PF2E"]["timeUnits"], "unlimited" | "encounter">;
     saves: ConfigPF2e["PF2E"]["saves"];
-    stages: Record<string, AfflictionStageSheetData>;
+    stages: AfflictionStageSheetData[];
     stageOptions: Record<string, string>;
 }
 interface AfflictionStageSheetData extends AfflictionStageData {
     stage: number;
-    conditions: Record<string, AfflictionConditionSheetData>;
+    conditions: AfflictionConditionSheetData[];
     effects: {
         uuid: ItemUUID;
         img?: string;

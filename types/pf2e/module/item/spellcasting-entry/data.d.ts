@@ -1,10 +1,9 @@
-import { AttributeString } from "../../actor/types.ts";
-import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, OtherTagsOnly } from "../base/data/system.ts";
-import { MagicTradition } from "../spell/types.ts";
-import { OneToTen, ZeroToFour, ZeroToTen } from "../../data.ts";
-import { RollNotePF2e } from "../../notes.ts";
+import { AttributeString } from "@actor/types.ts";
+import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, OtherTagsOnly } from "@item/base/data/system.ts";
+import { MagicTradition } from "@item/spell/types.ts";
+import { OneToTen, ZeroToFour, ZeroToTen } from "@module/data.ts";
+import { RollNotePF2e } from "@module/notes.ts";
 import { SpellcastingCategory } from "./types.ts";
-
 type SlotKey = `slot${ZeroToTen}`;
 type SpellcastingEntrySource = BaseItemSourcePF2e<"spellcastingEntry", SpellcastingEntrySystemSource>;
 interface SpellDifficultyClass {
@@ -53,11 +52,20 @@ interface SpellCollectionTypeSource {
     flexible?: boolean;
     validItems?: "scroll" | "" | null;
 }
-interface SpellcastingEntrySystemData extends Omit<SpellcastingEntrySystemSource, "description">, Omit<ItemSystemData, "level" | "traits"> {
+interface SpellcastingEntrySystemData
+    extends Omit<SpellcastingEntrySystemSource, "description">,
+        Omit<ItemSystemData, "level" | "traits"> {
     prepared: SpellCollectionTypeData;
 }
 interface SpellCollectionTypeData extends SpellCollectionTypeSource {
     flexible: boolean;
     validItems: "scroll" | null;
 }
-export type { SlotKey, SpellDifficultyClass, SpellcastingEntrySlots, SpellcastingEntrySource, SpellcastingEntrySystemData, SpellcastingEntrySystemSource, };
+export type {
+    SlotKey,
+    SpellDifficultyClass,
+    SpellcastingEntrySlots,
+    SpellcastingEntrySource,
+    SpellcastingEntrySystemData,
+    SpellcastingEntrySystemSource,
+};

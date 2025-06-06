@@ -1,98 +1,138 @@
-import { SaveData } from "../creature/data.ts";
-import { ActorAttributes, ActorAttributesSource, ActorDetails, ActorDetailsSource, ActorHitPoints, ActorSystemData, ActorSystemSource, ActorTraitsSource, BaseActorSourcePF2e } from "../data/base.ts";
-import { ActorSizePF2e } from "../data/size.ts";
-import { InitiativeTraceData } from "../initiative.ts";
-import { NPCStrike } from "../npc/index.ts";
-import { SaveType } from "../types.ts";
-import { PublicationData, Rarity, Size } from "../../data.ts";
-import { StatisticTraceData } from "../../system/statistic/data.ts";
+import { ActorAttributes, ActorDetails, ActorHitPoints, BaseActorSourcePF2e } from "@actor/data/base.ts";
+import { Immunity, Resistance, Weakness } from "@actor/data/iwr.ts";
+import { ActorHitPointsSchema, ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
+import { ActorSizePF2e } from "@actor/data/size.ts";
+import { InitiativeTraceData } from "@actor/initiative.ts";
+import { NPCStrike } from "@actor/npc/index.ts";
+import { ImmunityType, ResistanceType, WeaknessType } from "@actor/types.ts";
+import { Rarity, Size } from "@module/data.ts";
+import { PublicationField } from "@module/model.ts";
+import { DataUnionField } from "@system/schema-data-fields.ts";
+import { StatisticTraceData } from "@system/statistic/data.ts";
+import { HazardPF2e } from "./document.ts";
 import { HazardTrait } from "./types.ts";
-
+import fields = foundry.data.fields;
 /** The stored source data of a hazard actor */
 type HazardSource = BaseActorSourcePF2e<"hazard", HazardSystemSource>;
-/** The raw information contained within the actor data object for hazards. */
-type HazardSystemSource = Omit<ActorSystemSource, "details" | "attributes" | "saves" | "traits"> & {
-    details: HazardDetailsSource;
-    attributes: HazardAttributesSource;
-    saves: HazardSaves;
-    /** Traits, languages, and other information. */
-    traits: HazardTraitsSource;
-};
-interface HazardAttributesSource extends ActorAttributesSource {
-    ac: {
-        value: number;
-    };
-    hp: {
-        value: number;
-        max: number;
-        temp: number;
-        details: string;
-    };
-    hardness: number;
-    stealth: {
-        value: number | null;
-        details: string;
-    };
-    emitsSound: boolean | "encounter";
+declare class HazardSystemData extends ActorSystemModel<HazardPF2e, HazardSystemSchema> {
+    static defineSchema(): HazardSystemSchema;
 }
-interface HazardDetailsSource extends ActorDetailsSource {
-    isComplex: boolean;
-    level: {
-        value: number;
-    };
-    disable?: string;
-    description?: string;
-    reset?: string;
-    routine?: string;
-    /** Information concerning the publication from which this actor originates */
-    publication: PublicationData;
-    readonly alliance?: never;
-}
-interface HazardSystemData extends Omit<HazardSystemSource, "attributes" | "details">, Omit<ActorSystemData, "traits"> {
-    actions: NPCStrike[];
+interface HazardSystemData
+    extends ActorSystemModel<HazardPF2e, HazardSystemSchema>,
+        fields.ModelPropsFromSchema<HazardSystemSchema> {
+    traits: HazardTraits;
     attributes: HazardAttributes;
     details: HazardDetails;
+    actions: NPCStrike[];
     initiative?: InitiativeTraceData;
-    traits: HazardTraitsData;
 }
-interface HazardTraitsSource extends ActorTraitsSource<HazardTrait> {
-    size: {
-        value: Size;
-    };
-    rarity: Rarity;
-    languages?: never;
-}
-interface HazardTraitsData extends HazardTraitsSource {
+type HazardSystemSchema = ActorSystemSchema & {
+    /** Traits, languages, and other information. */
+    traits: fields.SchemaField<HazardTraitsSchema>;
+    attributes: fields.SchemaField<
+        HazardAttributesSchema,
+        fields.SourceFromSchema<HazardAttributesSchema>,
+        HazardAttributes
+    >;
+    details: fields.SchemaField<HazardDetailsSchema>;
+    saves: fields.SchemaField<{
+        fortitude: fields.SchemaField<HazardSaveDataSchema>;
+        reflex: fields.SchemaField<HazardSaveDataSchema>;
+        will: fields.SchemaField<HazardSaveDataSchema>;
+    }>;
+};
+type HazardTraitsSchema = {
+    value: fields.ArrayField<fields.StringField<HazardTrait, HazardTrait, true, false, false>>;
+    rarity: fields.StringField<Rarity, Rarity, true, false, true>;
+    size: fields.SchemaField<{
+        value: fields.StringField<Size, Size, true, false, true>;
+    }>;
+};
+interface HazardTraits extends fields.ModelPropsFromSchema<HazardTraitsSchema> {
     size: ActorSizePF2e;
-    rarity: Rarity;
 }
-interface HazardAttributes extends Omit<HazardAttributesSource, "initiative" | "immunities" | "weaknesses" | "resistances">, Omit<ActorAttributes, "perception" | "shield"> {
+type HazardSaveDataSchema = {
+    value: fields.NumberField<number, number, true, false, true>;
+};
+type HazardAttributesSchema = {
+    hp: fields.SchemaField<ActorHitPointsSchema, fields.SourceFromSchema<ActorHitPointsSchema>, ActorHitPoints>;
+    ac: fields.SchemaField<{
+        value: fields.NumberField<number, number, true, false, true>;
+    }>;
+    hardness: fields.NumberField<number, number, true, false, true>;
+    stealth: fields.SchemaField<{
+        value: fields.NumberField<number, number, true, true, true>;
+        details: fields.StringField<string, string, true, false, true>;
+    }>;
+    immunities: fields.ArrayField<
+        fields.SchemaField<{
+            type: fields.StringField<ImmunityType, ImmunityType, true, false, false>;
+            exceptions: fields.ArrayField<fields.StringField<ImmunityType, ImmunityType, true, false, false>>;
+        }>
+    >;
+    weaknesses: fields.ArrayField<
+        fields.SchemaField<{
+            type: fields.StringField<WeaknessType, WeaknessType, true, false, false>;
+            value: fields.NumberField<number, number, true, false, true>;
+            exceptions: fields.ArrayField<fields.StringField<WeaknessType, WeaknessType, true, false, false>>;
+        }>
+    >;
+    resistances: fields.ArrayField<
+        fields.SchemaField<{
+            type: fields.StringField<ResistanceType, ResistanceType, true, false, false>;
+            value: fields.NumberField<number, number, true, false, true>;
+            exceptions: fields.ArrayField<fields.StringField<ResistanceType, ResistanceType, true, false, false>>;
+            doubleVs: fields.ArrayField<fields.StringField<ResistanceType, ResistanceType, true, false, false>>;
+        }>
+    >;
+    emitsSound: DataUnionField<
+        | fields.StringField<"encounter", "encounter", true, false, false>
+        | fields.BooleanField<boolean, boolean, true, false, false>,
+        true,
+        false,
+        true
+    >;
+};
+type HazardAttributesSource = fields.SourceFromSchema<HazardAttributesSchema>;
+type HazardDetailsSchema = {
+    description: fields.StringField<string, string, true, false, true>;
+    level: fields.SchemaField<{
+        value: fields.NumberField<number, number, true, false, true>;
+    }>;
+    isComplex: fields.BooleanField<boolean, boolean, true, false, true>;
+    disable: fields.StringField<string, string, true, false, true>;
+    routine: fields.StringField<string, string, true, false, true>;
+    reset: fields.StringField<string, string, true, false, true>;
+    /** Information concerning the publication from which this actor originates */
+    publication: PublicationField;
+};
+/** The raw information contained within the actor data object for hazards. */
+interface HazardSystemSource extends fields.SourceFromSchema<HazardSystemSchema> {
+    schema?: never;
+}
+interface HazardAttributes extends ActorAttributes, Omit<HazardAttributesSource, AttributesSourceOmission> {
     ac: {
         value: number;
     };
-    hasHealth: boolean;
     hp: HazardHitPoints;
-    hardness: number;
+    hasHealth: boolean;
     stealth: HazardStealthTraceData;
-    /**
-     * Whether the hazard emits sound and can therefore be detected via hearing. A value of "encounter" indicates it is
-     * silent until an encounter begins.
-     */
-    emitsSound: boolean | "encounter";
+    immunities: Immunity[];
+    weaknesses: Weakness[];
+    resistances: Resistance[];
     shield?: never;
 }
+type AttributesSourceOmission = "immunities" | "weaknesses" | "resistances";
 interface HazardStealthTraceData extends Omit<StatisticTraceData, "dc" | "totalModifier" | "value"> {
     dc: number | null;
     totalModifier: number | null;
     value: number | null;
     details: string;
 }
-interface HazardDetails extends Omit<HazardDetailsSource, "alliance">, ActorDetails {
+interface HazardDetails extends ActorDetails, fields.SourceFromSchema<HazardDetailsSchema> {
     alliance: null;
 }
 interface HazardHitPoints extends ActorHitPoints {
     brokenThreshold: number;
 }
-type HazardSaveData = Omit<SaveData, "attribute">;
-type HazardSaves = Record<SaveType, HazardSaveData>;
-export type { HazardSource, HazardSystemData };
+export { HazardSystemData, type HazardSource };

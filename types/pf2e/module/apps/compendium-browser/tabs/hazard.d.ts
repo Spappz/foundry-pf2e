@@ -1,8 +1,7 @@
-import { CompendiumBrowser } from "../browser.ts";
+import { CompendiumBrowser } from "../browser";
 import { ContentTabName } from "../data.ts";
 import { CompendiumBrowserTab } from "./base.svelte.ts";
 import { CompendiumBrowserIndexData, HazardFilters } from "./data.ts";
-
 export declare class CompendiumBrowserHazardTab extends CompendiumBrowserTab {
     tabName: ContentTabName;
     tabLabel: string;

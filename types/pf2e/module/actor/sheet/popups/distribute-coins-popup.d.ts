@@ -1,6 +1,6 @@
-import { ActorPF2e } from "../../index.ts";
-
-interface PopupData extends FormApplicationData<ActorPF2e> {
+import { ActorPF2e } from "@actor";
+import appv1 = foundry.appv1;
+interface PopupData extends appv1.api.FormApplicationData<ActorPF2e> {
     selection?: string[];
     actorInfo?: {
         id: string;
@@ -15,15 +15,18 @@ interface PopupFormData extends FormData {
 /**
  * @category Other
  */
-export declare class DistributeCoinsPopup extends FormApplication<ActorPF2e, DistributeCoinsOptions> {
+export declare class DistributeCoinsPopup extends appv1.api.FormApplication<ActorPF2e, DistributeCoinsOptions> {
     constructor(actor: ActorPF2e, options?: Partial<DistributeCoinsOptions>);
-    static get defaultOptions(): FormApplicationOptions;
+    static get defaultOptions(): appv1.api.FormApplicationOptions;
     getData(options?: Partial<DistributeCoinsOptions>): Promise<PopupData>;
     _updateObject(_event: Event, formData: Record<string, unknown> & PopupFormData): Promise<void>;
     /** Prevent Foundry from converting the actor IDs to boolean values */
-    protected _onSubmit(event: Event, options?: OnSubmitFormOptions): Promise<Record<string, unknown> | false>;
+    protected _onSubmit(
+        event: Event,
+        options?: appv1.api.OnSubmitFormOptions,
+    ): Promise<Record<string, unknown> | false>;
 }
-interface DistributeCoinsOptions extends FormApplicationOptions {
+interface DistributeCoinsOptions extends appv1.api.FormApplicationOptions {
     /** An optional initial list of recipients to receive coins */
     recipients?: ActorPF2e[];
 }

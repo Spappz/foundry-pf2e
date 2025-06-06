@@ -1,5 +1,4 @@
 import { default as Sortable } from "sortablejs";
-
 declare class DestroyableManager {
     #private;
     static instance: DestroyableManager;
@@ -8,10 +7,14 @@ declare class DestroyableManager {
     constructor();
     observe(destroyable: Destroyable): void;
 }
-type Destroyable = Tagify<{
-    id: string;
-    value: string;
-}> | Tagify<Tagify.TagData> | Sortable | JQueryTooltipster.ITooltipsterInstance;
+type Destroyable =
+    | Tagify<{
+          id: string;
+          value: string;
+      }>
+    | Tagify<Tagify.TagData>
+    | Sortable
+    | JQueryTooltipster.ITooltipsterInstance;
 declare function createSortable(list: HTMLElement, options: Sortable.Options): Sortable;
 declare function createTooltipster(target: HTMLElement, options: JQueryTooltipster.ITooltipsterOptions): JQuery;
 export { DestroyableManager, createSortable, createTooltipster };

@@ -1,16 +1,24 @@
+import { Point } from "@common/_types.mjs";
 import { TokenPF2e } from "./index.ts";
-
 /**
  * Measure the minimum distance between two rectangles
  * @param r0      The origin rectangle
  * @param r1      The destination rectangle
  * @param [reach] If this is a reach measurement, the origin actor's reach
  */
-declare function measureDistanceCuboid(r0: PIXI.Rectangle, r1: PIXI.Rectangle, { reach, token, target, }?: {
-    reach?: number | null;
-    token?: TokenPF2e | null;
-    target?: TokenPF2e | null;
-}): number;
+declare function measureDistanceCuboid(
+    r0: PIXI.Rectangle,
+    r1: PIXI.Rectangle,
+    {
+        reach,
+        token,
+        target,
+    }?: {
+        reach?: number | null;
+        token?: TokenPF2e | null;
+        target?: TokenPF2e | null;
+    },
+): number;
 /**
  * Measure distance using Pathfinder 2e grid-counting rules
  * @param p0 The origin point

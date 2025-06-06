@@ -1,8 +1,8 @@
 import { default as MiniSearch } from "minisearch";
-import { CompendiumBrowser, CompendiumBrowserOpenTabOptions } from "../browser.ts";
+import { CompendiumBrowser, CompendiumBrowserOpenTabOptions } from "../browser";
 import { BrowserTabs, ContentTabName } from "../data.ts";
 import { BrowserFilter, CheckboxOptions, CompendiumBrowserIndexData, RangesInputData, TraitData } from "./data.ts";
-
+import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
 export declare abstract class CompendiumBrowserTab {
     #private;
     /** A reference to the parent CompendiumBrowser */
@@ -57,7 +57,11 @@ export declare abstract class CompendiumBrowserTab {
     protected abstract prepareFilterData(): this["filterData"];
     /** Filter indexData */
     protected abstract filterIndexData(entry: CompendiumBrowserIndexData): boolean;
-    protected filterTraits(traits: string[], selected: TraitData["selected"], condition: TraitData["conjunction"]): boolean;
+    protected filterTraits(
+        traits: string[],
+        selected: TraitData["selected"],
+        condition: TraitData["conjunction"],
+    ): boolean;
     /** Sort result array by name, level or price */
     protected sortResult(result: CompendiumBrowserIndexData[]): CompendiumBrowserIndexData[];
     /** Return new range filter values based on input */
@@ -65,10 +69,20 @@ export declare abstract class CompendiumBrowserTab {
     /** Check if an array includes any keys of another array */
     protected arrayIncludes(array: string[], other: string[]): boolean;
     /** Generates a localized and sorted CheckBoxOptions object from config data */
-    protected generateCheckboxOptions(configData: Record<string, string | {
-        label: string;
-    }>, sort?: boolean): CheckboxOptions;
-    protected generateMultiselectOptions<T extends string>(optionsRecord: Record<T, string>, sort?: boolean): {
+    protected generateCheckboxOptions(
+        configData: Record<
+            string,
+            | string
+            | {
+                  label: string;
+              }
+        >,
+        sort?: boolean,
+    ): CheckboxOptions;
+    protected generateMultiselectOptions<T extends string>(
+        optionsRecord: Record<T, string>,
+        sort?: boolean,
+    ): {
         value: T;
         label: string;
     }[];

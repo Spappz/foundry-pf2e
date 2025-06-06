@@ -1,9 +1,8 @@
-import { SaveType } from "../../actor/types.ts";
-import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, ItemTraits } from "../base/data/system.ts";
-import { OneToTen, ValueAndMax, ZeroToThree } from "../../data.ts";
-import { DamageCategoryUnique, DamageKind, DamageType, MaterialDamageEffect } from "../../system/damage/index.ts";
+import { SaveType } from "@actor/types.ts";
+import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, ItemTraits } from "@item/base/data/system.ts";
+import { OneToTen, ValueAndMax, ZeroToThree } from "@module/data.ts";
+import { DamageCategoryUnique, DamageKind, DamageType, MaterialDamageEffect } from "@system/damage/index.ts";
 import { EffectAreaShape, MagicTradition, SpellTrait } from "./types.ts";
-
 type SpellSource = BaseItemSourcePF2e<"spell", SpellSystemSource>;
 interface SpellSystemSource extends ItemSystemSource {
     traits: SpellTraits;
@@ -91,12 +90,14 @@ interface SpellHeightenLayer {
     system: Partial<SpellSystemSource>;
 }
 interface SpellOverlayOverride {
-    system?: DeepPartial<SpellSystemSource>;
+    system?: Partial<Omit<SpellSystemSource, "overlays">>;
     name?: string;
     overlayType: "override";
     sort: number;
 }
-interface SpellSystemData extends Omit<SpellSystemSource, "damage" | "description">, Omit<ItemSystemData, "level" | "traits"> {
+interface SpellSystemData
+    extends Omit<SpellSystemSource, "damage" | "description">,
+        Omit<ItemSystemData, "level" | "traits"> {
     /** Time and resources consumed in the casting of this spell */
     cast: SpellCastData;
     damage: Record<string, SpellDamage>;
@@ -120,10 +121,23 @@ interface RitualData {
     primary: {
         check: string;
     };
-    /** Details of the secondary check(s) for the ritual and maximum number of casters */
+    /** Details of the secondary check(s) for the ritual and minimum number of casters */
     secondary: {
         checks: string;
         casters: number;
     };
 }
-export type { SpellArea, SpellDamage, SpellDamageSource, SpellHeighteningInterval, SpellHeightenLayer, SpellOverlay, SpellOverlayOverride, SpellOverlayType, SpellPassiveDefense, SpellSource, SpellSystemData, SpellSystemSource, };
+export type {
+    SpellArea,
+    SpellDamage,
+    SpellDamageSource,
+    SpellHeighteningInterval,
+    SpellHeightenLayer,
+    SpellOverlay,
+    SpellOverlayOverride,
+    SpellOverlayType,
+    SpellPassiveDefense,
+    SpellSource,
+    SpellSystemData,
+    SpellSystemSource,
+};

@@ -1,11 +1,10 @@
-import { CreatureTrait } from "../../../actor/creature/index.ts";
-import { SenseAcuity, SenseType } from "../../../actor/creature/types.ts";
-import { RecordField } from "../../../system/schema-data-fields.ts";
+import { CreatureTrait } from "@actor/creature/index.ts";
+import { SenseAcuity, SenseType } from "@actor/creature/types.ts";
+import { RecordField } from "@system/schema-data-fields.ts";
 import { ResolvableValueField, RuleElementSchema } from "../data.ts";
 import { ImmunityRuleElement, ResistanceRuleElement, WeaknessRuleElement } from "../iwr/index.ts";
 import { BattleFormSkills, BattleFormSpeeds, BattleFormStrike } from "./types.ts";
-
-import type * as fields from "../../../../../foundry/common/data/fields.ts";
+import type * as fields from "@common/data/fields.mjs";
 type OverrideACSchema = {
     modifier: ResolvableValueField<false, false, true>;
     ignoreCheckPenalty: fields.BooleanField<boolean, boolean, false, false, true>;
@@ -18,9 +17,22 @@ type OverrideSenseSchema = {
 };
 type BattleFormRuleOverrideSchema = {
     traits: fields.ArrayField<fields.StringField<CreatureTrait, CreatureTrait, true, false, false>>;
-    armorClass: fields.SchemaField<OverrideACSchema, SourceFromSchema<OverrideACSchema>, ModelPropsFromSchema<OverrideACSchema>, false, false, true>;
+    armorClass: fields.SchemaField<
+        OverrideACSchema,
+        fields.SourceFromSchema<OverrideACSchema>,
+        fields.ModelPropsFromSchema<OverrideACSchema>,
+        false,
+        false,
+        true
+    >;
     tempHP: ResolvableValueField<false, true, true>;
-    senses: RecordField<fields.StringField<SenseType, SenseType, true, false, false>, fields.SchemaField<OverrideSenseSchema>, false, false, true>;
+    senses: RecordField<
+        fields.StringField<SenseType, SenseType, true, false, false>,
+        fields.SchemaField<OverrideSenseSchema>,
+        false,
+        false,
+        true
+    >;
     size: fields.StringField<string, string, false, true, false>;
     speeds: fields.ObjectField<BattleFormSpeeds, BattleFormSpeeds, false, false, true>;
     skills: fields.ObjectField<BattleFormSkills, BattleFormSkills, false, false, true>;

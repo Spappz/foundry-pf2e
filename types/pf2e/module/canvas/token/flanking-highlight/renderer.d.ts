@@ -1,5 +1,4 @@
 import { TokenPF2e } from "../index.ts";
-
 /** Visual rendering of lines from token to flanking buddies token on highlight */
 declare class FlankingHighlightRenderer {
     #private;

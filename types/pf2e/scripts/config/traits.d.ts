@@ -1,11 +1,10 @@
-import { OtherArmorTag } from "../../module/item/armor/types.ts";
-import { BackgroundTrait } from "../../module/item/background/types.ts";
-import { ClassTrait } from "../../module/item/class/types.ts";
-import { OtherConsumableTag } from "../../module/item/consumable/types.ts";
-import { PreciousMaterialType } from "../../module/item/physical/types.ts";
-import { MagicTradition } from "../../module/item/spell/types.ts";
-import { OtherWeaponTag } from "../../module/item/weapon/types.ts";
-
+import { OtherArmorTag } from "@item/armor/types.ts";
+import { BackgroundTrait } from "@item/background/types.ts";
+import { ClassTrait } from "@item/class/types.ts";
+import { OtherConsumableTag } from "@item/consumable/types.ts";
+import { PreciousMaterialType } from "@item/physical/types.ts";
+import { MagicTradition } from "@item/spell/types.ts";
+import { OtherWeaponTag } from "@item/weapon/types.ts";
 declare const ancestryTraits: {
     aiuvarin: string;
     anadi: string;
@@ -113,6 +112,7 @@ declare const creatureTraits: {
     asura: string;
     azata: string;
     beast: string;
+    blight: string;
     boggard: string;
     bugbear: string;
     caligni: string;
@@ -207,6 +207,7 @@ declare const creatureTraits: {
     serpentfolk: string;
     seugathi: string;
     shabti: string;
+    shade: string;
     shadow: string;
     shobhad: string;
     siktempora: string;
@@ -565,6 +566,7 @@ declare const weaponTraits: {
     "thrown-20": string;
     "thrown-30": string;
     "thrown-40": string;
+    "thrown-50": string;
     "thrown-60": string;
     "thrown-80": string;
     "thrown-100": string;
@@ -597,6 +599,7 @@ declare const weaponTraits: {
     "volley-30": string;
     "volley-50": string;
     "volley-60": string;
+    wand: string;
     holy: string;
     unholy: string;
     arcane: string;
@@ -691,6 +694,7 @@ declare const otherArmorTags: Record<OtherArmorTag, string>;
 declare const otherConsumableTags: Record<OtherConsumableTag, string>;
 declare const otherWeaponTags: Record<OtherWeaponTag, string>;
 declare const npcAttackTraits: {
+    concentrate: string;
     curse: string;
     "deadly-2d8": string;
     "deadly-3d8": string;
@@ -702,6 +706,7 @@ declare const npcAttackTraits: {
     "deadly-3d12": string;
     "deadly-4d12": string;
     illusion: string;
+    impulse: string;
     incorporeal: string;
     radiation: string;
     "reach-0": string;
@@ -919,6 +924,7 @@ declare const npcAttackTraits: {
     "thrown-20": string;
     "thrown-30": string;
     "thrown-40": string;
+    "thrown-50": string;
     "thrown-60": string;
     "thrown-80": string;
     "thrown-100": string;
@@ -951,6 +957,7 @@ declare const npcAttackTraits: {
     "volley-30": string;
     "volley-50": string;
     "volley-60": string;
+    wand: string;
     holy: string;
     unholy: string;
     arcane: string;
@@ -1702,281 +1709,457 @@ declare const actionTraits: {
     yaksha: string;
     yaoguai: string;
 };
-declare const effectTraits: Omit<{
-    "certain-kill": string;
-    summon: string;
-    agile: string;
-    propulsive: string;
-    backswing: string;
-    forceful: string;
-    reach: string;
-    sweep: string;
-    thrown: string;
-    "volley-20": string;
-    "volley-30": string;
-    "volley-50": string;
-    "volley-60": string;
-    amp: string;
-    attack: string;
-    auditory: string;
-    aura: string;
-    beast: string;
-    cantrip: string;
-    composition: string;
-    concentrate: string;
-    consecration: string;
-    contingency: string;
-    curse: string;
-    cursebound: string;
-    darkness: string;
-    death: string;
-    detection: string;
-    disease: string;
-    dream: string;
-    eidolon: string;
-    emotion: string;
-    exploration: string;
-    extradimensional: string;
-    fear: string;
-    focus: string;
-    fortune: string;
-    fungus: string;
-    healing: string;
-    hex: string;
-    illusion: string;
-    incapacitation: string;
-    incarnate: string;
-    incorporeal: string;
-    inhaled: string;
-    light: string;
-    linguistic: string;
-    litany: string;
-    manipulate: string;
-    misfortune: string;
-    morph: string;
-    move: string;
-    mythic: string;
-    nonlethal: string;
-    olfactory: string;
-    plant: string;
-    poison: string;
-    polymorph: string;
-    possession: string;
-    prediction: string;
-    psyche: string;
-    rage: string;
-    revelation: string;
-    sanctified: string;
-    scrying: string;
-    shadow: string;
-    sleep: string;
-    spellshape: string;
-    stance: string;
-    structure: string;
-    subtle: string;
-    summoned: string;
-    teleportation: string;
-    trial: string;
-    "true-name": string;
-    visual: string;
-    holy: string;
-    unholy: string;
-    arcane: string;
-    divine: string;
-    occult: string;
-    primal: string;
-    air: string;
-    earth: string;
-    fire: string;
-    metal: string;
-    water: string;
-    wood: string;
-    magical: string;
-    mental: string;
-    radiation: string;
-    spirit: string;
-    vitality: string;
-    void: string;
-    acid: string;
-    cold: string;
-    electricity: string;
-    force: string;
-    sonic: string;
-    alchemist: string;
-    animist: string;
-    barbarian: string;
-    bard: string;
-    champion: string;
-    cleric: string;
-    druid: string;
-    exemplar: string;
-    fighter: string;
-    gunslinger: string;
-    kineticist: string;
-    inventor: string;
-    investigator: string;
-    magus: string;
-    monk: string;
-    oracle: string;
-    psychic: string;
-    ranger: string;
-    rogue: string;
-    sorcerer: string;
-    summoner: string;
-    swashbuckler: string;
-    thaumaturge: string;
-    witch: string;
-    wizard: string;
-    additive: string;
-    additive1: string;
-    additive2: string;
-    additive3: string;
-    alchemical: string;
-    "bottled-breath": string;
-    catalyst: string;
-    coagulant: string;
-    clockwork: string;
-    consumable: string;
-    contact: string;
-    cursed: string;
-    drug: string;
-    elixir: string;
-    expandable: string;
-    fey: string;
-    fulu: string;
-    gadget: string;
-    infused: string;
-    ingested: string;
-    injury: string;
-    kobold: string;
-    lozenge: string;
-    mechanical: string;
-    missive: string;
-    mutagen: string;
-    oil: string;
-    potion: string;
-    precious: string;
-    processed: string;
-    scroll: string;
-    snare: string;
-    spellgun: string;
-    splash: string;
-    talisman: string;
-    tea: string;
-    trap: string;
-    virulent: string;
-    wand: string;
-    aftermath: string;
-    apparition: string;
-    archetype: string;
-    artifact: string;
-    bravado: string;
-    calling: string;
-    circus: string;
-    class: string;
-    composite: string;
-    dedication: string;
-    destiny: string;
-    deviant: string;
-    downtime: string;
-    evolution: string;
-    esoterica: string;
-    finisher: string;
-    flourish: string;
-    general: string;
-    ikon: string;
-    impulse: string;
-    infusion: string;
-    lineage: string;
-    mindshift: string;
-    modification: string;
-    multiclass: string;
-    oath: string;
-    overflow: string;
-    "pervasive-magic": string;
-    press: string;
-    reckless: string;
-    reincarnated: string;
-    reflection: string;
-    secret: string;
-    skill: string;
-    social: string;
-    spellshot: string;
-    stamina: string;
-    tandem: string;
-    time: string;
-    transcendence: string;
-    unstable: string;
-    vigilante: string;
-    wandering: string;
-    aiuvarin: string;
-    anadi: string;
-    android: string;
-    aphorite: string;
-    ardande: string;
-    athamaru: string;
-    automaton: string;
-    "awakened-animal": string;
-    azarketi: string;
-    beastkin: string;
-    bugbear: string;
-    catfolk: string;
-    centaur: string;
-    changeling: string;
-    conrasu: string;
-    dhampir: string;
-    dragonblood: string;
-    dromaar: string;
-    duskwalker: string;
-    dwarf: string;
-    elf: string;
-    fetchling: string;
-    fleshwarp: string;
-    ganzi: string;
-    geniekin: string;
-    ghoran: string;
-    gnoll: string;
-    gnome: string;
-    goblin: string;
-    goloma: string;
-    grippli: string;
-    halfling: string;
-    hobgoblin: string;
-    human: string;
-    hungerseed: string;
-    kashrishi: string;
-    kitsune: string;
-    leshy: string;
-    lizardfolk: string;
-    merfolk: string;
-    minotaur: string;
-    nagaji: string;
-    naari: string;
-    nephilim: string;
-    orc: string;
-    oread: string;
-    poppet: string;
-    ratfolk: string;
-    samsaran: string;
-    sarangay: string;
-    shisk: string;
-    shoony: string;
-    skeleton: string;
-    sprite: string;
-    strix: string;
-    suli: string;
-    surki: string;
-    sylph: string;
-    tanuki: string;
-    talos: string;
-    tengu: string;
-    undine: string;
-    vanara: string;
-    vishkanya: string;
-    wayang: string;
-    yaksha: string;
-    yaoguai: string;
-}, "splash" | "alchemist" | "animist" | "barbarian" | "bard" | "champion" | "cleric" | "druid" | "exemplar" | "fighter" | "gunslinger" | "kineticist" | "inventor" | "investigator" | "magus" | "monk" | "oracle" | "psychic" | "ranger" | "rogue" | "sorcerer" | "summoner" | "swashbuckler" | "thaumaturge" | "witch" | "wizard" | "agile" | "propulsive" | "backswing" | "forceful" | "reach" | "sweep" | "thrown" | "volley-20" | "volley-30" | "volley-50" | "volley-60" | "clockwork" | "consumable" | "infused" | "aiuvarin" | "anadi" | "android" | "aphorite" | "ardande" | "athamaru" | "automaton" | "awakened-animal" | "azarketi" | "beastkin" | "bugbear" | "catfolk" | "centaur" | "changeling" | "conrasu" | "dhampir" | "dragonblood" | "dromaar" | "duskwalker" | "dwarf" | "elf" | "fetchling" | "fleshwarp" | "ganzi" | "geniekin" | "ghoran" | "gnoll" | "gnome" | "goblin" | "goloma" | "grippli" | "halfling" | "hobgoblin" | "human" | "hungerseed" | "kashrishi" | "kitsune" | "kobold" | "leshy" | "lizardfolk" | "merfolk" | "minotaur" | "nagaji" | "naari" | "nephilim" | "orc" | "oread" | "poppet" | "ratfolk" | "reflection" | "samsaran" | "sarangay" | "shisk" | "shoony" | "skeleton" | "sprite" | "strix" | "suli" | "surki" | "sylph" | "tanuki" | "talos" | "tengu" | "undine" | "vanara" | "vishkanya" | "wayang" | "yaksha" | "yaoguai" | "additive" | "additive1" | "additive2" | "additive3" | "aftermath" | "amp" | "archetype" | "attack" | "beast" | "bottled-breath" | "cantrip" | "catalyst" | "circus" | "class" | "coagulant" | "composite" | "composition" | "concentrate" | "dedication" | "deviant" | "eidolon" | "elixir" | "esoterica" | "expandable" | "exploration" | "finisher" | "flourish" | "focus" | "fulu" | "gadget" | "general" | "lineage" | "litany" | "lozenge" | "manipulate" | "missive" | "modification" | "multiclass" | "mutagen" | "oath" | "oil" | "overflow" | "pervasive-magic" | "potion" | "precious" | "press" | "processed" | "reckless" | "reincarnated" | "revelation" | "sanctified" | "scroll" | "secret" | "skill" | "snare" | "spellgun" | "structure" | "subtle" | "talisman" | "tandem" | "tea" | "trap" | "unstable" | "vigilante" | "wand">;
+declare const effectTraits: Omit<
+    {
+        "certain-kill": string;
+        summon: string;
+        agile: string;
+        propulsive: string;
+        backswing: string;
+        forceful: string;
+        reach: string;
+        sweep: string;
+        thrown: string;
+        "volley-20": string;
+        "volley-30": string;
+        "volley-50": string;
+        "volley-60": string;
+        amp: string;
+        attack: string;
+        auditory: string;
+        aura: string;
+        beast: string;
+        cantrip: string;
+        composition: string;
+        concentrate: string;
+        consecration: string;
+        contingency: string;
+        curse: string;
+        cursebound: string;
+        darkness: string;
+        death: string;
+        detection: string;
+        disease: string;
+        dream: string;
+        eidolon: string;
+        emotion: string;
+        exploration: string;
+        extradimensional: string;
+        fear: string;
+        focus: string;
+        fortune: string;
+        fungus: string;
+        healing: string;
+        hex: string;
+        illusion: string;
+        incapacitation: string;
+        incarnate: string;
+        incorporeal: string;
+        inhaled: string;
+        light: string;
+        linguistic: string;
+        litany: string;
+        manipulate: string;
+        misfortune: string;
+        morph: string;
+        move: string;
+        mythic: string;
+        nonlethal: string;
+        olfactory: string;
+        plant: string;
+        poison: string;
+        polymorph: string;
+        possession: string;
+        prediction: string;
+        psyche: string;
+        rage: string;
+        revelation: string;
+        sanctified: string;
+        scrying: string;
+        shadow: string;
+        sleep: string;
+        spellshape: string;
+        stance: string;
+        structure: string;
+        subtle: string;
+        summoned: string;
+        teleportation: string;
+        trial: string;
+        "true-name": string;
+        visual: string;
+        holy: string;
+        unholy: string;
+        arcane: string;
+        divine: string;
+        occult: string;
+        primal: string;
+        air: string;
+        earth: string;
+        fire: string;
+        metal: string;
+        water: string;
+        wood: string;
+        magical: string;
+        mental: string;
+        radiation: string;
+        spirit: string;
+        vitality: string;
+        void: string;
+        acid: string;
+        cold: string;
+        electricity: string;
+        force: string;
+        sonic: string;
+        alchemist: string;
+        animist: string;
+        barbarian: string;
+        bard: string;
+        champion: string;
+        cleric: string;
+        druid: string;
+        exemplar: string;
+        fighter: string;
+        gunslinger: string;
+        kineticist: string;
+        inventor: string;
+        investigator: string;
+        magus: string;
+        monk: string;
+        oracle: string;
+        psychic: string;
+        ranger: string;
+        rogue: string;
+        sorcerer: string;
+        summoner: string;
+        swashbuckler: string;
+        thaumaturge: string;
+        witch: string;
+        wizard: string;
+        additive: string;
+        additive1: string;
+        additive2: string;
+        additive3: string;
+        alchemical: string;
+        "bottled-breath": string;
+        catalyst: string;
+        coagulant: string;
+        clockwork: string;
+        consumable: string;
+        contact: string;
+        cursed: string;
+        drug: string;
+        elixir: string;
+        expandable: string;
+        fey: string;
+        fulu: string;
+        gadget: string;
+        infused: string;
+        ingested: string;
+        injury: string;
+        kobold: string;
+        lozenge: string;
+        mechanical: string;
+        missive: string;
+        mutagen: string;
+        oil: string;
+        potion: string;
+        precious: string;
+        processed: string;
+        scroll: string;
+        snare: string;
+        spellgun: string;
+        splash: string;
+        talisman: string;
+        tea: string;
+        trap: string;
+        virulent: string;
+        wand: string;
+        aftermath: string;
+        apparition: string;
+        archetype: string;
+        artifact: string;
+        bravado: string;
+        calling: string;
+        circus: string;
+        class: string;
+        composite: string;
+        dedication: string;
+        destiny: string;
+        deviant: string;
+        downtime: string;
+        evolution: string;
+        esoterica: string;
+        finisher: string;
+        flourish: string;
+        general: string;
+        ikon: string;
+        impulse: string;
+        infusion: string;
+        lineage: string;
+        mindshift: string;
+        modification: string;
+        multiclass: string;
+        oath: string;
+        overflow: string;
+        "pervasive-magic": string;
+        press: string;
+        reckless: string;
+        reincarnated: string;
+        reflection: string;
+        secret: string;
+        skill: string;
+        social: string;
+        spellshot: string;
+        stamina: string;
+        tandem: string;
+        time: string;
+        transcendence: string;
+        unstable: string;
+        vigilante: string;
+        wandering: string;
+        aiuvarin: string;
+        anadi: string;
+        android: string;
+        aphorite: string;
+        ardande: string;
+        athamaru: string;
+        automaton: string;
+        "awakened-animal": string;
+        azarketi: string;
+        beastkin: string;
+        bugbear: string;
+        catfolk: string;
+        centaur: string;
+        changeling: string;
+        conrasu: string;
+        dhampir: string;
+        dragonblood: string;
+        dromaar: string;
+        duskwalker: string;
+        dwarf: string;
+        elf: string;
+        fetchling: string;
+        fleshwarp: string;
+        ganzi: string;
+        geniekin: string;
+        ghoran: string;
+        gnoll: string;
+        gnome: string;
+        goblin: string;
+        goloma: string;
+        grippli: string;
+        halfling: string;
+        hobgoblin: string;
+        human: string;
+        hungerseed: string;
+        kashrishi: string;
+        kitsune: string;
+        leshy: string;
+        lizardfolk: string;
+        merfolk: string;
+        minotaur: string;
+        nagaji: string;
+        naari: string;
+        nephilim: string;
+        orc: string;
+        oread: string;
+        poppet: string;
+        ratfolk: string;
+        samsaran: string;
+        sarangay: string;
+        shisk: string;
+        shoony: string;
+        skeleton: string;
+        sprite: string;
+        strix: string;
+        suli: string;
+        surki: string;
+        sylph: string;
+        tanuki: string;
+        talos: string;
+        tengu: string;
+        undine: string;
+        vanara: string;
+        vishkanya: string;
+        wayang: string;
+        yaksha: string;
+        yaoguai: string;
+    },
+    | "exploration"
+    | "splash"
+    | "alchemist"
+    | "animist"
+    | "barbarian"
+    | "bard"
+    | "champion"
+    | "cleric"
+    | "druid"
+    | "exemplar"
+    | "fighter"
+    | "gunslinger"
+    | "kineticist"
+    | "inventor"
+    | "investigator"
+    | "magus"
+    | "monk"
+    | "oracle"
+    | "psychic"
+    | "ranger"
+    | "rogue"
+    | "sorcerer"
+    | "summoner"
+    | "swashbuckler"
+    | "thaumaturge"
+    | "witch"
+    | "wizard"
+    | "agile"
+    | "propulsive"
+    | "backswing"
+    | "forceful"
+    | "reach"
+    | "sweep"
+    | "thrown"
+    | "volley-20"
+    | "volley-30"
+    | "volley-50"
+    | "volley-60"
+    | "clockwork"
+    | "consumable"
+    | "infused"
+    | "wand"
+    | "aiuvarin"
+    | "anadi"
+    | "android"
+    | "aphorite"
+    | "ardande"
+    | "athamaru"
+    | "automaton"
+    | "awakened-animal"
+    | "azarketi"
+    | "beastkin"
+    | "bugbear"
+    | "catfolk"
+    | "centaur"
+    | "changeling"
+    | "conrasu"
+    | "dhampir"
+    | "dragonblood"
+    | "dromaar"
+    | "duskwalker"
+    | "dwarf"
+    | "elf"
+    | "fetchling"
+    | "fleshwarp"
+    | "ganzi"
+    | "geniekin"
+    | "ghoran"
+    | "gnoll"
+    | "gnome"
+    | "goblin"
+    | "goloma"
+    | "grippli"
+    | "halfling"
+    | "hobgoblin"
+    | "human"
+    | "hungerseed"
+    | "kashrishi"
+    | "kitsune"
+    | "kobold"
+    | "leshy"
+    | "lizardfolk"
+    | "merfolk"
+    | "minotaur"
+    | "nagaji"
+    | "naari"
+    | "nephilim"
+    | "orc"
+    | "oread"
+    | "poppet"
+    | "ratfolk"
+    | "reflection"
+    | "samsaran"
+    | "sarangay"
+    | "shisk"
+    | "shoony"
+    | "skeleton"
+    | "sprite"
+    | "strix"
+    | "suli"
+    | "surki"
+    | "sylph"
+    | "tanuki"
+    | "talos"
+    | "tengu"
+    | "undine"
+    | "vanara"
+    | "vishkanya"
+    | "wayang"
+    | "yaksha"
+    | "yaoguai"
+    | "additive"
+    | "additive1"
+    | "additive2"
+    | "additive3"
+    | "aftermath"
+    | "amp"
+    | "archetype"
+    | "attack"
+    | "beast"
+    | "bottled-breath"
+    | "cantrip"
+    | "catalyst"
+    | "circus"
+    | "class"
+    | "coagulant"
+    | "composite"
+    | "composition"
+    | "concentrate"
+    | "dedication"
+    | "deviant"
+    | "eidolon"
+    | "elixir"
+    | "esoterica"
+    | "expandable"
+    | "finisher"
+    | "flourish"
+    | "focus"
+    | "fulu"
+    | "gadget"
+    | "general"
+    | "lineage"
+    | "litany"
+    | "lozenge"
+    | "manipulate"
+    | "missive"
+    | "modification"
+    | "multiclass"
+    | "mutagen"
+    | "oath"
+    | "oil"
+    | "overflow"
+    | "pervasive-magic"
+    | "potion"
+    | "precious"
+    | "press"
+    | "processed"
+    | "reckless"
+    | "reincarnated"
+    | "revelation"
+    | "sanctified"
+    | "scroll"
+    | "secret"
+    | "skill"
+    | "snare"
+    | "spellgun"
+    | "structure"
+    | "subtle"
+    | "talisman"
+    | "tandem"
+    | "tea"
+    | "trap"
+    | "unstable"
+    | "vigilante"
+>;
 declare const hazardTraits: {
     alchemical: string;
     auditory: string;
@@ -1989,6 +2172,7 @@ declare const hazardTraits: {
     mechanical: string;
     poison: string;
     polymorph: string;
+    snare: string;
     steam: string;
     technological: string;
     teleportation: string;
@@ -2035,6 +2219,7 @@ declare const hazardTraits: {
     asura: string;
     azata: string;
     beast: string;
+    blight: string;
     boggard: string;
     bugbear: string;
     caligni: string;
@@ -2124,6 +2309,7 @@ declare const hazardTraits: {
     serpentfolk: string;
     seugathi: string;
     shabti: string;
+    shade: string;
     shadow: string;
     shobhad: string;
     siktempora: string;
@@ -3085,6 +3271,7 @@ declare const traitDescriptions: {
     bard: string;
     beast: string;
     beastkin: string;
+    blight: string;
     boggard: string;
     bomb: string;
     "bottled-breath": string;
@@ -3092,6 +3279,7 @@ declare const traitDescriptions: {
     brutal: string;
     bugbear: string;
     bulwark: string;
+    bravado: string;
     caligni: string;
     calling: string;
     cantrip: string;
@@ -3380,4 +3568,32 @@ declare const traitDescriptions: {
     siege: string;
     skirmisher: string;
 };
-export { actionTraits, ancestryTraits, armorTraits, backgroundTraits, classTraits, consumableTraits, creatureTraits, damageTraits, effectTraits, elementTraits, energyDamageTypes, equipmentTraits, featTraits, hazardTraits, kingmakerTraits, magicTraditions, npcAttackTraits, otherArmorTags, otherConsumableTags, otherWeaponTags, preciousMaterials, shieldTraits, spellTraits, traitDescriptions, vehicleTraits, weaponTraits, type ElementTrait, };
+export {
+    actionTraits,
+    ancestryTraits,
+    armorTraits,
+    backgroundTraits,
+    classTraits,
+    consumableTraits,
+    creatureTraits,
+    damageTraits,
+    effectTraits,
+    elementTraits,
+    energyDamageTypes,
+    equipmentTraits,
+    featTraits,
+    hazardTraits,
+    kingmakerTraits,
+    magicTraditions,
+    npcAttackTraits,
+    otherArmorTags,
+    otherConsumableTags,
+    otherWeaponTags,
+    preciousMaterials,
+    shieldTraits,
+    spellTraits,
+    traitDescriptions,
+    vehicleTraits,
+    weaponTraits,
+    type ElementTrait,
+};

@@ -1,60 +1,87 @@
-import { AbstractEffectSystemData, AbstractEffectSystemSource, DurationData } from "../abstract-effect/data.ts";
-import { BaseItemSourcePF2e } from "../base/data/system.ts";
-import { DamageType } from "../../system/damage/index.ts";
-import { DamageRoll } from "../../system/damage/roll.ts";
+import { ModelPropsFromSchema, SourceFromSchema } from "@common/data/fields.mjs";
+import { AbstractEffectSchema, DurationData } from "@item/abstract-effect/data.ts";
+import { ItemType } from "@item/base/data/index.ts";
+import { ItemSystemModel } from "@item/base/data/model.ts";
+import { BaseItemSourcePF2e, ItemSystemSource } from "@item/base/data/system.ts";
+import { DamageType } from "@system/damage/index.ts";
+import { DamageRoll } from "@system/damage/roll.ts";
+import { ConditionPF2e } from "./document.ts";
 import { ConditionSlug } from "./types.ts";
-
+import fields = foundry.data.fields;
 type ConditionSource = BaseItemSourcePF2e<"condition", ConditionSystemSource>;
-interface ConditionSystemSource extends AbstractEffectSystemSource {
+declare class ConditionSystemData extends ItemSystemModel<ConditionPF2e, ConditionSystemSchema> {
+    static defineSchema(): ConditionSystemSchema;
+    prepareBaseData(): void;
+}
+interface ConditionSystemData
+    extends ItemSystemModel<ConditionPF2e, ConditionSystemSchema>,
+        Omit<ModelPropsFromSchema<ConditionSystemSchema>, "description" | "value"> {
     slug: ConditionSlug;
-    references: {
-        parent?: {
-            id: string;
-            type: string;
-        };
-        children: {
-            id: string;
-            type: "condition";
-        }[];
-        overriddenBy: {
-            id: string;
-            type: "condition";
-        }[];
-        overrides: {
-            id: string;
-            type: "condition";
-        }[];
-    };
-    duration: {
-        value: number;
-    };
-    persistent?: PersistentSourceData;
-    group: string | null;
-    value: ConditionValueData;
-    overrides: string[];
-    context?: never;
-    level?: never;
-}
-interface PersistentSourceData {
-    formula: string;
-    damageType: DamageType;
-    dc: number;
-    /** Whether this damage was multiplied due to a critical hit */
-    criticalHit?: boolean;
-}
-interface ConditionSystemData extends Omit<ConditionSystemSource, "description" | "fromSpell">, Omit<AbstractEffectSystemData, "level" | "slug"> {
-    persistent?: PersistentDamageData;
     duration: DurationData;
+    value: ConditionValueData;
+    persistent: PersistentDamageData | null;
 }
-interface PersistentDamageData extends PersistentSourceData {
+type ConditionSystemSchema = AbstractEffectSchema & {
+    group: fields.StringField<string, string, true, true, true>;
+    value: fields.SchemaField<ConditionValueSchema>;
+    persistent?: fields.SchemaField<
+        PersistentSourceSchema,
+        SourceFromSchema<PersistentSourceSchema>,
+        ModelPropsFromSchema<PersistentSourceSchema>,
+        true,
+        true,
+        true
+    >;
+    references: fields.SchemaField<{
+        parent: fields.SchemaField<
+            ConditionParentSchema,
+            SourceFromSchema<ConditionParentSchema>,
+            ModelPropsFromSchema<ConditionParentSchema>,
+            true,
+            true,
+            true
+        >;
+        children: fields.ArrayField<fields.SchemaField<ReferenceSchema<"condition">>>;
+        overrides: fields.ArrayField<fields.SchemaField<ReferenceSchema<"condition">>>;
+        overriddenBy: fields.ArrayField<fields.SchemaField<ReferenceSchema<"condition">>>;
+    }>;
+    overrides: fields.ArrayField<fields.StringField>;
+};
+type ConditionParentSchema = {
+    id: fields.StringField<string, string, true, false, true>;
+};
+type ReferenceSchema<T extends ItemType> = {
+    id: fields.StringField<string, string, true, false, true>;
+    type: fields.StringField<T, T, true, false, true>;
+};
+type ConditionValueSchema = {
+    isValued: fields.BooleanField<boolean, boolean, true, false>;
+    value: fields.NumberField<number, number, true, true>;
+};
+type ConditionSystemSource = SourceFromSchema<ConditionSystemSchema> & {
+    slug: ConditionSlug;
+    level?: never;
+    schema?: ItemSystemSource["schema"];
+};
+type PersistentSourceSchema = {
+    formula: fields.StringField<string, string, true, false, true>;
+    damageType: fields.StringField<DamageType, DamageType, true, false, true>;
+    dc: fields.NumberField<number, number, true, false, true>;
+    /** Whether this damage was multiplied due to a critical hit */
+    criticalHit: fields.BooleanField<boolean, boolean, true, false, true>;
+};
+interface PersistentDamageData extends SourceFromSchema<PersistentSourceSchema> {
     damage: DamageRoll;
     expectedValue: number;
 }
-type ConditionValueData = {
-    isValued: true;
-    value: number;
-} | {
-    isValued: false;
-    value: null;
-};
-export type { ConditionSource, ConditionSystemData, ConditionSystemSource, PersistentDamageData, PersistentSourceData };
+type ConditionValueData =
+    | {
+          isValued: true;
+          value: number;
+      }
+    | {
+          isValued: false;
+          value: null;
+      };
+export { ConditionSystemData };
+export type { ConditionSource, ConditionSystemSource, PersistentDamageData };

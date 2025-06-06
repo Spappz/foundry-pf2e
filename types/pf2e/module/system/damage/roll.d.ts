@@ -1,20 +1,30 @@
-import { DamageRollFlag } from "../../chat-message/index.ts";
-import { UserPF2e } from "../../user/index.ts";
-import { DegreeOfSuccessIndex } from "../degree-of-success.ts";
-import { RollDataPF2e } from "../rolls.ts";
+import {
+    EvaluateRollParams,
+    RollJSON,
+    RollOptions,
+    RollParseNode,
+    RollRenderOptions,
+    Rolled,
+} from "@client/dice/_module.mjs";
+import { DiceTerm, RollTerm, RollTermData } from "@client/dice/terms/_module.mjs";
+import { DamageRollFlag } from "@module/chat-message/index.ts";
+import { UserPF2e } from "@module/user/index.ts";
+import { DegreeOfSuccessIndex } from "@system/degree-of-success.ts";
+import { DiceRollOptionsPF2e } from "@system/rolls.ts";
 import { default as Peggy } from "peggy";
-import { RollParseNode } from "../../../../foundry/client-esm/dice/_types.mjs";
-import { DiceTerm, RollTerm } from "../../../../foundry/client-esm/dice/terms/module.ts";
 import { InstancePool } from "./terms.ts";
 import { DamageCategory, DamageIRBypassData, DamageTemplate, DamageType, MaterialDamageEffect } from "./types.ts";
-
 declare abstract class AbstractDamageRoll extends Roll {
     static parser: Peggy.Parser;
     /** Strip out parentheses enclosing constants */
-    static replaceFormulaData(formula: string, data: Record<string, unknown>, options?: {
-        missing?: string;
-        warn?: boolean;
-    }): string;
+    static replaceFormulaData(
+        formula: string,
+        data: Record<string, unknown>,
+        options?: {
+            missing?: string;
+            warn?: boolean;
+        },
+    ): string;
     /** The theoretically lowest total of this roll */
     abstract get minimumValue(): number;
     /** The expected value (average result over the course of a "large number" of rolls) of this roll */
@@ -51,10 +61,16 @@ declare class DamageRoll extends AbstractDamageRoll {
     protected _evaluateASTAsync(node: RollParseNode | RollTerm, options?: EvaluateRollParams): Promise<string | number>;
     getTooltip(): Promise<string>;
     /** Work around upstream issue in which display base formula is used for chat messages instead of display formula */
-    render({ flavor, template, isPrivate, }?: RollRenderOptions): Promise<string>;
-    alter(multiplier: number, addend: number, { multiplyNumeric }?: {
-        multiplyNumeric?: boolean | undefined;
-    }): this;
+    render({ flavor, template, isPrivate }?: RollRenderOptions): Promise<string>;
+    alter(
+        multiplier: number,
+        addend: number,
+        {
+            multiplyNumeric,
+        }?: {
+            multiplyNumeric?: boolean | undefined;
+        },
+    ): this;
 }
 interface DamageRoll extends AbstractDamageRoll {
     constructor: typeof DamageRoll;
@@ -110,7 +126,7 @@ type CriticalDoublingRule = "double-damage" | "double-dice";
 interface AbstractDamageRollData extends RollOptions {
     evaluatePersistent?: boolean;
 }
-interface DamageRollData extends RollDataPF2e, AbstractDamageRollData {
+interface DamageRollData extends DiceRollOptionsPF2e, AbstractDamageRollData {
     /** Whether to double dice or total on critical hits */
     critRule?: Maybe<CriticalDoublingRule>;
     /** Data used to construct the damage formula and options */

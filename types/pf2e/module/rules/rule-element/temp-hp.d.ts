@@ -1,7 +1,6 @@
-import { ActorType } from "../../actor/types.ts";
+import { ActorType } from "@actor/types.ts";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema } from "./data.ts";
-
 import fields = foundry.data.fields;
 /**
  * @category RuleElement
@@ -19,8 +18,7 @@ declare class TempHPRuleElement extends RuleElementPF2e<TempHPRuleSchema> {
     /** Send out a chat message notifying everyone that the actor gained temporary HP */
     broadcast(newQuantity: number, oldQuantity: number): void;
 }
-interface TempHPRuleElement extends RuleElementPF2e<TempHPRuleSchema>, ModelPropsFromRESchema<TempHPRuleSchema> {
-}
+interface TempHPRuleElement extends RuleElementPF2e<TempHPRuleSchema>, ModelPropsFromRESchema<TempHPRuleSchema> {}
 type TempHPEventsSchema = {
     /** Whether the temporary hit points are immediately applied */
     onCreate: fields.BooleanField;
@@ -31,6 +29,13 @@ type TempHPRuleSchema = RuleElementSchema & {
     /** The quantity of temporary hit points to add */
     value: ResolvableValueField<true, false, false>;
     /** World events in which temporary HP is added or renewed */
-    events: fields.SchemaField<TempHPEventsSchema, SourceFromSchema<TempHPEventsSchema>, ModelPropsFromSchema<TempHPEventsSchema>, true, false, true>;
+    events: fields.SchemaField<
+        TempHPEventsSchema,
+        fields.SourceFromSchema<TempHPEventsSchema>,
+        fields.ModelPropsFromSchema<TempHPEventsSchema>,
+        true,
+        false,
+        true
+    >;
 };
 export { TempHPRuleElement };

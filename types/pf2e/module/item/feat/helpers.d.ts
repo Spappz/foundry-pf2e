@@ -1,5 +1,5 @@
+import { AbilityItemPF2e } from "@item";
 import { FeatPF2e } from "./document.ts";
-
 /**
  * Whether a feat item can have key ability options
  * The item must be a level-1 class feature that is either not (RE-)granted or is granted by another class feature. It
@@ -7,5 +7,5 @@ import { FeatPF2e } from "./document.ts";
  */
 declare function featCanHaveKeyOptions(feat: FeatPF2e): boolean;
 /** Recursively suppresses a feat and its granted feats */
-declare function suppressFeats(feats: FeatPF2e[]): void;
+declare function suppressFeats(feats: (FeatPF2e | AbilityItemPF2e)[]): void;
 export { featCanHaveKeyOptions, suppressFeats };

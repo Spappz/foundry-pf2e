@@ -1,10 +1,16 @@
-import { ActorPF2e } from "../../../actor/index.ts";
-import { ItemPF2e } from "../../../item/index.ts";
-import { PickableThing, PickAThingConstructorArgs, PickAThingPrompt, PromptTemplateData } from "../../../apps/pick-a-thing-prompt.ts";
-import { Predicate } from "../../../system/predication.ts";
-
+import { ActorPF2e } from "@actor";
+import { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.mjs";
+import { ItemPF2e } from "@item";
+import {
+    PickableThing,
+    PickAThingConstructorArgs,
+    PickAThingPrompt,
+    PromptTemplateData,
+} from "@module/apps/pick-a-thing-prompt.ts";
+import { Predicate } from "@system/predication.ts";
 /** Prompt the user for a selection among a set of options */
 declare class ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, string | number | object> {
+    #private;
     /** The prompt statement to present the user in this application's window */
     prompt: string;
     /** Does this choice set contain items? If true, an item-drop zone may be added */
@@ -15,17 +21,15 @@ declare class ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, stri
         predicate: Predicate;
     } | null;
     constructor(data: ChoiceSetPromptData);
-    static get defaultOptions(): ApplicationOptions;
-    getData(): Promise<ChoiceSetTemplateData>;
-    activateListeners($html: JQuery): void;
+    static DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
+    static PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
+    _prepareContext(): Promise<ChoiceSetTemplateData>;
+    protected _onRender(context: object, options: HandlebarsRenderOptions): Promise<void>;
     /** Return early if there is only one choice */
     resolveSelection(): Promise<PickableThing<string | number | object> | null>;
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    protected _onClose(options: fa.ApplicationClosingOptions): void;
     /** Handle a dropped homebrew item */
     protected _onDrop(event: DragEvent): Promise<void>;
-    protected _canDragDrop(): boolean;
 }
 interface ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, string | number | object> {
     getSelection(event: MouseEvent): ChoiceSetChoice | null;

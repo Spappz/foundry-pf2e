@@ -1,12 +1,13 @@
+import appv1 = foundry.appv1;
 /** A summary window that opens after a system migration completes */
-export declare class MigrationSummary extends Application<MigrationSummaryOptions> {
+export declare class MigrationSummary extends appv1.api.Application<MigrationSummaryOptions> {
     #private;
     constructor(options?: Partial<MigrationSummaryOptions>);
-    static get defaultOptions(): ApplicationOptions;
+    static get defaultOptions(): appv1.api.ApplicationV1Options;
     getData(): Promise<MigrationSummaryData>;
     activateListeners($html: JQuery): void;
 }
-interface MigrationSummaryOptions extends ApplicationOptions {
+interface MigrationSummaryOptions extends appv1.api.ApplicationV1Options {
     troubleshoot: boolean;
 }
 interface MigrationSummaryData {

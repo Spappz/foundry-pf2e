@@ -1,7 +1,7 @@
 import { SettingsTemplateData } from "./menu.ts";
-
-export declare class VariantRulesSettings extends FormApplication {
-    static get defaultOptions(): FormApplicationOptions;
+import appv1 = foundry.appv1;
+export declare class VariantRulesSettings extends appv1.api.FormApplication {
+    static get defaultOptions(): appv1.api.FormApplicationOptions;
     getData(): Promise<Record<string, SettingsTemplateData>>;
     static registerSettings(): void;
     activateListeners($html: JQuery): void;

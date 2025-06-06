@@ -1,14 +1,7 @@
-import { ActorUpdateOperation } from "../base.ts";
-import { ItemType } from "../../item/base/data/index.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
-import { Statistic } from "../../system/statistic/index.ts";
-import { default as DataModel } from "../../../../foundry/common/abstract/data.ts";
-import { DataSchema } from "../../../../foundry/common/data/fields.ts";
+import { DataModel, DataSchema } from "@common/abstract/_module.mjs";
+import { ItemType } from "@item/base/data/index.ts";
+import { Statistic } from "@system/statistic/index.ts";
 import { PartySystemData } from "./data.ts";
-
-interface PartyUpdateOperation<TParent extends TokenDocumentPF2e | null> extends ActorUpdateOperation<TParent> {
-    removedMembers?: string[];
-}
 /** Interface for a party campaign implementation, alternative data preparation used by parties for special campaigns */
 interface PartyCampaign extends DataModel<PartySystemData, DataSchema> {
     type: string;
@@ -24,14 +17,11 @@ interface PartyCampaign extends DataModel<PartySystemData, DataSchema> {
     /** Additional data for inline rolls */
     getRollData?(): Record<string, unknown>;
     /** Renders the sheet associateed with this campaign, if available */
-    renderSheet?(options?: {
-        tab?: string;
-        type?: string | null;
-    }): void;
+    renderSheet?(options?: { tab?: string; type?: string | null }): void;
     /** Executed during the actor's prepareBaseData phase */
     prepareBaseData(): void;
     /** Executed during the actor's prepareDerivedData phase */
     prepareDerivedData(): void;
     _preUpdate?(changed: Record<string, unknown>): void;
 }
-export type { PartyCampaign, PartyUpdateOperation };
+export type { PartyCampaign };

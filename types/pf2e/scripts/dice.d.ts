@@ -1,6 +1,7 @@
-import { ActorPF2e } from "../module/actor/index.ts";
-import { ItemPF2e } from "../module/item/index.ts";
-
+import { ActorPF2e } from "@actor";
+import { ApplicationV1Options } from "@client/appv1/api/_module.mjs";
+import { RollMode } from "@common/constants.mjs";
+import { ItemPF2e } from "@item";
 /**
  * @category Other
  */
@@ -27,7 +28,20 @@ declare class DicePF2e {
      * @param onClose       Callback for actions to take when the dialog form is closed
      * @param dialogOptions Modal dialog options
      */
-    static d20Roll({ event, item, parts, data, template, title, speaker, flavor, onClose, dialogOptions, rollMode, rollType, }: {
+    static d20Roll({
+        event,
+        item,
+        parts,
+        data,
+        template,
+        title,
+        speaker,
+        flavor,
+        onClose,
+        dialogOptions,
+        rollMode,
+        rollType,
+    }: {
         event: MouseEvent | JQuery.TriggeredEvent;
         item?: ItemPF2e<ActorPF2e> | null;
         parts: (string | number)[];
@@ -38,7 +52,7 @@ declare class DicePF2e {
         speaker: foundry.documents.ChatSpeakerData;
         flavor?: (parts: (string | number | string[])[], data: Record<string, unknown>) => string;
         onClose?: (html: HTMLElement | JQuery, parts: (string | number)[], data: Record<string, unknown>) => void;
-        dialogOptions?: Partial<ApplicationOptions>;
+        dialogOptions?: Partial<ApplicationV1Options>;
         rollMode?: RollMode;
         rollType?: string;
     }): Promise<unknown>;

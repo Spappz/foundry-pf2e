@@ -1,39 +1,38 @@
-import { AbilityTrait, ActionCategory } from "./../../item/ability/index.ts";
-import { ActionType, ItemType } from "./../../item/base/data/index.ts";
-import { BaseSpellcastingEntry } from "./../../item/spellcasting-entry/index.ts";
-import { SvelteApplicationMixin } from "./../../sheet/mixin.svelte.ts";
-import type { ApplicationConfiguration, ApplicationHeaderControlsEntry, ApplicationRenderOptions } from "../../../../foundry/client-esm/applications/_types.ts";
-import { BrowserTab, BrowserTabs, ContentTabName, PackInfo, SourceInfo, TabData, TabName } from "./data.ts";
-import { PackLoader } from "./loader.ts";
-import { BrowserFilter } from "./tabs/data.ts";
+import { AbilityTrait, ActionCategory } from "@item/ability/index.ts";
+import { ActionType } from "@item/base/data/index.ts";
+import { BaseSpellcastingEntry } from "@item/spellcasting-entry/index.ts";
+import { SvelteApplicationMixin } from "@module/sheet/mixin.svelte.ts";
+import { BrowserTab, BrowserTabs, ContentTabName, PackInfo, SourceInfo, TabData, TabName } from "./data";
+import { PackLoader } from "./loader";
+import { BrowserFilter } from "./tabs/data";
 import * as svelte from "svelte";
 
-declare class CompendiumBrowser extends SvelteApplicationMixin(foundry.applications.api.ApplicationV2) {
+declare class CompendiumBrowser extends SvelteApplicationMixin(fa.api.ApplicationV2) {
     /** The amount of rendered result items for initial loading and per load operation */
     static RESULT_LIMIT: number;
 
-    protected override $state: CompendiumBrowserState;
+    declare protected $state: CompendiumBrowserState;
 
     protected override root: svelte.Component<any>;
 
     activeTab: BrowserTab;
-    dataTabsList: readonly ["action", "bestiary", "campaignFeature", "equipment", "feat", "hazard", "spell"]
+    dataTabsList: readonly ["action", "bestiary", "campaignFeature", "equipment", "feat", "hazard", "spell"];
     packLoader: PackLoader;
     declare settings: CompendiumBrowserSettings;
     tabs: BrowserTabs;
     tabsArray: BrowserTab[];
 
-    constructor(options: Partial<ApplicationConfiguration>);
+    constructor(options: Partial<fa.ApplicationConfiguration>);
 
-    static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
+    static override DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
 
-    protected override _onFirstRender(context: object, options: ApplicationRenderOptions): void;
+    protected override _onFirstRender(context: object, options: fa.ApplicationRenderOptions): void;
 
-    protected override _onClose(options: ApplicationRenderOptions): void;
+    protected override _onClose(options: fa.ApplicationRenderOptions): void;
 
-    protected override _getHeaderControls(): ApplicationHeaderControlsEntry[];
+    protected override _getHeaderControls(): fa.ApplicationHeaderControlsEntry[];
 
-    protected override _prepareContext(_options: ApplicationRenderOptions): Promise<CompendiumBrowserContext>;
+    protected override _prepareContext(_options: fa.ApplicationRenderOptions): Promise<CompendiumBrowserContext>;
 
     #setVisibleTabs(visible?: ContentTabName[]): void;
 

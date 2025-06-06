@@ -1,14 +1,14 @@
-import { PhysicalItemPF2e } from "../index.ts";
-import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "../base/sheet/sheet.ts";
-import { SheetOptions } from "../../sheet/helpers.ts";
-import { CoinsPF2e, ItemActivation, MaterialValuationData } from "./index.ts";
-
+import { AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
+import { PhysicalItemPF2e } from "@item";
+import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
+import { CoinsPF2e, MaterialValuationData } from "./index.ts";
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
 declare class PhysicalItemSheetPF2e<TItem extends PhysicalItemPF2e> extends ItemSheetPF2e<TItem> {
     static get defaultOptions(): ItemSheetOptions;
     /** Show the identified data for editing purposes */
     getData(options?: Partial<ItemSheetOptions>): Promise<PhysicalItemSheetData<TItem>>;
     /** If the item is unidentified, prevent players from opening this sheet. */
-    render(force?: boolean, options?: RenderOptions): this;
+    render(force?: boolean, options?: AppV1RenderOptions): this;
     protected getMaterialSheetData(item: PhysicalItemPF2e, valuationData: MaterialValuationData): MaterialSheetData;
     activateListeners($html: JQuery<HTMLElement>): void;
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
@@ -36,13 +36,6 @@ interface PhysicalItemSheetData<TItem extends PhysicalItemPF2e> extends ItemShee
     usageOptions: FormSelectOption[];
     identificationStatusOptions: FormSelectOption[];
     bulkDisabled: boolean;
-    activations: {
-        action: ItemActivation;
-        id: string;
-        base: string;
-        description: string;
-        traits: SheetOptions;
-    }[];
 }
 interface MaterialSheetEntry {
     value: string;

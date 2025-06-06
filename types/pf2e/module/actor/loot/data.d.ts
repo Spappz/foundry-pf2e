@@ -1,15 +1,15 @@
-import { BaseActorSourcePF2e, FlankingData } from "../data/base.ts";
-import { ActorSystemModel, ActorSystemSchema } from "../data/model.ts";
-import { ModelPropFromDataField } from "../../../../foundry/common/data/fields.js";
+import { BaseActorSourcePF2e, FlankingData } from "@actor/data/base.ts";
+import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
 import { LootPF2e } from "./document.ts";
-
 import fields = foundry.data.fields;
 /** The stored source data of a loot actor */
 type LootSource = BaseActorSourcePF2e<"loot", LootSystemSource>;
 declare class LootSystemData extends ActorSystemModel<LootPF2e, LootSystemSchema> {
     static defineSchema(): LootSystemSchema;
 }
-interface LootSystemData extends ActorSystemModel<LootPF2e, LootSystemSchema>, ModelPropsFromSchema<LootSystemSchema> {
+interface LootSystemData
+    extends ActorSystemModel<LootPF2e, LootSystemSchema>,
+        fields.ModelPropsFromSchema<LootSystemSchema> {
     details: LootDetails;
     traits?: never;
     attributes: LootAttributes;
@@ -25,12 +25,12 @@ type LootSystemSchema = ActorSystemSchema & {
     hiddenWhenEmpty: fields.BooleanField;
 };
 /** The system-level data of loot actors. */
-interface LootSystemSource extends SourceFromSchema<LootSystemSchema> {
+interface LootSystemSource extends fields.SourceFromSchema<LootSystemSchema> {
     attributes?: never;
     traits?: never;
     schema?: never;
 }
-interface LootDetails extends ModelPropFromDataField<LootSystemSchema["details"]> {
+interface LootDetails extends fields.ModelPropFromDataField<LootSystemSchema["details"]> {
     alliance: null;
 }
 interface LootAttributes {

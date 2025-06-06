@@ -1,21 +1,21 @@
-import { NPCPF2e } from "../index.ts";
-import { NPCSkillData } from "./data.ts";
-
+import { NPCPF2e } from "@actor";
+import { NPCSkillData } from "@actor/npc/data.ts";
+import appv1 = foundry.appv1;
 /** Specialized form to setup skills for an NPC character. */
-export declare class NPCSkillsEditor extends DocumentSheet<NPCPF2e> {
+export declare class NPCSkillsEditor extends appv1.api.DocumentSheet<NPCPF2e> {
     get actor(): NPCPF2e;
-    static get defaultOptions(): DocumentSheetOptions;
+    static get defaultOptions(): appv1.api.DocumentSheetV1Options;
     get title(): string;
     /** Prepare data to be sent to HTML. */
-    getData(options?: Partial<DocumentSheetOptions>): Promise<EditorData>;
+    getData(options?: Partial<appv1.api.DocumentSheetV1Options>): Promise<EditorData>;
     activateListeners($html: JQuery): void;
     /** Prevent submissions when a non-form element (such as lore name) changes */
     protected _onChangeInput(event: Event): Promise<void>;
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
     /** Maintain focus since upstream only operates on named elements */
-    protected _render(force?: boolean, options?: RenderOptions): Promise<void>;
+    protected _render(force?: boolean, options?: appv1.api.AppV1RenderOptions): Promise<void>;
 }
-interface EditorData extends DocumentSheetData<NPCPF2e> {
+interface EditorData extends appv1.api.DocumentSheetData<NPCPF2e> {
     actor: NPCPF2e;
     trainedSkills: NPCSkillData[];
     loreSkills: NPCSkillData[];

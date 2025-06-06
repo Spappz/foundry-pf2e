@@ -1,8 +1,7 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { ItemPF2e } from "../../item/index.ts";
+import { ActorPF2e } from "@actor";
+import { ItemPF2e } from "@item";
 import { BaseTagSelector, TagSelectorData } from "./base.ts";
 import { SelectableTagField, TagSelectorOptions } from "./index.ts";
-
 export type BasicConstructorOptions = Partial<BasicSelectorOptions> & {
     objectProperty: string;
 };
@@ -24,11 +23,14 @@ interface BasicSelectorOptions extends TagSelectorOptions {
     configTypes: SelectableTagField[];
 }
 interface TagSelectorBasicData<TDocument extends ActorPF2e | ItemPF2e> extends TagSelectorData<TDocument> {
-    choices: Record<string, {
-        label: string;
-        selected: boolean;
-        disabled: boolean;
-    }>;
+    choices: Record<
+        string,
+        {
+            label: string;
+            selected: boolean;
+            disabled: boolean;
+        }
+    >;
     hasCustomChoices: boolean;
     details: {
         path: string;

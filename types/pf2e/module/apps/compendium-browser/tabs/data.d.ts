@@ -1,12 +1,12 @@
-import { CreatureTrait } from "../../../actor/creature/types.ts";
-import { HazardTrait } from "../../../actor/hazard/types.ts";
-import { AbilityTrait } from "../../../item/ability/index.ts";
-import { KingmakerTrait } from "../../../item/campaign-feature/types.ts";
-import { FeatTrait } from "../../../item/feat/types.ts";
-import { PhysicalItemTrait } from "../../../item/physical/data.ts";
+import { CreatureTrait } from "@actor/creature/types.ts";
+import { HazardTrait } from "@actor/hazard/types.ts";
+import { AbilityTrait } from "@item/ability/index.ts";
+import { KingmakerTrait } from "@item/campaign-feature/types.ts";
+import { FeatTrait } from "@item/feat/types.ts";
+import { PhysicalItemTrait } from "@item/physical/data.ts";
 import { SearchResult } from "minisearch";
 import { SortDirection } from "../data.ts";
-
+import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
 interface CheckboxOption {
     label: string;
     selected: boolean;
@@ -39,10 +39,13 @@ interface OrderData {
     by: string;
     direction: SortDirection;
     /** The key must be present as an index key in the database */
-    options: Record<string, {
-        label: string;
-        type: "alpha" | "numeric";
-    }>;
+    options: Record<
+        string,
+        {
+            label: string;
+            type: "alpha" | "numeric";
+        }
+    >;
     type: "alpha" | "numeric";
 }
 interface RangesInputData {
@@ -137,7 +140,14 @@ interface SpellFilters extends BaseFilterData {
     };
     source: CheckboxData;
 }
-type BrowserFilter = ActionFilters | BestiaryFilters | CampaignFeatureFilters | EquipmentFilters | FeatFilters | HazardFilters | SpellFilters;
+type BrowserFilter =
+    | ActionFilters
+    | BestiaryFilters
+    | CampaignFeatureFilters
+    | EquipmentFilters
+    | FeatFilters
+    | HazardFilters
+    | SpellFilters;
 type BrowserFilterData = CheckboxData | LevelData | SelectData | RangesInputData | TraitData;
 type CompendiumBrowserIndexData = Omit<CompendiumIndexData, "_id"> & Partial<SearchResult>;
 interface RenderResultListOptions {
@@ -145,4 +155,24 @@ interface RenderResultListOptions {
     start?: number;
     replace?: boolean;
 }
-export type { ActionFilters, BaseFilterData, BestiaryFilters, BrowserFilter, BrowserFilterData, CampaignFeatureFilters, CheckboxData, CheckboxOption, CheckboxOptions, CompendiumBrowserIndexData, EquipmentFilters, FeatFilters, HazardFilters, LevelData, RangesInputData, RenderResultListOptions, SelectData, SpellFilters, TraitData, };
+export type {
+    ActionFilters,
+    BaseFilterData,
+    BestiaryFilters,
+    BrowserFilter,
+    BrowserFilterData,
+    CampaignFeatureFilters,
+    CheckboxData,
+    CheckboxOption,
+    CheckboxOptions,
+    CompendiumBrowserIndexData,
+    EquipmentFilters,
+    FeatFilters,
+    HazardFilters,
+    LevelData,
+    RangesInputData,
+    RenderResultListOptions,
+    SelectData,
+    SpellFilters,
+    TraitData,
+};

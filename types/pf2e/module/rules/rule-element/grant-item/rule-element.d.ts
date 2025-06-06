@@ -1,10 +1,10 @@
-import { ActorType } from "../../../actor/index.ts";
-import { ItemSourcePF2e } from "../../../item/base/data/index.ts";
-import { ItemGrantDeleteAction } from "../../../item/base/data/system.ts";
+import { ActorType } from "@actor";
+import { SourceFromSchema } from "@common/data/fields.mjs";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { ItemGrantDeleteAction } from "@item/base/data/system.ts";
 import { RuleElementOptions, RuleElementPF2e } from "../base.ts";
 import { ModelPropsFromRESchema, RuleElementSource } from "../data.ts";
 import { GrantItemSchema } from "./schema.ts";
-
 declare class GrantItemRuleElement extends RuleElementPF2e<GrantItemSchema> {
     #private;
     static validActorTypes: ActorType[];
@@ -30,8 +30,7 @@ declare class GrantItemRuleElement extends RuleElementPF2e<GrantItemSchema> {
     /** Add an in-memory-only condition to the actor */
     onApplyActiveEffects(): void;
 }
-interface GrantItemRuleElement extends RuleElementPF2e<GrantItemSchema>, ModelPropsFromRESchema<GrantItemSchema> {
-}
+interface GrantItemRuleElement extends RuleElementPF2e<GrantItemSchema>, ModelPropsFromRESchema<GrantItemSchema> {}
 interface GrantItemSource extends RuleElementSource {
     uuid?: unknown;
     preselectChoices?: unknown;

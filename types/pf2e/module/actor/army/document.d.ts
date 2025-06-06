@@ -1,14 +1,13 @@
-import { FeatGroup } from "../character/feats/index.ts";
-import { Kingdom } from "../party/kingdom/model.ts";
-import { CampaignFeaturePF2e } from "../../item/index.ts";
-import { ItemSourcePF2e, ItemType } from "../../item/base/data/index.ts";
-import { UserPF2e } from "../../user/index.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
-import { ArmorStatistic, Statistic, StatisticDifficultyClass } from "../../system/statistic/index.ts";
-import { ActorPF2e, ActorUpdateOperation, HitPointsSummary } from "../base.ts";
+import { FeatGroup } from "@actor/character/feats/index.ts";
+import { Kingdom } from "@actor/party/kingdom/model.ts";
+import { DatabaseDeleteCallbackOptions } from "@common/abstract/_types.mjs";
+import { CampaignFeaturePF2e } from "@item";
+import { ItemSourcePF2e, ItemType } from "@item/base/data/index.ts";
+import { TokenDocumentPF2e } from "@scene/index.ts";
+import { ArmorStatistic, Statistic, StatisticDifficultyClass } from "@system/statistic/index.ts";
+import { ActorPF2e, ActorUpdateCallbackOptions, HitPointsSummary } from "../base.ts";
 import { ArmySource, ArmySystemData } from "./data.ts";
 import { ArmyStrike } from "./types.ts";
-
 declare class ArmyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends ActorPF2e<TParent> {
     scouting: Statistic;
     maneuver: Statistic;
@@ -34,8 +33,12 @@ declare class ArmyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentP
     /** Prevent addition of invalid tactic types */
     checkItemValidity(source: PreCreate<ItemSourcePF2e>): boolean;
     getStatistic(slug: string): Statistic<this> | null;
-    _preUpdate(changed: DeepPartial<this["_source"]>, operation: ActorUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
+    _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: ActorUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
 interface ArmyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends ActorPF2e<TParent> {
     readonly _source: ArmySource;

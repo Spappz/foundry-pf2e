@@ -1,12 +1,11 @@
-import { DamageDicePF2e, ModifierPF2e } from "../../actor/modifiers.ts";
-import { RollOrigin, RollTarget } from "../../actor/roll-context/types.ts";
-import { ImmunityType, ResistanceType } from "../../actor/types.ts";
-import { ZeroToTwo } from "../../data.ts";
-import { DegreeOfSuccessString } from "../degree-of-success.ts";
-import { BaseRollContext } from "../rolls.ts";
+import { DamageDicePF2e, ModifierPF2e } from "@actor/modifiers.ts";
+import { RollOrigin, RollTarget } from "@actor/roll-context/types.ts";
+import { ImmunityType, ResistanceType } from "@actor/types.ts";
+import { ZeroToTwo } from "@module/data.ts";
+import { DegreeOfSuccessString } from "@system/degree-of-success.ts";
+import { BaseRollContext } from "@system/rolls.ts";
 import { DamageRoll } from "./roll.ts";
 import { DAMAGE_CATEGORIES_UNIQUE, DAMAGE_DICE_FACES, DAMAGE_DIE_SIZES, DAMAGE_TYPES } from "./values.ts";
-
 type DamageCategoryUnique = (typeof DAMAGE_CATEGORIES_UNIQUE)[number];
 type DamageCategory = keyof typeof CONFIG.PF2E.damageCategories;
 type DamageDiceFaces = (typeof DAMAGE_DICE_FACES)[number];
@@ -134,4 +133,29 @@ interface SpellDamageTemplate extends BaseDamageTemplate {
 type AfflictionDamageTemplate = SpellDamageTemplate;
 type SimpleDamageTemplate = SpellDamageTemplate;
 type DamageTemplate = WeaponDamageTemplate | SpellDamageTemplate | AfflictionDamageTemplate | SimpleDamageTemplate;
-export type { AfflictionDamageTemplate, BaseDamageData, CriticalInclusion, DamageCategory, DamageCategoryRenderData, DamageCategoryUnique, DamageDamageContext, DamageDiceFaces, DamageDieSize, DamageFormulaData, DamageIRBypassData, DamageKind, DamagePartialTerm, DamageRollRenderData, DamageTemplate, DamageType, DamageTypeRenderData, ImmunityRedirect, MaterialDamageEffect, ResistanceRedirect, SimpleDamageTemplate, SpellDamageTemplate, WeaponBaseDamageData, WeaponDamageTemplate, };
+export type {
+    AfflictionDamageTemplate,
+    BaseDamageData,
+    CriticalInclusion,
+    DamageCategory,
+    DamageCategoryRenderData,
+    DamageCategoryUnique,
+    DamageDamageContext,
+    DamageDiceFaces,
+    DamageDieSize,
+    DamageFormulaData,
+    DamageIRBypassData,
+    DamageKind,
+    DamagePartialTerm,
+    DamageRollRenderData,
+    DamageTemplate,
+    DamageType,
+    DamageTypeRenderData,
+    ImmunityRedirect,
+    MaterialDamageEffect,
+    ResistanceRedirect,
+    SimpleDamageTemplate,
+    SpellDamageTemplate,
+    WeaponBaseDamageData,
+    WeaponDamageTemplate,
+};

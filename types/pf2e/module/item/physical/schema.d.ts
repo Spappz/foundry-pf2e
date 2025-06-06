@@ -1,12 +1,11 @@
 import { CoinsPF2e } from "./coins.ts";
 import { Price } from "./index.ts";
-
 import fields = foundry.data.fields;
-declare class PriceField extends fields.SchemaField<PriceSchema, SourceFromSchema<PriceSchema>, Price> {
+declare class PriceField extends fields.SchemaField<PriceSchema, fields.SourceFromSchema<PriceSchema>, Price> {
     constructor();
-    initialize(source: SourceFromSchema<PriceSchema>): Price;
+    initialize(source: fields.SourceFromSchema<PriceSchema>): Price;
 }
-type CoinsField = fields.SchemaField<CoinsSchema, SourceFromSchema<CoinsSchema>, CoinsPF2e, true, false, true>;
+type CoinsField = fields.SchemaField<CoinsSchema, fields.SourceFromSchema<CoinsSchema>, CoinsPF2e, true, false, true>;
 type CoinsSchema = {
     cp: fields.NumberField<number, number, false, false, false>;
     sp: fields.NumberField<number, number, false, false, false>;

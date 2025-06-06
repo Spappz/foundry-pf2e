@@ -1,8 +1,8 @@
-import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "../base/sheet/sheet.ts";
-import { TagifyEntry } from "../../sheet/helpers.ts";
-import { DamageCategoryUnique, DamageType } from "../../system/damage/types.ts";
+import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
+import { TagifyEntry } from "@module/sheet/helpers.ts";
+import { DamageCategoryUnique, DamageType } from "@system/damage/types.ts";
 import { EffectAreaShape, SpellPF2e, SpellSystemData, SpellSystemSource } from "./index.ts";
-
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
 export declare class SpellSheetPF2e extends ItemSheetPF2e<SpellPF2e> {
     #private;
     static get defaultOptions(): ItemSheetOptions;
@@ -27,12 +27,15 @@ interface SpellSheetData extends ItemSheetDataPF2e<SpellPF2e> {
     materials: typeof CONFIG.PF2E.materialDamageEffects;
     damageTypes: Record<DamageType, string>;
     damageSubtypes: Pick<typeof CONFIG.PF2E.damageCategories, DamageCategoryUnique>;
-    damageKinds: Record<string, {
-        value: string[];
-        label: string;
-        selected: boolean;
-        disabled: boolean;
-    }[]>;
+    damageKinds: Record<
+        string,
+        {
+            value: string[];
+            label: string;
+            selected: boolean;
+            disabled: boolean;
+        }[]
+    >;
     areaShapes: Record<EffectAreaShape, string>;
     heightenIntervals: FormSelectOption[];
     heightenOverlays: SpellSheetHeightenOverlayData[];

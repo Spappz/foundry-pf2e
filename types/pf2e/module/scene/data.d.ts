@@ -1,6 +1,6 @@
-import { ZeroToTwo } from "../data.ts";
-
-interface SceneFlagsPF2e extends DocumentFlags {
+import { DocumentFlags } from "@common/data/_types.mjs";
+import { ZeroToTwo } from "@module/data.ts";
+type SceneFlagsPF2e = DocumentFlags & {
     pf2e: {
         [key: string]: unknown;
         hearingRange: number | null;
@@ -10,12 +10,12 @@ interface SceneFlagsPF2e extends DocumentFlags {
         /** The global terrain types for this scene */
         environmentTypes?: EnvironmentType[];
     };
-}
+};
 declare enum LightLevels {
     DARKNESS = 0.25,
-    BRIGHT_LIGHT = 0.75
+    BRIGHT_LIGHT = 0.75,
 }
 type LightLevel = ZeroToTwo;
 type EnvironmentType = keyof typeof CONFIG.PF2E.environmentTypes;
 export { LightLevels };
-export type { LightLevel, SceneFlagsPF2e, EnvironmentType };
+export type { EnvironmentType, LightLevel, SceneFlagsPF2e };

@@ -1,13 +1,13 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { AttributeString } from "../../actor/types.ts";
-import { PhysicalItemPF2e } from "../physical/index.ts";
-import { SpellPF2e } from "../spell/document.ts";
-import { MagicTradition } from "../spell/types.ts";
-import { OneToTen } from "../../data.ts";
-import { Statistic, StatisticChatData } from "../../system/statistic/index.ts";
+import { ActorPF2e } from "@actor";
+import { AttributeString } from "@actor/types.ts";
+import { RollMode } from "@common/constants.mjs";
+import { PhysicalItemPF2e } from "@item/physical/index.ts";
+import { SpellPF2e } from "@item/spell/document.ts";
+import { MagicTradition } from "@item/spell/types.ts";
+import { OneToTen } from "@module/data.ts";
+import { Statistic, StatisticChatData } from "@system/statistic/index.ts";
 import { SpellCollection, SpellCollectionData, SpellSlotGroupId } from "./collection.ts";
 import { SpellcastingEntrySystemData } from "./data.ts";
-
 interface BaseSpellcastingEntry<TActor extends ActorPF2e | null = ActorPF2e | null> {
     id: string;
     name: string;
@@ -24,11 +24,19 @@ interface BaseSpellcastingEntry<TActor extends ActorPF2e | null = ActorPF2e | nu
     tradition: MagicTradition | null;
     spells: SpellCollection<NonNullable<TActor>> | null;
     system?: SpellcastingEntrySystemData;
+    /**
+     * If this spellcasting entry is a temporary wrapper over another, this points to the original.
+     * This is necessary when sending a spell to chat, since the temporary wrapper may no longer exist after.
+     */
+    original?: BaseSpellcastingEntry<TActor> | null;
     getSheetData(options?: GetSheetDataOptions<NonNullable<TActor>>): Promise<SpellcastingSheetData>;
     getRollOptions?(prefix: "spellcasting"): string[];
-    canCast(spell: SpellPF2e, options?: {
-        origin?: PhysicalItemPF2e;
-    }): boolean;
+    canCast(
+        spell: SpellPF2e,
+        options?: {
+            origin?: PhysicalItemPF2e;
+        },
+    ): boolean;
     cast(spell: SpellPF2e, options: CastOptions): Promise<void>;
 }
 interface GetSheetDataOptions<TActor extends ActorPF2e> {
@@ -52,7 +60,9 @@ interface CastOptions {
 type UnusedProperties = "actor" | "spells" | "getSheetData" | "cast" | "canCast";
 type OptionalProperties = "isFlexible" | "isFocusPool" | "isInnate" | "isPrepared" | "isRitual" | "isSpontaneous";
 /** Spell list render data for a `BaseSpellcastingEntry` */
-interface SpellcastingSheetData extends Omit<BaseSpellcastingEntry<ActorPF2e>, "statistic" | OptionalProperties | UnusedProperties>, SpellCollectionData {
+interface SpellcastingSheetData
+    extends Omit<BaseSpellcastingEntry<ActorPF2e>, "statistic" | OptionalProperties | UnusedProperties>,
+        SpellCollectionData {
     statistic: StatisticChatData | null;
     hasCollection: boolean;
     isFlexible?: boolean;
@@ -96,4 +106,13 @@ interface ActiveSpell {
     /** Is the spell not actually of this rank? */
     virtual?: boolean;
 }
-export type { ActiveSpell, BaseSpellcastingEntry, CastOptions, SpellPrepEntry, SpellcastingCategory, SpellcastingEntry, SpellcastingSheetData, SpellcastingSlotGroup, };
+export type {
+    ActiveSpell,
+    BaseSpellcastingEntry,
+    CastOptions,
+    SpellcastingCategory,
+    SpellcastingEntry,
+    SpellcastingSheetData,
+    SpellcastingSlotGroup,
+    SpellPrepEntry,
+};

@@ -1,34 +1,52 @@
-import { ItemPF2e } from "../item/index.ts";
-import { UserPF2e } from "../user/document.ts";
-import { Predicate } from "../system/predication.ts";
-import { default as Tagify } from "@yaireo/tagify";
+import type { ItemPF2e } from "@item";
+import type { UserPF2e } from "@module/user/document.ts";
+import { Predicate } from "@system/predication.ts";
+import Tagify from "@yaireo/tagify";
 
 /** Prompt the user to pick from a number of options */
-declare abstract class PickAThingPrompt<TItem extends ItemPF2e, TThing extends string | number | object> extends Application {
-    #private;
+declare abstract class PickAThingPrompt<
+    TItem extends ItemPF2e,
+    TThing extends string | number | object,
+> extends fa.api.HandlebarsApplicationMixin(fa.api.ApplicationV2) {
     protected item: TItem;
+
+    #resolve?: (value: PickableThing<TThing> | null) => void;
+
     protected selection: PickableThing<TThing> | null;
+
     protected choices: PickableThing<TThing>[];
+
     /** If the number of choices is beyond a certain length, a select menu is presented instead of a list of buttons */
-    protected selectMenu?: Tagify<{
-        value: string;
-        label: string;
-    }>;
+    protected selectMenu?: Tagify<{ value: string; label: string }>;
+
     protected predicate: Predicate;
+
     protected allowNoSelection: boolean;
+
+    static override DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
+
     constructor(data: PickAThingConstructorArgs<TItem, TThing>);
+
     get actor(): TItem["parent"];
-    static get defaultOptions(): ApplicationOptions;
+
+    static #onClickPick<TItem extends ItemPF2e, TThing extends string | number | object>(
+        this: PickAThingPrompt<TItem, TThing>,
+        event: PointerEvent,
+    ): void;
+
     protected getSelection(event: MouseEvent): PickableThing<TThing> | null;
+
     /** Return a promise containing the user's item selection, or `null` if no selection was made */
     resolveSelection(): Promise<PickableThing<TThing> | null>;
-    getData(): Promise<PromptTemplateData>;
-    activateListeners($html: JQuery): void;
+
+    override _prepareContext(): Promise<PromptTemplateData>;
+
+    protected override _onRender(context: object, options: fa.ApplicationRenderOptions): Promise<void>;
+
     /** Close the dialog, applying the effect with configured target or warning the user that something went wrong. */
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    protected override _onClose(options: fa.ApplicationClosingOptions): void;
 }
+
 interface PickAThingConstructorArgs<TItem extends ItemPF2e, TThing extends string | number | object> {
     title?: string;
     prompt?: string;
@@ -37,6 +55,7 @@ interface PickAThingConstructorArgs<TItem extends ItemPF2e, TThing extends strin
     predicate?: Predicate;
     allowNoSelection?: boolean;
 }
+
 interface PickableThing<T extends string | number | object = string | number | object> {
     value: T;
     label: string;
@@ -44,11 +63,13 @@ interface PickableThing<T extends string | number | object = string | number | o
     domain?: string[];
     predicate?: Predicate;
 }
+
 interface PromptTemplateData {
     choices: PickableThing[];
     /** An item pertinent to the selection being made */
     item: ItemPF2e;
     user: UserPF2e;
 }
+
 export { PickAThingPrompt };
-export type { PickAThingConstructorArgs, PickableThing, PromptTemplateData };
+export type { PickableThing, PickAThingConstructorArgs, PromptTemplateData };

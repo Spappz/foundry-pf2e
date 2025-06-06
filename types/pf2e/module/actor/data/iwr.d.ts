@@ -1,17 +1,19 @@
-import { ImmunityType, IWRType, ResistanceType, WeaknessType } from "../types.ts";
-import { IWRException } from "../../rules/rule-element/iwr/base.ts";
-import { Predicate, PredicateStatement } from "../../system/predication.ts";
-
+import { ImmunityType, IWRType, ResistanceType, WeaknessType } from "@actor/types.ts";
+import { IWRException } from "@module/rules/rule-element/iwr/base.ts";
+import { Predicate, PredicateStatement } from "@system/predication.ts";
 declare abstract class IWR<TType extends IWRType> {
     #private;
     readonly type: TType;
+    value?: number;
     readonly exceptions: IWRException<TType>[];
+    readonly doubleVs?: IWRException<TType>[];
     /** A definition for a custom IWR */
     readonly definition: Predicate | null;
     source: string | null;
     protected abstract readonly typeLabels: Record<TType, string>;
+    static get disjuncter(): Intl.ListFormat;
     constructor(data: IWRConstructorData<TType>);
-    abstract get label(): string;
+    get label(): string;
     /** A label showing the type, exceptions, and doubleVs but no value (in case of weaknesses and resistances) */
     get applicationLabel(): string;
     /** A label consisting of just the type */
@@ -19,11 +21,6 @@ declare abstract class IWR<TType extends IWRType> {
     protected describe(iwrType: IWRException<TType>): PredicateStatement[];
     get predicate(): Predicate;
     toObject(): Readonly<IWRDisplayData<TType>>;
-    /** Construct an object argument for Localization#format (see also PF2E.Actor.IWR.CompositeLabel in en.json) */
-    protected createFormatData({ list, prefix, }: {
-        list: IWRException<TType>[];
-        prefix: string;
-    }): Record<string, string>;
     test(statements: string[] | Set<string>): boolean;
 }
 type IWRConstructorData<TType extends IWRType> = {
@@ -139,8 +136,8 @@ declare class Immunity extends IWR<ImmunityType> implements ImmunitySource {
         silver: string;
         "cold-iron": string;
     };
-    /** No value on immunities, so the full label is the same as the application label */
-    get label(): string;
+    value?: never;
+    readonly doubleVs?: never;
 }
 interface IWRSource<TType extends IWRType = IWRType> {
     type: TType;
@@ -219,11 +216,13 @@ declare class Weakness extends IWR<WeaknessType> implements WeaknessSource {
         silver: string;
         "cold-iron": string;
     };
+    readonly doubleVs?: never;
     value: number;
-    constructor(data: IWRConstructorData<WeaknessType> & {
-        value: number;
-    });
-    get label(): string;
+    constructor(
+        data: IWRConstructorData<WeaknessType> & {
+            value: number;
+        },
+    );
     toObject(): Readonly<WeaknessDisplayData>;
 }
 type WeaknessDisplayData = IWRDisplayData<WeaknessType> & Pick<Weakness, "value">;
@@ -301,12 +300,12 @@ declare class Resistance extends IWR<ResistanceType> implements ResistanceSource
     };
     value: number;
     readonly doubleVs: IWRException<ResistanceType>[];
-    constructor(data: IWRConstructorData<ResistanceType> & {
-        value: number;
-        doubleVs?: IWRException<ResistanceType>[];
-    });
-    get label(): string;
-    get applicationLabel(): string;
+    constructor(
+        data: IWRConstructorData<ResistanceType> & {
+            value: number;
+            doubleVs?: IWRException<ResistanceType>[];
+        },
+    );
     toObject(): ResistanceDisplayData;
     /** Get the doubled value of this resistance if present and applicable to a given instance of damage */
     getDoubledValue(damageDescription: Set<string>): number;

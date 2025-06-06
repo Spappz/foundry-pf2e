@@ -1,15 +1,22 @@
-import { ActorPF2e, CreaturePF2e } from "../index.ts";
-import { ItemType } from "../../item/base/data/index.ts";
-import { RuleElementPF2e } from "../../rules/index.ts";
-import { RuleElementSchema } from "../../rules/rule-element/data.ts";
-import { UserPF2e } from "../../user/document.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
-import { Statistic } from "../../system/statistic/index.ts";
-import { DataModelValidationOptions } from "../../../../foundry/common/abstract/data.ts";
+import { ActorPF2e, CreaturePF2e } from "@actor";
+import { ActorUpdateCallbackOptions } from "@actor/base.ts";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseDeleteCallbackOptions,
+    DataModelValidationOptions,
+} from "@common/abstract/_module.mjs";
+import { UserAction } from "@common/constants.mjs";
+import { ActorUUID } from "@common/documents/_module.mjs";
+import { ItemType } from "@item/base/data/index.ts";
+import { RuleElementPF2e } from "@module/rules/index.ts";
+import { RuleElementSchema } from "@module/rules/rule-element/data.ts";
+import { TokenDocumentPF2e } from "@scene/index.ts";
+import { Statistic } from "@system/statistic/index.ts";
 import { PartySource, PartySystemData } from "./data.ts";
-import { PartyCampaign, PartyUpdateOperation } from "./types.ts";
-
-declare class PartyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends ActorPF2e<TParent> {
+import { PartyCampaign } from "./types.ts";
+declare class PartyPF2e<
+    TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,
+> extends ActorPF2e<TParent> {
     armorClass: null;
     members: CreaturePF2e[];
     campaign: PartyCampaign | null;
@@ -19,7 +26,7 @@ declare class PartyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocument
     /** Friendship lives in our hearts */
     get canAct(): false;
     /** Part members can add and remove items (though system socket shenanigans)  */
-    canUserModify(user: UserPF2e, action: UserAction): boolean;
+    canUserModify(user: fd.BaseUser, action: UserAction): boolean;
     /** Our bond is unbreakable. */
     isAffectedBy(): false;
     /** Override validation to defer certain properties to the campaign model */
@@ -34,21 +41,34 @@ declare class PartyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocument
     getRollOptions(domains?: string[]): string[];
     getRollData(): Record<string, unknown>;
     /** Re-render the sheet if data preparation is called from the familiar's master */
-    reset({ actor }?: {
-        actor?: boolean | undefined;
-    }): void;
+    reset({ actor }?: { actor?: boolean | undefined }): void;
     /** Include campaign statistics in party statistics */
     getStatistic(slug: string): Statistic<this> | null;
     private _resetAndRerenderDebounced;
-    protected _preCreate(data: this["_source"], options: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<PartySource>, options: PartyUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: PartyUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
     /** Override to inform creatures when they were booted from a party */
-    protected _onUpdate(changed: DeepPartial<PartySource>, operation: PartyUpdateOperation<TParent>, userId: string): void;
+    protected _onUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: PartyUpdateCallbackOptions,
+        userId: string,
+    ): void;
     /** Overriden to inform creatures the party is defunct */
-    protected _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
 interface PartyPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends ActorPF2e<TParent> {
     readonly _source: PartySource;
     system: PartySystemData;
+}
+interface PartyUpdateCallbackOptions extends ActorUpdateCallbackOptions {
+    removedMembers?: string[];
 }
 export { PartyPF2e };

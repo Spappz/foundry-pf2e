@@ -1,59 +1,86 @@
-import { AttributeString, SaveType, SkillSlug } from "../../actor/types.ts";
-import { ABCSystemData, ABCSystemSource } from "../abc/data.ts";
-import { BaseItemSourcePF2e, RarityTraitAndOtherTags } from "../base/data/system.ts";
-import { ZeroToFour } from "../../data.ts";
-
+import { AttributeString, SkillSlug } from "@actor/types.ts";
+import { ModelPropsFromSchema, SourceFromSchema } from "@common/data/fields.mjs";
+import { ABCFeatureEntryField } from "@item/abc/data.ts";
+import { ItemSystemModel, ItemSystemSchema } from "@item/base/data/model.ts";
+import { BaseItemSourcePF2e, ItemSystemSource, RarityTraitAndOtherTags } from "@item/base/data/system.ts";
+import { ProficiencyRankField, RarityField } from "@module/model.ts";
+import { LaxArrayField, RecordField, SlugField } from "@system/schema-data-fields.ts";
+import { ClassPF2e } from "./document.ts";
+import fields = foundry.data.fields;
 type ClassSource = BaseItemSourcePF2e<"class", ClassSystemSource>;
-interface ClassSystemSource extends ABCSystemSource {
-    traits: RarityTraitAndOtherTags;
-    keyAbility: {
-        value: AttributeString[];
-        selected: AttributeString | null;
-    };
-    hp: number;
-    perception: ZeroToFour;
-    savingThrows: Record<SaveType, ZeroToFour>;
-    attacks: ClassAttackProficiencies;
-    defenses: ClassDefenseProficiencies;
-    /** Starting proficiency in "spell attack rolls and DCs" */
-    spellcasting: ZeroToFour;
-    trainedSkills: {
-        value: SkillSlug[];
-        additional: number;
-    };
-    ancestryFeatLevels: {
-        value: number[];
-    };
-    classFeatLevels: {
-        value: number[];
-    };
-    generalFeatLevels: {
-        value: number[];
-    };
-    skillFeatLevels: {
-        value: number[];
-    };
-    skillIncreaseLevels: {
-        value: number[];
-    };
+declare class ClassSystemData extends ItemSystemModel<ClassPF2e, ClassSystemSchema> {
+    static LOCALIZATION_PREFIXES: string[];
+    static defineSchema(): ClassSystemSchema;
+}
+interface ClassSystemData
+    extends ItemSystemModel<ClassPF2e, ClassSystemSchema>,
+        Omit<fields.ModelPropsFromSchema<ClassSystemSchema>, "description"> {
     level?: never;
+    traits: RarityTraitAndOtherTags;
 }
-interface ClassSystemData extends Omit<ClassSystemSource, "description">, Omit<ABCSystemData, "level" | "traits"> {
-}
-interface ClassAttackProficiencies {
-    simple: ZeroToFour;
-    martial: ZeroToFour;
-    advanced: ZeroToFour;
-    unarmed: ZeroToFour;
-    other: {
-        name: string;
-        rank: ZeroToFour;
-    };
-}
-interface ClassDefenseProficiencies {
-    unarmored: ZeroToFour;
-    light: ZeroToFour;
-    medium: ZeroToFour;
-    heavy: ZeroToFour;
-}
-export type { ClassAttackProficiencies, ClassDefenseProficiencies, ClassSource, ClassSystemData, ClassSystemSource };
+type ClassSystemSchema = Omit<ItemSystemSchema, "traits"> & {
+    items: RecordField<fields.StringField<string, string, true, false>, ABCFeatureEntryField>;
+    traits: fields.SchemaField<{
+        otherTags: fields.ArrayField<SlugField<true, false, false>>;
+        rarity: RarityField;
+    }>;
+    keyAbility: fields.SchemaField<{
+        value: fields.ArrayField<fields.StringField<AttributeString, AttributeString, true, false>>;
+        selected: fields.StringField<AttributeString, AttributeString, true, true, true>;
+    }>;
+    hp: fields.NumberField<number, number, true, false, true>;
+    perception: ProficiencyRankField;
+    savingThrows: fields.SchemaField<{
+        fortitude: ProficiencyRankField;
+        reflex: ProficiencyRankField;
+        will: ProficiencyRankField;
+    }>;
+    attacks: fields.SchemaField<ClassAttackProficienciesSchema>;
+    defenses: fields.SchemaField<ClassDefenseProficienciesSchema>;
+    /** Starting proficiency in "spell attack rolls and DCs" */
+    spellcasting: ProficiencyRankField;
+    trainedSkills: fields.SchemaField<{
+        value: LaxArrayField<fields.StringField<SkillSlug, SkillSlug, true, false>>;
+        additional: fields.NumberField<number, number, true, false, true>;
+    }>;
+    ancestryFeatLevels: fields.SchemaField<{
+        value: fields.ArrayField<fields.NumberField<number, number, true, false>>;
+    }>;
+    classFeatLevels: fields.SchemaField<{
+        value: fields.ArrayField<fields.NumberField<number, number, true, false>>;
+    }>;
+    generalFeatLevels: fields.SchemaField<{
+        value: fields.ArrayField<fields.NumberField<number, number, true, false>>;
+    }>;
+    skillFeatLevels: fields.SchemaField<{
+        value: fields.ArrayField<fields.NumberField<number, number, true, false>>;
+    }>;
+    skillIncreaseLevels: fields.SchemaField<{
+        value: fields.ArrayField<fields.NumberField<number, number, true, false>>;
+    }>;
+};
+type ClassAttackProficienciesSchema = {
+    simple: ProficiencyRankField;
+    martial: ProficiencyRankField;
+    advanced: ProficiencyRankField;
+    unarmed: ProficiencyRankField;
+    other: fields.SchemaField<{
+        name: fields.StringField;
+        rank: ProficiencyRankField;
+    }>;
+};
+type ClassDefenseProficienciesSchema = {
+    unarmored: ProficiencyRankField;
+    light: ProficiencyRankField;
+    medium: ProficiencyRankField;
+    heavy: ProficiencyRankField;
+};
+type ClassAttackProficiencies = ModelPropsFromSchema<ClassAttackProficienciesSchema>;
+type ClassDefenseProficiencies = ModelPropsFromSchema<ClassDefenseProficienciesSchema>;
+type ClassSystemSource = SourceFromSchema<ClassSystemSchema> & {
+    level?: never;
+    schema?: ItemSystemSource["schema"];
+    traits: RarityTraitAndOtherTags;
+};
+export { ClassSystemData };
+export type { ClassAttackProficiencies, ClassDefenseProficiencies, ClassSource, ClassSystemSource };

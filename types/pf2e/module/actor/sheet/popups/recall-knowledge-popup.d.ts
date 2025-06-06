@@ -1,9 +1,9 @@
-import { CreatureIdentificationData } from "../../../recall-knowledge.ts";
-
-export declare class RecallKnowledgePopup extends Application {
+import { CreatureIdentificationData } from "@module/recall-knowledge.ts";
+import appv1 = foundry.appv1;
+export declare class RecallKnowledgePopup extends appv1.api.Application {
     #private;
-    constructor(options: Partial<ApplicationOptions>, data: CreatureIdentificationData);
-    static get defaultOptions(): ApplicationOptions;
+    constructor(options: Partial<appv1.api.ApplicationV1Options>, data: CreatureIdentificationData);
+    static get defaultOptions(): appv1.api.ApplicationV1Options;
     getData(): Promise<PopupData>;
 }
 interface PopupData {

@@ -1,25 +1,35 @@
-import { CreatureTrait } from "../../actor/creature/index.ts";
-import { DamageDicePF2e, DamageDiceParameters, ModifierAdjustment, ModifierObjectParams, ModifierPF2e } from "../../actor/modifiers.ts";
-import { ResistanceType } from "../../actor/types.ts";
-import { ArmorPF2e, MeleePF2e, PhysicalItemPF2e, WeaponPF2e } from "../index.ts";
-import { ArmorPropertyRuneType, ResilientRuneType } from "../armor/types.ts";
-import { SpellTrait } from "../spell/types.ts";
-import { StrikingRuneType, WeaponPropertyRuneType } from "../weapon/types.ts";
-import { OneToFour, Rarity, ZeroToFour, ZeroToSix } from "../../data.ts";
-import { RollNoteSource } from "../../notes.ts";
-import { StrikeAdjustment } from "../../rules/synthetics.ts";
-import { DegreeOfSuccessAdjustment } from "../../system/degree-of-success.ts";
-
+import { CreatureTrait } from "@actor/creature/index.ts";
+import {
+    DamageDicePF2e,
+    DamageDiceParameters,
+    ModifierAdjustment,
+    ModifierObjectParams,
+    ModifierPF2e,
+} from "@actor/modifiers.ts";
+import { ResistanceType } from "@actor/types.ts";
+import { ArmorPF2e, MeleePF2e, PhysicalItemPF2e, WeaponPF2e } from "@item";
+import { ArmorPropertyRuneType, ResilientRuneType } from "@item/armor/types.ts";
+import { SpellTrait } from "@item/spell/types.ts";
+import { StrikingRuneType, WeaponPropertyRuneType } from "@item/weapon/types.ts";
+import { OneToFour, Rarity, ZeroToFour, ZeroToSix } from "@module/data.ts";
+import { RollNoteSource } from "@module/notes.ts";
+import { StrikeAdjustment } from "@module/rules/synthetics.ts";
+import { DegreeOfSuccessAdjustment } from "@system/degree-of-success.ts";
 declare function getPropertyRuneSlots(item: WeaponPF2e | ArmorPF2e): ZeroToFour;
 /** Remove duplicate and lesser versions from an array of property runes */
 declare function prunePropertyRunes<T extends string>(runes: (string | null)[], validTypes: Record<T, unknown>): T[];
 declare function getRuneValuationData(item: PhysicalItemPF2e): RuneData[];
 declare function getPropertyRuneDegreeAdjustments(item: WeaponPF2e): DegreeOfSuccessAdjustment[];
-declare function getPropertyRuneDamage(weapon: WeaponPF2e | MeleePF2e, runes: WeaponPropertyRuneType[], options: Set<string>): (DamageDicePF2e | ModifierPF2e)[];
+declare function getPropertyRuneDamage(
+    weapon: WeaponPF2e | MeleePF2e,
+    runes: WeaponPropertyRuneType[],
+    options: Set<string>,
+): (DamageDicePF2e | ModifierPF2e)[];
 declare function getPropertyRuneStrikeAdjustments(runes: WeaponPropertyRuneType[]): StrikeAdjustment[];
 declare function getPropertyRuneModifierAdjustments(runes: WeaponPropertyRuneType[]): ModifierAdjustment[];
 type RuneDiceProperty = "slug" | "damageType" | "category" | "predicate" | "critical";
-type RuneAdditionalDamageDice = Partial<Pick<DamageDiceParameters, RuneDiceProperty>> & Required<Pick<DamageDiceParameters, "diceNumber" | "dieSize">>;
+type RuneAdditionalDamageDice = Partial<Pick<DamageDiceParameters, RuneDiceProperty>> &
+    Required<Pick<DamageDiceParameters, "diceNumber" | "dieSize">>;
 type RuneAdditionalDamageModifier = Omit<ModifierObjectParams, "modifier"> & {
     modifier: string | number;
 };
@@ -54,8 +64,7 @@ type FundamentalShieldRuneData = {
 interface PropertyRuneData<TSlug extends string> extends RuneData {
     slug: TSlug;
 }
-interface ArmorPropertyRuneData<TSlug extends ArmorPropertyRuneType> extends PropertyRuneData<TSlug> {
-}
+interface ArmorPropertyRuneData<TSlug extends ArmorPropertyRuneType> extends PropertyRuneData<TSlug> {}
 interface WeaponPropertyRuneData<TSlug extends WeaponPropertyRuneType> extends PropertyRuneData<TSlug> {
     attack?: {
         /** Degree-of-success adjustments */
@@ -239,5 +248,14 @@ declare const RUNE_DATA: {
         striking: Record<ZeroToFour, SecondaryFundamentalRuneData<StrikingRuneType> | null>;
     };
 };
-export { RUNE_DATA, getPropertyRuneDamage, getPropertyRuneDegreeAdjustments, getPropertyRuneModifierAdjustments, getPropertyRuneSlots, getPropertyRuneStrikeAdjustments, getRuneValuationData, prunePropertyRunes, };
+export {
+    RUNE_DATA,
+    getPropertyRuneDamage,
+    getPropertyRuneDegreeAdjustments,
+    getPropertyRuneModifierAdjustments,
+    getPropertyRuneSlots,
+    getPropertyRuneStrikeAdjustments,
+    getRuneValuationData,
+    prunePropertyRunes,
+};
 export type { RuneData, WeaponPropertyRuneData };

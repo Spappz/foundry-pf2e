@@ -1,14 +1,15 @@
-import { ModifierPF2e } from "../actor/modifiers.ts";
-import { RollOrigin, RollTarget } from "../actor/roll-context/types.ts";
-import { AbilityTrait } from "../item/ability/types.ts";
-import { TokenPF2e } from "../canvas/index.ts";
-import { CheckContextChatFlag } from "../chat-message/index.ts";
-import { ZeroToTwo } from "../data.ts";
-import { RollNotePF2e, RollNoteSource } from "../notes.ts";
+import { ModifierPF2e } from "@actor/modifiers.ts";
+import { RollOrigin, RollTarget } from "@actor/roll-context/types.ts";
+import { RollMode } from "@common/constants.mjs";
+import { AbilityTrait } from "@item/ability/types.ts";
+import { TokenPF2e } from "@module/canvas/index.ts";
+import { CheckContextChatFlag } from "@module/chat-message/index.ts";
+import { ZeroToTwo } from "@module/data.ts";
+import { RollNotePF2e, RollNoteSource } from "@module/notes.ts";
 import { RollTwiceOption } from "./check/index.ts";
 import { CheckDC, DEGREE_OF_SUCCESS_STRINGS } from "./degree-of-success.ts";
-
-interface RollDataPF2e extends RollOptions {
+import dice = foundry.dice;
+interface DiceRollOptionsPF2e extends dice.RollOptions {
     rollerId?: string;
     totalModifier?: number;
     /** Whether to show roll formula and tooltip to players */
@@ -17,13 +18,13 @@ interface RollDataPF2e extends RollOptions {
 /** Possible parameters of a RollFunction */
 interface RollParameters {
     /** The triggering event */
-    event?: MouseEvent | JQuery.TriggeredEvent;
+    event?: MouseEvent;
     /** Any options which should be used in the roll. */
     options?: string[] | Set<string>;
     /** Optional DC data for the roll */
     dc?: CheckDC | null;
     /** Callback called when the roll occurs. */
-    callback?: (roll: Rolled<Roll>) => void | Promise<void>;
+    callback?: (roll: dice.Rolled<Roll>) => void | Promise<void>;
     /** Additional modifiers */
     modifiers?: ModifierPF2e[];
     /** Whether to create a message from the roll */
@@ -67,4 +68,11 @@ interface BaseRollContext {
     /** Skip the roll dialog regardless of user setting  */
     skipDialog?: boolean;
 }
-export type { AttackRollParams, BaseRollContext, DamageRollParams, RollDataPF2e, RollParameters, RollTwiceOption };
+export type {
+    AttackRollParams,
+    BaseRollContext,
+    DamageRollParams,
+    DiceRollOptionsPF2e,
+    RollParameters,
+    RollTwiceOption,
+};

@@ -1,18 +1,21 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { AttributeString } from "../../actor/types.ts";
-import { ConsumablePF2e, MeleePF2e, ShieldPF2e, PhysicalItemPF2e } from "../index.ts";
-import { ItemSourcePF2e, RawItemChatData } from "../base/data/index.ts";
-import { NPCAttackTrait } from "../melee/types.ts";
-import { PhysicalItemConstructionContext } from "../physical/document.ts";
-import { IdentificationStatus, MystifiedData } from "../physical/index.ts";
-import { RangeData } from "../types.ts";
-import { StrikeRuleElement } from "../../rules/rule-element/strike.ts";
-import { UserPF2e } from "../../user/document.ts";
+import { ActorPF2e } from "@actor";
+import { AttributeString } from "@actor/types.ts";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
+import { ConsumablePF2e, MeleePF2e, ShieldPF2e, PhysicalItemPF2e } from "@item";
+import { ItemSourcePF2e, RawItemChatData } from "@item/base/data/index.ts";
+import { NPCAttackTrait } from "@item/melee/types.ts";
+import { PhysicalItemConstructionContext } from "@item/physical/document.ts";
+import { IdentificationStatus, MystifiedData } from "@item/physical/index.ts";
+import { RangeData } from "@item/types.ts";
+import { StrikeRuleElement } from "@module/rules/rule-element/strike.ts";
+import { EnrichmentOptionsPF2e } from "@system/text-editor.ts";
 import { WeaponDamage, WeaponFlags, WeaponSource, WeaponSystemData } from "./data.ts";
 import { BaseWeaponType, OtherWeaponTag, WeaponCategory, WeaponGroup, WeaponReloadTime, WeaponTrait } from "./types.ts";
-
 declare class WeaponPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
+    /** The shield to which this weapon is attached or is a part of */
     shield?: ShieldPF2e<TParent>;
+    /** The combination weapon that is an alternate form or usage of this weapon */
+    comboSibling?: WeaponPF2e<TParent>;
     /** The rule element that generated this weapon, if applicable */
     rule?: StrikeRuleElement;
     static get validTraits(): Record<NPCAttackTrait, string>;
@@ -54,48 +57,55 @@ declare class WeaponPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> ex
     /** Whether this weapon can serve as ammunition for another weapon */
     isAmmoFor(weapon: WeaponPF2e): boolean;
     /** Generate a list of strings for use in predication */
-    getRollOptions(prefix?: string, options?: {
-        includeGranter?: boolean;
-    }): string[];
+    getRollOptions(
+        prefix?: string,
+        options?: {
+            includeGranter?: boolean;
+        },
+    ): string[];
     prepareBaseData(): void;
     /** Add the rule elements of this weapon's linked ammunition to its own list */
     prepareSiblingData(): void;
     onPrepareSynthetics(): void;
-    getChatData(this: WeaponPF2e<ActorPF2e>, htmlOptions?: EnrichmentOptions): Promise<RawItemChatData>;
-    getMystifiedData(status: IdentificationStatus, { source }?: {
-        source?: boolean | undefined;
-    }): MystifiedData;
-    generateUnidentifiedName({ typeOnly }?: {
-        typeOnly?: boolean;
-    }): string;
+    getChatData(this: WeaponPF2e<ActorPF2e>, htmlOptions?: EnrichmentOptionsPF2e): Promise<RawItemChatData>;
+    getMystifiedData(
+        status: IdentificationStatus,
+        {
+            source,
+        }?: {
+            source?: boolean | undefined;
+        },
+    ): MystifiedData;
+    generateUnidentifiedName({ typeOnly }?: { typeOnly?: boolean }): string;
     /**
      * Get the "alternative usages" of a weapon: melee (in the case of combination weapons) and thrown (in the case
      * of thrown melee weapons)
      * @param [options.recurse=true] Whether to get the alternative usages of alternative usages
      */
-    getAltUsages(options?: {
-        recurse?: boolean;
-    }): this[];
-    clone(data: Record<string, unknown> | undefined, context: Omit<WeaponCloneContext, "save"> & {
-        save: true;
-    }): Promise<this>;
-    clone(data?: Record<string, unknown>, context?: Omit<WeaponCloneContext, "save"> & {
-        save?: false;
-    }): this;
-    clone(data?: Record<string, unknown>, context?: WeaponCloneContext): this | Promise<this>;
+    getAltUsages(options?: { recurse?: boolean }): this[];
+    clone(data?: Record<string, unknown>, context?: WeaponCloneContext): this;
     /** Generate a clone of this thrown melee weapon with its thrown usage overlain, or `null` if not applicable */
     private toThrownUsage;
     /** Generate a clone of this combination weapon with its melee usage overlain, or `null` if not applicable */
     private toMeleeUsage;
     /** Generate a melee item from this weapon for use by NPCs */
-    toNPCAttacks(this: WeaponPF2e<NonNullable<TParent>>, { keepId }?: {
-        keepId?: boolean | undefined;
-    }): MeleePF2e<NonNullable<TParent>>[];
+    toNPCAttacks(
+        this: WeaponPF2e<NonNullable<TParent>>,
+        {
+            keepId,
+        }?: {
+            keepId?: boolean | undefined;
+        },
+    ): MeleePF2e<NonNullable<TParent>>[];
     /** Consume a unit of ammunition used by this weapon */
     consumeAmmo(): Promise<void>;
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: DatabaseUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
     /** Remove links to this weapon from NPC attacks */
-    protected _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
 interface WeaponPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     flags: WeaponFlags;

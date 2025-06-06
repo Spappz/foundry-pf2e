@@ -1,12 +1,11 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { ItemPF2e } from "../index.ts";
-import { AbstractEffectPF2e, EffectBadge } from "../abstract-effect/index.ts";
-import { RuleElementOptions, RuleElementPF2e } from "../../rules/index.ts";
-import { UserPF2e } from "../../user/index.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
+import { ActorPF2e } from "@actor";
+import { DatabaseUpdateOperation } from "@common/abstract/_module.mjs";
+import { ItemPF2e } from "@item";
+import { AbstractEffectPF2e, EffectBadge } from "@item/abstract-effect/index.ts";
+import { RuleElementOptions, RuleElementPF2e } from "@module/rules/index.ts";
+import { TokenDocumentPF2e } from "@scene/index.ts";
 import { ConditionSource, ConditionSystemData, PersistentDamageData } from "./data.ts";
 import { ConditionKey, ConditionSlug } from "./types.ts";
-
 declare class ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends AbstractEffectPF2e<TParent> {
     active: boolean;
     get badge(): EffectBadge | null;
@@ -28,14 +27,19 @@ declare class ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null>
      */
     get readonly(): boolean;
     /** Include damage type and possibly category for persistent-damage conditions */
-    getRollOptions(prefix?: string, options?: {
-        includeGranter?: boolean;
-    }): string[];
+    getRollOptions(
+        prefix?: string,
+        options?: {
+            includeGranter?: boolean;
+        },
+    ): string[];
     increase(this: ConditionPF2e<ActorPF2e>): Promise<void>;
     decrease(this: ConditionPF2e<ActorPF2e>): Promise<void>;
-    onEndTurn(options?: {
-        token?: TokenDocumentPF2e | null;
-    }): Promise<void>;
+    /**
+     * Runs condition end of turn events on this actor
+     * @todo convert to onEncounterEvent()
+     */
+    onEndTurn(options?: { token?: TokenDocumentPF2e | null }): Promise<void>;
     /** Rolls recovery for this condition if it is persistent damage */
     rollRecovery(): Promise<void>;
     /** Ensure value.isValued and value.value are in sync */
@@ -45,8 +49,16 @@ declare class ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null>
     prepareActorData(this: ConditionPF2e<ActorPF2e>): void;
     /** Withhold all rule elements if this condition is inactive */
     prepareRuleElements(options?: RuleElementOptions): RuleElementPF2e[];
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: ConditionUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _onUpdate(changed: DeepPartial<this["_source"]>, operation: ConditionUpdateOperation<TParent>, userId: string): void;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        operation: ConditionUpdateOperation<TParent>,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _onUpdate(
+        changed: DeepPartial<this["_source"]>,
+        operation: ConditionUpdateOperation<TParent>,
+        userId: string,
+    ): void;
 }
 interface ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends AbstractEffectPF2e<TParent> {
     readonly _source: ConditionSource;
@@ -54,7 +66,7 @@ interface ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> ext
     get slug(): ConditionSlug;
 }
 interface PersistentDamagePF2e<TParent extends ActorPF2e | null> extends ConditionPF2e<TParent> {
-    system: Omit<ConditionSystemData, "persistent"> & {
+    system: ConditionSystemData & {
         persistent: PersistentDamageData;
     };
 }

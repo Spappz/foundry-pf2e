@@ -1,12 +1,21 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { AbilityItemPF2e, FeatPF2e } from "../item/index.ts";
+import { ActorPF2e } from "@actor";
+import { RollMode } from "@common/constants.mjs";
+import { AbilityItemPF2e, FeatPF2e } from "@item";
 import { ChatContextFlag, CheckContextChatFlag } from "./data.ts";
 import { ChatMessagePF2e } from "./document.ts";
-
 declare function isCheckContextFlag(flag?: ChatContextFlag): flag is CheckContextChatFlag;
 /** Create a message with collapsed action description and button to apply an effect */
-declare function createUseActionMessage(item: AbilityItemPF2e<ActorPF2e> | FeatPF2e<ActorPF2e>, rollMode?: RollMode | "roll"): Promise<ChatMessagePF2e | null>;
-declare function applyDamageFromMessage({ message, multiplier, addend, promptModifier, rollIndex, }: ApplyDamageFromMessageParams): Promise<void>;
+declare function createUseActionMessage(
+    item: AbilityItemPF2e<ActorPF2e> | FeatPF2e<ActorPF2e>,
+    rollMode?: RollMode | "roll",
+): Promise<ChatMessagePF2e | null>;
+declare function applyDamageFromMessage({
+    message,
+    multiplier,
+    addend,
+    promptModifier,
+    rollIndex,
+}: ApplyDamageFromMessageParams): Promise<void>;
 interface ApplyDamageFromMessageParams {
     message: ChatMessagePF2e;
     multiplier?: number;

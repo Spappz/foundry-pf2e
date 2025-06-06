@@ -1,14 +1,15 @@
-import { CreatureSheetData } from "../creature/sheet.ts";
-import { HitPointsStatistic, TraitViewData } from "../data/base.ts";
-import { AbilityViewData } from "../sheet/data-types.ts";
-import { MovementType, SaveType, SkillSlug } from "../types.ts";
-import { ItemPF2e } from "../../item/index.ts";
-import { SpellcastingSheetData } from "../../item/spellcasting-entry/index.ts";
-import { ZeroToFour } from "../../data.ts";
-import { TagifyEntry } from "../../sheet/helpers.ts";
-import { ArmorClassTraceData } from "../../system/statistic/index.ts";
+import { CreatureSheetData } from "@actor/creature/sheet.ts";
+import { HitPointsStatistic, TraitViewData } from "@actor/data/base.ts";
+import { AbilityViewData } from "@actor/sheet/data-types.ts";
+import { MovementType, SaveType, SkillSlug } from "@actor/types.ts";
+import { ItemPF2e } from "@item";
+import { SpellcastingSheetData } from "@item/spellcasting-entry/index.ts";
+import { ZeroToFour } from "@module/data.ts";
+import { TagifyEntry } from "@module/sheet/helpers.ts";
+import { ArmorClassTraceData } from "@system/statistic/index.ts";
 import { NPCAttributes, NPCPerceptionData, NPCSaveData, NPCSkillData, NPCSystemData } from "./data.ts";
 import { NPCPF2e, NPCStrike } from "./index.ts";
+import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
 
 interface ActionsDetails {
     label: string;
@@ -48,9 +49,14 @@ interface NPCSystemSheetData extends NPCSystemData {
     details: NPCSystemData["details"] & {
         level: NPCSystemData["details"]["level"] & WithAdjustments;
     };
-    saves: Record<SaveType, NPCSaveData & WithAdjustments & WithRank & {
-        labelShort?: string;
-    }>;
+    saves: Record<
+        SaveType,
+        NPCSaveData &
+            WithAdjustments &
+            WithRank & {
+                labelShort?: string;
+            }
+    >;
     skills: Record<SkillSlug, NPCSkillSheetData>;
 }
 interface NPCStrikeSheetData {
@@ -94,9 +100,13 @@ interface NPCSheetData extends CreatureSheetData<NPCPF2e> {
     hasHardness?: boolean;
     configLootableNpc?: boolean;
     traitTagifyData: TagifyEntry[];
-    speeds: Record<"land", NPCSpeedSheetData & {
-        details: string;
-    }> & Record<Exclude<MovementType, "land">, NPCSpeedSheetData | null>;
+    speeds: Record<
+        "land",
+        NPCSpeedSheetData & {
+            details: string;
+        }
+    > &
+        Record<Exclude<MovementType, "land">, NPCSpeedSheetData | null>;
 }
 interface NPCSpeedSheetData {
     value: number;
@@ -129,4 +139,15 @@ interface NPCIdentificationSheetData {
     standard: string | null;
     lore: string;
 }
-export type { NPCActionSheetData, NPCIdentificationSheetData, NPCSheetData, NPCSheetItemData, NPCSkillSheetData, NPCSpeedSheetData, NPCSpellcastingSheetData, NPCStrikeSheetData, NPCSystemSheetData, VariantCloneParams, };
+export type {
+    NPCActionSheetData,
+    NPCIdentificationSheetData,
+    NPCSheetData,
+    NPCSheetItemData,
+    NPCSkillSheetData,
+    NPCSpeedSheetData,
+    NPCSpellcastingSheetData,
+    NPCStrikeSheetData,
+    NPCSystemSheetData,
+    VariantCloneParams,
+};

@@ -1,7 +1,8 @@
-import { ActorPF2e } from "./actor/index.ts";
-import { ItemPF2e } from "./item/index.ts";
-
-import type * as fields from "../../foundry/common/data/fields.ts";
+import { ActorPF2e } from "@actor";
+import { MathFunctionName } from "@client/dice/terms/function.mjs";
+import { EnfolderableDocument } from "@client/documents/folder.mjs";
+import { ItemPF2e } from "@item";
+import type * as fields from "@common/data/fields.mjs";
 /** The size property of creatures and equipment */
 declare const SIZES: readonly ["tiny", "sm", "med", "lg", "huge", "grg"];
 declare const SIZE_SLUGS: readonly ["tiny", "small", "medium", "large", "huge", "gargantuan"];
@@ -46,8 +47,7 @@ interface ValueAndMaybeMax {
     value: number;
     max?: number;
 }
-interface ValueAndMax extends Required<ValueAndMaybeMax> {
-}
+interface ValueAndMax extends Required<ValueAndMaybeMax> {}
 declare function goesToEleven(value: number): value is ZeroToEleven;
 /** The tracked schema data of actors and items */
 interface NewDocumentMigrationRecord {
@@ -56,21 +56,28 @@ interface NewDocumentMigrationRecord {
 }
 type MigrationDataField = fields.SchemaField<{
     version: fields.NumberField<number, number, true, true, true>;
-    previous: fields.SchemaField<{
-        foundry: fields.StringField<string, string, true, true, true>;
-        system: fields.StringField<string, string, true, true, true>;
-        schema: fields.NumberField<number, number, true, true, true>;
-    }, {
-        foundry: string | null;
-        system: string | null;
-        schema: number | null;
-    }, {
-        foundry: string | null;
-        system: string | null;
-        schema: number | null;
-    }, true, true, true>;
+    previous: fields.SchemaField<
+        {
+            foundry: fields.StringField<string, string, true, true, true>;
+            system: fields.StringField<string, string, true, true, true>;
+            schema: fields.NumberField<number, number, true, true, true>;
+        },
+        {
+            foundry: string | null;
+            system: string | null;
+            schema: number | null;
+        },
+        {
+            foundry: string | null;
+            system: string | null;
+            schema: number | null;
+        },
+        true,
+        true,
+        true
+    >;
 }>;
-type MigratedDocumentMigrationRecord = fields.SourcePropFromDataField<MigrationDataField>;
+type MigratedDocumentMigrationRecord = fields.SourceFromDataField<MigrationDataField>;
 type MigrationRecord = NewDocumentMigrationRecord | MigratedDocumentMigrationRecord;
 interface PublicationData {
     title: string;
@@ -80,6 +87,36 @@ interface PublicationData {
 }
 export declare const PROFICIENCY_RANKS: readonly ["untrained", "trained", "expert", "master", "legendary"];
 export declare const MATH_FUNCTION_NAMES: Set<MathFunctionName>;
-type EnfolderableDocumentPF2e = ActorPF2e<null> | ItemPF2e<null> | Exclude<EnfolderableDocument, Actor<null> | Item<null>>;
+type EnfolderableDocumentPF2e =
+    | ActorPF2e<null>
+    | ItemPF2e<null>
+    | Exclude<EnfolderableDocument, Actor<null> | Item<null>>;
 export { RARITIES, SIZES, SIZE_SLUGS, goesToEleven };
-export type { EnfolderableDocumentPF2e, LabeledNumber, LabeledValueAndMax, MigrationDataField, MigrationRecord, OneToFive, OneToFour, OneToSix, OneToTen, OneToThree, PublicationData, Rarity, Size, TraitsWithRarity, TwoToThree, TypeAndValue, ValueAndMax, ValueAndMaybeMax, ValuesList, ZeroToEleven, ZeroToFive, ZeroToFour, ZeroToSix, ZeroToTen, ZeroToThree, ZeroToTwo, };
+export type {
+    EnfolderableDocumentPF2e,
+    LabeledNumber,
+    LabeledValueAndMax,
+    MigrationDataField,
+    MigrationRecord,
+    OneToFive,
+    OneToFour,
+    OneToSix,
+    OneToTen,
+    OneToThree,
+    PublicationData,
+    Rarity,
+    Size,
+    TraitsWithRarity,
+    TwoToThree,
+    TypeAndValue,
+    ValueAndMax,
+    ValueAndMaybeMax,
+    ValuesList,
+    ZeroToEleven,
+    ZeroToFive,
+    ZeroToFour,
+    ZeroToSix,
+    ZeroToTen,
+    ZeroToThree,
+    ZeroToTwo,
+};

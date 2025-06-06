@@ -1,7 +1,7 @@
-import { ActorPF2e } from "../../index.ts";
-import { PhysicalItemPF2e } from "../../../item/index.ts";
-
-declare class ItemTransferDialog extends FormApplication<PhysicalItemPF2e, MoveLootOptions> {
+import { ActorPF2e } from "@actor";
+import { PhysicalItemPF2e } from "@item";
+import appv1 = foundry.appv1;
+declare class ItemTransferDialog extends appv1.api.FormApplication<PhysicalItemPF2e, MoveLootOptions> {
     #private;
     static get defaultOptions(): MoveLootOptions;
     get title(): string;
@@ -14,11 +14,9 @@ declare class ItemTransferDialog extends FormApplication<PhysicalItemPF2e, MoveL
     resolve(): Promise<MoveLootFormData | null>;
     activateListeners($html: JQuery<HTMLElement>): void;
     _updateObject(event: SubmitEvent, formData: Record<string, unknown> & MoveLootFormData): Promise<void>;
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    close(options?: { force?: boolean }): Promise<void>;
 }
-interface MoveLootOptions extends FormApplicationOptions {
+interface MoveLootOptions extends appv1.api.FormApplicationOptions {
     targetActor?: ActorPF2e;
     newStack: boolean;
     lockStack: boolean;
@@ -29,7 +27,7 @@ interface MoveLootFormData {
     newStack: boolean;
     isPurchase: boolean;
 }
-interface PopupData extends FormApplicationData {
+interface PopupData extends appv1.api.FormApplicationData {
     item: PhysicalItemPF2e;
     quantity: number;
     canGift: boolean;

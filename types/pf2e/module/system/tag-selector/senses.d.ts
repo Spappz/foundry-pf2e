@@ -1,8 +1,8 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { SenseAcuity, SenseType } from "../../actor/creature/types.ts";
+import { ActorPF2e } from "@actor";
+import { SenseAcuity, SenseType } from "@actor/creature/types.ts";
+import { OnSubmitFormOptions } from "@client/appv1/api/form-application-v1.mjs";
 import { BaseTagSelector, TagSelectorData, TagSelectorOptions } from "./base.ts";
 import { SelectableTagField } from "./index.ts";
-
 declare class SenseSelector<TActor extends ActorPF2e> extends BaseTagSelector<TActor> {
     protected objectProperty: string;
     static get defaultOptions(): TagSelectorOptions;
@@ -10,7 +10,10 @@ declare class SenseSelector<TActor extends ActorPF2e> extends BaseTagSelector<TA
     getData(options?: Partial<TagSelectorOptions>): Promise<SenseSelectorData<TActor>>;
     activateListeners($html: JQuery): void;
     /** Clear checkboxes with empty range inputs */
-    protected _onSubmit(event: Event, options?: OnSubmitFormOptions | undefined): Promise<Record<string, unknown> | false>;
+    protected _onSubmit(
+        event: Event,
+        options?: OnSubmitFormOptions | undefined,
+    ): Promise<Record<string, unknown> | false>;
     protected _updateObject(event: Event, formData: SenseFormData): Promise<void>;
 }
 interface SenseSelector<TActor extends ActorPF2e> extends BaseTagSelector<TActor> {

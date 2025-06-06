@@ -1,13 +1,28 @@
-import { ActorAttributes, ActorAttributesSource, ActorDetailsSource, ActorHitPoints, ActorHitPointsSource, ActorSystemData, ActorSystemSource, ActorTraitsSource, AttributeBasedTraceData, BaseActorSourcePF2e, StrikeData } from "../data/base.ts";
-import { ActorSizePF2e } from "../data/size.ts";
-import { ModifierPF2e, RawModifier, StatisticModifier } from "../modifiers.ts";
-import { AttributeString, MovementType, SaveType, SkillSlug } from "../types.ts";
-import { LabeledNumber, Size, ValueAndMax, ValueAndMaybeMax, ZeroToThree } from "../../data.ts";
-import { ArmorClassTraceData } from "../../system/statistic/index.ts";
-import { PerceptionTraceData } from "../../system/statistic/perception.ts";
+import {
+    ActorAttributes,
+    ActorAttributesSource,
+    ActorDetailsSource,
+    ActorHitPoints,
+    ActorHitPointsSource,
+    ActorSystemData,
+    ActorSystemSource,
+    ActorTraitsSource,
+    AttributeBasedTraceData,
+    BaseActorSourcePF2e,
+    StrikeData,
+} from "@actor/data/base.ts";
+import { ActorSizePF2e } from "@actor/data/size.ts";
+import { ModifierPF2e, RawModifier, StatisticModifier } from "@actor/modifiers.ts";
+import { AttributeString, MovementType, SaveType, SkillSlug } from "@actor/types.ts";
+import { LabeledNumber, Size, ValueAndMax, ValueAndMaybeMax, ZeroToThree } from "@module/data.ts";
+import { ArmorClassTraceData } from "@system/statistic/index.ts";
+import { PerceptionTraceData } from "@system/statistic/perception.ts";
 import { CreatureActorType, CreatureTrait, Language, SenseAcuity, SenseType, SpecialVisionType } from "./types.ts";
-
-type BaseCreatureSource<TType extends CreatureActorType, TSystemSource extends CreatureSystemSource> = BaseActorSourcePF2e<TType, TSystemSource>;
+import { ImageFilePath } from "@common/constants.mjs";
+type BaseCreatureSource<
+    TType extends CreatureActorType,
+    TSystemSource extends CreatureSystemSource,
+> = BaseActorSourcePF2e<TType, TSystemSource>;
 /** Skill and Lore statistics for rolling. */
 interface CreatureSystemSource extends ActorSystemSource {
     attributes: CreatureAttributesSource;
@@ -34,8 +49,7 @@ interface CreatureLanguagesData {
     value: Language[];
     details: string;
 }
-interface CreatureTraitsSource extends ActorTraitsSource<CreatureTrait> {
-}
+interface CreatureTraitsSource extends ActorTraitsSource<CreatureTrait> {}
 interface CreatureResourcesSource {
     focus?: ValueAndMaybeMax;
 }
@@ -55,17 +69,19 @@ interface CreatureSystemData extends Omit<CreatureSystemSource, "attributes">, A
     actions?: StrikeData[];
     resources: CreatureResources;
 }
-type SenseData = {
-    type: SpecialVisionType;
-    acuity?: "precise";
-    range?: number;
-    source?: Maybe<string>;
-} | {
-    type: SenseType;
-    acuity: SenseAcuity;
-    range: number;
-    source?: Maybe<string>;
-};
+type SenseData =
+    | {
+          type: SpecialVisionType;
+          acuity?: "precise";
+          range?: number;
+          source?: Maybe<string>;
+      }
+    | {
+          type: SenseType;
+          acuity: SenseAcuity;
+          range: number;
+          source?: Maybe<string>;
+      };
 interface CreaturePerceptionData extends PerceptionTraceData {
     attribute: AttributeString;
 }
@@ -84,8 +100,7 @@ interface CreatureTraitsData extends Required<CreatureTraitsSource> {
     /** Temporary variable that holds pre-equipment resize data */
     naturalSize?: Size;
 }
-interface CreatureDetails extends Required<CreatureDetailsSource> {
-}
+interface CreatureDetails extends Required<CreatureDetailsSource> {}
 type SkillData = AttributeBasedTraceData;
 /** The full save data for a character; including its modifiers and other details */
 interface SaveData extends AttributeBasedTraceData {
@@ -152,7 +167,7 @@ declare enum VisionLevels {
     BLINDED = 0,
     NORMAL = 1,
     LOWLIGHT = 2,
-    DARKVISION = 3
+    DARKVISION = 3,
 }
 type VisionLevel = ZeroToThree;
 /** A PC's or NPC's held shield. An NPC's values can be stored directly on the actor or come from a shield item. */
@@ -179,4 +194,30 @@ interface HeldShieldData {
     icon: ImageFilePath;
 }
 export { VisionLevels };
-export type { Abilities, AbilityData, BaseCreatureSource, CreatureActorType, CreatureAttributes, CreatureDetails, CreatureDetailsSource, CreatureHitPointsSource, CreatureInitiativeSource, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureResourcesSource, CreatureSaves, CreatureSpeeds, CreatureSystemData, CreatureSystemSource, CreatureTraitsData, CreatureTraitsSource, HeldShieldData, LabeledSpeed, SaveData, SenseData, SkillData, VisionLevel, };
+export type {
+    Abilities,
+    AbilityData,
+    BaseCreatureSource,
+    CreatureActorType,
+    CreatureAttributes,
+    CreatureDetails,
+    CreatureDetailsSource,
+    CreatureHitPointsSource,
+    CreatureInitiativeSource,
+    CreatureLanguagesData,
+    CreaturePerceptionData,
+    CreatureResources,
+    CreatureResourcesSource,
+    CreatureSaves,
+    CreatureSpeeds,
+    CreatureSystemData,
+    CreatureSystemSource,
+    CreatureTraitsData,
+    CreatureTraitsSource,
+    HeldShieldData,
+    LabeledSpeed,
+    SaveData,
+    SenseData,
+    SkillData,
+    VisionLevel,
+};

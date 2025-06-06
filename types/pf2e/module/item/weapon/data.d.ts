@@ -1,12 +1,31 @@
-import { AttributeString } from "../../actor/types.ts";
-import { PhysicalItemSource } from "../base/data/index.ts";
-import { ItemFlagsPF2e } from "../base/data/system.ts";
-import { BasePhysicalItemSource, Investable, ItemMaterialData, ItemMaterialSource, PhysicalItemTraits, PhysicalSystemData, PhysicalSystemSource, UsageDetails } from "../physical/index.ts";
-import { ZeroToFour } from "../../data.ts";
-import { DamageDieSize, DamageType } from "../../system/damage/index.ts";
+import { AttributeString } from "@actor/types.ts";
+import { PhysicalItemSource } from "@item/base/data/index.ts";
+import { ItemFlagsPF2e } from "@item/base/data/system.ts";
+import {
+    BasePhysicalItemSource,
+    Investable,
+    ItemMaterialData,
+    ItemMaterialSource,
+    PhysicalItemTraits,
+    PhysicalSystemData,
+    PhysicalSystemSource,
+    UsageDetails,
+} from "@item/physical/index.ts";
+import { ZeroToFour } from "@module/data.ts";
+import { DamageDieSize, DamageType } from "@system/damage/index.ts";
 import { WeaponTraitToggles } from "./trait-toggles.ts";
-import { BaseWeaponType, MeleeWeaponGroup, OtherWeaponTag, WeaponCategory, WeaponGroup, WeaponMaterialType, WeaponPropertyRuneType, WeaponRangeIncrement, WeaponReloadTime, WeaponTrait } from "./types.ts";
-
+import {
+    BaseWeaponType,
+    MeleeWeaponGroup,
+    OtherWeaponTag,
+    WeaponCategory,
+    WeaponGroup,
+    WeaponMaterialType,
+    WeaponPropertyRuneType,
+    WeaponRangeIncrement,
+    WeaponReloadTime,
+    WeaponTrait,
+} from "./types.ts";
 type WeaponSource = BasePhysicalItemSource<"weapon", WeaponSystemSource> & {
     flags: DeepPartial<WeaponFlags>;
 };
@@ -38,9 +57,6 @@ interface WeaponSystemSource extends Investable<PhysicalSystemSource> {
         value: number;
     };
     damage: WeaponDamage;
-    bonusDamage: {
-        value: number;
-    };
     splashDamage: {
         value: number;
     };
@@ -64,16 +80,6 @@ interface WeaponSystemSource extends Investable<PhysicalSystemSource> {
     graspingAppendage?: boolean;
     /** Doubly-embedded adjustments, attachments, talismans etc. */
     subitems: PhysicalItemSource[];
-    property1: {
-        value: string;
-        dice: number;
-        die: DamageDieSize;
-        damageType: DamageType | "";
-        critDice: number;
-        critDie: DamageDieSize;
-        critDamage: string;
-        critDamageType: DamageType | "";
-    };
     selectedAmmoId: string | null;
 }
 interface WeaponTraitsSource extends PhysicalItemTraits<WeaponTrait> {
@@ -121,7 +127,9 @@ type WeaponRuneSource = {
     striking: ZeroToFour;
     property: WeaponPropertyRuneType[];
 };
-interface WeaponSystemData extends Omit<WeaponSystemSource, SourceOmission>, Omit<Investable<PhysicalSystemData>, "material" | "subitems"> {
+interface WeaponSystemData
+    extends Omit<WeaponSystemSource, SourceOmission>,
+        Omit<Investable<PhysicalSystemData>, "material" | "subitems"> {
     traits: WeaponTraits;
     baseItem: BaseWeaponType | null;
     material: WeaponMaterialData;
@@ -163,4 +171,18 @@ interface ComboWeaponMeleeUsage {
         versatile: DamageType | null;
     };
 }
-export type { ComboWeaponMeleeUsage, SpecificWeaponData, WeaponDamage, WeaponFlags, WeaponMaterialData, WeaponMaterialSource, WeaponPersistentDamage, WeaponRuneData, WeaponRuneSource, WeaponSource, WeaponSystemData, WeaponSystemSource, WeaponTraitsSource, };
+export type {
+    ComboWeaponMeleeUsage,
+    SpecificWeaponData,
+    WeaponDamage,
+    WeaponFlags,
+    WeaponMaterialData,
+    WeaponMaterialSource,
+    WeaponPersistentDamage,
+    WeaponRuneData,
+    WeaponRuneSource,
+    WeaponSource,
+    WeaponSystemData,
+    WeaponSystemSource,
+    WeaponTraitsSource,
+};

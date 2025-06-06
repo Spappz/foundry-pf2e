@@ -1,11 +1,14 @@
-import { MigrationRecord, OneToThree, PublicationData, Rarity } from "../../../data.ts";
-import { RuleElementSource } from "../../../rules/index.ts";
-import { Predicate } from "../../../system/predication.ts";
+import { DocumentFlags, DocumentFlagsSource } from "@common/data/_types.mjs";
+import { MigrationRecord, OneToThree, PublicationData, Rarity } from "@module/data.ts";
+import { RuleElementSource } from "@module/rules/index.ts";
+import { Predicate } from "@system/predication.ts";
 import { ItemTrait } from "../types.ts";
 import { ItemType } from "./index.ts";
-
-import type * as fields from "../../../../../foundry/common/data/fields.ts";
-type BaseItemSourcePF2e<TType extends ItemType, TSystemSource extends ItemSystemSource = ItemSystemSource> = foundry.documents.ItemSource<TType, TSystemSource> & {
+import type * as fields from "@common/data/fields.mjs";
+type BaseItemSourcePF2e<
+    TType extends ItemType,
+    TSystemSource extends ItemSystemSource = ItemSystemSource,
+> = foundry.documents.ItemSource<TType, TSystemSource> & {
     flags: ItemSourceFlagsPF2e;
 };
 type ActionType = keyof typeof CONFIG.PF2E.actionTypes;
@@ -31,22 +34,22 @@ interface OtherTagsOnly {
     rarity?: never;
     otherTags: string[];
 }
-interface ItemFlagsPF2e extends DocumentFlags {
+type ItemFlagsPF2e = DocumentFlags & {
     pf2e: {
         rulesSelections: Record<string, string | number | object | null>;
         itemGrants: Record<string, ItemGranterData>;
         grantedBy: ItemGrantData | null;
         [key: string]: unknown;
     };
-}
-interface ItemSourceFlagsPF2e extends DocumentFlags {
+};
+type ItemSourceFlagsPF2e = DocumentFlagsSource & {
     pf2e?: {
         rulesSelections?: Record<string, string | number | object>;
         itemGrants?: Record<string, ItemGranterSource>;
         grantedBy?: ItemGrantSource | null;
         [key: string]: unknown;
     };
-}
+};
 interface ItemGrantSource {
     /** The ID of a granting or granted item */
     id: string;
@@ -58,8 +61,7 @@ interface ItemGranterSource extends ItemGrantSource {
     /** Is this granted item visually nested under its granter: only applies to feats and features */
     nested?: boolean | null;
 }
-interface ItemGranterData extends Required<ItemGranterSource> {
-}
+interface ItemGranterData extends Required<ItemGranterSource> {}
 type ItemGrantDeleteAction = "cascade" | "detach" | "restrict";
 type ItemSystemSource = {
     level?: {
@@ -102,7 +104,7 @@ interface AlteredDescriptionContent {
 }
 type FrequencyInterval = keyof typeof CONFIG.PF2E.frequencies;
 interface FrequencySource {
-    value?: number;
+    value: number | undefined;
     max: number;
     /** Gap between recharges as an ISO8601 duration, or "day" for daily prep. */
     per: FrequencyInterval;
@@ -113,4 +115,26 @@ type ItemSchemaPF2e = Omit<foundry.documents.ItemSchema, "system"> & {
 interface Frequency extends FrequencySource {
     value: number;
 }
-export type { ActionCost, ActionType, BaseItemSourcePF2e, Frequency, FrequencyInterval, FrequencySource, ItemDescriptionData, ItemFlagsPF2e, ItemGrantData, ItemGrantDeleteAction, ItemGrantSource, ItemGranterSource, ItemSchemaPF2e, ItemSourceFlagsPF2e, ItemSystemData, ItemSystemSource, ItemTrait, ItemTraits, ItemTraitsNoRarity, OtherTagsOnly, RarityTraitAndOtherTags, };
+export type {
+    ActionCost,
+    ActionType,
+    BaseItemSourcePF2e,
+    Frequency,
+    FrequencyInterval,
+    FrequencySource,
+    ItemDescriptionData,
+    ItemFlagsPF2e,
+    ItemGrantData,
+    ItemGrantDeleteAction,
+    ItemGranterSource,
+    ItemGrantSource,
+    ItemSchemaPF2e,
+    ItemSourceFlagsPF2e,
+    ItemSystemData,
+    ItemSystemSource,
+    ItemTrait,
+    ItemTraits,
+    ItemTraitsNoRarity,
+    OtherTagsOnly,
+    RarityTraitAndOtherTags,
+};

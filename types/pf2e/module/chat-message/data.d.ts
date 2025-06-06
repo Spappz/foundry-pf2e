@@ -1,13 +1,15 @@
-import { RawDamageDice, RawModifier } from "../actor/modifiers.ts";
-import { ItemType, SpellSource } from "../item/base/data/index.ts";
-import { MagicTradition } from "../item/spell/types.ts";
-import { ZeroToTwo } from "../data.ts";
-import { RollNoteSource } from "../notes.ts";
-import { CheckCheckContext } from "../system/check/index.ts";
-import { DamageDamageContext } from "../system/damage/types.ts";
-import { DegreeAdjustmentsRecord, DegreeOfSuccessString } from "../system/degree-of-success.ts";
-import { ChatMessageFlags } from "../../../foundry/common/documents/chat-message.ts";
-
+import { RawDamageDice, RawModifier } from "@actor/modifiers.ts";
+import { ActorUUID, TokenDocumentUUID } from "@client/documents/_module.mjs";
+import { DocumentUUID } from "@client/utils/_module.mjs";
+import { RollMode } from "@common/constants.mjs";
+import { ChatMessageFlags } from "@common/documents/chat-message.mjs";
+import { ItemType, SpellSource } from "@item/base/data/index.ts";
+import { MagicTradition } from "@item/spell/types.ts";
+import { ZeroToTwo } from "@module/data.ts";
+import { RollNoteSource } from "@module/notes.ts";
+import { CheckCheckContext } from "@system/check/index.ts";
+import { DamageDamageContext } from "@system/damage/types.ts";
+import { CheckDC, DegreeAdjustmentsRecord, DegreeOfSuccessString } from "@system/degree-of-success.ts";
 type ChatMessageSourcePF2e = foundry.documents.ChatMessageSource & {
     flags: ChatMessageFlagsPF2e;
 };
@@ -22,7 +24,7 @@ export interface ItemOriginFlag {
     };
     rollOptions?: string[];
 }
-interface ChatMessageFlagsPF2e extends ChatMessageFlags {
+type ChatMessageFlagsPF2e = ChatMessageFlags & {
     pf2e: {
         damageRoll?: DamageRollFlag;
         context?: ChatContextFlag;
@@ -34,7 +36,6 @@ interface ChatMessageFlagsPF2e extends ChatMessageFlags {
         } | null;
         modifiers?: RawModifier[];
         dice?: RawDamageDice[];
-        preformatted?: "flavor" | "content" | "both";
         journalEntry?: DocumentUUID;
         appliedDamage?: AppliedDamageFlag | null;
         treatWoundsMacroFlag?: {
@@ -43,8 +44,13 @@ interface ChatMessageFlagsPF2e extends ChatMessageFlags {
         [key: string]: unknown;
     };
     core: NonNullable<ChatMessageFlags["core"]>;
-}
-type ChatContextFlag = CheckContextChatFlag | DamageDamageContextFlag | SpellCastContextFlag | SelfEffectContextFlag | DamageTakenContextFlag;
+};
+type ChatContextFlag =
+    | CheckContextChatFlag
+    | DamageDamageContextFlag
+    | SpellCastContextFlag
+    | SelfEffectContextFlag
+    | DamageTakenContextFlag;
 interface DamageRollFlag {
     outcome: DegreeOfSuccessString;
     total: number;
@@ -61,7 +67,22 @@ interface ActorTokenFlag {
     actor: ActorUUID | TokenDocumentUUID;
     token?: TokenDocumentUUID;
 }
-type ContextFlagOmission = "actor" | "action" | "altUsage" | "createMessage" | "damaging" | "dosAdjustments" | "item" | "mapIncreases" | "notes" | "options" | "origin" | "range" | "target" | "token";
+type ContextFlagOmission =
+    | "actor"
+    | "action"
+    | "altUsage"
+    | "createMessage"
+    | "damaging"
+    | "dc"
+    | "dosAdjustments"
+    | "item"
+    | "mapIncreases"
+    | "notes"
+    | "options"
+    | "origin"
+    | "range"
+    | "target"
+    | "token";
 interface ContextualRollOptions {
     postRoll?: string[];
 }
@@ -69,6 +90,7 @@ interface CheckContextChatFlag extends Required<Omit<CheckCheckContext, ContextF
     actor: string | null;
     token: string | null;
     item?: string;
+    dc?: Omit<CheckDC, "statistic"> | null;
     dosAdjustments?: DegreeAdjustmentsRecord;
     roller?: "origin" | "target";
     origin: ActorTokenFlag | null;
@@ -123,4 +145,13 @@ interface AppliedDamageFlag {
         value: number;
     }[];
 }
-export type { ActorTokenFlag, AppliedDamageFlag, ChatContextFlag, ChatMessageFlagsPF2e, ChatMessageSourcePF2e, CheckContextChatFlag, DamageDamageContextFlag, DamageRollFlag, };
+export type {
+    ActorTokenFlag,
+    AppliedDamageFlag,
+    ChatContextFlag,
+    ChatMessageFlagsPF2e,
+    ChatMessageSourcePF2e,
+    CheckContextChatFlag,
+    DamageDamageContextFlag,
+    DamageRollFlag,
+};

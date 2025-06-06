@@ -1,8 +1,7 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { ItemPF2e } from "../../item/index.ts";
+import { ActorPF2e } from "@actor";
+import { ItemPF2e } from "@item";
 import { TagSelectorBasicData } from "./basic.ts";
 import { TagSelectorBasic, SelectableTagField, TagSelectorOptions } from "./index.ts";
-
 declare class LanguageSelector extends TagSelectorBasic<ActorPF2e | ItemPF2e> {
     static get defaultOptions(): TagSelectorOptions;
     choices: typeof CONFIG.PF2E.languages;

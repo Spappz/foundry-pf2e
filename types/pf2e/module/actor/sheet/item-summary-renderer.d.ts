@@ -1,14 +1,18 @@
-import { ActorPF2e } from "../base.ts";
-import { ItemPF2e } from "../../item/index.ts";
-import { RawItemChatData } from "../../item/base/data/index.ts";
-
+import { ActorPF2e } from "@actor/base.ts";
+import { default as Application } from "@client/appv1/api/application-v1.mjs";
+import { ClientDocument } from "@client/documents/abstract/client-document.mjs";
+import { ItemPF2e } from "@item";
+import { RawItemChatData } from "@item/base/data/index.ts";
 /**
  * Implementation used to populate item summaries, toggle visibility
  * of item summaries, and save expanded/collapsed state of item summaries.
  */
-export declare class ItemSummaryRenderer<TActor extends ActorPF2e, TSheet extends Application & {
-    get actor(): TActor;
-}> {
+export declare class ItemSummaryRenderer<
+    TActor extends ActorPF2e,
+    TSheet extends Application & {
+        get actor(): TActor;
+    },
+> {
     protected sheet: TSheet;
     constructor(sheet: TSheet);
     /**
@@ -16,10 +20,13 @@ export declare class ItemSummaryRenderer<TActor extends ActorPF2e, TSheet extend
      * delegating the populating of the item summary to renderItemSummary().
      * Returns true if it the item is valid and it was toggled.
      */
-    toggleSummary(element: HTMLElement, options?: {
-        visible?: boolean;
-        instant?: boolean;
-    }): Promise<void>;
+    toggleSummary(
+        element: HTMLElement,
+        options?: {
+            visible?: boolean;
+            instant?: boolean;
+        },
+    ): Promise<void>;
     /** Retrieves the item from the element that the current toggleable summary is for */
     protected getItemFromElement(element: HTMLElement): Promise<ClientDocument | null>;
     /**

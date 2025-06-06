@@ -1,10 +1,9 @@
-import { AbilityItemPF2e, FeatPF2e, SpellPF2e, ItemPF2e } from "../index.ts";
-import { ActionCost } from "../base/data/system.ts";
-import { FeatSheetPF2e } from "../feat/sheet.ts";
-import { RangeData } from "../types.ts";
+import { AbilityItemPF2e, FeatPF2e, SpellPF2e, ItemPF2e } from "@item";
+import { ActionCost } from "@item/base/data/system.ts";
+import { FeatSheetPF2e } from "@item/feat/sheet.ts";
+import { RangeData } from "@item/types.ts";
 import { AbilitySystemData, SelfEffectReference } from "./data.ts";
 import { AbilitySheetPF2e } from "./sheet.ts";
-
 interface SourceWithActionData {
     system: {
         actionType: AbilitySystemData["actionType"];
@@ -17,12 +16,18 @@ interface SourceWithFrequencyData {
     };
 }
 /** Pre-update helper to ensure actionType and actions are in sync with each other */
-declare function normalizeActionChangeData(document: SourceWithActionData, changed: DeepPartial<SourceWithActionData>): void;
+declare function normalizeActionChangeData(
+    document: SourceWithActionData,
+    changed: DeepPartial<SourceWithActionData>,
+): void;
 /** Adds sheet listeners for modifying frequency */
 declare function activateActionSheetListeners(item: ItemPF2e & SourceWithFrequencyData, html: HTMLElement): void;
-declare function getActionCostRollOptions(prefix: string, item: {
-    actionCost?: ActionCost | null;
-}): string[];
+declare function getActionCostRollOptions(
+    prefix: string,
+    item: {
+        actionCost?: ActionCost | null;
+    },
+): string[];
 /** Create data for the "self-applied effect" drop zone on an ability or feat sheet. */
 declare function createSelfEffectSheetData(data: Maybe<SelfEffectReference>): SelfEffectSheetReference | null;
 interface SelfEffectSheetReference extends SelfEffectReference {
@@ -35,4 +40,12 @@ declare function handleSelfEffectDrop(sheet: AbilitySheetPF2e | FeatSheetPF2e, i
 declare function createActionRangeLabel(range: Maybe<RangeData>): string | null;
 /**  Add the holy/unholy trait to sanctified actions and spells if the owning actor is also holy/unholy */
 declare function processSanctification(item: AbilityItemPF2e | FeatPF2e | SpellPF2e): void;
-export { activateActionSheetListeners, createActionRangeLabel, createSelfEffectSheetData, getActionCostRollOptions, handleSelfEffectDrop, normalizeActionChangeData, processSanctification, };
+export {
+    activateActionSheetListeners,
+    createActionRangeLabel,
+    createSelfEffectSheetData,
+    getActionCostRollOptions,
+    handleSelfEffectDrop,
+    normalizeActionChangeData,
+    processSanctification,
+};

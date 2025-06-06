@@ -1,18 +1,25 @@
-import { ActorPF2e, CreaturePF2e } from "../../actor/index.ts";
-import { TraitViewData } from "../../actor/data/base.ts";
-import { ModifierPF2e } from "../../actor/modifiers.ts";
-import { AttributeString } from "../../actor/types.ts";
-import { ItemPF2e } from "../../item/index.ts";
-import { ZeroToFour } from "../../data.ts";
-import { RollNotePF2e, RollNoteSource } from "../../notes.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
-import { CheckRollCallback } from "../check/check.ts";
-import { CheckRoll } from "../check/index.ts";
-import { CheckType, RollTwiceOption } from "../check/types.ts";
-import { CheckDC } from "../degree-of-success.ts";
+import { ActorPF2e, CreaturePF2e } from "@actor";
+import { TraitViewData } from "@actor/data/base.ts";
+import { ModifierPF2e } from "@actor/modifiers.ts";
+import { AttributeString } from "@actor/types.ts";
+import { Rolled } from "@client/dice/_module.mjs";
+import { RollMode } from "@common/constants.mjs";
+import { ItemPF2e } from "@item";
+import { ZeroToFour } from "@module/data.ts";
+import { RollNotePF2e, RollNoteSource } from "@module/notes.ts";
+import { TokenDocumentPF2e } from "@scene";
+import { CheckRollCallback } from "@system/check/check.ts";
+import { CheckRoll } from "@system/check/index.ts";
+import { CheckType, RollTwiceOption } from "@system/check/types.ts";
+import { CheckDC } from "@system/degree-of-success.ts";
 import { BaseStatistic } from "./base.ts";
-import { StatisticChatData, StatisticCheckData, StatisticData, StatisticDifficultyClassData, StatisticTraceData } from "./data.ts";
-
+import {
+    StatisticChatData,
+    StatisticCheckData,
+    StatisticData,
+    StatisticDifficultyClassData,
+    StatisticTraceData,
+} from "./data.ts";
 /** A Pathfinder statistic used to perform checks and calculate DCs */
 declare class Statistic<TActor extends ActorPF2e = ActorPF2e> extends BaseStatistic<TActor> {
     #private;
@@ -37,31 +44,36 @@ declare class Statistic<TActor extends ActorPF2e = ActorPF2e> extends BaseStatis
      * Extend this statistic into a new cloned statistic with additional data.
      * Combines all domains and modifier lists.
      */
-    clone(data: Omit<DeepPartial<StatisticData>, "check" | "dc" | "modifiers"> & {
-        dc?: Partial<StatisticDifficultyClassData>;
-        check?: Partial<StatisticCheckData>;
-        modifiers?: ModifierPF2e[];
-    }): this;
+    clone(
+        data: Omit<DeepPartial<StatisticData>, "check" | "dc" | "modifiers"> & {
+            dc?: Partial<StatisticDifficultyClassData>;
+            check?: Partial<StatisticCheckData>;
+            modifiers?: ModifierPF2e[];
+        },
+    ): this;
     /**
      * Extend this statistic into a new cloned statistic with additional data.
      * Combines all domains and modifier lists, and sets the new statistic to be the base of the other
      */
-    extend(data: Omit<DeepPartial<StatisticData>, "check" | "dc" | "modifiers"> & {
-        dc?: Partial<StatisticDifficultyClassData>;
-        check?: Partial<StatisticCheckData>;
-        modifiers?: ModifierPF2e[];
-    }): this;
+    extend(
+        data: Omit<DeepPartial<StatisticData>, "check" | "dc" | "modifiers"> & {
+            dc?: Partial<StatisticDifficultyClassData>;
+            check?: Partial<StatisticCheckData>;
+            modifiers?: ModifierPF2e[];
+        },
+    ): this;
     /** Shortcut to `this#check#roll` */
     roll(args?: StatisticRollParameters): Promise<Rolled<CheckRoll> | null>;
     /** Creates view data for sheets and chat messages */
     getChatData(options?: RollOptionConfig): StatisticChatData;
     /** Returns data intended to be merged back into actor data. By default the value is the DC */
-    getTraceData(this: Statistic<CreaturePF2e>, options?: {
-        value?: "dc" | "mod";
-    }): StatisticTraceData<AttributeString>;
-    getTraceData(options?: {
-        value?: "dc" | "mod";
-    }): StatisticTraceData;
+    getTraceData(
+        this: Statistic<CreaturePF2e>,
+        options?: {
+            value?: "dc" | "mod";
+        },
+    ): StatisticTraceData<AttributeString>;
+    getTraceData(options?: { value?: "dc" | "mod" }): StatisticTraceData;
 }
 declare class StatisticCheck<TParent extends Statistic = Statistic> {
     #private;

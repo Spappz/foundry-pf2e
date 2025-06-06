@@ -1,6 +1,5 @@
-import { DamageCategoryUnique, DamageType } from "../../module/system/damage/types.ts";
+import { DamageCategoryUnique, DamageType } from "@system/damage/types.ts";
 import { energyDamageTypes } from "./traits.ts";
-
 declare const damageCategoriesUnique: Record<DamageCategoryUnique, string>;
 declare const materialDamageEffects: {
     abysium: string;
@@ -52,5 +51,31 @@ declare const physicalDamageTypes: {
     slashing: string;
 };
 declare const damageTypes: Record<DamageType, string>;
-declare const damageRollFlavors: Record<"acid" | "bleed" | "bludgeoning" | "cold" | "electricity" | "fire" | "force" | "mental" | "piercing" | "poison" | "slashing" | "sonic" | "spirit" | "vitality" | "void" | "untyped", string>;
-export { damageCategories, damageCategoriesUnique, damageRollFlavors, damageTypes, energyDamageTypes, materialDamageEffects, physicalDamageTypes, };
+declare const damageRollFlavors: Record<
+    | "force"
+    | "acid"
+    | "bleed"
+    | "bludgeoning"
+    | "cold"
+    | "electricity"
+    | "fire"
+    | "mental"
+    | "piercing"
+    | "poison"
+    | "slashing"
+    | "sonic"
+    | "spirit"
+    | "vitality"
+    | "void"
+    | "untyped",
+    string
+>;
+export {
+    damageCategories,
+    damageCategoriesUnique,
+    damageRollFlavors,
+    damageTypes,
+    energyDamageTypes,
+    materialDamageEffects,
+    physicalDamageTypes,
+};

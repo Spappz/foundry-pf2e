@@ -1,28 +1,29 @@
-import { CharacterPF2e } from "../../index.ts";
-import { AttributeString } from "../../types.ts";
-import { AncestryPF2e, BackgroundPF2e, ClassPF2e } from "../../../item/index.ts";
-
-declare class AttributeBuilder extends Application {
+import { CharacterPF2e } from "@actor";
+import { AttributeString } from "@actor/types.ts";
+import { AncestryPF2e, BackgroundPF2e, ClassPF2e } from "@item";
+import appv1 = foundry.appv1;
+declare class AttributeBuilder extends appv1.api.Application {
     #private;
     actor: CharacterPF2e;
     constructor(actor: CharacterPF2e);
-    static get defaultOptions(): ApplicationOptions;
+    static get defaultOptions(): appv1.api.ApplicationV1Options;
     get id(): string;
-    getData(options?: Partial<FormApplicationOptions>): Promise<AttributeBuilderSheetData>;
+    getData(options?: Partial<appv1.api.FormApplicationOptions>): Promise<AttributeBuilderSheetData>;
     /** Maintain focus on manual entry inputs */
-    protected _render(force?: boolean, options?: RenderOptions): Promise<void>;
+    protected _render(force?: boolean, options?: appv1.api.AppV1RenderOptions): Promise<void>;
     /** Remove this application from the actor's apps on close */
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    close(options?: { force?: boolean }): Promise<void>;
     activateListeners($html: JQuery): void;
 }
 interface AttributeBuilderSheetData {
     actor: CharacterPF2e;
-    attributeModifiers: Record<AttributeString, {
-        label: string;
-        mod: string;
-    }>;
+    attributeModifiers: Record<
+        AttributeString,
+        {
+            label: string;
+            mod: string;
+        }
+    >;
     manualKeyAttribute: AttributeString;
     attributes: Record<AttributeString, string>;
     ancestry: AncestryPF2e<CharacterPF2e> | null;

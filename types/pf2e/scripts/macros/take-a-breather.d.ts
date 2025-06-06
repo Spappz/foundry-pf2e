@@ -1,2 +1,2 @@
-declare function takeABreather(): void;
+declare function takeABreather(): Promise<void>;
 export { takeABreather };

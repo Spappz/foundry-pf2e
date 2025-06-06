@@ -1,5 +1,4 @@
 import { CharacterPF2e } from "./document.ts";
-
 export declare class PCSheetTabManager {
     #private;
     actor: CharacterPF2e;

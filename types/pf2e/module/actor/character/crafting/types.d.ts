@@ -1,6 +1,6 @@
-import { PhysicalItemPF2e } from "../../../item/index.ts";
-import { Predicate, RawPredicate } from "../../../system/predication.ts";
-
+import { ItemUUID } from "@client/documents/_module.mjs";
+import { PhysicalItemPF2e } from "@item";
+import { Predicate, RawPredicate } from "@system/predication.ts";
 interface CraftingFormulaData {
     uuid: ItemUUID;
 }
@@ -40,4 +40,11 @@ interface CraftableItemDefinition {
     predicate: Predicate;
     batchSize?: number;
 }
-export type { CraftableItemDefinition, CraftingAbilityData, CraftingFormula, CraftingFormulaData, PreparedFormula, PreparedFormulaData, };
+export type {
+    CraftableItemDefinition,
+    CraftingAbilityData,
+    CraftingFormula,
+    CraftingFormulaData,
+    PreparedFormula,
+    PreparedFormulaData,
+};

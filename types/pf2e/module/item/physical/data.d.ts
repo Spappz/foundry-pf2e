@@ -1,16 +1,18 @@
-import { AttributeString } from "../../actor/types.ts";
-import { AbilityTrait } from "../ability/types.ts";
-import { PhysicalItemSource } from "../base/data/index.ts";
-import { Size, TraitsWithRarity, ValuesList, ZeroToTwo } from "../../data.ts";
-import { MaterialDamageEffect } from "../../system/damage/types.ts";
-import { ActionCost, BaseItemSourcePF2e, Frequency, ItemSystemData, ItemSystemSource } from "../base/data/system.ts";
+import { AttributeString } from "@actor/types.ts";
+import { ImageFilePath } from "@common/constants.mjs";
+import { PhysicalItemSource } from "@item/base/data/index.ts";
+import { Size, TraitsWithRarity, ZeroToTwo } from "@module/data.ts";
+import { MaterialDamageEffect } from "@system/damage/types.ts";
+import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource } from "../base/data/system.ts";
 import { ITEM_CARRY_TYPES } from "../base/data/values.ts";
 import { CoinsPF2e } from "./helpers.ts";
 import { PhysicalItemTrait, PhysicalItemType, PreciousMaterialGrade, PreciousMaterialType } from "./types.ts";
 import { UsageDetails } from "./usage.ts";
-
 type ItemCarryType = (typeof ITEM_CARRY_TYPES)[number];
-type BasePhysicalItemSource<TType extends PhysicalItemType, TSystemSource extends PhysicalSystemSource = PhysicalSystemSource> = BaseItemSourcePF2e<TType, TSystemSource>;
+type BasePhysicalItemSource<
+    TType extends PhysicalItemType,
+    TSystemSource extends PhysicalSystemSource = PhysicalSystemSource,
+> = BaseItemSourcePF2e<TType, TSystemSource>;
 interface PhysicalSystemSource extends ItemSystemSource {
     level: {
         value: number;
@@ -32,7 +34,6 @@ interface PhysicalSystemSource extends ItemSystemSource {
     usage?: {
         value: string;
     };
-    activations?: Record<string, ItemActivation>;
     temporary?: boolean;
     subitems?: PhysicalItemSource[];
     /**
@@ -108,21 +109,6 @@ type EquippedData = {
 interface PhysicalItemTraits<T extends PhysicalItemTrait> extends TraitsWithRarity<T> {
     otherTags: string[];
 }
-interface ItemActivation {
-    id: string;
-    description: {
-        value: string;
-    };
-    actionCost: ActionCost;
-    components: {
-        command: boolean;
-        envision: boolean;
-        interact: boolean;
-        cast: boolean;
-    };
-    frequency?: Frequency;
-    traits: ValuesList<AbilityTrait>;
-}
 interface PhysicalItemHPSource {
     value: number;
     max: number;
@@ -145,4 +131,25 @@ interface PartialPrice {
 interface Price extends Required<PartialPrice> {
     value: CoinsPF2e;
 }
-export type { BasePhysicalItemSource, BulkData, Coins, EquippedData, IdentificationData, IdentificationStatus, IdentifiedData, Investable, ItemActivation, ItemCarryType, ItemMaterialData, ItemMaterialSource, MystifiedData, PartialPrice, PhysicalItemHPSource, PhysicalItemHitPoints, PhysicalItemTrait, PhysicalItemTraits, PhysicalSystemData, PhysicalSystemSource, Price, };
+export type {
+    BasePhysicalItemSource,
+    BulkData,
+    Coins,
+    EquippedData,
+    IdentificationData,
+    IdentificationStatus,
+    IdentifiedData,
+    Investable,
+    ItemCarryType,
+    ItemMaterialData,
+    ItemMaterialSource,
+    MystifiedData,
+    PartialPrice,
+    PhysicalItemHitPoints,
+    PhysicalItemHPSource,
+    PhysicalItemTrait,
+    PhysicalItemTraits,
+    PhysicalSystemData,
+    PhysicalSystemSource,
+    Price,
+};

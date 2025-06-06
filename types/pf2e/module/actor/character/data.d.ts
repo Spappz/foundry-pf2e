@@ -1,21 +1,42 @@
-import { CraftingAbilityData, CraftingFormulaData } from "./crafting/index.ts";
-import { AbilityData, BaseCreatureSource, CreatureAttributes, CreatureDetails, CreatureDetailsSource, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureSystemData, CreatureSystemSource, HeldShieldData, SaveData, SkillData } from "../creature/data.ts";
-import { CreatureInitiativeSource, CreatureSpeeds, Language } from "../creature/index.ts";
-import { ActorAttributesSource, ActorFlagsPF2e, AttributeBasedTraceData, HitPointsStatistic, InitiativeData, StrikeData, TraitViewData } from "../data/base.ts";
-import { AttributeString, MovementType, SaveType, SkillSlug } from "../types.ts";
-import { WeaponPF2e } from "../../item/index.ts";
-import { ArmorCategory } from "../../item/armor/types.ts";
-import { ProficiencyRank } from "../../item/base/data/index.ts";
-import { DeitySystemData } from "../../item/deity/data.ts";
-import { DeityDomain } from "../../item/deity/types.ts";
-import { BaseWeaponType, WeaponCategory, WeaponGroup } from "../../item/weapon/types.ts";
-import { ValueAndMax, ZeroToFour } from "../../data.ts";
-import { DamageType } from "../../system/damage/types.ts";
-import { Predicate } from "../../system/predication.ts";
+import { CraftingAbilityData, CraftingFormulaData } from "@actor/character/crafting/index.ts";
+import {
+    AbilityData,
+    BaseCreatureSource,
+    CreatureAttributes,
+    CreatureDetails,
+    CreatureDetailsSource,
+    CreatureLanguagesData,
+    CreaturePerceptionData,
+    CreatureResources,
+    CreatureSystemData,
+    CreatureSystemSource,
+    HeldShieldData,
+    SaveData,
+    SkillData,
+} from "@actor/creature/data.ts";
+import { CreatureInitiativeSource, CreatureSpeeds, Language } from "@actor/creature/index.ts";
+import {
+    ActorAttributesSource,
+    ActorFlagsPF2e,
+    AttributeBasedTraceData,
+    HitPointsStatistic,
+    InitiativeData,
+    StrikeData,
+    TraitViewData,
+} from "@actor/data/base.ts";
+import { AttributeString, MovementType, SaveType, SkillSlug } from "@actor/types.ts";
+import { WeaponPF2e } from "@item";
+import { ArmorCategory } from "@item/armor/types.ts";
+import { ProficiencyRank } from "@item/base/data/index.ts";
+import { DeitySystemData } from "@item/deity/data.ts";
+import { DeityDomain } from "@item/deity/types.ts";
+import { BaseWeaponType, WeaponCategory, WeaponGroup } from "@item/weapon/types.ts";
+import { ValueAndMax, ZeroToFour } from "@module/data.ts";
+import { DamageType } from "@system/damage/types.ts";
+import { Predicate } from "@system/predication.ts";
 import { CharacterPF2e } from "./document.ts";
 import { WeaponAuxiliaryAction } from "./helpers.ts";
 import { CharacterSheetTabVisibility } from "./sheet.ts";
-
 type CharacterSource = BaseCreatureSource<"character", CharacterSystemSource> & {
     flags: DeepPartial<CharacterFlags>;
 };
@@ -42,18 +63,26 @@ type CharacterFlags = ActorFlagsPF2e & {
     };
 };
 interface CharacterSystemSource extends CreatureSystemSource {
-    abilities: Record<AttributeString, {
-        mod: number;
-    }> | null;
+    abilities: Record<
+        AttributeString,
+        {
+            mod: number;
+        }
+    > | null;
     attributes: CharacterAttributesSource;
     details: CharacterDetailsSource;
     build?: CharacterBuildSource;
     proficiencies?: {
         attacks?: Record<string, MartialProficiencySource | undefined>;
     };
-    skills: Partial<Record<SkillSlug, {
-        rank: ZeroToFour;
-    }>>;
+    skills: Partial<
+        Record<
+            SkillSlug,
+            {
+                rank: ZeroToFour;
+            }
+        >
+    >;
     resources: CharacterResourcesSource;
     initiative: CreatureInitiativeSource;
     crafting?: {
@@ -328,6 +357,8 @@ interface MartialProficiency extends CharacterProficiency {
     maxRank?: Exclude<ProficiencyRank, "untrained">;
     /** Whether the proficiency was manually added by the user */
     custom?: boolean;
+    /** Whether the proficiency is visible on the character sheet */
+    visible: boolean;
 }
 type CategoryProficiencies = Record<ArmorCategory | WeaponCategory, CharacterProficiency>;
 type BaseWeaponProficiencyKey = `weapon-base-${BaseWeaponType}`;
@@ -457,4 +488,27 @@ interface CharacterHitPoints extends HitPointsStatistic {
     recoveryAddend: number;
     sp?: ValueAndMax;
 }
-export type { BaseWeaponProficiencyKey, CategoryProficiencies, CharacterAbilities, CharacterAttributes, CharacterAttributesSource, CharacterBiography, CharacterDetails, CharacterDetailsSource, CharacterFlags, CharacterProficiency, CharacterResources, CharacterResourcesSource, CharacterSaveData, CharacterSaves, CharacterSkillData, CharacterSource, CharacterStrike, CharacterSystemData, CharacterSystemSource, ClassDCData, MartialProficiency, WeaponGroupProficiencyKey, };
+export type {
+    BaseWeaponProficiencyKey,
+    CategoryProficiencies,
+    CharacterAbilities,
+    CharacterAttributes,
+    CharacterAttributesSource,
+    CharacterBiography,
+    CharacterDetails,
+    CharacterDetailsSource,
+    CharacterFlags,
+    CharacterProficiency,
+    CharacterResources,
+    CharacterResourcesSource,
+    CharacterSaveData,
+    CharacterSaves,
+    CharacterSkillData,
+    CharacterSource,
+    CharacterStrike,
+    CharacterSystemData,
+    CharacterSystemSource,
+    ClassDCData,
+    MartialProficiency,
+    WeaponGroupProficiencyKey,
+};

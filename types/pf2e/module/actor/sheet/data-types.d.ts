@@ -1,13 +1,15 @@
-import { ActorPF2e } from "../base.ts";
-import { TraitViewData } from "../data/base.ts";
-import { ActorSizePF2e } from "../data/size.ts";
-import { InventoryBulk } from "../inventory/index.ts";
-import { PhysicalItemPF2e } from "../../item/index.ts";
-import { Frequency } from "../../item/base/data/index.ts";
-import { Coins } from "../../item/physical/data.ts";
-import { RollOptionToggle } from "../../rules/synthetics.ts";
-import { SheetOptions } from "../../sheet/helpers.ts";
-
+import { ActorPF2e } from "@actor/base.ts";
+import { TraitViewData } from "@actor/data/base.ts";
+import { ActorSizePF2e } from "@actor/data/size.ts";
+import { InventoryBulk } from "@actor/inventory/index.ts";
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
+import { AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
+import { ActorSheetData } from "@client/appv1/sheets/actor-sheet.mjs";
+import { PhysicalItemPF2e } from "@item";
+import { Frequency } from "@item/base/data/index.ts";
+import { Coins } from "@item/physical/data.ts";
+import { RollOptionToggle } from "@module/rules/synthetics.ts";
+import { SheetOptions } from "@module/sheet/helpers.ts";
 interface InventoryItem<TItem extends PhysicalItemPF2e = PhysicalItemPF2e> {
     item: TItem;
     /** Item size if it causes any weight difference relative to the actor */
@@ -82,7 +84,7 @@ interface AbilityViewData {
         selfEffect: boolean;
     };
 }
-interface ActorSheetRenderOptionsPF2e extends RenderOptions {
+interface ActorSheetRenderOptionsPF2e extends AppV1RenderOptions {
     /** What tab to switch to when rendering the sheet */
     tab?: string;
 }

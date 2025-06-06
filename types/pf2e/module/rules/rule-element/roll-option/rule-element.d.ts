@@ -1,7 +1,7 @@
 import { RuleElementOptions, RuleElementPF2e } from "../base.ts";
 import { ModelPropsFromRESchema, RuleElementSource } from "../data.ts";
 import { Suboption, RollOptionSchema } from "./data.ts";
-
+import fields = foundry.data.fields;
 /**
  * Set a roll option at a specificed domain
  * @category RuleElement
@@ -12,7 +12,7 @@ declare class RollOptionRuleElement extends RuleElementPF2e<RollOptionSchema> {
     hasSubOptions: boolean;
     constructor(source: RollOptionSource, options: RuleElementOptions);
     static defineSchema(): RollOptionSchema;
-    static validateJoint(source: SourceFromSchema<RollOptionSchema>): void;
+    static validateJoint(source: fields.SourceFromSchema<RollOptionSchema>): void;
     /** Process this rule element during item pre-creation to inform subsequent choice sets. */
     preCreate(): Promise<void>;
     onApplyActiveEffects(): void;

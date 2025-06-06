@@ -1,22 +1,41 @@
-import { DataUnionField, PredicateField, StrictArrayField, StrictBooleanField, StrictStringField } from "../../../system/schema-data-fields.ts";
+import { DataSchema } from "@common/abstract/_types.mjs";
+import {
+    DataUnionField,
+    PredicateField,
+    StrictArrayField,
+    StrictBooleanField,
+    StrictStringField,
+} from "@system/schema-data-fields.ts";
 import { AELikeDataPrepPhase } from "../ae-like.ts";
 import { ResolvableValueField, RuleElementSchema } from "../data.ts";
 import { RollOptionRuleElement } from "./rule-element.ts";
-
-import type * as fields from "../../../../../foundry/common/data/fields.ts";
+import fields = foundry.data.fields;
 declare class Suboption extends foundry.abstract.DataModel<RollOptionRuleElement, SuboptionSchema> {
-    static defineSchema(): fields.DataSchema;
+    static defineSchema(): DataSchema;
     get rule(): RollOptionRuleElement;
     get selected(): boolean;
 }
-interface Suboption extends foundry.abstract.DataModel<RollOptionRuleElement, SuboptionSchema>, ModelPropsFromSchema<SuboptionSchema> {
-}
+interface Suboption
+    extends foundry.abstract.DataModel<RollOptionRuleElement, SuboptionSchema>,
+        fields.ModelPropsFromSchema<SuboptionSchema> {}
 type RollOptionSchema = RuleElementSchema & {
     domain: fields.StringField<string, string, true, false, true>;
     phase: fields.StringField<AELikeDataPrepPhase, AELikeDataPrepPhase, false, false, true>;
     option: fields.StringField<string, string, true, false, false>;
     /** Suboptions for a toggle, appended to the option string */
-    suboptions: DataUnionField<fields.SchemaField<SuboptionConfigSchema, SourceFromSchema<SuboptionConfigSchema>, ModelPropsFromSchema<SuboptionConfigSchema>, false, false> | StrictArrayField<SuboptionField>, false, false, true>;
+    suboptions: DataUnionField<
+        | fields.SchemaField<
+              SuboptionConfigSchema,
+              fields.SourceFromSchema<SuboptionConfigSchema>,
+              fields.ModelPropsFromSchema<SuboptionConfigSchema>,
+              false,
+              false
+          >
+        | StrictArrayField<SuboptionField>,
+        false,
+        false,
+        true
+    >;
     /**
      * The value of the roll option: either a boolean or a string resolves to a boolean If omitted, it defaults to
      * `true` unless also `togglable`, in which case to `false`.
@@ -49,7 +68,7 @@ type SuboptionSchema = {
     value: fields.StringField<string, string, true, false, false>;
     predicate: PredicateField;
 };
-type SuboptionSource = SourceFromSchema<SuboptionSchema>;
+type SuboptionSource = fields.SourceFromSchema<SuboptionSchema>;
 type SuboptionField = fields.EmbeddedDataField<Suboption, true, false, false>;
 type SuboptionConfigSchema = {
     config: fields.StringField<string, string, true, false, false>;

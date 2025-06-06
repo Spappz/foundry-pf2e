@@ -1,10 +1,17 @@
-import { CharacterPF2e } from "../../index.ts";
-import { ResourceData } from "../../creature/index.ts";
-import { PhysicalItemPF2e } from "../../../item/index.ts";
-import { PhysicalItemSource } from "../../../item/base/data/index.ts";
-import { Predicate } from "../../../system/predication.ts";
-import { CraftableItemDefinition, CraftingAbilityData, CraftingFormula, PreparedFormula, PreparedFormulaData } from "./types.ts";
-
+import { CharacterPF2e } from "@actor";
+import { ResourceData } from "@actor/creature/index.ts";
+import { ItemUUID } from "@client/documents/_module.mjs";
+import { DatabaseUpdateOperation } from "@common/abstract/_types.mjs";
+import { PhysicalItemPF2e } from "@item";
+import { PhysicalItemSource } from "@item/base/data/index.ts";
+import { Predicate } from "@system/predication.ts";
+import {
+    CraftableItemDefinition,
+    CraftingAbilityData,
+    CraftingFormula,
+    PreparedFormula,
+    PreparedFormulaData,
+} from "./types.ts";
 declare class CraftingAbility implements CraftingAbilityData {
     #private;
     /** This crafting ability's parent actor */
@@ -31,9 +38,14 @@ declare class CraftingAbility implements CraftingAbilityData {
     /** Calculates the resources needed to craft all prepared crafting items */
     calculateResourceCost(): Promise<number>;
     /** Returns true if the item can be created by this ability, which requires it to pass predication and be of sufficient level */
-    canCraft(item: PhysicalItemPF2e, { warn }?: {
-        warn?: boolean | undefined;
-    }): boolean;
+    canCraft(
+        item: PhysicalItemPF2e,
+        {
+            warn,
+        }?: {
+            warn?: boolean | undefined;
+        },
+    ): boolean;
     /** Returns all items that this ability can craft including the batch size produced by this ability */
     getValidFormulas(): Promise<CraftingFormula[]>;
     prepareFormula(uuid: string): Promise<void>;
@@ -42,8 +54,14 @@ declare class CraftingAbility implements CraftingAbilityData {
     setFormulaQuantity(indexOrUuid: number | string, value: "increase" | "decrease" | number): Promise<void>;
     toggleFormulaExpended(index: number, value?: boolean): Promise<void>;
     toggleSignatureItem(itemUUID: string): Promise<void>;
-    updateFormulas(formulas: PreparedFormulaData[], operation?: Partial<DatabaseUpdateOperation<CharacterPF2e>> | undefined): Promise<void>;
-    craft(itemOrUUIDOrIndex: PhysicalItemPF2e | ItemUUID | number, { consume, destination }?: CraftParameters): Promise<PhysicalItemPF2e | null>;
+    updateFormulas(
+        formulas: PreparedFormulaData[],
+        operation?: Partial<DatabaseUpdateOperation<CharacterPF2e>> | undefined,
+    ): Promise<void>;
+    craft(
+        itemOrUUIDOrIndex: PhysicalItemPF2e | ItemUUID | number,
+        { consume, destination }?: CraftParameters,
+    ): Promise<PhysicalItemPF2e | null>;
     /** Returns what items should be created by this ability during daily preparation, and what the resource expenditure should be */
     calculateDailyCrafting(): Promise<DailyCraftingResult>;
     getSheetData(): Promise<CraftingAbilitySheetData>;

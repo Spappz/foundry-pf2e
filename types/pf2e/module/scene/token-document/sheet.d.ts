@@ -1,20 +1,39 @@
+import { ActorPF2e } from "@actor";
+import { ApplicationRenderContext } from "@client/applications/_types.mjs";
+import { DocumentSheetConfiguration, DocumentSheetRenderContext } from "@client/applications/api/document-sheet.mjs";
+import { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.mjs";
+import { default as FormDataExtended } from "@client/applications/ux/form-data-extended.mjs";
+import { DatabaseCreateOperation, DatabaseUpdateOperation } from "@common/abstract/_types.mjs";
 import { TokenDocumentPF2e } from "./index.ts";
-
-declare class TokenConfigPF2e<TDocument extends TokenDocumentPF2e> extends TokenConfig<TDocument> {
+declare class TokenConfigPF2e extends fa.sheets.TokenConfig {
     #private;
-    static get defaultOptions(): DocumentSheetOptions;
+    static DEFAULT_OPTIONS: DeepPartial<DocumentSheetConfiguration>;
+    static PARTS: {
+        [x: string]: fa.api.HandlebarsTemplatePart;
+    };
     /** Get this token's dimensions were they linked to its actor's size */
     get dimensionsFromActorSize(): number;
     get rulesBasedVision(): boolean;
-    getData(options?: DocumentSheetOptions): Promise<TokenConfigDataPF2e<TDocument>>;
-    protected _getFilePickerOptions(event: PointerEvent): FilePickerOptions;
+    _prepareContext(options: HandlebarsRenderOptions): Promise<TokenConfigContext>;
     /** Hide token-sight settings when rules-based vision is enabled */
-    activateListeners($html: JQuery): void;
-    /** Readd scale property to form data if input is disabled: necessary for mirroring checkboxes to function */
-    protected _getSubmitData(updateData?: Record<string, unknown> | null): Record<string, unknown>;
-    protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
+    _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected _processFormData(
+        event: SubmitEvent | null,
+        form: HTMLFormElement,
+        formData: FormDataExtended,
+    ): Record<string, unknown>;
+    protected _processSubmitData(
+        event: SubmitEvent,
+        form: HTMLFormElement,
+        submitData: Record<string, unknown>,
+        options?: Partial<DatabaseCreateOperation<Scene | null>> | Partial<DatabaseUpdateOperation<Scene | null>>,
+    ): Promise<void>;
 }
-interface TokenConfigDataPF2e<TDocument extends TokenDocumentPF2e> extends TokenConfigData<TDocument> {
+interface TokenConfigPF2e extends fa.sheets.TokenConfig {
+    get token(): TokenDocumentPF2e;
+    get actor(): ActorPF2e | null;
+}
+interface TokenConfigContext extends DocumentSheetRenderContext {
     /** Whether the token can be linked to its actor's size */
     sizeLinkable: boolean;
     linkToSizeTitle: string;

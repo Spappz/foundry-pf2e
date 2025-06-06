@@ -1,8 +1,15 @@
-import { AbilityTrait } from "../../item/ability/index.ts";
-import { ProficiencyRank } from "../../item/base/data/index.ts";
-import { ChatMessagePF2e } from "../../chat-message/document.ts";
-import { Action, ActionCost, ActionMessageOptions, ActionSection, ActionUseOptions, ActionVariant, ActionVariantUseOptions } from "./types.ts";
-
+import { AbilityTrait } from "@item/ability/index.ts";
+import { ProficiencyRank } from "@item/base/data/index.ts";
+import { ChatMessagePF2e } from "@module/chat-message/document.ts";
+import {
+    Action,
+    ActionCost,
+    ActionMessageOptions,
+    ActionSection,
+    ActionUseOptions,
+    ActionVariant,
+    ActionVariantUseOptions,
+} from "./types.ts";
 interface BaseActionVariantData {
     cost?: ActionCost;
     description?: string;
@@ -33,7 +40,9 @@ declare abstract class BaseActionVariant implements ActionVariant {
     toMessage(options?: Partial<ActionMessageOptions>): Promise<ChatMessagePF2e | undefined>;
     abstract use(options?: Partial<ActionVariantUseOptions>): Promise<unknown>;
 }
-declare abstract class BaseAction<TData extends BaseActionVariantData, TAction extends BaseActionVariant> implements Action {
+declare abstract class BaseAction<TData extends BaseActionVariantData, TAction extends BaseActionVariant>
+    implements Action
+{
     #private;
     readonly cost?: ActionCost;
     readonly description?: string;
@@ -45,10 +54,8 @@ declare abstract class BaseAction<TData extends BaseActionVariantData, TAction e
     readonly traits: AbilityTrait[];
     protected constructor(data: BaseActionData<TData>);
     get glyph(): string;
-    get variants(): Collection<TAction>;
-    protected getDefaultVariant(options?: {
-        variant?: string;
-    }): TAction;
+    get variants(): Collection<string, TAction>;
+    protected getDefaultVariant(options?: { variant?: string }): TAction;
     toMessage(options?: Partial<ActionMessageOptions>): Promise<ChatMessagePF2e | undefined>;
     use(options?: Partial<ActionUseOptions>): Promise<unknown>;
     protected abstract toActionVariant(data?: TData): TAction;

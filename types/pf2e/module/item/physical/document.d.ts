@@ -1,13 +1,28 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { ItemPF2e, ContainerPF2e } from "../index.ts";
-import { ItemSourcePF2e, PhysicalItemSource, RawItemChatData, TraitChatData } from "../base/data/index.ts";
-import { Rarity, Size, ZeroToTwo } from "../../data.ts";
-import { EffectSpinoff } from "../../rules/rule-element/effect-spinoff/spinoff.ts";
-import { UserPF2e } from "../../user/document.ts";
+import { ActorPF2e } from "@actor";
+import { ItemUUID } from "@client/documents/_module.mjs";
+import { DocumentConstructionContext } from "@common/_types.mjs";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseDeleteOperation,
+    DatabaseUpdateCallbackOptions,
+    DatabaseUpdateOperation,
+} from "@common/abstract/_types.mjs";
+import { ItemPF2e, ContainerPF2e } from "@item";
+import { ItemSourcePF2e, PhysicalItemSource, RawItemChatData, TraitChatData } from "@item/base/data/index.ts";
+import { Rarity, Size, ZeroToTwo } from "@module/data.ts";
+import { EffectSpinoff } from "@module/rules/rule-element/effect-spinoff/spinoff.ts";
 import { Bulk } from "./bulk.ts";
-import { IdentificationStatus, ItemActivation, ItemCarryType, ItemMaterialData, MystifiedData, PhysicalItemHitPoints, PhysicalItemTrait, PhysicalSystemData, Price } from "./data.ts";
+import {
+    IdentificationStatus,
+    ItemCarryType,
+    ItemMaterialData,
+    MystifiedData,
+    PhysicalItemHitPoints,
+    PhysicalItemTrait,
+    PhysicalSystemData,
+    Price,
+} from "./data.ts";
 import { CoinsPF2e } from "./helpers.ts";
-
 declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     /** The item in which this item is embedded */
     parentItem: PhysicalItemPF2e | null;
@@ -17,7 +32,7 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
      */
     private _container?;
     /** Doubly-embedded adjustments, attachments, talismans etc. */
-    subitems: Collection<PhysicalItemPF2e<TParent>>;
+    subitems: Collection<string, PhysicalItemPF2e<TParent>>;
     /** A map of effect spinoff objects, which can be used to create new effects from using certain items */
     effectSpinoffs: Map<string, EffectSpinoff>;
     constructor(data: PreCreate<ItemSourcePF2e>, context?: PhysicalItemConstructionContext<TParent>);
@@ -62,16 +77,16 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
     get container(): ContainerPF2e<ActorPF2e> | null;
     /** Returns the bulk of this item and all sub-containers */
     get bulk(): Bulk;
-    get activations(): (ItemActivation & {
-        componentsLabel: string;
-    })[];
     get uuid(): ItemUUID;
     /** Whether other items can be attached (or affixed, applied, etc.) to this item */
     acceptsSubitem(candidate: PhysicalItemPF2e): boolean;
     /** Generate a list of strings for use in predication */
-    getRollOptions(prefix: string, options?: {
-        includeGranter?: boolean;
-    }): string[];
+    getRollOptions(
+        prefix: string,
+        options?: {
+            includeGranter?: boolean;
+        },
+    ): string[];
     protected _initialize(options?: Record<string, unknown>): void;
     prepareBaseData(): void;
     /** Refresh certain derived properties in case of special data preparation from subclasses */
@@ -80,15 +95,31 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
     /** After item alterations have occurred, ensure that this item's hit points are no higher than its maximum */
     onPrepareSynthetics(): void;
     prepareActorData(): void;
-    getEmbeddedDocument(embeddedName: string, id: string, { strict }: {
-        strict: true;
-    }): foundry.abstract.Document;
-    getEmbeddedDocument(embeddedName: string, id: string, { strict }: {
-        strict: false;
-    }): foundry.abstract.Document | undefined;
-    getEmbeddedDocument(embeddedName: string, id: string, options?: {
-        strict?: boolean;
-    }): foundry.abstract.Document | undefined;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        {
+            strict,
+        }: {
+            strict: true;
+        },
+    ): foundry.abstract.Document;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        {
+            strict,
+        }: {
+            strict: false;
+        },
+    ): foundry.abstract.Document | undefined;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        options?: {
+            strict?: boolean;
+        },
+    ): foundry.abstract.Document | undefined;
     /**
      * Can the provided item stack with this item?
      * @param item an item we are trying to add to the inventory
@@ -106,7 +137,13 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
      * @param options.render Render the update? Overridden by moving the item in or out of a container. Defaults to true
      * @returns
      */
-    move({ relativeTo, sortBefore, toContainer, toStack, render, }: {
+    move({
+        relativeTo,
+        sortBefore,
+        toContainer,
+        toStack,
+        render,
+    }: {
         relativeTo?: PhysicalItemPF2e;
         sortBefore?: boolean;
         toContainer?: ContainerPF2e<ActorPF2e> | null;
@@ -116,29 +153,38 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
     getMystifiedData(status: IdentificationStatus, _options?: Record<string, boolean>): MystifiedData;
     getChatData(): Promise<RawItemChatData>;
     setIdentificationStatus(status: IdentificationStatus): Promise<void>;
-    generateUnidentifiedName({ typeOnly }?: {
-        typeOnly?: boolean;
-    }): string;
+    generateUnidentifiedName({ typeOnly }?: { typeOnly?: boolean }): string;
     /** Updates this container's cache while also resolving cyclical references. Skips if already cached */
     protected updateContainerCache(seen?: string[]): void;
     /** Include mystification-related rendering instructions for views that will display this data. */
     traitChatData(dictionary?: Record<string, string>): TraitChatData[];
     /** Redirect subitem updates to the parent item */
-    update(data: Record<string, unknown>, operation?: Partial<DatabaseUpdateOperation<TParent>>): Promise<this | undefined>;
+    update(
+        data: Record<string, unknown>,
+        operation?: Partial<Omit<DatabaseUpdateOperation<null>, "parent" | "pack">>,
+    ): Promise<this | undefined>;
     /** Redirect subitem deletes to parent-item updates */
-    delete(operation?: Partial<DatabaseDeleteOperation<TParent>>): Promise<this | undefined>;
+    delete(operation?: Partial<Omit<DatabaseDeleteOperation<null>, "parent" | "pack">>): Promise<this | undefined>;
     /** Set to unequipped upon acquiring */
-    protected _preCreate(data: this["_source"], options: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: PhysicalItemUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        operation: DatabaseUpdateCallbackOptions & {
+            checkHP?: boolean;
+        },
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
 }
 interface PhysicalItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     readonly _source: PhysicalItemSource;
     system: PhysicalSystemData;
 }
-interface PhysicalItemConstructionContext<TParent extends ActorPF2e | null> extends DocumentConstructionContext<TParent> {
+interface PhysicalItemConstructionContext<TParent extends ActorPF2e | null>
+    extends DocumentConstructionContext<TParent> {
     parentItem?: PhysicalItemPF2e<TParent>;
-}
-interface PhysicalItemUpdateOperation<TParent extends ActorPF2e | null> extends DatabaseUpdateOperation<TParent> {
-    checkHP?: boolean;
 }
 export { PhysicalItemPF2e, type PhysicalItemConstructionContext };

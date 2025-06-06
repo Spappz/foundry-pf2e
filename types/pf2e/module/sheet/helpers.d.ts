@@ -1,28 +1,61 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { ItemPF2e } from "../item/index.ts";
-
+import { ActorPF2e } from "@actor";
+import { default as Application } from "@client/appv1/api/application-v1.mjs";
+import { TooltipDirection } from "@client/helpers/interaction/tooltip-manager.mjs";
+import { RollMode } from "@common/constants.mjs";
+import { ItemUUID } from "@common/documents/_module.mjs";
+import { ItemPF2e } from "@item";
 /** Prepare form options on an item or actor sheet */
-declare function createSheetOptions(options: Record<string, string | {
-    label: string;
-}>, selections?: SheetSelections, { selected }?: {
-    selected?: boolean | undefined;
-}): SheetOptions;
-declare function createSheetTags(options: Record<string, string | {
-    label: string;
-}>, selections: SheetSelections): SheetOptions;
-declare function createTagifyTraits(traits: Iterable<string>, { sourceTraits, record }: TagifyTraitOptions): TagifyEntry[];
+declare function createSheetOptions(
+    options: Record<
+        string,
+        | string
+        | {
+              label: string;
+          }
+    >,
+    selections?: SheetSelections,
+    {
+        selected,
+    }?: {
+        selected?: boolean | undefined;
+    },
+): SheetOptions;
+declare function createSheetTags(
+    options: Record<
+        string,
+        | string
+        | {
+              label: string;
+          }
+    >,
+    selections: SheetSelections,
+): SheetOptions;
+declare function createTagifyTraits(
+    traits: Iterable<string>,
+    { sourceTraits, record }: TagifyTraitOptions,
+): TagifyEntry[];
 /**
  * Get a CSS class for an adjusted value
  * @param value A value from prepared/derived data
  * @param base A value from base/source data
  * @param options.better Which value is "better" in the context of the data: default is "higher"
  **/
-declare function getAdjustment(value: number, base: number, { better }?: {
-    better?: "higher" | "lower";
-}): "adjusted-higher" | "adjusted-lower" | null;
-declare function getAdjustedValue(value: number, reference: number, options?: {
-    better?: "higher" | "lower";
-}): AdjustedValue;
+declare function getAdjustment(
+    value: number,
+    base: number,
+    {
+        better,
+    }?: {
+        better?: "higher" | "lower";
+    },
+): "adjusted-higher" | "adjusted-lower" | null;
+declare function getAdjustedValue(
+    value: number,
+    reference: number,
+    options?: {
+        better?: "higher" | "lower";
+    },
+): AdjustedValue;
 interface AdjustedValue {
     value: number;
     adjustedHigher: boolean;
@@ -38,38 +71,50 @@ type ParamsFromEvent = {
     rollMode?: RollMode | "roll";
 };
 /** Set roll mode and dialog skipping from a user's input */
-declare function eventToRollParams(event: Maybe<JQuery.TriggeredEvent | Event>, rollType: {
-    type: "check" | "damage";
-}): ParamsFromEvent;
+declare function eventToRollParams(
+    event: Maybe<Event>,
+    rollType: {
+        type: "check" | "damage";
+    },
+): ParamsFromEvent;
 /** Set roll mode from a user's input: used for messages that are not actually rolls. */
 declare function eventToRollMode(event: Maybe<Event>): RollMode | "roll";
 /** Given a uuid, loads the item and sends it to chat, potentially recontextualizing it with a given actor */
-declare function sendItemToChat(itemUuid: ItemUUID, options: {
-    event?: Event;
-    actor?: ActorPF2e;
-}): Promise<void>;
+declare function sendItemToChat(
+    itemUuid: ItemUUID,
+    options: {
+        event?: Event;
+        actor?: ActorPF2e;
+    },
+): Promise<void>;
 /** Creates a listener that can be used to create tooltips with dynamic content */
-declare function createTooltipListener(element: HTMLElement, options: {
-    /** Controls if the top edge of this tooltip aligns with the top edge of the target */
-    align?: "top";
-    /** If given, the tooltip will spawn on elements that match this selector */
-    selector?: string;
-    locked?: boolean;
-    direction?: TooltipActivationOptions["direction"];
-    cssClass?: string;
-    render: (element: HTMLElement) => Promise<HTMLElement | null>;
-}): void;
+declare function createTooltipListener(
+    element: HTMLElement,
+    options: {
+        /** Controls if the top edge of this tooltip aligns with the top edge of the target */
+        align?: "top";
+        /** If given, the tooltip will spawn on elements that match this selector */
+        selector?: string;
+        locked?: boolean;
+        themeGroup?: "applications" | "interface";
+        direction?: TooltipDirection;
+        cssClass?: string;
+        render: (element: HTMLElement) => Promise<HTMLElement | null>;
+    },
+): void;
 interface SheetOption {
     value: string;
     label: string;
     selected: boolean;
 }
 type SheetOptions = Record<string, SheetOption>;
-type SheetSelections = {
-    value: (string | number)[];
-} | (string[] & {
-    custom?: never;
-});
+type SheetSelections =
+    | {
+          value: (string | number)[];
+      }
+    | (string[] & {
+          custom?: never;
+      });
 interface TagifyTraitOptions {
     sourceTraits?: Iterable<string>;
     record?: Record<string, string>;
@@ -84,6 +129,19 @@ interface TagifyEntry {
      * Tagify treats any value as true, even false or null.
      */
     hidden?: true;
+    "data-tooltip"?: string;
 }
-export { createSheetOptions, createSheetTags, createTagifyTraits, createTooltipListener, eventToRollMode, eventToRollParams, getAdjustedValue, getAdjustment, getItemFromDragEvent, maintainFocusInRender, sendItemToChat, };
+export {
+    createSheetOptions,
+    createSheetTags,
+    createTagifyTraits,
+    createTooltipListener,
+    eventToRollMode,
+    eventToRollParams,
+    getAdjustedValue,
+    getAdjustment,
+    getItemFromDragEvent,
+    maintainFocusInRender,
+    sendItemToChat,
+};
 export type { AdjustedValue, SheetOption, SheetOptions, TagifyEntry };

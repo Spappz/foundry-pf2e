@@ -1,9 +1,9 @@
-import { ItemSheetOptions } from "../base/sheet/sheet.ts";
-import { MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "../physical/index.ts";
-import { SheetOptions } from "../../sheet/helpers.ts";
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
+import { ItemSheetOptions } from "@item/base/sheet/sheet.ts";
+import { MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "@item/physical/index.ts";
+import { SheetOptions } from "@module/sheet/helpers.ts";
 import { ComboWeaponMeleeUsage, SpecificWeaponData } from "./data.ts";
 import { WeaponPF2e } from "./document.ts";
-
 export declare class WeaponSheetPF2e extends PhysicalItemSheetPF2e<WeaponPF2e> {
     protected get validTraits(): Record<string, string>;
     getData(options?: Partial<ItemSheetOptions>): Promise<WeaponSheetData>;
@@ -13,6 +13,7 @@ export declare class WeaponSheetPF2e extends PhysicalItemSheetPF2e<WeaponPF2e> {
 interface PropertyRuneSheetSlot {
     slug: string | null;
     label: string | null;
+    adjusted: boolean;
     disabled: boolean;
 }
 interface WeaponSheetData extends PhysicalItemSheetData<WeaponPF2e> {
@@ -40,7 +41,12 @@ interface WeaponSheetData extends PhysicalItemSheetData<WeaponPF2e> {
     otherTags: SheetOptions;
     preciousMaterials: MaterialSheetData;
     propertyRuneSlots: PropertyRuneSheetSlot[];
-    runeTypes: typeof RUNE_DATA.weapon;
+    runeTypes: Omit<typeof RUNE_DATA.weapon, "property"> & {
+        property: {
+            slug: string;
+            name: string;
+        }[];
+    };
     specificMagicData: SpecificWeaponData;
     weaponMAP: typeof CONFIG.PF2E.weaponMAP;
     weaponRanges: Record<number, string>;

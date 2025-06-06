@@ -1,16 +1,23 @@
-import { ActorPF2e, CharacterPF2e, NPCPF2e } from "./index.ts";
-import { AttributeString } from "./types.ts";
-import { ItemPF2e } from "../item/index.ts";
-import { ZeroToFour } from "../data.ts";
-import { RollNotePF2e } from "../notes.ts";
-import { RuleElementPF2e } from "../rules/index.ts";
-import { DamageAlteration } from "../rules/rule-element/damage-alteration/alteration.ts";
-import { DamageCategoryUnique, DamageDiceFaces, DamageDieSize, DamageType } from "../system/damage/types.ts";
-import { Predicate, RawPredicate } from "../system/predication.ts";
-
-declare const PROFICIENCY_RANK_OPTION: readonly ["proficiency:untrained", "proficiency:trained", "proficiency:expert", "proficiency:master", "proficiency:legendary"];
+import { ActorPF2e, CharacterPF2e, NPCPF2e } from "@actor";
+import { AttributeString } from "@actor/types.ts";
+import { ItemPF2e } from "@item";
+import { ZeroToFour } from "@module/data.ts";
+import { RollNotePF2e } from "@module/notes.ts";
+import { RuleElementPF2e } from "@module/rules/index.ts";
+import { DamageAlteration } from "@module/rules/rule-element/damage-alteration/alteration.ts";
+import { DamageCategoryUnique, DamageDiceFaces, DamageDieSize, DamageType } from "@system/damage/types.ts";
+import { Predicate, RawPredicate } from "@system/predication.ts";
+declare const PROFICIENCY_RANK_OPTION: readonly [
+    "proficiency:untrained",
+    "proficiency:trained",
+    "proficiency:expert",
+    "proficiency:master",
+    "proficiency:legendary",
+];
 declare function ensureProficiencyOption(options: Set<string>, rank: number): void;
-declare const MODIFIER_TYPES: Set<"untyped" | "item" | "ability" | "circumstance" | "potency" | "proficiency" | "status">;
+declare const MODIFIER_TYPES: Set<
+    "item" | "untyped" | "status" | "ability" | "proficiency" | "circumstance" | "potency"
+>;
 type ModifierType = SetElement<typeof MODIFIER_TYPES>;
 interface RawModifier {
     /** An identifier for this modifier; should generally be a localization key (see en.json). */
@@ -121,19 +128,21 @@ declare class ModifierPF2e implements RawModifier {
     get category(): this["damageCategory"];
     get value(): number;
     get signedValue(): string;
+    /** Applies all adjustments to the original value */
+    applyAdjustments({ rollOptions }: { rollOptions: Iterable<string> }): void;
     /**
      * Apply damage alterations: must be called externally by client code that knows this is a damage modifier.
      * @param options.item An item (typically a weapon or spell) producing damage as part of an action
      * @param options.test An `Array` or `Set` of roll options for use in predication testing
      */
-    applyDamageAlterations(options: {
-        item: ItemPF2e<ActorPF2e>;
-        test: string[] | Set<string>;
-    }): void;
+    applyDamageAlterations(options: { item: ItemPF2e<ActorPF2e>; test: string[] | Set<string> }): void;
     /** Return a copy of this ModifierPF2e instance */
-    clone(data?: Partial<ModifierObjectParams>, options?: {
-        test?: Set<string> | string[] | null;
-    }): ModifierPF2e;
+    clone(
+        data?: Partial<ModifierObjectParams>,
+        options?: {
+            test?: Set<string> | string[] | null;
+        },
+    ): ModifierPF2e;
     /**
      * Get roll options for this modifier. The current data structure makes for occasional inability to distinguish
      * bonuses and penalties.
@@ -156,7 +165,7 @@ type ModifierOrderedParams = [
     enabled?: boolean,
     ignored?: boolean,
     source?: string,
-    notes?: string
+    notes?: string,
 ];
 /**
  * Create a modifier for a given attribute type.
@@ -174,7 +183,13 @@ interface CreateAbilityModifierParams {
  * Create a modifier for a given proficiency level of some ability.
  * @returns The modifier for the given proficiency rank and character level.
  */
-declare function createProficiencyModifier({ actor, rank, domains, level, addLevel, }: CreateProficiencyModifierParams): ModifierPF2e;
+declare function createProficiencyModifier({
+    actor,
+    rank,
+    domains,
+    level,
+    addLevel,
+}: CreateProficiencyModifierParams): ModifierPF2e;
 interface CreateProficiencyModifierParams {
     actor: ActorPF2e;
     rank: ZeroToFour;
@@ -239,9 +254,14 @@ declare class CheckModifier extends StatisticModifier {
      * @param statistic The statistic modifier to copy fields from
      * @param modifiers Additional modifiers to add to this check
      */
-    constructor(slug: string, statistic: {
-        modifiers: readonly ModifierPF2e[];
-    }, modifiers?: ModifierPF2e[], rollOptions?: string[] | Set<string>);
+    constructor(
+        slug: string,
+        statistic: {
+            modifiers: readonly ModifierPF2e[];
+        },
+        modifiers?: ModifierPF2e[],
+        rollOptions?: string[] | Set<string>,
+    );
 }
 interface DamageDiceOverride {
     /** Upgrade the damage dice to the next higher size (maximum d12) */
@@ -297,14 +317,35 @@ declare class DamageDicePF2e {
      * @param options.item An item (typically a weapon or spell) producing damage as part of an action
      * @param options.test An `Array` or `Set` of roll options for use in predication testing
      */
-    applyAlterations(options: {
-        item: ItemPF2e<ActorPF2e>;
-        test: string[] | Set<string>;
-    }): void;
+    applyAlterations(options: { item: ItemPF2e<ActorPF2e>; test: string[] | Set<string> }): void;
     clone(): DamageDicePF2e;
     toObject(): RawDamageDice;
 }
-interface RawDamageDice extends Required<DamageDiceParameters> {
-}
-export { CheckModifier, DamageDicePF2e, MODIFIER_TYPES, ModifierPF2e, PROFICIENCY_RANK_OPTION, StatisticModifier, adjustModifiers, applyStackingRules, createAttributeModifier, createProficiencyModifier, ensureProficiencyOption, };
-export type { DamageDiceOverride, DamageDiceParameters, DeferredDamageDiceOptions, DeferredPromise, DeferredValue, DeferredValueParams, ModifierAdjustment, ModifierObjectParams, ModifierType, RawDamageDice, RawModifier, TestableDeferredValueParams, };
+interface RawDamageDice extends Required<DamageDiceParameters> {}
+export {
+    adjustModifiers,
+    applyStackingRules,
+    CheckModifier,
+    createAttributeModifier,
+    createProficiencyModifier,
+    DamageDicePF2e,
+    ensureProficiencyOption,
+    MODIFIER_TYPES,
+    ModifierPF2e,
+    PROFICIENCY_RANK_OPTION,
+    StatisticModifier,
+};
+export type {
+    DamageDiceOverride,
+    DamageDiceParameters,
+    DeferredDamageDiceOptions,
+    DeferredPromise,
+    DeferredValue,
+    DeferredValueParams,
+    ModifierAdjustment,
+    ModifierObjectParams,
+    ModifierType,
+    RawDamageDice,
+    RawModifier,
+    TestableDeferredValueParams,
+};

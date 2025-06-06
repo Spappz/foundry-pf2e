@@ -1,13 +1,14 @@
-import { ActorPF2e } from "../actor/index.ts";
-import { ItemPF2e } from "../item/index.ts";
-
+import { ActorPF2e } from "@actor";
+import { default as CompendiumCollection } from "@client/documents/collections/compendium-collection.mjs";
+import { ItemPF2e } from "@item";
+import appv1 = foundry.appv1;
 /** Dialog used to view compendium data and migrate them. */
-declare class CompendiumMigrationStatus extends Application {
+declare class CompendiumMigrationStatus extends appv1.api.Application {
     compendium: CompendiumCollection<ActorPF2e<null> | ItemPF2e<null>>;
-    static get defaultOptions(): ApplicationOptions;
+    static get defaultOptions(): appv1.api.ApplicationV1Options;
     constructor(compendium: CompendiumCollection<ActorPF2e<null> | ItemPF2e<null>>);
     get id(): string;
-    getData(options?: Partial<ApplicationOptions> | undefined): Promise<object>;
+    getData(options?: Partial<appv1.api.ApplicationV1Options> | undefined): Promise<object>;
     activateListeners($html: JQuery<HTMLElement>): void;
 }
 export { CompendiumMigrationStatus };

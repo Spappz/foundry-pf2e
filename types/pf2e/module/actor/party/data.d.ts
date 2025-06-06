@@ -1,26 +1,42 @@
-import { ActorAttributes, ActorDetails, BaseActorSourcePF2e } from "../data/base.ts";
-import { ActorSystemModel, ActorSystemSchema } from "../data/model.ts";
-import { ModelPropFromDataField, SourcePropFromDataField } from "../../../../foundry/common/data/fields.ts";
+import { ActorAttributes, ActorDetails, BaseActorSourcePF2e } from "@actor/data/base.ts";
+import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
+import {
+    ModelPropFromDataField,
+    ModelPropsFromSchema,
+    SourceFromDataField,
+    SourceFromSchema,
+} from "@common/data/fields.mjs";
+import { ActorUUID } from "@common/documents/_module.mjs";
 import { PartyPF2e } from "./document.ts";
 import { KingdomSchema } from "./kingdom/schema.ts";
-
 import fields = foundry.data.fields;
 type PartySource = BaseActorSourcePF2e<"party", PartySystemSource>;
 declare class PartySystemData extends ActorSystemModel<PartyPF2e, PartySystemSchema> {
     static defineSchema(): PartySystemSchema;
 }
-interface PartySystemData extends ActorSystemModel<PartyPF2e, PartySystemSchema>, ModelPropsFromSchema<PartySystemSchema> {
+interface PartySystemData
+    extends ActorSystemModel<PartyPF2e, PartySystemSchema>,
+        ModelPropsFromSchema<PartySystemSchema> {
     attributes: PartyAttributes;
     details: PartyDetails;
 }
 type PartySystemSchema = ActorSystemSchema & {
     details: fields.SchemaField<{
         description: fields.HTMLField<string, string, true, false, true>;
-        members: fields.ArrayField<fields.SchemaField<{
-            uuid: fields.DocumentUUIDField<ActorUUID, true, false, false>;
-        }>>;
+        members: fields.ArrayField<
+            fields.SchemaField<{
+                uuid: fields.DocumentUUIDField<ActorUUID, true, false, false>;
+            }>
+        >;
     }>;
-    campaign: fields.SchemaField<KingdomSchema, SourceFromSchema<KingdomSchema>, ModelPropsFromSchema<KingdomSchema>, false, true, true>;
+    campaign: fields.SchemaField<
+        KingdomSchema,
+        SourceFromSchema<KingdomSchema>,
+        ModelPropsFromSchema<KingdomSchema>,
+        false,
+        true,
+        true
+    >;
 };
 interface PartySystemSource extends SourceFromSchema<PartySystemSchema> {
     details: PartyDetailsSource;
@@ -28,7 +44,7 @@ interface PartySystemSource extends SourceFromSchema<PartySystemSchema> {
     traits?: never;
     schema?: never;
 }
-interface PartyDetailsSource extends SourcePropFromDataField<PartySystemSchema["details"]> {
+interface PartyDetailsSource extends SourceFromDataField<PartySystemSchema["details"]> {
     readonly alliance?: never;
     readonly level?: never;
 }
@@ -40,8 +56,7 @@ interface PartyAttributes extends Omit<ActorAttributes, "initiative" | "ac" | "h
         total: number;
     };
 }
-interface PartyDetails extends ModelPropFromDataField<PartySystemSchema["details"]>, ActorDetails {
-}
+interface PartyDetails extends ModelPropFromDataField<PartySystemSchema["details"]>, ActorDetails {}
 type PartyCampaignSource = {
     type: string;
 } & Record<string, JSONValue>;

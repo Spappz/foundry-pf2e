@@ -1,14 +1,13 @@
-import { ActorPF2e, CreaturePF2e } from "../../actor/index.ts";
-import { SenseData } from "../../actor/creature/data.ts";
-import { Sense } from "../../actor/creature/sense.ts";
-import { AttributeString } from "../../actor/types.ts";
+import { ActorPF2e, CreaturePF2e } from "@actor";
+import { SenseData } from "@actor/creature/data.ts";
+import { Sense } from "@actor/creature/sense.ts";
+import { AttributeString } from "@actor/types.ts";
 import { StatisticData, StatisticTraceData } from "./data.ts";
 import { Statistic, RollOptionConfig } from "./statistic.ts";
-
 declare class PerceptionStatistic<TActor extends ActorPF2e = ActorPF2e> extends Statistic<TActor> {
     #private;
     /** Special senses possessed by the actor */
-    senses: Collection<Sense>;
+    senses: Collection<string, Sense>;
     /** Whether the actor has standard vision */
     hasVision: boolean;
     /** Special senses or other perception-related details without formalization in the system: used for NPCs */
@@ -25,7 +24,8 @@ interface PerceptionStatisticData extends StatisticData {
 type LabeledSenseData = Required<SenseData> & {
     label: string | null;
 };
-interface PerceptionTraceData<TAttribute extends AttributeString | null = AttributeString | null> extends StatisticTraceData<TAttribute> {
+interface PerceptionTraceData<TAttribute extends AttributeString | null = AttributeString | null>
+    extends StatisticTraceData<TAttribute> {
     /** Unusual senses or other perception-related notes */
     details: string;
     senses: LabeledSenseData[];

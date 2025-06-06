@@ -1,8 +1,7 @@
-import { ModifierPF2e, RawModifier } from "../../actor/modifiers.ts";
-import { AttributeString } from "../../actor/types.ts";
-import { ZeroToFour } from "../../data.ts";
-import { CheckType } from "../check/index.ts";
-
+import { ModifierPF2e, RawModifier } from "@actor/modifiers.ts";
+import { AttributeString } from "@actor/types.ts";
+import { ZeroToFour } from "@module/data.ts";
+import { CheckType } from "@system/check/index.ts";
 interface BaseStatisticData {
     /** An identifier such as "reflex" or "ac" or "deception" */
     slug: string;
@@ -70,11 +69,20 @@ interface BaseStatisticTraceData {
     modifiers: Required<RawModifier>[];
 }
 /** Data intended to be merged back into actor data (usually for token attribute/RE purposes) */
-interface StatisticTraceData<TAttribute extends AttributeString | null = AttributeString | null> extends BaseStatisticTraceData {
+interface StatisticTraceData<TAttribute extends AttributeString | null = AttributeString | null>
+    extends BaseStatisticTraceData {
     /** Either the totalModifier or the dc depending on what the data is for */
     value: number;
     totalModifier: number;
     dc: number;
     attribute: TAttribute;
 }
-export type { BaseStatisticData, BaseStatisticTraceData, StatisticChatData, StatisticCheckData, StatisticData, StatisticDifficultyClassData, StatisticTraceData, };
+export type {
+    BaseStatisticData,
+    BaseStatisticTraceData,
+    StatisticChatData,
+    StatisticCheckData,
+    StatisticData,
+    StatisticDifficultyClassData,
+    StatisticTraceData,
+};

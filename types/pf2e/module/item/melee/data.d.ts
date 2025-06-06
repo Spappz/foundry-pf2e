@@ -1,12 +1,11 @@
-import { MeleePF2e } from "../index.ts";
-import { ItemSystemModel, ItemSystemSchema } from "../base/data/model.ts";
-import { BaseItemSourcePF2e, ItemFlagsPF2e, ItemSystemSource, ItemTraitsNoRarity } from "../base/data/system.ts";
-import { WeaponMaterialData } from "../weapon/data.ts";
-import { WeaponPropertyRuneType } from "../weapon/types.ts";
-import { DamageCategoryUnique, DamageType } from "../../system/damage/types.ts";
-import { RecordField, SlugField } from "../../system/schema-data-fields.ts";
+import { MeleePF2e } from "@item";
+import { ItemSystemModel, ItemSystemSchema } from "@item/base/data/model.ts";
+import { BaseItemSourcePF2e, ItemFlagsPF2e, ItemSystemSource, ItemTraitsNoRarity } from "@item/base/data/system.ts";
+import { WeaponMaterialData } from "@item/weapon/data.ts";
+import { WeaponPropertyRuneType } from "@item/weapon/types.ts";
+import { DamageCategoryUnique, DamageType } from "@system/damage/types.ts";
+import { RecordField, SlugField } from "@system/schema-data-fields.ts";
 import { NPCAttackTrait } from "./types.ts";
-
 import fields = foundry.data.fields;
 type MeleeSource = BaseItemSourcePF2e<"melee", MeleeSystemSource> & {
     flags: DeepPartial<MeleeFlags>;
@@ -24,18 +23,33 @@ declare class MeleeSystemData extends ItemSystemModel<MeleePF2e, NPCAttackSystem
     };
     static defineSchema(): NPCAttackSystemSchema;
 }
-interface MeleeSystemData extends ItemSystemModel<MeleePF2e, NPCAttackSystemSchema>, Omit<ModelPropsFromSchema<NPCAttackSystemSchema>, "description"> {
-}
+interface MeleeSystemData
+    extends ItemSystemModel<MeleePF2e, NPCAttackSystemSchema>,
+        Omit<fields.ModelPropsFromSchema<NPCAttackSystemSchema>, "description"> {}
 type NPCAttackSystemSchema = Omit<ItemSystemSchema, "traits"> & {
     traits: fields.SchemaField<{
         otherTags: fields.ArrayField<SlugField<true, false, false>, string[], string[], true, false, true>;
-        value: fields.ArrayField<fields.StringField<NPCAttackTrait, NPCAttackTrait, true, false, false>, NPCAttackTrait[], NPCAttackTrait[], true, false, true>;
+        value: fields.ArrayField<
+            fields.StringField<NPCAttackTrait, NPCAttackTrait, true, false, false>,
+            NPCAttackTrait[],
+            NPCAttackTrait[],
+            true,
+            false,
+            true
+        >;
     }>;
-    damageRolls: RecordField<fields.StringField<string, string, true, false, false>, fields.SchemaField<{
-        damage: fields.StringField<string, string, true, false, false>;
-        damageType: fields.StringField<DamageType, DamageType, true, false, false>;
-        category: fields.StringField<DamageCategoryUnique, DamageCategoryUnique, true, true, true>;
-    }>, true, false, true, true>;
+    damageRolls: RecordField<
+        fields.StringField<string, string, true, false, false>,
+        fields.SchemaField<{
+            damage: fields.StringField<string, string, true, false, false>;
+            damageType: fields.StringField<DamageType, DamageType, true, false, true>;
+            category: fields.StringField<DamageCategoryUnique, DamageCategoryUnique, true, true, true>;
+        }>,
+        true,
+        false,
+        true,
+        true
+    >;
     /** The base attack modifier for this attack  */
     bonus: fields.SchemaField<{
         value: fields.NumberField<number, number, true, false, true>;
@@ -44,11 +58,11 @@ type NPCAttackSystemSchema = Omit<ItemSystemSchema, "traits"> & {
         value: fields.ArrayField<fields.StringField<string, string, true, false, false>>;
     }>;
 };
-type MeleeSystemSource = SourceFromSchema<NPCAttackSystemSchema> & {
+type MeleeSystemSource = fields.SourceFromSchema<NPCAttackSystemSchema> & {
     level?: never;
     schema?: ItemSystemSource["schema"];
 };
-type NPCAttackDamage = SourceFromSchema<NPCAttackSystemSchema>["damageRolls"]["string"];
+type NPCAttackDamage = fields.SourceFromSchema<NPCAttackSystemSchema>["damageRolls"]["string"];
 type NPCAttackTraits = ItemTraitsNoRarity<NPCAttackTrait>;
 export { MeleeSystemData };
 export type { MeleeFlags, MeleeSource, MeleeSystemSource, NPCAttackDamage, NPCAttackTraits };

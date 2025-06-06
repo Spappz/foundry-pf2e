@@ -1,13 +1,16 @@
-import { ActorPF2e } from "../../index.ts";
-
-declare class LootNPCsPopup extends FormApplication<ActorPF2e> {
-    static get defaultOptions(): FormApplicationOptions;
+import { ActorPF2e } from "@actor";
+import appv1 = foundry.appv1;
+declare class LootNPCsPopup extends appv1.api.FormApplication<ActorPF2e> {
+    static get defaultOptions(): appv1.api.FormApplicationOptions;
     getData(): Promise<PopupData>;
-    _updateObject(_event: Event, formData: Record<string, unknown> & {
-        selection?: boolean;
-    }): Promise<void>;
+    _updateObject(
+        _event: Event,
+        formData: Record<string, unknown> & {
+            selection?: boolean;
+        },
+    ): Promise<void>;
 }
-interface PopupData extends FormApplicationData<ActorPF2e> {
+interface PopupData extends appv1.api.FormApplicationData<ActorPF2e> {
     tokenInfo: {
         id: string;
         name: string;

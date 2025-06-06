@@ -1,5 +1,4 @@
-import { ItemTransferData } from "../module/actor/item-transfer.ts";
-
+import { ItemTransferData } from "@actor/item-transfer.ts";
 declare function activateSocketListener(): void;
 interface TransferCallbackMessage {
     request: "itemTransfer";
@@ -21,7 +20,11 @@ interface ShowSheetMessage {
         tab?: string;
     };
 }
-type SocketMessage = TransferCallbackMessage | RefreshControlsMessage | ShowSheetMessage | {
-    request?: never;
-};
+type SocketMessage =
+    | TransferCallbackMessage
+    | RefreshControlsMessage
+    | ShowSheetMessage
+    | {
+          request?: never;
+      };
 export { activateSocketListener, type SocketMessage };

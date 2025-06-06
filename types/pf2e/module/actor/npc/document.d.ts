@@ -1,17 +1,19 @@
-import { CreaturePF2e } from "../index.ts";
-import { Abilities } from "../creature/data.ts";
-import { CreatureUpdateOperation } from "../creature/index.ts";
-import { ActorInitiative } from "../initiative.ts";
-import { MeleePF2e } from "../../item/index.ts";
-import { ItemType } from "../../item/base/data/index.ts";
-import { RollNotePF2e } from "../../notes.ts";
-import { CreatureIdentificationData } from "../../recall-knowledge.ts";
-import { UserPF2e } from "../../user/document.ts";
-import { TokenDocumentPF2e } from "../../scene/index.ts";
+import { CreaturePF2e } from "@actor";
+import { Abilities } from "@actor/creature/data.ts";
+import { CreatureUpdateCallbackOptions } from "@actor/creature/index.ts";
+import { ActorInitiative } from "@actor/initiative.ts";
+import { UserAction } from "@common/constants.mjs";
+import { MeleePF2e } from "@item";
+import { ItemType } from "@item/base/data/index.ts";
+import { RollNotePF2e } from "@module/notes.ts";
+import { CreatureIdentificationData } from "@module/recall-knowledge.ts";
+import { TokenDocumentPF2e } from "@scene";
 import { NPCFlags, NPCSource, NPCSystemData } from "./data.ts";
 import { VariantCloneParams } from "./types.ts";
-
-declare class NPCPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends CreaturePF2e<TParent> {
+declare class NPCPF2e<
+    TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,
+> extends CreaturePF2e<TParent> {
+    #private;
     initiative: ActorInitiative;
     get allowedItemTypes(): (ItemType | "physical")[];
     /** The level of this creature without elite/weak adjustments */
@@ -27,7 +29,7 @@ declare class NPCPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF
     /** A user can see an unlinked NPC in the actor directory only if they have at least Observer permission */
     get visible(): boolean;
     /** Non-owning users may be able to loot a dead NPC. */
-    canUserModify(user: User, action: UserAction): boolean;
+    canUserModify(user: fd.BaseUser, action: UserAction): boolean;
     /** Setup base ephemeral data to be modified by active effects and derived-data preparation */
     prepareBaseData(): void;
     prepareDerivedData(): void;
@@ -38,14 +40,22 @@ declare class NPCPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF
     /** Make the NPC elite, weak, or normal */
     applyAdjustment(adjustment: "elite" | "weak" | null): Promise<void>;
     /** Create a variant clone of this NPC, adjusting any of name, description, and images */
-    variantClone(params: VariantCloneParams & {
-        save?: false;
-    }): this;
-    variantClone(params: VariantCloneParams & {
-        save: true;
-    }): Promise<this>;
+    variantClone(
+        params: VariantCloneParams & {
+            save?: false;
+        },
+    ): this;
+    variantClone(
+        params: VariantCloneParams & {
+            save: true;
+        },
+    ): Promise<this>;
     variantClone(params: VariantCloneParams): this | Promise<this>;
-    protected _preUpdate(changed: DeepPartial<NPCSource>, operation: CreatureUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: CreatureUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
 }
 interface NPCPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends CreaturePF2e<TParent> {
     flags: NPCFlags;

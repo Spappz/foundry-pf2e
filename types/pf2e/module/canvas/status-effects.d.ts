@@ -1,7 +1,7 @@
-import { ConditionSlug } from "../item/condition/types.ts";
-import { EncounterPF2e } from "../encounter/index.ts";
-import { StatusEffectIconTheme } from "../../scripts/config/index.ts";
-
+import { PlaceableHUDContext } from "@client/applications/hud/placeable-hud.mjs";
+import { ConditionSlug } from "@item/condition/types.ts";
+import { EncounterPF2e } from "@module/encounter/index.ts";
+import { StatusEffectIconTheme } from "@scripts/config/index.ts";
 /** Handle interaction with the TokenHUD's status effects menu */
 export declare class StatusEffects {
     #private;
@@ -9,17 +9,20 @@ export declare class StatusEffects {
     static initialize(): void;
     /** Update status icons and tokens due to certain potential changes */
     static reset(): void;
-    static get conditions(): Record<ConditionSlug, {
-        name: string;
-        rules: string;
-        summary: string;
-    }>;
+    static get conditions(): Record<
+        ConditionSlug,
+        {
+            name: string;
+            rules: string;
+            summary: string;
+        }
+    >;
     /**
      * If the system setting statusEffectType is changed, we need to upgrade CONFIG
      * And migrate all statusEffect URLs of all Tokens
      */
     static migrateStatusEffectUrls(chosenSetting: StatusEffectIconTheme): Promise<void>;
-    static onRenderTokenHUD(html: HTMLElement, tokenData: TokenHUDData): Promise<void>;
+    static onRenderTokenHUD(html: HTMLElement, tokenData: PlaceableHUDContext): Promise<void>;
     /** Called by `EncounterPF2e#_onUpdate` */
     static onUpdateEncounter(encounter: EncounterPF2e): void;
     /** Re-render the token HUD */

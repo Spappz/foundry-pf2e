@@ -1,11 +1,25 @@
-import { BaseCreatureSource, CreatureAttributes, CreatureDetails, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureSaves, CreatureTraitsData, SkillData } from "../creature/data.ts";
-import { ActorSystemModel, ActorSystemSchema } from "../data/model.ts";
-import { ModifierPF2e } from "../modifiers.ts";
-import { AttributeString } from "../types.ts";
-import { StatisticTraceData } from "../../system/statistic/data.ts";
-import { ModelPropFromDataField, SourcePropFromDataField } from "../../../../foundry/common/data/fields.ts";
+import {
+    BaseCreatureSource,
+    CreatureAttributes,
+    CreatureDetails,
+    CreatureLanguagesData,
+    CreaturePerceptionData,
+    CreatureResources,
+    CreatureSaves,
+    CreatureTraitsData,
+    SkillData,
+} from "@actor/creature/data.ts";
+import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
+import { ModifierPF2e } from "@actor/modifiers.ts";
+import { AttributeString } from "@actor/types.ts";
+import {
+    ModelPropFromDataField,
+    ModelPropsFromSchema,
+    SourceFromDataField,
+    SourceFromSchema,
+} from "@common/data/fields.mjs";
+import { StatisticTraceData } from "@system/statistic/data.ts";
 import { FamiliarPF2e } from "./document.ts";
-
 import fields = foundry.data.fields;
 type FamiliarSource = BaseCreatureSource<"familiar", FamiliarSystemSource>;
 declare class FamiliarSystemData extends ActorSystemModel<FamiliarPF2e, FamiliarSystemSchema> {
@@ -17,7 +31,9 @@ declare class FamiliarSystemData extends ActorSystemModel<FamiliarPF2e, Familiar
     resources: CreatureResources;
     static defineSchema(): FamiliarSystemSchema;
 }
-interface FamiliarSystemData extends foundry.abstract.TypeDataModel<FamiliarPF2e, FamiliarSystemSchema>, ModelPropsFromSchema<FamiliarSystemSchema> {
+interface FamiliarSystemData
+    extends foundry.abstract.TypeDataModel<FamiliarPF2e, FamiliarSystemSchema>,
+        ModelPropsFromSchema<FamiliarSystemSchema> {
     attributes: CreatureAttributes;
     details: FamiliarDetails;
     customModifiers: Record<string, ModifierPF2e[]>;
@@ -51,12 +67,12 @@ interface FamiliarSystemSource extends SourceFromSchema<FamiliarSystemSchema> {
     /** Legacy location of `MigrationRecord` */
     schema?: object;
 }
-interface FamiliarAttributesSource extends SourcePropFromDataField<FamiliarSystemSchema["attributes"]> {
+interface FamiliarAttributesSource extends SourceFromDataField<FamiliarSystemSchema["attributes"]> {
     immunities?: never;
     weaknesses?: never;
     resistances?: never;
 }
-interface FamiliarDetailsSource extends SourcePropFromDataField<FamiliarSystemSchema["details"]> {
+interface FamiliarDetailsSource extends SourceFromDataField<FamiliarSystemSchema["details"]> {
     alliance?: never;
     languages?: never;
     level?: never;

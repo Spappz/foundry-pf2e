@@ -1,8 +1,13 @@
-import { ItemSheetOptions } from "../base/sheet/sheet.ts";
-import { CoinsPF2e, MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "../physical/index.ts";
-import { SheetOptions } from "../../sheet/helpers.ts";
+import { ItemSheetOptions } from "@item/base/sheet/sheet.ts";
+import {
+    CoinsPF2e,
+    MaterialSheetData,
+    PhysicalItemSheetData,
+    PhysicalItemSheetPF2e,
+    RUNE_DATA,
+} from "@item/physical/index.ts";
+import { SheetOptions } from "@module/sheet/helpers.ts";
 import { ArmorCategory, ArmorGroup, ArmorPF2e, BaseArmorType, SpecificArmorData } from "./index.ts";
-
 declare class ArmorSheetPF2e extends PhysicalItemSheetPF2e<ArmorPF2e> {
     getData(options?: Partial<ItemSheetOptions>): Promise<ArmorSheetData>;
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
@@ -16,7 +21,12 @@ interface ArmorSheetData extends PhysicalItemSheetData<ArmorPF2e> {
     otherTags: SheetOptions;
     preciousMaterials: MaterialSheetData;
     propertyRuneSlots: PropertyRuneSheetSlot[];
-    runeTypes: typeof RUNE_DATA.armor;
+    runeTypes: Omit<typeof RUNE_DATA.armor, "property"> & {
+        property: {
+            slug: string;
+            name: string;
+        }[];
+    };
     specificMagicData: SpecificArmorData;
 }
 interface PropertyRuneSheetSlot {

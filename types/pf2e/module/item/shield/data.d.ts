@@ -1,11 +1,15 @@
-import { PhysicalItemSource } from "../base/data/index.ts";
-import { BasePhysicalItemSource, PhysicalItemTraits, PhysicalSystemData, PhysicalSystemSource } from "../physical/data.ts";
-import { HeldUsage } from "../physical/usage.ts";
-import { WeaponRuneData, WeaponRuneSource } from "../weapon/data.ts";
-import { ZeroToSix } from "../../data.ts";
-import { DamageType } from "../../system/damage/types.ts";
+import { PhysicalItemSource } from "@item/base/data/index.ts";
+import {
+    BasePhysicalItemSource,
+    PhysicalItemTraits,
+    PhysicalSystemData,
+    PhysicalSystemSource,
+} from "@item/physical/data.ts";
+import { HeldUsage } from "@item/physical/usage.ts";
+import { WeaponRuneData, WeaponRuneSource } from "@item/weapon/data.ts";
+import { ZeroToSix } from "@module/data.ts";
+import { DamageType } from "@system/damage/types.ts";
 import { BaseShieldType, ShieldTrait } from "./types.ts";
-
 type ShieldSource = BasePhysicalItemSource<"shield", ShieldSystemSource>;
 interface ShieldSystemSource extends PhysicalSystemSource {
     traits: ShieldTraitsSource;
@@ -39,13 +43,24 @@ interface SpecificShieldData extends Pick<ShieldSystemSource, "material" | "rune
         runes: Omit<WeaponRuneData, "effects">;
     } | null;
 }
-interface ShieldSystemData extends Omit<ShieldSystemSource, SourceOmission>, Omit<PhysicalSystemData, "baseItem" | "subitems" | "traits"> {
+interface ShieldSystemData
+    extends Omit<ShieldSystemSource, SourceOmission>,
+        Omit<PhysicalSystemData, "baseItem" | "subitems" | "traits"> {
     traits: ShieldTraits;
     /** Shields are always held. */
     usage: HeldUsage;
     stackGroup: null;
 }
-type SourceOmission = "apex" | "bulk" | "description" | "hp" | "identification" | "material" | "price" | "temporary" | "usage";
+type SourceOmission =
+    | "apex"
+    | "bulk"
+    | "description"
+    | "hp"
+    | "identification"
+    | "material"
+    | "price"
+    | "temporary"
+    | "usage";
 interface IntegratedWeaponData extends IntegratedWeaponSource {
     damageType: DamageType;
     versatile: {
@@ -56,4 +71,11 @@ interface IntegratedWeaponData extends IntegratedWeaponSource {
 interface ShieldTraits extends ShieldTraitsSource {
     integrated: IntegratedWeaponData | null;
 }
-export type { IntegratedWeaponData, IntegratedWeaponSource, ShieldSource, ShieldSystemData, ShieldSystemSource, SpecificShieldData, };
+export type {
+    IntegratedWeaponData,
+    IntegratedWeaponSource,
+    ShieldSource,
+    ShieldSystemData,
+    ShieldSystemSource,
+    SpecificShieldData,
+};

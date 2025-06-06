@@ -1,12 +1,13 @@
-import { RawModifier, StatisticModifier } from "../../actor/modifiers.ts";
-import { RollSubstitution } from "../../rules/synthetics.ts";
+import { RawModifier, StatisticModifier } from "@actor/modifiers.ts";
+import { ApplicationV1Options } from "@client/appv1/api/application-v1.mjs";
+import { RollMode } from "@common/constants.mjs";
+import { RollSubstitution } from "@module/rules/synthetics.ts";
 import { CheckCheckContext } from "./types.ts";
-
 /**
  * Dialog for excluding certain modifiers before rolling a check.
  * @category Other
  */
-export declare class CheckModifiersDialog extends Application {
+export declare class CheckModifiersDialog extends fav1.api.Application {
     #private;
     /** The check which is being edited. */
     check: StatisticModifier;
@@ -17,12 +18,10 @@ export declare class CheckModifiersDialog extends Application {
     /** Has the promise been resolved? */
     isResolved: boolean;
     constructor(check: StatisticModifier, resolve: (value: boolean) => void, context?: CheckCheckContext);
-    static get defaultOptions(): ApplicationOptions;
+    static get defaultOptions(): ApplicationV1Options;
     getData(): Promise<CheckDialogData>;
     activateListeners($html: JQuery): void;
-    close(options?: {
-        force?: boolean;
-    }): Promise<void>;
+    close(options?: { force?: boolean }): Promise<void>;
     /** Overriden to add some additional first-render behavior */
     protected _injectHTML($html: JQuery<HTMLElement>): void;
 }

@@ -1,11 +1,11 @@
-import { CharacterPF2e } from "../index.ts";
-import { CreatureSheetData } from "../creature/index.ts";
-import { CreatureSheetPF2e } from "../creature/sheet.ts";
-import { SheetClickActionHandlers } from "../sheet/base.ts";
-import { AbilityViewData } from "../sheet/data-types.ts";
-import { StatisticTraceData } from "../../system/statistic/index.ts";
+import { CharacterPF2e } from "@actor";
+import { CreatureSheetData } from "@actor/creature/index.ts";
+import { CreatureSheetPF2e } from "@actor/creature/sheet.ts";
+import { SheetClickActionHandlers } from "@actor/sheet/base.ts";
+import { AbilityViewData } from "@actor/sheet/data-types.ts";
+import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
+import { StatisticTraceData } from "@system/statistic/index.ts";
 import { FamiliarPF2e } from "./document.ts";
-
 /**
  * @category Actor
  */

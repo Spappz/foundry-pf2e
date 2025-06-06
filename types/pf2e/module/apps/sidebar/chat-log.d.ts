@@ -1,17 +1,18 @@
-import { ChatMessagePF2e } from "../../chat-message/index.ts";
-import { ChatMessageSource } from "../../../../foundry/common/documents/chat-message.ts";
-
-declare class ChatLogPF2e extends ChatLog<ChatMessagePF2e> {
+import { ApplicationRenderContext } from "@client/applications/_types.mjs";
+import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
+import { ChatSpeakerData } from "@common/documents/chat-message.mjs";
+import { ChatMessagePF2e } from "@module/chat-message/index.ts";
+declare class ChatLogPF2e extends fa.sidebar.tabs.ChatLog {
     #private;
-    activateListeners($html: JQuery<HTMLElement>): void;
-    /** Separate public method so as to be accessible from renderChatPopout hook */
-    activateClickListener(html: HTMLElement): void;
-    /** Handle clicks of "Set as initiative" buttons */
-    protected _onDiceRollClick(event: JQuery.ClickEvent): void;
+    static DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
+    _onRender(context: ApplicationRenderContext, options: fa.api.HandlebarsRenderOptions): Promise<void>;
     /** Replace parent method in order to use DamageRoll class as needed */
-    protected _processDiceCommand(command: string, matches: RegExpMatchArray[], chatData: DeepPartial<Omit<ChatMessageSource, "rolls">> & {
-        rolls: (string | RollJSON)[];
-    }, createOptions: ChatMessageCreateOperation): Promise<void>;
-    protected _getEntryContextOptions(): EntryContextOption[];
+    processMessage(
+        message: string,
+        options?: {
+            speaker?: ChatSpeakerData;
+        },
+    ): Promise<ChatMessagePF2e | undefined>;
+    protected _getEntryContextOptions(): ContextMenuEntry[];
 }
 export { ChatLogPF2e };

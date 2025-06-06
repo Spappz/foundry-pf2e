@@ -1,6 +1,6 @@
 export {};
 
-declare global {
+declare module "@client/helpers/hooks.mjs" {
     namespace Hooks {
         function on(
             hook: "diceSoNiceMessageProcessed",

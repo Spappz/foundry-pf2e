@@ -1,36 +1,34 @@
-import { BoostFlawState } from "../../character/apps/attribute-builder.ts";
+import { BoostFlawState } from "@actor/character/apps/attribute-builder.ts";
 import { PartyPF2e } from "../document.ts";
 import { Kingdom } from "./model.ts";
 import { KingdomCHG } from "./schema.ts";
 import { KingdomAbility } from "./types.ts";
 import { KingdomCHGData } from "./values.ts";
-
+import appv1 = foundry.appv1;
+import { FormSelectOption } from "@client/applications/forms/fields.mjs";
 declare const KINGDOM_BUILD_CATEGORIES: readonly ["charter", "heartland", "government"];
 type KingdomBuildCategory = (typeof KINGDOM_BUILD_CATEGORIES)[number];
 type CurrentSelections = Record<KingdomBuildCategory, string | null>;
 /** Dialog used to create and edit the charter, heartland, government, and ability scores  */
-declare class KingdomBuilder extends FormApplication<Kingdom> {
+declare class KingdomBuilder extends appv1.api.FormApplication<Kingdom> {
     #private;
     selected: CurrentSelections;
-    static get defaultOptions(): FormApplicationOptions;
-    static showToPlayers(options: {
-        uuid: string;
-        tab?: string;
-    }): void;
+    static get defaultOptions(): appv1.api.FormApplicationOptions;
+    static showToPlayers(options: { uuid: string; tab?: string }): void;
     get id(): string;
     get kingdom(): Kingdom;
     get actor(): PartyPF2e;
     get isEditable(): boolean;
-    protected _getHeaderButtons(): ApplicationHeaderButton[];
+    protected _getHeaderButtons(): appv1.api.ApplicationV1HeaderButton[];
     getData(): Promise<KingdomBuilderSheetData>;
     activateListeners($html: JQuery<HTMLElement>): void;
     protected _updateObject(_event: Event, formData: Record<string, unknown>): Promise<unknown>;
     protected _render(force?: boolean, options?: KingdomBuilderRenderOptions): Promise<void>;
 }
-interface KingdomBuilder extends FormApplication<Kingdom> {
+interface KingdomBuilder extends appv1.api.FormApplication<Kingdom> {
     render(force?: boolean, options?: KingdomBuilderRenderOptions): this;
 }
-interface KingdomBuilderRenderOptions extends RenderOptions {
+interface KingdomBuilderRenderOptions extends appv1.api.AppV1RenderOptions {
     tab?: string | null;
 }
 interface KingdomBuilderSheetData {

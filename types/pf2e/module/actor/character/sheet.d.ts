@@ -1,26 +1,42 @@
-import { CreatureSheetData, Language, ResourceData } from "../creature/index.ts";
-import { Sense } from "../creature/sense.ts";
-import { SheetClickActionHandlers } from "../sheet/base.ts";
-import { AbilityViewData, InventoryItem } from "../sheet/data-types.ts";
-import { AttributeString, SaveType } from "../types.ts";
-import { AncestryPF2e, BackgroundPF2e, ClassPF2e, DeityPF2e, FeatPF2e, HeritagePF2e, PhysicalItemPF2e, ItemPF2e } from "../../item/index.ts";
-import { TraitToggleViewData } from "../../item/ability/trait-toggles.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { CoinsPF2e } from "../../item/physical/coins.ts";
-import { MagicTradition } from "../../item/spell/types.ts";
-import { SpellcastingSheetData } from "../../item/spellcasting-entry/types.ts";
-import { DropCanvasItemDataPF2e } from "../../canvas/drop-canvas-data.ts";
-import { LabeledValueAndMax, ZeroToFour } from "../../data.ts";
-import { DamageType } from "../../system/damage/types.ts";
+import { CreatureSheetData, Language, ResourceData } from "@actor/creature/index.ts";
+import { Sense } from "@actor/creature/sense.ts";
+import { SheetClickActionHandlers } from "@actor/sheet/base.ts";
+import { AbilityViewData, InventoryItem } from "@actor/sheet/data-types.ts";
+import { AttributeString, SaveType } from "@actor/types.ts";
+import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
+import {
+    AncestryPF2e,
+    BackgroundPF2e,
+    ClassPF2e,
+    DeityPF2e,
+    FeatPF2e,
+    HeritagePF2e,
+    PhysicalItemPF2e,
+    ItemPF2e,
+} from "@item";
+import { TraitToggleViewData } from "@item/ability/trait-toggles.ts";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { CoinsPF2e } from "@item/physical/coins.ts";
+import { MagicTradition } from "@item/spell/types.ts";
+import { SpellcastingSheetData } from "@item/spellcasting-entry/types.ts";
+import { DropCanvasItemDataPF2e } from "@module/canvas/drop-canvas-data.ts";
+import { LabeledValueAndMax, ZeroToFour } from "@module/data.ts";
+import { DamageType } from "@system/damage/types.ts";
 import { CreatureSheetPF2e } from "../creature/sheet.ts";
 import { CharacterConfig } from "./config.ts";
 import { CraftingAbilitySheetData } from "./crafting/ability.ts";
-import { CharacterBiography, CharacterSaveData, CharacterStrike, CharacterSystemData, ClassDCData, MartialProficiency } from "./data.ts";
+import {
+    CharacterBiography,
+    CharacterSaveData,
+    CharacterStrike,
+    CharacterSystemData,
+    ClassDCData,
+    MartialProficiency,
+} from "./data.ts";
 import { CharacterPF2e } from "./document.ts";
 import { ElementalBlastConfig } from "./elemental-blast.ts";
 import { FeatGroup } from "./feats/index.ts";
 import { CHARACTER_SHEET_TABS } from "./values.ts";
-
 declare class CharacterSheetPF2e<TActor extends CharacterPF2e> extends CreatureSheetPF2e<TActor> {
     #private;
     protected readonly actorConfigClass: typeof CharacterConfig;
@@ -51,10 +67,13 @@ type CharacterSystemSheetData = CharacterSystemData & {
             singleOption: boolean;
         };
     };
-    saves: Record<SaveType, CharacterSaveData & {
-        rankName?: string;
-        short?: string;
-    }>;
+    saves: Record<
+        SaveType,
+        CharacterSaveData & {
+            rankName?: string;
+            short?: string;
+        }
+    >;
 };
 interface FormulaSheetData {
     uuid: string;
@@ -123,10 +142,13 @@ interface CharacterSheetData<TActor extends CharacterPF2e = CharacterPF2e> exten
     hasNormalSpellcasting: boolean;
     tabVisibility: CharacterSheetTabVisibility;
     actions: {
-        encounter: Record<"action" | "reaction" | "free", {
-            label: string;
-            actions: CharacterAbilityViewData[];
-        }>;
+        encounter: Record<
+            "action" | "reaction" | "free",
+            {
+                label: string;
+                actions: CharacterAbilityViewData[];
+            }
+        >;
         exploration: {
             active: CharacterAbilityViewData[];
             other: CharacterAbilityViewData[];

@@ -1,20 +1,24 @@
-import { DamageType } from "../../../system/damage/types.ts";
-import { StrictArrayField } from "../../../system/schema-data-fields.ts";
+import { DamageType } from "@system/damage/types.ts";
+import { StrictArrayField } from "@system/schema-data-fields.ts";
 import { AELikeChangeMode } from "../ae-like.ts";
 import { ModelPropsFromRESchema, RuleElementSchema } from "../data.ts";
 import { ResolvableValueField, RuleElementPF2e } from "../index.ts";
-
 import fields = foundry.data.fields;
 /** Alter certain aspects of individual components (modifiers and dice) of a damage roll. */
 declare class DamageAlterationRuleElement extends RuleElementPF2e<DamageAlterationSchema> {
     static defineSchema(): DamageAlterationSchema;
-    resolveValue(value: unknown, defaultValue: null, options: {
-        resolvables: Record<string, unknown>;
-    }): DamageAlterationValue | null;
+    resolveValue(
+        value: unknown,
+        defaultValue: null,
+        options: {
+            resolvables: Record<string, unknown>;
+        },
+    ): DamageAlterationValue | null;
     beforePrepareData(): void;
 }
-interface DamageAlterationRuleElement extends RuleElementPF2e<DamageAlterationSchema>, ModelPropsFromRESchema<DamageAlterationSchema> {
-}
+interface DamageAlterationRuleElement
+    extends RuleElementPF2e<DamageAlterationSchema>,
+        ModelPropsFromRESchema<DamageAlterationSchema> {}
 type DamageAlterationProperty = "dice-faces" | "dice-number" | "damage-type" | "tags";
 type DamageAlterationSchema = RuleElementSchema & {
     selectors: StrictArrayField<fields.StringField<string, string, true, false, false>>;

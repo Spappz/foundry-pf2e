@@ -1,33 +1,32 @@
-import { ActorPF2e } from "../../index.ts";
-import { Immunity, IWRSource, Resistance, Weakness } from "../../data/iwr.ts";
-import { ImmunityType, ResistanceType, WeaknessType } from "../../types.ts";
-
-declare class IWREditor<TActor extends ActorPF2e> extends DocumentSheet<TActor, IWREditorOptions> {
+import { ActorPF2e } from "@actor";
+import { Immunity, IWRSource, Resistance, Weakness } from "@actor/data/iwr.ts";
+import { ImmunityType, ResistanceType, WeaknessType } from "@actor/types.ts";
+import { ApplicationV1HeaderButton } from "@client/appv1/api/application-v1.mjs";
+import appv1 = foundry.appv1;
+declare class IWREditor<TActor extends ActorPF2e> extends appv1.api.DocumentSheet<TActor, IWREditorOptions> {
     #private;
     category: ListCategory;
     types: Record<string, string>;
     constructor(actor: TActor, options: IWREditorConstructorOptions);
-    static get defaultOptions(): DocumentSheetOptions;
+    static get defaultOptions(): appv1.api.DocumentSheetV1Options;
     get id(): string;
     get title(): string;
     get actor(): TActor;
     get categoryLabel(): string;
     getData(options?: Partial<IWREditorOptions>): Promise<IWREditorData<TActor>>;
     /** Reconstruct the entire IWR array from form inputs */
-    getUpdatedData({ includeNew }?: {
-        includeNew?: boolean | undefined;
-    }): ProbablyIWRData[];
+    getUpdatedData({ includeNew }?: { includeNew?: boolean | undefined }): ProbablyIWRData[];
     /** Exclude sheet selection and compendium import */
-    protected _getHeaderButtons(): ApplicationHeaderButton[];
+    protected _getHeaderButtons(): ApplicationV1HeaderButton[];
     activateListeners($html: JQuery): void;
 }
-interface IWREditorOptions extends DocumentSheetOptions {
+interface IWREditorOptions extends appv1.api.DocumentSheetV1Options {
     category: ListCategory;
 }
-interface IWREditorConstructorOptions extends Partial<DocumentSheetOptions> {
+interface IWREditorConstructorOptions extends Partial<appv1.api.DocumentSheetV1Options> {
     category: ListCategory;
 }
-interface IWREditorData<TActor extends ActorPF2e> extends DocumentSheetData<TActor> {
+interface IWREditorData<TActor extends ActorPF2e> extends appv1.api.DocumentSheetData<TActor> {
     header: string;
     category: ListCategory;
     list: Immunity[] | Weakness[] | Resistance[];

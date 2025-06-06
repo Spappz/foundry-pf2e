@@ -1,10 +1,14 @@
-import { ActorPF2e } from "../../actor/index.ts";
-import { BadgeReevaluationEventType, EffectBadge } from "../abstract-effect/data.ts";
-import { AbstractEffectPF2e } from "../abstract-effect/index.ts";
-import { RuleElementOptions, RuleElementPF2e } from "../../rules/index.ts";
-import { UserPF2e } from "../../user/index.ts";
+import { ActorPF2e } from "@actor";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseDeleteCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "@common/abstract/_types.mjs";
+import { EffectBadge } from "@item/abstract-effect/data.ts";
+import { AbstractEffectPF2e } from "@item/abstract-effect/index.ts";
+import { BadgeReevaluationEventType } from "@item/abstract-effect/types.ts";
+import { RuleElementOptions, RuleElementPF2e } from "@module/rules/index.ts";
 import { EffectFlags, EffectSource, EffectSystemData } from "./data.ts";
-
 declare class EffectPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends AbstractEffectPF2e<TParent> {
     #private;
     get badge(): EffectBadge | null;
@@ -23,13 +27,24 @@ declare class EffectPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> ex
     /** Decreases if this is a counter effect, otherwise deletes entirely */
     decrease(): Promise<void>;
     /** Include a trimmed version of the "slug" roll option (e.g., effect:rage instead of effect:effect-rage) */
-    getRollOptions(prefix?: string, options?: {
-        includeGranter?: boolean;
-    }): string[];
+    getRollOptions(
+        prefix?: string,
+        options?: {
+            includeGranter?: boolean;
+        },
+    ): string[];
     /** Set the start time and initiative roll of a newly created effect */
-    protected _preCreate(data: this["_source"], operation: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<EffectSource>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
+    protected _preCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _preUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: DatabaseUpdateCallbackOptions,
+        user: fd.BaseUser,
+    ): Promise<boolean | void>;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
     /** If applicable, reevaluate this effect's badge */
     onEncounterEvent(event: BadgeReevaluationEventType): Promise<void>;
 }

@@ -1,13 +1,38 @@
-import { ActorPF2e } from "../base.ts";
-import { Abilities, BaseCreatureSource, CreatureAttributes, CreatureDetails, CreatureDetailsSource, CreatureHitPointsSource, CreatureInitiativeSource, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureResourcesSource, CreatureSpeeds, CreatureSystemData, CreatureSystemSource, CreatureTraitsSource, HeldShieldData, LabeledSpeed, SaveData, SenseData } from "../creature/data.ts";
-import { ActorAttributesSource, ActorFlagsPF2e, AttributeBasedTraceData, HitPointsStatistic, StrikeData } from "../data/base.ts";
-import { InitiativeTraceData } from "../initiative.ts";
-import { ModifierPF2e, StatisticModifier } from "../modifiers.ts";
-import { ActorAlliance, SaveType, SkillSlug } from "../types.ts";
-import { MeleePF2e } from "../../item/index.ts";
-import { PublicationData, ValueAndMax } from "../../data.ts";
-import { RawPredicate } from "../../system/predication.ts";
-
+import { ActorPF2e } from "@actor/base.ts";
+import {
+    Abilities,
+    BaseCreatureSource,
+    CreatureAttributes,
+    CreatureDetails,
+    CreatureDetailsSource,
+    CreatureHitPointsSource,
+    CreatureInitiativeSource,
+    CreatureLanguagesData,
+    CreaturePerceptionData,
+    CreatureResources,
+    CreatureResourcesSource,
+    CreatureSpeeds,
+    CreatureSystemData,
+    CreatureSystemSource,
+    CreatureTraitsSource,
+    HeldShieldData,
+    LabeledSpeed,
+    SaveData,
+    SenseData,
+} from "@actor/creature/data.ts";
+import {
+    ActorAttributesSource,
+    ActorFlagsPF2e,
+    AttributeBasedTraceData,
+    HitPointsStatistic,
+    StrikeData,
+} from "@actor/data/base.ts";
+import { InitiativeTraceData } from "@actor/initiative.ts";
+import { ModifierPF2e, StatisticModifier } from "@actor/modifiers.ts";
+import { ActorAlliance, SaveType, SkillSlug } from "@actor/types.ts";
+import { MeleePF2e } from "@item";
+import { PublicationData, ValueAndMax } from "@module/data.ts";
+import { RawPredicate } from "@system/predication.ts";
 type NPCSource = BaseCreatureSource<"npc", NPCSystemSource> & {
     flags: DeepPartial<NPCFlags>;
 };
@@ -91,12 +116,14 @@ interface NPCDetailsSource extends CreatureDetailsSource {
     /** Information concerning the publication from which this actor originates */
     publication: PublicationData;
 }
-type NPCSavesSource = Record<SaveType, {
-    value: number;
-    saveDetail: string;
-}>;
-interface NPCTraitsSource extends Required<CreatureTraitsSource> {
-}
+type NPCSavesSource = Record<
+    SaveType,
+    {
+        value: number;
+        saveDetail: string;
+    }
+>;
+interface NPCTraitsSource extends Required<CreatureTraitsSource> {}
 /** The raw information contained within the actor data object for NPCs. */
 interface NPCSystemData extends Omit<NPCSystemSource, "attributes" | "perception" | "traits">, CreatureSystemData {
     /** The six primary ability scores. */
@@ -213,4 +240,20 @@ interface NPCResources extends CreatureResources {
     };
     mythicPoints: ValueAndMax;
 }
-export type { NPCAttributes, NPCAttributesSource, NPCFlags, NPCHitPoints, NPCPerceptionData, NPCPerceptionSource, NPCSaveData, NPCSkillData, NPCSkillSource, NPCSource, NPCSpecialSkillSource, NPCStrike, NPCSystemData, NPCSystemSource, NPCTraitsSource, };
+export type {
+    NPCAttributes,
+    NPCAttributesSource,
+    NPCFlags,
+    NPCHitPoints,
+    NPCPerceptionData,
+    NPCPerceptionSource,
+    NPCSaveData,
+    NPCSkillData,
+    NPCSkillSource,
+    NPCSource,
+    NPCSpecialSkillSource,
+    NPCStrike,
+    NPCSystemData,
+    NPCSystemSource,
+    NPCTraitsSource,
+};

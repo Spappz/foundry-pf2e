@@ -1,21 +1,26 @@
-import { ActorPF2e, CreaturePF2e } from "../index.ts";
-import { ItemSummaryRenderer } from "../sheet/item-summary-renderer.ts";
-import { ItemPF2e } from "../../item/index.ts";
-import { ItemSourcePF2e } from "../../item/base/data/index.ts";
-import { SpellcastingEntryPF2e, SpellcastingSheetData } from "../../item/spellcasting-entry/index.ts";
-import { ZeroToTen } from "../../data.ts";
-
+import { ActorPF2e, CreaturePF2e } from "@actor";
+import { ItemSummaryRenderer } from "@actor/sheet/item-summary-renderer.ts";
+import { ItemPF2e } from "@item";
+import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { SpellcastingEntryPF2e, SpellcastingSheetData } from "@item/spellcasting-entry/index.ts";
+import { ZeroToTen } from "@module/data.ts";
+import appv1 = foundry.appv1;
 /**
  * Sheet used to render the the spell list for prepared casting.
  * It overrides the actor sheet to inherit important drag/drop behavior for actor items (the spells).
  */
-declare class SpellPreparationSheet<TActor extends CreaturePF2e> extends ActorSheet<TActor, ItemPF2e> {
+declare class SpellPreparationSheet<TActor extends CreaturePF2e> extends appv1.sheets.ActorSheet<TActor, ItemPF2e> {
     #private;
     /** Implementation used to handle the toggling and rendering of item summaries */
-    itemRenderer: ItemSummaryRenderer<ActorPF2e<import('../../scene/index.ts').TokenDocumentPF2e<import('../../scene/document.ts').ScenePF2e | null> | null>, this>;
+    itemRenderer: ItemSummaryRenderer<
+        ActorPF2e<
+            import("../../scene/index.ts").TokenDocumentPF2e<import("../../scene/document.ts").ScenePF2e | null> | null
+        >,
+        this
+    >;
     item: SpellcastingEntryPF2e<TActor>;
-    constructor(item: SpellcastingEntryPF2e<TActor>, options: Partial<ActorSheetOptions>);
-    static get defaultOptions(): ActorSheetOptions;
+    constructor(item: SpellcastingEntryPF2e<TActor>, options: Partial<appv1.sheets.ActorSheetOptions>);
+    static get defaultOptions(): appv1.sheets.ActorSheetOptions;
     /** Avoid conflicting with the real actor sheet */
     get id(): string;
     get title(): string;
@@ -23,7 +28,7 @@ declare class SpellPreparationSheet<TActor extends CreaturePF2e> extends ActorSh
      * This being an actor sheet saves us from most drag and drop re-implementation,
      * but we still have a gotcha in the form of the header buttons.
      */
-    protected _getHeaderButtons(): ApplicationHeaderButton[];
+    protected _getHeaderButtons(): appv1.api.ApplicationV1HeaderButton[];
     getData(): Promise<SpellPreparationSheetData<TActor>>;
     activateListeners($html: JQuery<HTMLElement>): void;
     /** Filter spells by search query */
@@ -33,9 +38,9 @@ declare class SpellPreparationSheet<TActor extends CreaturePF2e> extends ActorSh
     /** Allow transferring spells between open windows */
     protected _onSortItem(event: DragEvent, itemData: ItemSourcePF2e): Promise<ItemPF2e[]>;
     /** Override of inner render function to maintain item summary state */
-    protected _renderInner(data: Record<string, unknown>, options: RenderOptions): Promise<JQuery>;
+    protected _renderInner(data: Record<string, unknown>, options: appv1.api.AppV1RenderOptions): Promise<JQuery>;
 }
-interface SpellPreparationSheetData<TActor extends CreaturePF2e> extends ActorSheetData<TActor> {
+interface SpellPreparationSheetData<TActor extends CreaturePF2e> extends appv1.sheets.ActorSheetData<TActor> {
     owner: boolean;
     entry: SpellcastingSheetData;
     maxRank: ZeroToTen;

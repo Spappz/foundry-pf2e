@@ -1,8 +1,7 @@
-import { DamageDiceOverride } from "../../actor/modifiers.ts";
-import { SlugField } from "../../system/schema-data-fields.ts";
+import { DamageDiceOverride } from "@actor/modifiers.ts";
+import { SlugField } from "@system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
-
 import fields = foundry.data.fields;
 declare class DamageDiceRuleElement extends RuleElementPF2e<DamageDiceRuleSchema> {
     #private;
@@ -23,8 +22,9 @@ interface DamageDiceSource extends RuleElementSource {
     damageCategory?: JSONValue;
     hideIfDisabled?: JSONValue;
 }
-interface DamageDiceRuleElement extends RuleElementPF2e<DamageDiceRuleSchema>, ModelPropsFromRESchema<DamageDiceRuleSchema> {
-}
+interface DamageDiceRuleElement
+    extends RuleElementPF2e<DamageDiceRuleSchema>,
+        ModelPropsFromRESchema<DamageDiceRuleSchema> {}
 type DamageDiceRuleSchema = RuleElementSchema & {
     /** All domains to add a modifier to */
     selector: fields.ArrayField<fields.StringField<string, string, true, false, false>>;
@@ -34,12 +34,22 @@ type DamageDiceRuleSchema = RuleElementSchema & {
     dieSize: fields.StringField<string, string, false, true, true>;
     /** The damage type */
     damageType: fields.StringField<string, string, false, true, true>;
-    /** True means the dice are added to critical without doubling; false means the dice are never added to
-     *  critical damage; omitted means add to normal damage and double on critical damage.
+    /**
+     * Control whether and how these damage dice are included in a roll depending on the result of the preceding check.
+     * - `true`: the dice are added only to critical damage rolls, without doubling.
+     * - `false`: the dice are added to both normal and critical damage rolls, without doubling.
+     * - `null` (default): the dice are added to both normal and critical damage rolls and are doubled in critical
+     *   damage rolls.
      */
-    critical: fields.BooleanField<boolean, boolean, false, true, false>;
+    critical: fields.BooleanField<boolean, boolean, false, true, true>;
     /** The damage category */
-    category: fields.StringField<"persistent" | "precision" | "splash", "persistent" | "precision" | "splash", false, false, false>;
+    category: fields.StringField<
+        "persistent" | "precision" | "splash",
+        "persistent" | "precision" | "splash",
+        false,
+        false,
+        false
+    >;
     /** A list of tags associated with this damage */
     tags: fields.ArrayField<SlugField<true, false, false>, string[], string[], false, false, true>;
     /** Resolvable bracket data */

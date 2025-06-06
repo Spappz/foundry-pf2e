@@ -1,10 +1,8 @@
-import { ApplicationTab } from "../../../foundry/client-esm/applications/_types.js";
-import { DocumentSheetRenderOptions } from "../../../foundry/client-esm/applications/api/document-sheet.ts";
-import { UserConfigData } from "../../../foundry/client-esm/applications/sheets/user-config.js";
+import { ApplicationTab } from "@client//applications/_module.mjs";
+import { DocumentSheetRenderOptions } from "@client/applications/api/document-sheet.mjs";
 import { UserPF2e } from "./document.ts";
-
 /** Player-specific settings, stored as flags on each User */
-declare class UserConfigPF2e extends foundry.applications.sheets.UserConfig<UserPF2e> {
+declare class UserConfigPF2e extends fa.sheets.UserConfig<UserPF2e> {
     #private;
     static PARTS: {
         tabs: {
@@ -17,9 +15,9 @@ declare class UserConfigPF2e extends foundry.applications.sheets.UserConfig<User
     tabGroups: {
         primary: string;
     };
-    _prepareContext(options: DocumentSheetRenderOptions): Promise<UserConfigDataPF2e>;
+    _prepareContext(options: DocumentSheetRenderOptions): Promise<UserConfigRenderContextPF2e>;
 }
-interface UserConfigDataPF2e extends UserConfigData<UserPF2e> {
+interface UserConfigRenderContextPF2e extends fa.sheets.UserConfigRenderContext<UserPF2e> {
     tabs: Partial<ApplicationTab>[];
     tabGroups: Record<string, string>;
 }
