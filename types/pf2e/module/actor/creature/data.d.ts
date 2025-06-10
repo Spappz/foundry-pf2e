@@ -10,15 +10,15 @@ import {
     AttributeBasedTraceData,
     BaseActorSourcePF2e,
     StrikeData,
-} from "@actor/data/base.ts";
-import { ActorSizePF2e } from "@actor/data/size.ts";
-import { ModifierPF2e, RawModifier, StatisticModifier } from "@actor/modifiers.ts";
-import { AttributeString, MovementType, SaveType, SkillSlug } from "@actor/types.ts";
-import { LabeledNumber, Size, ValueAndMax, ValueAndMaybeMax, ZeroToThree } from "@module/data.ts";
-import { ArmorClassTraceData } from "@system/statistic/index.ts";
-import { PerceptionTraceData } from "@system/statistic/perception.ts";
+} from "./../data/base.ts";
+import { ActorSizePF2e } from "./../data/size.ts";
+import { ModifierPF2e, RawModifier, StatisticModifier } from "./../modifiers.ts";
+import { AttributeString, MovementType, SaveType, SkillSlug } from "./../types.ts";
+import { LabeledNumber, Size, ValueAndMax, ValueAndMaybeMax, ZeroToThree } from "./../../data.ts";
+import { ArmorClassTraceData } from "./../../system/statistic/index.ts";
+import { PerceptionTraceData } from "./../../system/statistic/perception.ts";
 import { CreatureActorType, CreatureTrait, Language, SenseAcuity, SenseType, SpecialVisionType } from "./types.ts";
-import { ImageFilePath } from "@common/constants.mjs";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
 type BaseCreatureSource<
     TType extends CreatureActorType,
     TSystemSource extends CreatureSystemSource,

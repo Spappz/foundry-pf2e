@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { PrototypeTokenPF2e } from "@actor/data/base.ts";
-import { TokenDocumentPF2e } from "@scene";
+import { ActorPF2e } from "./../actor/index.ts";
+import { PrototypeTokenPF2e } from "./../actor/data/base.ts";
+import { TokenDocumentPF2e } from "./index.ts";
 /** Check for auras containing newly-placed or moved tokens */
 declare const checkAuras: () => void;
 /** Returns true if this token has the default actor image or the default image for its actor type */

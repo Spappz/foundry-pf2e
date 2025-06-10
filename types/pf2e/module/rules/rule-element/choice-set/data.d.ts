@@ -1,6 +1,6 @@
-import { ItemType } from "@item/base/data/index.ts";
-import { PickableThing } from "@module/apps/pick-a-thing-prompt.ts";
-import { RawPredicate } from "@system/predication.ts";
+import { ItemType } from "./../../../item/base/data/index.ts";
+import { PickableThing } from "./../../../apps/pick-a-thing-prompt.ts";
+import { RawPredicate } from "./../../../system/predication.ts";
 import {
     DataUnionField,
     PredicateField,
@@ -9,10 +9,10 @@ import {
     StrictNumberField,
     StrictObjectField,
     StrictStringField,
-} from "@system/schema-data-fields.ts";
+} from "./../../../system/schema-data-fields.ts";
 import { RuleElementSchema, RuleElementSource } from "../data.ts";
 import fields = foundry.data.fields;
-import { ModelPropsFromSchema, SourceFromSchema } from "@common/data/fields.mjs";
+import { ModelPropsFromSchema, SourceFromSchema } from "./../../../../../foundry/common/data/fields.mjs";
 type ChoiceSetSchema = RuleElementSchema & {
     /**
      * The options from which the user can choose. If a string is provided, it is treated as a reference to a record in

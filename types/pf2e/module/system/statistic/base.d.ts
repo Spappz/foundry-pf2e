@@ -1,5 +1,5 @@
-import { ActorPF2e } from "@actor";
-import { ModifierPF2e } from "@actor/modifiers.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { ModifierPF2e } from "./../../actor/modifiers.ts";
 import { BaseStatisticData, BaseStatisticTraceData, StatisticData } from "./data.ts";
 /** Basic data forming any Pathfinder statistic */
 declare abstract class BaseStatistic<TActor extends ActorPF2e> {

@@ -1,6 +1,6 @@
-import Note from "@client/canvas/placeables/note.mjs";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { DocumentOwnershipLevel } from "@common/constants.mjs";
+import Note from "./../canvas/placeables/note.mjs";
+import { DatabaseUpdateCallbackOptions } from "./../../common/abstract/_types.mjs";
+import { DocumentOwnershipLevel } from "./../../common/constants.mjs";
 import { JournalPageSheet } from "../appv1/sheets/journal-page-sheet.mjs";
 import { BaseJournalEntryPage } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";

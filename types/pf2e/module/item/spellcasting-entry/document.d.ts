@@ -1,10 +1,10 @@
-import { ActorPF2e } from "@actor";
-import { AttributeString } from "@actor/types.ts";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { ItemPF2e, PhysicalItemPF2e, SpellPF2e } from "@item";
-import { MagicTradition } from "@item/spell/types.ts";
-import { ZeroToFour, ZeroToTen } from "@module/data.ts";
-import { Statistic } from "@system/statistic/index.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { ItemPF2e, PhysicalItemPF2e, SpellPF2e } from "./../index.ts";
+import { MagicTradition } from "./../spell/types.ts";
+import { ZeroToFour, ZeroToTen } from "./../../data.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { SpellCollection, SpellSlotGroupId } from "./collection.ts";
 import { SpellcastingEntrySource, SpellcastingEntrySystemData } from "./data.ts";
 import { CastOptions, SpellcastingCategory, SpellcastingEntry, SpellcastingSheetData } from "./types.ts";

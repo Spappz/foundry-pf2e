@@ -1,12 +1,12 @@
-import { CreatureTrait } from "@actor/creature/types.ts";
-import { HazardTrait } from "@actor/hazard/types.ts";
-import { AbilityTrait } from "@item/ability/index.ts";
-import { KingmakerTrait } from "@item/campaign-feature/types.ts";
-import { FeatTrait } from "@item/feat/types.ts";
-import { PhysicalItemTrait } from "@item/physical/data.ts";
+import { CreatureTrait } from "./../../../actor/creature/types.ts";
+import { HazardTrait } from "./../../../actor/hazard/types.ts";
+import { AbilityTrait } from "./../../../item/ability/index.ts";
+import { KingmakerTrait } from "./../../../item/campaign-feature/types.ts";
+import { FeatTrait } from "./../../../item/feat/types.ts";
+import { PhysicalItemTrait } from "./../../../item/physical/data.ts";
 import { SearchResult } from "minisearch";
 import { SortDirection } from "../data.ts";
-import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
+import { CompendiumIndexData } from "./../../../../../foundry/client/documents/collections/compendium-collection.mjs";
 interface CheckboxOption {
     label: string;
     selected: boolean;

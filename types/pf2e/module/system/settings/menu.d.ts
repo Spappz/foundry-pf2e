@@ -1,4 +1,4 @@
-import { SettingRegistration } from "@client/helpers/client-settings.mjs";
+import { SettingRegistration } from "./../../../../foundry/client/helpers/client-settings.mjs";
 import appv1 = foundry.appv1;
 declare abstract class SettingsMenuPF2e extends appv1.api.FormApplication {
     static readonly namespace: string;

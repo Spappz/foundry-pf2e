@@ -1,4 +1,4 @@
-import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import { ImageFilePath, VideoFilePath } from "./../constants.mjs";
 import { DocumentConstructionContext } from "../_types.mjs";
 import {
     DatabaseCreateCallbackOptions,

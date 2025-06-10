@@ -1,12 +1,12 @@
-import { ActorPF2e } from "@actor";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { SpellPF2e, WeaponPF2e, PhysicalItemPF2e } from "@item";
-import { RawItemChatData } from "@item/base/data/index.ts";
-import { TrickMagicItemEntry } from "@item/spellcasting-entry/trick.ts";
-import { ValueAndMax } from "@module/data.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { SpellPF2e, WeaponPF2e, PhysicalItemPF2e } from "./../index.ts";
+import { RawItemChatData } from "./../base/data/index.ts";
+import { TrickMagicItemEntry } from "./../spellcasting-entry/trick.ts";
+import { ValueAndMax } from "./../../data.ts";
 import { ConsumableSource, ConsumableSystemData } from "./data.ts";
 import { ConsumableCategory, ConsumableTrait, OtherConsumableTag } from "./types.ts";
-import { EnrichmentOptions } from "@client/applications/ux/text-editor.mjs";
+import { EnrichmentOptions } from "./../../../../foundry/client/applications/ux/text-editor.mjs";
 declare class ConsumablePF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     /** A cached copy of embeddedSpell, lazily regenerated every data preparation cycle */
     private _embeddedSpell;

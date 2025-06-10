@@ -1,5 +1,5 @@
-import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
-import Item from "@client/documents/item.mjs";
+import { ContextMenuEntry } from "./../../../applications/ux/context-menu.mjs";
+import Item from "./../../../documents/item.mjs";
 import DocumentDirectory, { DocumentDirectoryConfiguration } from "../document-directory.mjs";
 
 /**

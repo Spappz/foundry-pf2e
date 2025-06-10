@@ -1,4 +1,4 @@
-import { Point, PointArray } from "@common/_types.mjs";
+import { Point, PointArray } from "./../../../common/_types.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import Wall from "../placeables/wall.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";

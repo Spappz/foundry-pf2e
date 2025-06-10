@@ -1,5 +1,5 @@
-import DataModel from "@common/abstract/data.mjs";
-import { DataField, SchemaField } from "@common/data/fields.mjs";
+import DataModel from "./../../common/abstract/data.mjs";
+import { DataField, SchemaField } from "./../../common/data/fields.mjs";
 
 /**
  * A helper class which assists with localization and string translation

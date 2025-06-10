@@ -1,4 +1,4 @@
-import { User } from "@client/documents/_module.mjs";
+import { User } from "./../../documents/_module.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import AmbientLight from "../placeables/light.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";

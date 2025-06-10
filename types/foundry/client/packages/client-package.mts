@@ -1,4 +1,4 @@
-import Collection from "@common/utils/collection.mjs";
+import Collection from "./../../common/utils/collection.mjs";
 import { BasePackage, Module, RelatedPackage, System } from "./_module.mjs";
 import { PackageCompatibilityBadge, PackageManifestData } from "./_types.mjs";
 

@@ -1,10 +1,10 @@
-import { DocumentFlags, DocumentFlagsSource } from "@common/data/_types.mjs";
-import { MigrationRecord, OneToThree, PublicationData, Rarity } from "@module/data.ts";
-import { RuleElementSource } from "@module/rules/index.ts";
-import { Predicate } from "@system/predication.ts";
+import { DocumentFlags, DocumentFlagsSource } from "./../../../../../foundry/common/data/_types.mjs";
+import { MigrationRecord, OneToThree, PublicationData, Rarity } from "./../../../data.ts";
+import { RuleElementSource } from "./../../../rules/index.ts";
+import { Predicate } from "./../../../system/predication.ts";
 import { ItemTrait } from "../types.ts";
 import { ItemType } from "./index.ts";
-import type * as fields from "@common/data/fields.mjs";
+import type * as fields from "./../../../../../foundry/common/data/fields.mjs";
 type BaseItemSourcePF2e<
     TType extends ItemType,
     TSystemSource extends ItemSystemSource = ItemSystemSource,

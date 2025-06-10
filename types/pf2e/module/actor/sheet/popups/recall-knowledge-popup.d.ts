@@ -1,4 +1,4 @@
-import { CreatureIdentificationData } from "@module/recall-knowledge.ts";
+import { CreatureIdentificationData } from "./../../../recall-knowledge.ts";
 import appv1 = foundry.appv1;
 export declare class RecallKnowledgePopup extends appv1.api.Application {
     #private;

@@ -1,4 +1,4 @@
-import { DamageCategoryUnique, DamageType } from "@system/damage/types.ts";
+import { DamageCategoryUnique, DamageType } from "./../../module/system/damage/types.ts";
 import { energyDamageTypes } from "./traits.ts";
 declare const damageCategoriesUnique: Record<DamageCategoryUnique, string>;
 declare const materialDamageEffects: {

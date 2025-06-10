@@ -1,4 +1,4 @@
-import { SkillSlug } from "@actor/types.ts";
+import { SkillSlug } from "./../actor/types.ts";
 import { DCOptions } from "../dc.ts";
 import { PhysicalItemPF2e } from "./physical/index.ts";
 type MagicSkill = Extract<SkillSlug, "arcana" | "nature" | "religion" | "occultism">;

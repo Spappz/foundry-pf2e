@@ -1,14 +1,14 @@
-import { Rolled } from "@client/dice/roll.mjs";
-import { ImageFilePath } from "@common/constants.mjs";
-import { AbilityItemPF2e } from "@item";
-import { EffectTrait } from "@item/abstract-effect/types.ts";
-import { RangeData } from "@item/types.ts";
-import { WeaponTrait } from "@item/weapon/types.ts";
-import { CheckRoll } from "@system/check/index.ts";
-import { DamageRoll } from "@system/damage/roll.ts";
-import { DamageType } from "@system/damage/types.ts";
-import { AttackRollParams, DamageRollParams } from "@system/rolls.ts";
-import { Statistic } from "@system/statistic/index.ts";
+import { Rolled } from "./../../../../foundry/client/dice/roll.mjs";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { AbilityItemPF2e } from "./../../item/index.ts";
+import { EffectTrait } from "./../../item/abstract-effect/types.ts";
+import { RangeData } from "./../../item/types.ts";
+import { WeaponTrait } from "./../../item/weapon/types.ts";
+import { CheckRoll } from "./../../system/check/index.ts";
+import { DamageRoll } from "./../../system/damage/roll.ts";
+import { DamageType } from "./../../system/damage/types.ts";
+import { AttackRollParams, DamageRollParams } from "./../../system/rolls.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { CharacterPF2e } from "./document.ts";
 import fields = foundry.data.fields;
 declare class ElementalBlast {

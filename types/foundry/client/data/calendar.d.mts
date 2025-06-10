@@ -1,5 +1,5 @@
-import DataModel from "@common/abstract/data.mjs";
-import * as fields from "@common/data/fields.mjs";
+import DataModel from "./../../common/abstract/data.mjs";
+import * as fields from "./../../common/data/fields.mjs";
 import { CalendarConfig, TimeComponents, TimeFormatter } from "./_types.mjs";
 
 /**

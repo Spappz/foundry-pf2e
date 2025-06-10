@@ -1,10 +1,10 @@
-import { ActorPF2e } from "@actor";
-import { ConsumablePF2e, SpellPF2e, SpellcastingEntryPF2e } from "@item";
-import { SpellCollection } from "@item/spellcasting-entry/collection.ts";
-import { RitualSpellcasting } from "@item/spellcasting-entry/rituals.ts";
-import { BaseSpellcastingEntry } from "@item/spellcasting-entry/types.ts";
-import { Statistic } from "@system/statistic/statistic.ts";
-import { DelegatedCollection } from "@util";
+import { ActorPF2e } from "./index.ts";
+import { ConsumablePF2e, SpellPF2e, SpellcastingEntryPF2e } from "./../item/index.ts";
+import { SpellCollection } from "./../item/spellcasting-entry/collection.ts";
+import { RitualSpellcasting } from "./../item/spellcasting-entry/rituals.ts";
+import { BaseSpellcastingEntry } from "./../item/spellcasting-entry/types.ts";
+import { Statistic } from "./../system/statistic/statistic.ts";
+import { DelegatedCollection } from "./../../util/index.ts";
 import { CreatureSource } from "./data/index.ts";
 import { ActorCommitData } from "./types.ts";
 export declare class ActorSpellcasting<TActor extends ActorPF2e> extends DelegatedCollection<

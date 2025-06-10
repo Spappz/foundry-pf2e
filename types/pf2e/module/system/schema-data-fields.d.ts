@@ -1,21 +1,21 @@
-import { DataSchema } from "@common/abstract/_types.mjs";
-import { default as DataModel } from "@common/abstract/data.mjs";
+import { DataSchema } from "./../../../foundry/common/abstract/_types.mjs";
+import { default as DataModel } from "./../../../foundry/common/abstract/data.mjs";
 import {
     ArrayFieldOptions,
     DataFieldOptions,
     DataFieldValidationOptions,
     ObjectFieldOptions,
     StringFieldOptions,
-} from "@common/data/_types.mjs";
+} from "./../../../foundry/common/data/_types.mjs";
 import {
     CleanFieldOptions,
     MaybeSchemaProp,
     ModelPropFromDataField,
     SourceFromDataField,
     SourceFromSchema,
-} from "@common/data/fields.mjs";
-import { Predicate, PredicateStatement, RawPredicate } from "@system/predication.ts";
-import { SlugCamel } from "@util";
+} from "./../../../foundry/common/data/fields.mjs";
+import { Predicate, PredicateStatement, RawPredicate } from ".//predication.ts";
+import { SlugCamel } from "./../../util/index.ts";
 import fields = foundry.data.fields;
 import validation = foundry.data.validation;
 /** A `SchemaField` that preserves fields not declared in its `DataSchema` */

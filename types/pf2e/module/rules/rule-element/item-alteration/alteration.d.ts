@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { ItemPF2e } from "@item";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { ActorPF2e } from "./../../../actor/index.ts";
+import { ItemPF2e } from "./../../../item/index.ts";
+import { ItemSourcePF2e } from "./../../../item/base/data/index.ts";
 import { AELikeChangeMode } from "../ae-like.ts";
 import { RuleElementPF2e } from "../base.ts";
 import { ResolvableValueField } from "../data.ts";

@@ -1,7 +1,7 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
-import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
-import { Token } from "@client/canvas/placeables/_module.mjs";
-import { Combat, Combatant } from "@client/documents/_module.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "./../../../applications/_types.mjs";
+import { ContextMenuEntry } from "./../../../applications/ux/context-menu.mjs";
+import { Token } from "./../../../canvas/placeables/_module.mjs";
+import { Combat, Combatant } from "./../../../documents/_module.mjs";
 import HandlebarsApplicationMixin, {
     HandlebarsRenderOptions,
     HandlebarsTemplatePart,

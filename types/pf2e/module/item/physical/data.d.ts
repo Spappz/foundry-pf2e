@@ -1,8 +1,8 @@
-import { AttributeString } from "@actor/types.ts";
-import { ImageFilePath } from "@common/constants.mjs";
-import { PhysicalItemSource } from "@item/base/data/index.ts";
-import { Size, TraitsWithRarity, ZeroToTwo } from "@module/data.ts";
-import { MaterialDamageEffect } from "@system/damage/types.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { PhysicalItemSource } from "./../base/data/index.ts";
+import { Size, TraitsWithRarity, ZeroToTwo } from "./../../data.ts";
+import { MaterialDamageEffect } from "./../../system/damage/types.ts";
 import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource } from "../base/data/system.ts";
 import { ITEM_CARRY_TYPES } from "../base/data/values.ts";
 import { CoinsPF2e } from "./helpers.ts";

@@ -1,7 +1,7 @@
-import { DocumentSheetV1Options } from "@client/appv1/api/document-sheet-v1.mjs";
-import { ItemSheetDataPF2e, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
-import { SheetOptions } from "@module/sheet/helpers.ts";
-import { DamageCategoryUnique } from "@system/damage/types.ts";
+import { DocumentSheetV1Options } from "./../../../../foundry/client/appv1/api/document-sheet-v1.mjs";
+import { ItemSheetDataPF2e, ItemSheetPF2e } from "./../base/sheet/sheet.ts";
+import { SheetOptions } from "./../../sheet/helpers.ts";
+import { DamageCategoryUnique } from "./../../system/damage/types.ts";
 import { MeleePF2e } from "./index.ts";
 export declare class MeleeSheetPF2e extends ItemSheetPF2e<MeleePF2e> {
     getData(options?: Partial<DocumentSheetV1Options>): Promise<MeleeSheetData>;

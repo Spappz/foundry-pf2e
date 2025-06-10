@@ -1,6 +1,6 @@
-import { ModifierType } from "@actor/modifiers.ts";
-import { ActorType } from "@actor/types.ts";
-import { DamageCategoryUnique, DamageType } from "@system/damage/types.ts";
+import { ModifierType } from "./../../actor/modifiers.ts";
+import { ActorType } from "./../../actor/types.ts";
+import { DamageCategoryUnique, DamageType } from "./../../system/damage/types.ts";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleValue } from "./data.ts";
 import fields = foundry.data.fields;

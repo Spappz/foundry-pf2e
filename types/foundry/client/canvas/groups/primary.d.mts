@@ -1,4 +1,4 @@
-import Collection from "@common/utils/collection.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import CachedContainer from "../containers/advanced/cached-container.mjs";
 import SpriteMesh from "../containers/elements/sprite-mesh.mjs";
 import { CanvasQuadtree } from "../geometry/quad-tree.mjs";

@@ -1,9 +1,9 @@
-import { HazardPF2e } from "@actor";
-import { TraitViewData } from "@actor/data/base.ts";
-import { ActorSheetDataPF2e } from "@actor/sheet/data-types.ts";
-import { SaveType } from "@actor/types.ts";
-import { FormSelectOption } from "@client/applications/forms/fields.mjs";
-import { AbilityItemPF2e } from "@item";
+import { HazardPF2e } from "./../index.ts";
+import { TraitViewData } from "./../data/base.ts";
+import { ActorSheetDataPF2e } from "./../sheet/data-types.ts";
+import { SaveType } from "./../types.ts";
+import { FormSelectOption } from "./../../../../foundry/client/applications/forms/fields.mjs";
+import { AbilityItemPF2e } from "./../../item/index.ts";
 interface HazardSheetData extends ActorSheetDataPF2e<HazardPF2e> {
     actions: HazardActionSheetData;
     complexityOptions: FormSelectOption[];

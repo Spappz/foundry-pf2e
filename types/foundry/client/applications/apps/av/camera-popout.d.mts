@@ -2,8 +2,8 @@ import {
     ApplicationConfiguration,
     ApplicationPosition,
     ApplicationRenderContext,
-} from "@client/applications/_types.mjs";
-import User from "@client/documents/user.mjs";
+} from "./../../../applications/_types.mjs";
+import User from "./../../../documents/user.mjs";
 import ApplicationV2 from "../../api/application.mjs";
 import HandlebarsApplicationMixin, {
     HandlebarsRenderOptions,

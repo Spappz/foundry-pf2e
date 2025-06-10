@@ -1,6 +1,6 @@
-import { Application } from "@client/appv1/api/_module.mjs";
-import { ClientDocument } from "@client/documents/abstract/client-document.mjs";
-import { DataField } from "@common/data/fields.mjs";
+import { Application } from "./../../appv1/api/_module.mjs";
+import { ClientDocument } from "./../../documents/abstract/client-document.mjs";
+import { DataField } from "./../../../common/data/fields.mjs";
 import { ApplicationFormConfiguration, ApplicationRenderContext } from "../_types.mjs";
 import { HandlebarsApplicationMixin, HandlebarsRenderOptions, HandlebarsTemplatePart } from "../api/_module.mjs";
 import ApplicationV2 from "../api/application.mjs";

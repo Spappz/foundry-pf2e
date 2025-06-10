@@ -1,4 +1,4 @@
-import { ActorPF2e } from "@actor";
+import { ActorPF2e } from "./../../index.ts";
 import appv1 = foundry.appv1;
 interface PopupData extends appv1.api.FormApplicationData<ActorPF2e> {
     selection?: string[];

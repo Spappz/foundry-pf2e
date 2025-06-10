@@ -1,5 +1,5 @@
-import { TextureTransitionType } from "@client/canvas/rendering/filters/transition.mjs";
-import { HexColorString } from "@common/constants.mjs";
+import { TextureTransitionType } from "./../../../../foundry/client/canvas/rendering/filters/transition.mjs";
+import { HexColorString } from "./../../../../foundry/common/constants.mjs";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, RuleElementSchema } from "./data.ts";
 import fields = foundry.data.fields;

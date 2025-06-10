@@ -1,5 +1,5 @@
-import { RegionEventType } from "@client/data/region-behaviors/base.mjs";
-import { ModelPropsFromSchema, SetField, SourceFromSchema, StringField } from "@common/data/fields.mjs";
+import { RegionEventType } from "./../../../../foundry/client/data/region-behaviors/base.mjs";
+import { ModelPropsFromSchema, SetField, SourceFromSchema, StringField } from "./../../../../foundry/common/data/fields.mjs";
 import { RegionBehaviorPF2e } from "./document.ts";
 import { RegionEventPF2e } from "./types.ts";
 declare class EnvironmentBehaviorType extends foundry.data.regionBehaviors.RegionBehaviorType<

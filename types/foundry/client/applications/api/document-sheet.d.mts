@@ -1,6 +1,6 @@
-import User from "@client/documents/user.mjs";
-import { DatabaseCreateOperation, DatabaseUpdateOperation, DataSchema } from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
+import User from "./../../documents/user.mjs";
+import { DatabaseCreateOperation, DatabaseUpdateOperation, DataSchema } from "./../../../common/abstract/_types.mjs";
+import Document from "./../../../common/abstract/document.mjs";
 import {
     ApplicationClosingOptions,
     ApplicationConfiguration,

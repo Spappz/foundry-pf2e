@@ -1,7 +1,7 @@
-import { ActorPF2e } from "@actor";
-import { HexColorString } from "@common/constants.mjs";
-import { ItemPF2e, MeleePF2e, PhysicalItemPF2e, WeaponPF2e } from "@item";
-import { ZeroToFour } from "@module/data.ts";
+import { ActorPF2e } from "./index.ts";
+import { HexColorString } from "./../../../foundry/common/constants.mjs";
+import { ItemPF2e, MeleePF2e, PhysicalItemPF2e, WeaponPF2e } from "./../item/index.ts";
+import { ZeroToFour } from "./../data.ts";
 import { ActorSourcePF2e } from "./data/index.ts";
 import { ModifierPF2e } from "./modifiers.ts";
 import { NPCStrike } from "./npc/data.ts";

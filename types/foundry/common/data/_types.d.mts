@@ -1,6 +1,6 @@
-import { CustomFormGroup, CustomFormInput, FormSelectOption } from "@client/applications/forms/fields.mjs";
-import { DocumentUUID } from "@client/utils/_module.mjs";
-import { DocumentType, FileCategory, FilePath } from "@common/constants.mjs";
+import { CustomFormGroup, CustomFormInput, FormSelectOption } from "./../../client/applications/forms/fields.mjs";
+import { DocumentUUID } from "./../../client/utils/_module.mjs";
+import { DocumentType, FileCategory, FilePath } from "./../constants.mjs";
 import {
     DataField,
     DocumentFlagsField,

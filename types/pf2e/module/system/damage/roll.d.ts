@@ -5,12 +5,12 @@ import {
     RollParseNode,
     RollRenderOptions,
     Rolled,
-} from "@client/dice/_module.mjs";
-import { DiceTerm, RollTerm, RollTermData } from "@client/dice/terms/_module.mjs";
-import { DamageRollFlag } from "@module/chat-message/index.ts";
-import { UserPF2e } from "@module/user/index.ts";
-import { DegreeOfSuccessIndex } from "@system/degree-of-success.ts";
-import { DiceRollOptionsPF2e } from "@system/rolls.ts";
+} from "./../../../../foundry/client/dice/_module.mjs";
+import { DiceTerm, RollTerm, RollTermData } from "./../../../../foundry/client/dice/terms/_module.mjs";
+import { DamageRollFlag } from "./../../chat-message/index.ts";
+import { UserPF2e } from "./../../user/index.ts";
+import { DegreeOfSuccessIndex } from "./../degree-of-success.ts";
+import { DiceRollOptionsPF2e } from "./../rolls.ts";
 import { default as Peggy } from "peggy";
 import { InstancePool } from "./terms.ts";
 import { DamageCategory, DamageIRBypassData, DamageTemplate, DamageType, MaterialDamageEffect } from "./types.ts";

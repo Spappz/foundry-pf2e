@@ -1,9 +1,9 @@
-import { DamageDicePF2e, ModifierPF2e } from "@actor/modifiers.ts";
-import { RollOrigin, RollTarget } from "@actor/roll-context/types.ts";
-import { ImmunityType, ResistanceType } from "@actor/types.ts";
-import { ZeroToTwo } from "@module/data.ts";
-import { DegreeOfSuccessString } from "@system/degree-of-success.ts";
-import { BaseRollContext } from "@system/rolls.ts";
+import { DamageDicePF2e, ModifierPF2e } from "./../../actor/modifiers.ts";
+import { RollOrigin, RollTarget } from "./../../actor/roll-context/types.ts";
+import { ImmunityType, ResistanceType } from "./../../actor/types.ts";
+import { ZeroToTwo } from "./../../data.ts";
+import { DegreeOfSuccessString } from "./../degree-of-success.ts";
+import { BaseRollContext } from "./../rolls.ts";
 import { DamageRoll } from "./roll.ts";
 import { DAMAGE_CATEGORIES_UNIQUE, DAMAGE_DICE_FACES, DAMAGE_DIE_SIZES, DAMAGE_TYPES } from "./values.ts";
 type DamageCategoryUnique = (typeof DAMAGE_CATEGORIES_UNIQUE)[number];

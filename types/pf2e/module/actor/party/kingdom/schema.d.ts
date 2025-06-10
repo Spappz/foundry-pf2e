@@ -1,9 +1,9 @@
-import { RawModifier } from "@actor/modifiers.ts";
-import { DataSchema } from "@common/abstract/_types.mjs";
-import { ImageFilePath } from "@common/constants.mjs";
-import { ItemUUID } from "@common/documents/_module.mjs";
-import { ZeroToFour } from "@module/data.ts";
-import { DataUnionField, RecordField, StrictBooleanField, StrictStringField } from "@system/schema-data-fields.ts";
+import { RawModifier } from "./../../modifiers.ts";
+import { DataSchema } from "./../../../../../foundry/common/abstract/_types.mjs";
+import { ImageFilePath } from "./../../../../../foundry/common/constants.mjs";
+import { ItemUUID } from "./../../../../../foundry/common/documents/_module.mjs";
+import { ZeroToFour } from "./../../../data.ts";
+import { DataUnionField, RecordField, StrictBooleanField, StrictStringField } from "./../../../system/schema-data-fields.ts";
 import {
     FameType,
     KingdomAbility,

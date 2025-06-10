@@ -1,4 +1,4 @@
-import { PreciousMaterialType } from "@item/physical/types.ts";
+import { PreciousMaterialType } from "./../physical/types.ts";
 import {
     MELEE_WEAPON_GROUPS,
     WEAPON_CATEGORIES,

@@ -1,10 +1,10 @@
-import type { DialogV2 } from "@client/applications/api/_module.mjs";
-import type { CombatTrackerConfig } from "@client/applications/apps/_module.mjs";
-import SettingsConfig from "@client/applications/settings/config.mjs";
-import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
-import Canvas from "@client/canvas/board.mjs";
-import LightingLayer from "@client/canvas/layers/lighting.mjs";
-import Token from "@client/canvas/placeables/token.mjs";
+import type { DialogV2 } from "./../applications/api/_module.mjs";
+import type { CombatTrackerConfig } from "./../applications/apps/_module.mjs";
+import SettingsConfig from "./../applications/settings/config.mjs";
+import { ContextMenuEntry } from "./../applications/ux/context-menu.mjs";
+import Canvas from "./../canvas/board.mjs";
+import LightingLayer from "./../canvas/layers/lighting.mjs";
+import Token from "./../canvas/placeables/token.mjs";
 import {
     Actor,
     Combat,
@@ -15,10 +15,10 @@ import {
     Scene,
     TokenDocument,
     User,
-} from "@client/documents/_module.mjs";
-import { DocumentUUID } from "@client/utils/helpers.mjs";
-import { DatabaseCreateOperation } from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
+} from "./../documents/_module.mjs";
+import { DocumentUUID } from "./../utils/helpers.mjs";
+import { DatabaseCreateOperation } from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
 import type ApplicationV2 from "../applications/api/application.mjs";
 import type TokenHUD from "../applications/hud/token-hud.mjs";
 import { ChatLog, CompendiumDirectory, ItemDirectory } from "../applications/sidebar/tabs/_module.mjs";

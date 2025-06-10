@@ -1,13 +1,13 @@
-import { ActorPF2e } from "@actor";
-import { StrikeData } from "@actor/data/base.ts";
-import { AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
-import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
-import { PhysicalItemPF2e, ItemPF2e } from "@item";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
-import { Coins } from "@item/physical/data.ts";
-import { DropCanvasItemDataPF2e } from "@module/canvas/drop-canvas-data.ts";
-import { BasicConstructorOptions, TagSelectorOptions, TagSelectorType } from "@system/tag-selector/index.ts";
+import { ActorPF2e } from "./../index.ts";
+import { StrikeData } from "./../data/base.ts";
+import { AppV1RenderOptions } from "./../../../../foundry/client/appv1/api/application-v1.mjs";
+import { ActorSheetOptions } from "./../../../../foundry/client/appv1/sheets/actor-sheet.mjs";
+import { DropCanvasData } from "./../../../../foundry/client/helpers/hooks.mjs";
+import { PhysicalItemPF2e, ItemPF2e } from "./../../item/index.ts";
+import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
+import { Coins } from "./../../item/physical/data.ts";
+import { DropCanvasItemDataPF2e } from "./../../canvas/drop-canvas-data.ts";
+import { BasicConstructorOptions, TagSelectorOptions, TagSelectorType } from "./../../system/tag-selector/index.ts";
 import { Plugin } from "prosemirror-state";
 import {
     ActorSheetDataPF2e,
@@ -17,7 +17,7 @@ import {
     SheetInventory,
 } from "./data-types.ts";
 import { ItemSummaryRenderer } from "./item-summary-renderer.ts";
-import Tabs from "@client/applications/ux/tabs.mjs";
+import Tabs from "./../../../../foundry/client/applications/ux/tabs.mjs";
 /**
  * Extend the basic ActorSheet class to do all the PF2e things!
  * This sheet is an Abstract layer which is not used.

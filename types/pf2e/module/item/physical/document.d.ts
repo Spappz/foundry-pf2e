@@ -1,16 +1,16 @@
-import { ActorPF2e } from "@actor";
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { DocumentConstructionContext } from "./../../../../foundry/common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import { ItemPF2e, ContainerPF2e } from "@item";
-import { ItemSourcePF2e, PhysicalItemSource, RawItemChatData, TraitChatData } from "@item/base/data/index.ts";
-import { Rarity, Size, ZeroToTwo } from "@module/data.ts";
-import { EffectSpinoff } from "@module/rules/rule-element/effect-spinoff/spinoff.ts";
+} from "./../../../../foundry/common/abstract/_types.mjs";
+import { ItemPF2e, ContainerPF2e } from "./../index.ts";
+import { ItemSourcePF2e, PhysicalItemSource, RawItemChatData, TraitChatData } from "./../base/data/index.ts";
+import { Rarity, Size, ZeroToTwo } from "./../../data.ts";
+import { EffectSpinoff } from "./../../rules/rule-element/effect-spinoff/spinoff.ts";
 import { Bulk } from "./bulk.ts";
 import {
     IdentificationStatus,

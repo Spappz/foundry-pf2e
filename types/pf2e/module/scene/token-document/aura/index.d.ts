@@ -1,8 +1,8 @@
-import { AuraAppearanceData, AuraData, AuraEffectData } from "@actor/types.ts";
-import { Point } from "@common/_types.mjs";
-import { ItemTrait } from "@item/base/data/system.ts";
-import { EffectAreaSquare } from "@module/canvas/effect-area-square.ts";
-import { ScenePF2e, TokenDocumentPF2e } from "@scene";
+import { AuraAppearanceData, AuraData, AuraEffectData } from "./../../../actor/types.ts";
+import { Point } from "./../../../../../foundry/common/_types.mjs";
+import { ItemTrait } from "./../../../item/base/data/system.ts";
+import { EffectAreaSquare } from "./../../../canvas/effect-area-square.ts";
+import { ScenePF2e, TokenDocumentPF2e } from "./../../index.ts";
 import { TokenAuraData } from "./types.ts";
 declare class TokenAura implements TokenAuraData {
     #private;

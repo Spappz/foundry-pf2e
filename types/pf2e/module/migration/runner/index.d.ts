@@ -1,8 +1,8 @@
-import { ActorPF2e } from "@actor";
-import { default as CompendiumCollection } from "@client/documents/collections/compendium-collection.mjs";
-import { ItemPF2e } from "@item";
-import { MigrationBase } from "@module/migration/base.ts";
-import { MigrationRunnerBase } from "@module/migration/runner/base.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { default as CompendiumCollection } from "./../../../../foundry/client/documents/collections/compendium-collection.mjs";
+import { ItemPF2e } from "./../../item/index.ts";
+import { MigrationBase } from "./../../migration/base.ts";
+import { MigrationRunnerBase } from "./../../migration/runner/base.ts";
 export declare class MigrationRunner extends MigrationRunnerBase {
     #private;
     needsMigration(): boolean;

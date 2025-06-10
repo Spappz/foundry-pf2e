@@ -1,4 +1,4 @@
-import { ClientDocument } from "@client/documents/abstract/client-document.mjs";
+import { ClientDocument } from "./../documents/abstract/client-document.mjs";
 
 export interface HTMLSecretContentCallback {
     /**

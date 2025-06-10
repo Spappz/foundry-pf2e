@@ -1,4 +1,4 @@
-import { ApplicationV1Options } from "@client/appv1/api/application-v1.mjs";
+import { ApplicationV1Options } from "./../../appv1/api/application-v1.mjs";
 import WorldCollection from "../abstract/world-collection.mjs";
 import Folder from "../folder.mjs";
 

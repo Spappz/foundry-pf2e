@@ -1,4 +1,4 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, UserAction } from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, UserAction } from "./../constants.mjs";
 import { DocumentConstructionContext } from "../_types.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import { TombstoneDataSchema } from "../data/data.mjs";

@@ -1,5 +1,5 @@
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
 import { Actor, BaseActorDelta, BaseToken, BaseUser, TokenDocument } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 

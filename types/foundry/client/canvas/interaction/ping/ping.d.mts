@@ -1,6 +1,6 @@
-import { CanvasAnimationData } from "@client/canvas/animation/_types.mjs";
-import { Point } from "@common/_types.mjs";
-import Color from "@common/utils/color.mjs";
+import { CanvasAnimationData } from "./../../../canvas/animation/_types.mjs";
+import { Point } from "./../../../../common/_types.mjs";
+import Color from "./../../../../common/utils/color.mjs";
 import { PingOptions } from "../_types.mjs";
 
 /**

@@ -1,7 +1,7 @@
-import { TrackedAttributesDescription } from "@client/_types.mjs";
-import { TurnMarkerData } from "@client/canvas/placeables/tokens/_module.mjs";
-import CombatConfiguration from "@client/data/combat-config.mjs";
-import { SettingConfig } from "@common/_types.mjs";
+import { TrackedAttributesDescription } from "./../../_types.mjs";
+import { TurnMarkerData } from "./../../canvas/placeables/tokens/_module.mjs";
+import CombatConfiguration from "./../../data/combat-config.mjs";
+import { SettingConfig } from "./../../../common/_types.mjs";
 import { ApplicationConfiguration, FormFooterButton } from "../_types.mjs";
 import {
     ApplicationV2,

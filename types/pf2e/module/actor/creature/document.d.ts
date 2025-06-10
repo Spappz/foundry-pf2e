@@ -1,24 +1,24 @@
-import { ActorPF2e, PartyPF2e } from "@actor";
-import { HitPointsSummary } from "@actor/base.ts";
-import { CreatureSource } from "@actor/data/index.ts";
-import { StatisticModifier } from "@actor/modifiers.ts";
-import { ActorSpellcasting } from "@actor/spellcasting.ts";
-import { MovementType, SaveType, SkillSlug } from "@actor/types.ts";
-import { Rolled } from "@client/dice/_module.mjs";
+import { ActorPF2e, PartyPF2e } from "./../index.ts";
+import { HitPointsSummary } from "./../base.ts";
+import { CreatureSource } from "./../data/index.ts";
+import { StatisticModifier } from "./../modifiers.ts";
+import { ActorSpellcasting } from "./../spellcasting.ts";
+import { MovementType, SaveType, SkillSlug } from "./../types.ts";
+import { Rolled } from "./../../../../foundry/client/dice/_module.mjs";
 import {
     DatabaseDeleteCallbackOptions,
     DatabaseDeleteOperation,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import { ArmorPF2e, ItemPF2e, PhysicalItemPF2e, ShieldPF2e } from "@item";
-import { ItemType } from "@item/base/data/index.ts";
-import { ItemCarryType } from "@item/physical/data.ts";
-import { ActiveEffectPF2e } from "@module/active-effect.ts";
-import { Rarity, ZeroToTwo } from "@module/data.ts";
-import { TokenDocumentPF2e } from "@scene";
-import { CheckRoll } from "@system/check/index.ts";
-import { Statistic, StatisticDifficultyClass, ArmorStatistic } from "@system/statistic/index.ts";
-import { PerceptionStatistic } from "@system/statistic/perception.ts";
+} from "./../../../../foundry/common/abstract/_types.mjs";
+import { ArmorPF2e, ItemPF2e, PhysicalItemPF2e, ShieldPF2e } from "./../../item/index.ts";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { ItemCarryType } from "./../../item/physical/data.ts";
+import { ActiveEffectPF2e } from "./../../active-effect.ts";
+import { Rarity, ZeroToTwo } from "./../../data.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { CheckRoll } from "./../../system/check/index.ts";
+import { Statistic, StatisticDifficultyClass, ArmorStatistic } from "./../../system/statistic/index.ts";
+import { PerceptionStatistic } from "./../../system/statistic/perception.ts";
 import { CreatureSpeeds, CreatureSystemData, LabeledSpeed, VisionLevel } from "./data.ts";
 import {
     CreatureTrait,

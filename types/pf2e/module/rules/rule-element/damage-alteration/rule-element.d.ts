@@ -1,5 +1,5 @@
-import { DamageType } from "@system/damage/types.ts";
-import { StrictArrayField } from "@system/schema-data-fields.ts";
+import { DamageType } from "./../../../system/damage/types.ts";
+import { StrictArrayField } from "./../../../system/schema-data-fields.ts";
 import { AELikeChangeMode } from "../ae-like.ts";
 import { ModelPropsFromRESchema, RuleElementSchema } from "../data.ts";
 import { ResolvableValueField, RuleElementPF2e } from "../index.ts";

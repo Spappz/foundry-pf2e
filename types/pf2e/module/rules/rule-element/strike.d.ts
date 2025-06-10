@@ -1,9 +1,9 @@
-import { ActorType, CharacterPF2e, NPCPF2e } from "@actor";
-import { ImageFilePath } from "@common/constants.mjs";
-import { NPCAttackTrait } from "@item/melee/types.ts";
-import { BaseShieldType } from "@item/shield/types.ts";
-import { BaseWeaponType, OtherWeaponTag, WeaponCategory } from "@item/weapon/types.ts";
-import { DamageDieSize, DamageType } from "@system/damage/index.ts";
+import { ActorType, CharacterPF2e, NPCPF2e } from "./../../actor/index.ts";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { NPCAttackTrait } from "./../../item/melee/types.ts";
+import { BaseShieldType } from "./../../item/shield/types.ts";
+import { BaseWeaponType, OtherWeaponTag, WeaponCategory } from "./../../item/weapon/types.ts";
+import { DamageDieSize, DamageType } from "./../../system/damage/index.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

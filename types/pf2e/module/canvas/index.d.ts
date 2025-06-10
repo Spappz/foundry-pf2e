@@ -4,7 +4,7 @@ import {
     RegionDocumentPF2e,
     ScenePF2e,
     TokenDocumentPF2e,
-} from "@scene/index.ts";
+} from "./../scene/index.ts";
 import { AmbientLightPF2e } from "./ambient-light.ts";
 import { EffectsCanvasGroupPF2e } from "./group/effects.ts";
 import { LightingLayerPF2e } from "./layer/lighting.ts";

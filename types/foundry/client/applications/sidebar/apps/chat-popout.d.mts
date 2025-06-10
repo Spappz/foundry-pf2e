@@ -3,8 +3,8 @@ import {
     ApplicationConfiguration,
     ApplicationRenderContext,
     ApplicationRenderOptions,
-} from "@client/applications/_module.mjs";
-import ChatMessage from "@client/documents/chat-message.mjs";
+} from "./../../../applications/_module.mjs";
+import ChatMessage from "./../../../documents/chat-message.mjs";
 import ApplicationV2 from "../../api/application.mjs";
 
 interface ChatPopoutConfiguration extends ApplicationConfiguration {

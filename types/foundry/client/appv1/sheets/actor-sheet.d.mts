@@ -1,5 +1,5 @@
-import { ActiveEffect, ActiveEffectSource, Actor, Folder, Item, TokenDocument } from "@client/documents/_module.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
+import { ActiveEffect, ActiveEffectSource, Actor, Folder, Item, TokenDocument } from "./../../documents/_module.mjs";
+import { DropCanvasData } from "./../../helpers/hooks.mjs";
 import {
     ApplicationV1HeaderButton,
     DocumentSheet,

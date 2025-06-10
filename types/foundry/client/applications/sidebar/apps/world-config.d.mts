@@ -2,8 +2,8 @@ import {
     ApplicationConfiguration,
     ApplicationFormConfiguration,
     ApplicationRenderContext,
-} from "@client/applications/_module.mjs";
-import World from "@client/packages/world.mjs";
+} from "./../../../applications/_module.mjs";
+import World from "./../../../packages/world.mjs";
 import ApplicationV2 from "../../api/application.mjs";
 import HandlebarsApplicationMixin, { HandlebarsTemplatePart } from "../../api/handlebars-application.mjs";
 

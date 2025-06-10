@@ -1,4 +1,4 @@
-import { ImageFilePath } from "@common/constants.mjs";
+import { ImageFilePath } from "./../constants.mjs";
 import { DatabaseUpdateCallbackOptions, Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseScene, BaseUser } from "./_module.mjs";

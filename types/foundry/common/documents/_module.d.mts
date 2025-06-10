@@ -1,4 +1,4 @@
-import { WorldDocumentType } from "@common/constants.mjs";
+import { WorldDocumentType } from "./../constants.mjs";
 
 export { ActiveEffectSource, default as BaseActiveEffect } from "./active-effect.mjs";
 export { default as BaseActorDelta } from "./actor-delta.mjs";

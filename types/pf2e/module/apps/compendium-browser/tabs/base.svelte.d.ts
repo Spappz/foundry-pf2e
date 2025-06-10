@@ -2,7 +2,7 @@ import { default as MiniSearch } from "minisearch";
 import { CompendiumBrowser, CompendiumBrowserOpenTabOptions } from "../browser";
 import { BrowserTabs, ContentTabName } from "../data.ts";
 import { BrowserFilter, CheckboxOptions, CompendiumBrowserIndexData, RangesInputData, TraitData } from "./data.ts";
-import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
+import { CompendiumIndexData } from "./../../../../../foundry/client/documents/collections/compendium-collection.mjs";
 export declare abstract class CompendiumBrowserTab {
     #private;
     /** A reference to the parent CompendiumBrowser */

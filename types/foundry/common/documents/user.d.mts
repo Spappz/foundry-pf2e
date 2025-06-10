@@ -5,7 +5,7 @@ import {
     UserPermission,
     UserRole,
     UserRoleName,
-} from "@common/constants.mjs";
+} from "./../constants.mjs";
 import Document, { DocumentMetadata } from "../abstract/document.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseActor } from "./_module.mjs";

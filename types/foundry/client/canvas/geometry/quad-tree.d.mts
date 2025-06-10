@@ -1,4 +1,4 @@
-import { Rectangle } from "@common/_types.mjs";
+import { Rectangle } from "./../../../common/_types.mjs";
 
 export interface QuadtreeObject<
     TObject extends object = object,

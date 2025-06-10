@@ -1,4 +1,4 @@
-import { CollectionGetOptions } from "@common/utils/collection.mjs";
+import { CollectionGetOptions } from "./../../foundry/common/utils/collection.mjs";
 /** A proxy for a Collection that does not inherit from it, allowing it to work for getProperty() calls */
 export declare class DelegatedCollection<V> {
     #private;

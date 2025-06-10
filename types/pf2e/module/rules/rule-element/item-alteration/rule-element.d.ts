@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { ItemPF2e } from "@item";
-import { ItemType } from "@item/base/data/index.ts";
+import { ActorPF2e } from "./../../../actor/index.ts";
+import { ItemPF2e } from "./../../../item/index.ts";
+import { ItemType } from "./../../../item/base/data/index.ts";
 import { RuleElementPF2e } from "../base.ts";
 import { ModelPropsFromRESchema, RuleElementSchema } from "../data.ts";
 import { ItemAlterationSchema } from "./alteration.ts";

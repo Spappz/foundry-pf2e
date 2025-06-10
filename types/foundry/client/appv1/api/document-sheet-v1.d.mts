@@ -1,6 +1,6 @@
-import ProseMirrorEditor, { EditorCreateOptions } from "@client/applications/ux/prosemirror-editor.mjs";
-import User from "@client/documents/user.mjs";
-import Document from "@common/abstract/document.mjs";
+import ProseMirrorEditor, { EditorCreateOptions } from "./../../applications/ux/prosemirror-editor.mjs";
+import User from "./../../documents/user.mjs";
+import Document from "./../../../common/abstract/document.mjs";
 import HTMLSecret from "../../applications/html-secret.mjs";
 import { AppV1RenderOptions, ApplicationV1HeaderButton } from "./application-v1.mjs";
 import FormApplication, { FormApplicationOptions } from "./form-application-v1.mjs";

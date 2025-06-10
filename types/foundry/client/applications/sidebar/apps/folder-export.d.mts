@@ -1,4 +1,4 @@
-import { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.mjs";
+import { HandlebarsRenderOptions } from "./../../../applications/api/handlebars-application.mjs";
 import DialogV2, { DialogV2Configuration } from "../../api/dialog.mjs";
 
 /**

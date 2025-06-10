@@ -1,4 +1,4 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "./../../../applications/_types.mjs";
 import HandlebarsApplicationMixin, {
     HandlebarsRenderOptions,
     HandlebarsTemplatePart,

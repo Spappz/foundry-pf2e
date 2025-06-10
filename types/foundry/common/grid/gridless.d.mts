@@ -1,4 +1,4 @@
-import { MovementDirection } from "@common/constants.mjs";
+import { MovementDirection } from "./../constants.mjs";
 import { Point, Rectangle } from "../_types.mjs";
 import { BaseGrid } from "./base.mjs";
 

@@ -1,9 +1,9 @@
-import { DataFieldOptions } from "@common/data/_types.mjs";
-import { ItemPF2e } from "@item";
-import { ItemSourcePF2e, ItemType } from "@item/base/data/index.ts";
-import { ItemTrait } from "@item/base/types.ts";
-import { DamageType } from "@system/damage/types.ts";
-import { PredicateField, SlugField, StrictNumberField } from "@system/schema-data-fields.ts";
+import { DataFieldOptions } from "./../../../../../foundry/common/data/_types.mjs";
+import { ItemPF2e } from "./../../../item/index.ts";
+import { ItemSourcePF2e, ItemType } from "./../../../item/base/data/index.ts";
+import { ItemTrait } from "./../../../item/base/types.ts";
+import { DamageType } from "./../../../system/damage/types.ts";
+import { PredicateField, SlugField, StrictNumberField } from "./../../../system/schema-data-fields.ts";
 import { AELikeChangeMode } from "../ae-like.ts";
 import fields = foundry.data.fields;
 import validation = foundry.data.validation;

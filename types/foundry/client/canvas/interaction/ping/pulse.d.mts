@@ -1,5 +1,5 @@
-import { CanvasAnimationData } from "@client/canvas/animation/_types.mjs";
-import { Point } from "@common/_types.mjs";
+import { CanvasAnimationData } from "./../../../canvas/animation/_types.mjs";
+import { Point } from "./../../../../common/_types.mjs";
 import { PulsePingOptions } from "../_types.mjs";
 import Ping from "./ping.mjs";
 

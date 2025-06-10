@@ -1,4 +1,4 @@
-import DocumentDirectory from "@client/applications/sidebar/document-directory.mjs";
+import DocumentDirectory from "./../../applications/sidebar/document-directory.mjs";
 import WorldCollection from "../abstract/world-collection.mjs";
 import Macro from "../macro.mjs";
 

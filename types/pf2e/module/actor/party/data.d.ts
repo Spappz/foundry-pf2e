@@ -1,12 +1,12 @@
-import { ActorAttributes, ActorDetails, BaseActorSourcePF2e } from "@actor/data/base.ts";
-import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
+import { ActorAttributes, ActorDetails, BaseActorSourcePF2e } from "./../data/base.ts";
+import { ActorSystemModel, ActorSystemSchema } from "./../data/model.ts";
 import {
     ModelPropFromDataField,
     ModelPropsFromSchema,
     SourceFromDataField,
     SourceFromSchema,
-} from "@common/data/fields.mjs";
-import { ActorUUID } from "@common/documents/_module.mjs";
+} from "./../../../../foundry/common/data/fields.mjs";
+import { ActorUUID } from "./../../../../foundry/common/documents/_module.mjs";
 import { PartyPF2e } from "./document.ts";
 import { KingdomSchema } from "./kingdom/schema.ts";
 import fields = foundry.data.fields;

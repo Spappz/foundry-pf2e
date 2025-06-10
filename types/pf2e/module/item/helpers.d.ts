@@ -1,4 +1,4 @@
-import { ActorPF2e } from "@actor";
+import { ActorPF2e } from "./../actor/index.ts";
 import { ItemSourcePF2e, ItemType } from "./base/data/index.ts";
 import { ItemPF2e } from "./base/document.ts";
 import { PhysicalItemPF2e } from "./physical/document.ts";

@@ -1,4 +1,4 @@
-import { EventEmitter } from "@common/utils/event-emitter.mjs";
+import { EventEmitter } from "./../../../common/utils/event-emitter.mjs";
 import {
     ApplicationClosingOptions,
     ApplicationConfiguration,

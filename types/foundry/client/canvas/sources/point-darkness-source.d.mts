@@ -1,6 +1,6 @@
-import { LightSourceAnimationConfig } from "@client/config.mjs";
-import { Point } from "@common/_types.mjs";
-import { LightingLevel } from "@common/constants.mjs";
+import { LightSourceAnimationConfig } from "./../../config.mjs";
+import { Point } from "./../../../common/_types.mjs";
+import { LightingLevel } from "./../../../common/constants.mjs";
 import { PointSourceMesh } from "../containers/_module.mjs";
 import { PointSourcePolygonConfig } from "../geometry/_types.mjs";
 import AmbientLight from "../placeables/light.mjs";

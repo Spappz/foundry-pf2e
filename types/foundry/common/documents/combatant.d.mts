@@ -1,4 +1,4 @@
-import { ImageFilePath } from "@common/constants.mjs";
+import { ImageFilePath } from "./../constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import BaseCombat from "./combat.mjs";

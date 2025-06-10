@@ -1,4 +1,4 @@
-import { SceneControl } from "@client/applications/ui/scene-controls.mjs";
+import { SceneControl } from "./../../applications/ui/scene-controls.mjs";
 import Note from "../placeables/note.d.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
 import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";

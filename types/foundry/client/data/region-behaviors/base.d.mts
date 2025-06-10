@@ -1,9 +1,9 @@
-import RegionBehavior from "@client/documents/region-behavior.mjs";
-import { RegionEvent } from "@client/documents/region.mjs";
-import { DataSchema } from "@common/abstract/_types.mjs";
-import TypeDataModel from "@common/abstract/type-data.mjs";
-import { REGION_EVENTS } from "@common/constants.mjs";
-import * as fields from "@common/data/fields.mjs";
+import RegionBehavior from "./../../documents/region-behavior.mjs";
+import { RegionEvent } from "./../../documents/region.mjs";
+import { DataSchema } from "./../../../common/abstract/_types.mjs";
+import TypeDataModel from "./../../../common/abstract/type-data.mjs";
+import { REGION_EVENTS } from "./../../../common/constants.mjs";
+import * as fields from "./../../../common/data/fields.mjs";
 
 /**
  * The data model for a behavior that receives Region events.

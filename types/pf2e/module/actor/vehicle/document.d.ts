@@ -1,8 +1,8 @@
-import { ActorDimensions } from "@actor/types.ts";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { ItemType } from "@item/base/data/index.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
-import { ArmorStatistic, Statistic, StatisticDifficultyClass } from "@system/statistic/index.ts";
+import { ActorDimensions } from "./../types.ts";
+import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { ArmorStatistic, Statistic, StatisticDifficultyClass } from "./../../system/statistic/index.ts";
 import { ActorPF2e, HitPointsSummary } from "../base.ts";
 import { TokenDimensions, VehicleSource, VehicleSystemData } from "./data.ts";
 declare class VehiclePF2e<

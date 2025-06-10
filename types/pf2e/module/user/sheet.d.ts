@@ -1,5 +1,5 @@
-import { ApplicationTab } from "@client//applications/_module.mjs";
-import { DocumentSheetRenderOptions } from "@client/applications/api/document-sheet.mjs";
+import { ApplicationTab } from "./../../../foundry/client//applications/_module.mjs";
+import { DocumentSheetRenderOptions } from "./../../../foundry/client/applications/api/document-sheet.mjs";
 import { UserPF2e } from "./document.ts";
 /** Player-specific settings, stored as flags on each User */
 declare class UserConfigPF2e extends fa.sheets.UserConfig<UserPF2e> {

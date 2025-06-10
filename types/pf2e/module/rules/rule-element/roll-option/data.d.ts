@@ -1,11 +1,11 @@
-import { DataSchema } from "@common/abstract/_types.mjs";
+import { DataSchema } from "./../../../../../foundry/common/abstract/_types.mjs";
 import {
     DataUnionField,
     PredicateField,
     StrictArrayField,
     StrictBooleanField,
     StrictStringField,
-} from "@system/schema-data-fields.ts";
+} from "./../../../system/schema-data-fields.ts";
 import { AELikeDataPrepPhase } from "../ae-like.ts";
 import { ResolvableValueField, RuleElementSchema } from "../data.ts";
 import { RollOptionRuleElement } from "./rule-element.ts";

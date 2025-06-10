@@ -1,18 +1,18 @@
-import { ActorPF2e, ActorType } from "@actor";
-import { CheckModifier, DamageDicePF2e, ModifierPF2e } from "@actor/modifiers.ts";
-import { Rolled } from "@client/dice/roll.mjs";
+import { ActorPF2e, ActorType } from "./../../actor/index.ts";
+import { CheckModifier, DamageDicePF2e, ModifierPF2e } from "./../../actor/modifiers.ts";
+import { Rolled } from "./../../../../foundry/client/dice/roll.mjs";
 import {
     DatabaseCreateOperation,
     DatabaseDeleteOperation,
     DataModelConstructionContext,
     DataModelValidationOptions,
-} from "@common/abstract/_types.mjs";
-import { ModelPropsFromSchema } from "@common/data/fields.mjs";
-import { ItemPF2e, WeaponPF2e } from "@item";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
-import { CheckCheckContext, CheckRoll } from "@system/check/index.ts";
-import { LaxSchemaField } from "@system/schema-data-fields.ts";
+} from "./../../../../foundry/common/abstract/_types.mjs";
+import { ModelPropsFromSchema } from "./../../../../foundry/common/data/fields.mjs";
+import { ItemPF2e, WeaponPF2e } from "./../../item/index.ts";
+import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { CheckCheckContext, CheckRoll } from "./../../system/check/index.ts";
+import { LaxSchemaField } from "./../../system/schema-data-fields.ts";
 import { BracketedValue, RuleElementSchema, RuleElementSource, RuleValue } from "./data.ts";
 /**
  * Rule Elements allow you to modify actorData and tokenData values when present on items. They can be configured

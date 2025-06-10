@@ -1,6 +1,6 @@
-import { ActorType, CreaturePF2e } from "@actor";
-import { Size } from "@module/data.ts";
-import { RecordField } from "@system/schema-data-fields.ts";
+import { ActorType, CreaturePF2e } from "./../../actor/index.ts";
+import { Size } from "./../../data.ts";
+import { RecordField } from "./../../system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

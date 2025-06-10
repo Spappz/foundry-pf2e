@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { ZeroToTen } from "@module/data.ts";
-import { Statistic } from "@system/statistic/statistic.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { ZeroToTen } from "./../../data.ts";
+import { Statistic } from "./../../system/statistic/statistic.ts";
 import { SpellSlotGroupId } from "./collection.ts";
 import { SpellcastingEntry } from "./types.ts";
 /** Create a statistic that draws from limited domains for the purpose of counteracting. */

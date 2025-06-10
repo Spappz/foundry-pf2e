@@ -1,7 +1,7 @@
-import { ApplicationRenderContext } from "@client/applications/_types.mjs";
-import { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.mjs";
-import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
+import { ApplicationRenderContext } from "./../../../../foundry/client/applications/_types.mjs";
+import { HandlebarsRenderOptions } from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
+import { CombatantPF2e, EncounterPF2e } from "./../../encounter/index.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
 import tabs = fa.sidebar.tabs;
 export declare class EncounterTracker<TEncounter extends EncounterPF2e | null> extends tabs.CombatTracker<TEncounter> {
     #private;

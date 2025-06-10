@@ -2,8 +2,8 @@ import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
     DatabaseDeleteOperation,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
 import { DocumentSheetV1Options } from "../appv1/api/document-sheet-v1.mjs";
 import ItemSheet from "../appv1/sheets/item-sheet.mjs";
 import { Actor, BaseItem, BaseUser, ItemUUID } from "./_module.mjs";

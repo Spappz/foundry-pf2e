@@ -1,10 +1,10 @@
-import { AmbientLightDocument, Scene, User } from "@client/documents/_module.mjs";
+import { AmbientLightDocument, Scene, User } from "./../../documents/_module.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
-import { LightData } from "@common/data/_module.mjs";
+} from "./../../../common/abstract/_types.mjs";
+import { LightData } from "./../../../common/data/_module.mjs";
 import { ControlIcon } from "../containers/_module.mjs";
 import { RenderFlag } from "../interaction/_types.mjs";
 import { LightingLayer } from "../layers/_module.mjs";

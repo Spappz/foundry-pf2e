@@ -1,4 +1,4 @@
-import { ClientDocument } from "@client/documents/abstract/client-document.mjs";
+import { ClientDocument } from "./../../documents/abstract/client-document.mjs";
 import { EditorState, Plugin } from "prosemirror-state";
 import { Step } from "prosemirror-transform";
 import { EditorView } from "prosemirror-view";

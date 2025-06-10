@@ -1,9 +1,9 @@
 import {
     default as CompendiumCollection,
     CompendiumIndex,
-} from "@client/documents/collections/compendium-collection.mjs";
+} from "./../../../../foundry/client/documents/collections/compendium-collection.mjs";
 import { CompendiumBrowserSources } from "./browser";
-import { CompendiumDocument } from "@client/documents/_module.mjs";
+import { CompendiumDocument } from "./../../../../foundry/client/documents/_module.mjs";
 declare class PackLoader {
     #private;
     loadedSources: string[];

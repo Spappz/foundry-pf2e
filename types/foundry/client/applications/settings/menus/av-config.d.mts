@@ -2,8 +2,8 @@ import {
     ApplicationConfiguration,
     ApplicationRenderContext,
     ApplicationTabsConfiguration,
-} from "@client/applications/_types.mjs";
-import AVMaster from "@client/av/master.mjs";
+} from "./../../../applications/_types.mjs";
+import AVMaster from "./../../../av/master.mjs";
 import {
     ApplicationV2,
     HandlebarsApplicationMixin,

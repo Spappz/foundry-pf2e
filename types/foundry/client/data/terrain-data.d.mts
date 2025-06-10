@@ -1,8 +1,8 @@
-import Token from "@client/canvas/placeables/token.mjs";
-import TokenDocument from "@client/documents/token.mjs";
-import { DataSchema } from "@common/abstract/_types.mjs";
-import DataModel from "@common/abstract/data.mjs";
-import * as fields from "@common/data/fields.mjs";
+import Token from "./../canvas/placeables/token.mjs";
+import TokenDocument from "./../documents/token.mjs";
+import { DataSchema } from "./../../common/abstract/_types.mjs";
+import DataModel from "./../../common/abstract/data.mjs";
+import * as fields from "./../../common/data/fields.mjs";
 import { TokenMeasureMovementPathOptions, TokenMovementCostFunction } from "../_types.mjs";
 
 /**

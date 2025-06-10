@@ -1,7 +1,7 @@
-import { ModelPropsFromSchema } from "@common/data/fields.mjs";
-import { AbilityItemPF2e, FeatPF2e } from "@item";
-import { FeatSystemData } from "@item/feat/data.ts";
-import { DamageAlteration } from "@module/rules/rule-element/damage-alteration/alteration.ts";
+import { ModelPropsFromSchema } from "./../../../../foundry/common/data/fields.mjs";
+import { AbilityItemPF2e, FeatPF2e } from "./../index.ts";
+import { FeatSystemData } from "./../feat/data.ts";
+import { DamageAlteration } from "./../../rules/rule-element/damage-alteration/alteration.ts";
 import { AbilitySystemData } from "./data.ts";
 import fields = foundry.data.fields;
 /** A helper class to handle toggleable ability traits */

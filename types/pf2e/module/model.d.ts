@@ -1,4 +1,4 @@
-import { SkillSlug } from "@actor/types.ts";
+import { SkillSlug } from "./actor/types.ts";
 import { Rarity, ZeroToFour } from "./data.ts";
 import fields = foundry.data.fields;
 declare class RarityField extends fields.StringField<Rarity, Rarity, true, false, true> {

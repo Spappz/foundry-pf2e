@@ -1,4 +1,4 @@
-import AmbientSound from "@client/canvas/placeables/sound.mjs";
+import AmbientSound from "./../canvas/placeables/sound.mjs";
 import { BaseAmbientSound } from "./_module.mjs";
 import { CanvasDocument } from "./abstract/canvas-document.mjs";
 import Scene from "./scene.mjs";

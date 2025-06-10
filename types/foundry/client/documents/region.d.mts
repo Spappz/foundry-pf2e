@@ -1,6 +1,6 @@
-import { RegionPolygonTree } from "@client/data/region-shapes/polygon-tree.mjs";
-import { RegionShape } from "@client/data/region-shapes/shape.mjs";
-import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
+import { RegionPolygonTree } from "./../data/region-shapes/polygon-tree.mjs";
+import { RegionShape } from "./../data/region-shapes/shape.mjs";
+import EmbeddedCollection from "./../../common/abstract/embedded-collection.mjs";
 import Region, { RegionMovementSegment, RegionMovementWaypoint } from "../canvas/placeables/region.mjs";
 import { BaseRegion, RegionBehavior, Scene, User } from "./_module.mjs";
 import { CanvasDocument, CanvasDocumentStatic } from "./abstract/canvas-document.mjs";

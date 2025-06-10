@@ -1,8 +1,8 @@
-import { ApplicationRenderContext } from "@client/applications/_types.mjs";
-import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "@client/applications/api/handlebars-application.mjs";
-import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
-import { CompendiumDocument } from "@client/documents/_module.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
+import { ApplicationRenderContext } from "./../../../applications/_types.mjs";
+import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "./../../../applications/api/handlebars-application.mjs";
+import { ContextMenuEntry } from "./../../../applications/ux/context-menu.mjs";
+import { CompendiumDocument } from "./../../../documents/_module.mjs";
+import { DropCanvasData } from "./../../../helpers/hooks.mjs";
 import DocumentDirectory, { DocumentDirectoryConfiguration } from "../document-directory.mjs";
 
 /**

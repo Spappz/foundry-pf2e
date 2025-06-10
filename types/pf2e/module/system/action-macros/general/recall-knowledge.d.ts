@@ -3,8 +3,8 @@ import {
     SingleCheckActionUseOptions,
     SingleCheckActionVariant,
     SingleCheckActionVariantData,
-} from "@actor/actions/index.ts";
-import { CheckResultCallback } from "@system/action-macros/types.ts";
+} from "./../../../actor/actions/index.ts";
+import { CheckResultCallback } from "./../../action-macros/types.ts";
 interface RecallKnowledgeActionUseOptions extends Partial<SingleCheckActionUseOptions> {
     statistic: string;
 }

@@ -1,9 +1,9 @@
-import { ActorPF2e } from "@actor";
-import { Point } from "@common/_types.mjs";
-import { ItemPF2e } from "@item";
-import { EffectAreaShape } from "@item/spell/types.ts";
-import { ChatMessagePF2e } from "@module/chat-message/document.ts";
-import { MeasuredTemplateDocumentPF2e, ScenePF2e } from "@scene";
+import { ActorPF2e } from "./../actor/index.ts";
+import { Point } from "./../../../foundry/common/_types.mjs";
+import { ItemPF2e } from "./../item/index.ts";
+import { EffectAreaShape } from "./../item/spell/types.ts";
+import { ChatMessagePF2e } from "./../chat-message/document.ts";
+import { MeasuredTemplateDocumentPF2e, ScenePF2e } from "./../scene/index.ts";
 import { TemplateLayerPF2e } from "./layer/template.ts";
 declare class MeasuredTemplatePF2e<
     TDocument extends MeasuredTemplateDocumentPF2e<ScenePF2e | null> = MeasuredTemplateDocumentPF2e<ScenePF2e | null>,

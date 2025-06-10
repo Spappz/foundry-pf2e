@@ -1,6 +1,6 @@
-import Note from "@client/canvas/placeables/note.mjs";
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
+import Note from "./../canvas/placeables/note.mjs";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../common/abstract/_types.mjs";
+import EmbeddedCollection from "./../../common/abstract/embedded-collection.mjs";
 import JournalSheet from "../appv1/sheets/journal-sheet.mjs";
 import { BaseJournalEntry, JournalEntryPage } from "./_module.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";

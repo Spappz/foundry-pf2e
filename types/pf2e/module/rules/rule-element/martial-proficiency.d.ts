@@ -1,8 +1,8 @@
-import { ActorType, CharacterPF2e } from "@actor";
-import { ArmorCategory } from "@item/armor/types.ts";
-import { ProficiencyRank } from "@item/base/data/index.ts";
-import { WeaponCategory } from "@item/weapon/types.ts";
-import { PredicateField } from "@system/schema-data-fields.ts";
+import { ActorType, CharacterPF2e } from "./../../actor/index.ts";
+import { ArmorCategory } from "./../../item/armor/types.ts";
+import { ProficiencyRank } from "./../../item/base/data/index.ts";
+import { WeaponCategory } from "./../../item/weapon/types.ts";
+import { PredicateField } from "./../../system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

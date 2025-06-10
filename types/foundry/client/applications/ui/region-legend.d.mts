@@ -1,4 +1,4 @@
-import Region from "@client/canvas/placeables/region.mjs";
+import Region from "./../../canvas/placeables/region.mjs";
 import {
     ApplicationClosingOptions,
     ApplicationConfiguration,

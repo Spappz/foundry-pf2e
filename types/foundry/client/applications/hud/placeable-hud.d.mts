@@ -1,6 +1,6 @@
-import { PlaceablesLayer } from "@client/canvas/layers/_module.mjs";
-import PlaceableObject from "@client/canvas/placeables/placeable-object.mjs";
-import { CanvasDocument } from "@client/documents/abstract/canvas-document.mjs";
+import { PlaceablesLayer } from "./../../canvas/layers/_module.mjs";
+import PlaceableObject from "./../../canvas/placeables/placeable-object.mjs";
+import { CanvasDocument } from "./../../documents/abstract/canvas-document.mjs";
 import {
     ApplicationClosingOptions,
     ApplicationConfiguration,

@@ -1,18 +1,18 @@
-import { ActorPF2e } from "@actor";
+import { ActorPF2e } from "./../actor/index.ts";
 import {
     DamageDicePF2e,
     DeferredDamageDiceOptions,
     DeferredValueParams,
     ModifierAdjustment,
     ModifierPF2e,
-} from "@actor/modifiers.ts";
-import { ItemPF2e } from "@item";
-import { ConditionSource, EffectSource } from "@item/base/data/index.ts";
-import { PickableThing } from "@module/apps/pick-a-thing-prompt.ts";
-import { RollNotePF2e } from "@module/notes.ts";
-import { BaseDamageData } from "@system/damage/index.ts";
-import { DegreeOfSuccessAdjustment } from "@system/degree-of-success.ts";
-import { RollTwiceOption } from "@system/rolls.ts";
+} from "./../actor/modifiers.ts";
+import { ItemPF2e } from "./../item/index.ts";
+import { ConditionSource, EffectSource } from "./../item/base/data/index.ts";
+import { PickableThing } from "./../apps/pick-a-thing-prompt.ts";
+import { RollNotePF2e } from "./../notes.ts";
+import { BaseDamageData } from "./../system/damage/index.ts";
+import { DegreeOfSuccessAdjustment } from "./../system/degree-of-success.ts";
+import { RollTwiceOption } from "./../system/rolls.ts";
 import { DamageAlteration } from "./rule-element/damage-alteration/alteration.ts";
 import { BracketedValue, RuleElementPF2e } from "./rule-element/index.ts";
 import { DamageDiceSynthetics, RollSubstitution, RollTwiceSynthetic, RuleElementSynthetics } from "./synthetics.ts";

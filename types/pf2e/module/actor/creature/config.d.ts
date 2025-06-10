@@ -1,4 +1,4 @@
-import { SheetOptions } from "@module/sheet/helpers.ts";
+import { SheetOptions } from "./../../sheet/helpers.ts";
 import { CreaturePF2e } from "./document.ts";
 import appv1 = foundry.appv1;
 /** A DocumentSheet presenting additional, per-actor settings */

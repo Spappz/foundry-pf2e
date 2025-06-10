@@ -1,5 +1,5 @@
-import { ElevatedPoint } from "@common/_types.mjs";
-import Collection from "@common/utils/collection.mjs";
+import { ElevatedPoint } from "./../../../common/_types.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import { PointSourcePolygonConfig } from "../geometry/_types.mjs";
 import AmbientSound from "../placeables/sound.mjs";
 import BaseEffectSource from "./base-effect-source.mjs";

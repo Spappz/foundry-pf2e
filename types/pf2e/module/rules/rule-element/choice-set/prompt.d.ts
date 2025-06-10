@@ -1,13 +1,13 @@
-import { ActorPF2e } from "@actor";
-import { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.mjs";
-import { ItemPF2e } from "@item";
+import { ActorPF2e } from "./../../../actor/index.ts";
+import { HandlebarsRenderOptions } from "./../../../../../foundry/client/applications/api/handlebars-application.mjs";
+import { ItemPF2e } from "./../../../item/index.ts";
 import {
     PickableThing,
     PickAThingConstructorArgs,
     PickAThingPrompt,
     PromptTemplateData,
-} from "@module/apps/pick-a-thing-prompt.ts";
-import { Predicate } from "@system/predication.ts";
+} from "./../../../apps/pick-a-thing-prompt.ts";
+import { Predicate } from "./../../../system/predication.ts";
 /** Prompt the user for a selection among a set of options */
 declare class ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, string | number | object> {
     #private;

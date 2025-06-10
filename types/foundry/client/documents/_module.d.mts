@@ -1,6 +1,6 @@
 /** @module documents */
 
-export * from "@common/documents/_module.mjs";
+export * from "./../../common/documents/_module.mjs";
 export * from "./_types.mjs";
 
 // Abstract Classes

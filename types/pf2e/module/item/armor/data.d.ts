@@ -1,4 +1,4 @@
-import { PhysicalItemSource } from "@item/base/data/index.ts";
+import { PhysicalItemSource } from "./../base/data/index.ts";
 import {
     BasePhysicalItemSource,
     Investable,
@@ -6,9 +6,9 @@ import {
     PhysicalItemTraits,
     PhysicalSystemData,
     PhysicalSystemSource,
-} from "@item/physical/data.ts";
-import { WornUsage } from "@item/physical/usage.ts";
-import { ZeroToFour } from "@module/data.ts";
+} from "./../physical/data.ts";
+import { WornUsage } from "./../physical/usage.ts";
+import { ZeroToFour } from "./../../data.ts";
 import { ArmorCategory, ArmorGroup, ArmorPropertyRuneType, ArmorTrait, BaseArmorType, OtherArmorTag } from "./index.ts";
 type ArmorSource = BasePhysicalItemSource<"armor", ArmorSystemSource>;
 interface ArmorSystemSource extends Investable<PhysicalSystemSource> {

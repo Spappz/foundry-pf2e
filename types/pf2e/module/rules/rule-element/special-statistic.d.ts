@@ -1,8 +1,8 @@
-import { CreaturePF2e } from "@actor";
-import { AttributeString } from "@actor/types.ts";
-import { MagicTradition } from "@item/spell/types.ts";
-import { Predicate, RawPredicate } from "@system/predication.ts";
-import { PredicateField } from "@system/schema-data-fields.ts";
+import { CreaturePF2e } from "./../../actor/index.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { MagicTradition } from "./../../item/spell/types.ts";
+import { Predicate, RawPredicate } from "./../../system/predication.ts";
+import { PredicateField } from "./../../system/schema-data-fields.ts";
 import { RuleElementPF2e } from "../index.ts";
 import { ModelPropsFromRESchema, RuleElementSchema } from "./data.ts";
 import fields = foundry.data.fields;

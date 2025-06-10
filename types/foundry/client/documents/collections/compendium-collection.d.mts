@@ -1,12 +1,12 @@
-import { CompendiumDocumentType, CompendiumUUID } from "@client/utils/helpers.mjs";
+import { CompendiumDocumentType, CompendiumUUID } from "./../../utils/helpers.mjs";
 import {
     DatabaseAction,
     DatabaseCreateOperation,
     DatabaseOperation,
     DatabaseUpdateOperation,
-} from "@common/abstract/_module.mjs";
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath } from "@common/constants.mjs";
-import Collection from "@common/utils/collection.mjs";
+} from "./../../../common/abstract/_module.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath } from "./../../../common/constants.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import { ApplicationRenderOptions } from "../../applications/_types.mjs";
 import { CompendiumDocument, User } from "../_module.mjs";
 import DocumentCollection from "../abstract/document-collection.mjs";

@@ -1,7 +1,7 @@
-import type { ActorPF2e } from "@actor";
-import type { HandlebarsRenderOptions } from "@client/applications/api/handlebars-application.d.mts";
-import { AbstractEffectPF2e, AfflictionPF2e, ConditionPF2e, EffectPF2e } from "@item";
-import type { TokenDocumentPF2e } from "@scene/token-document/document.ts";
+import type { ActorPF2e } from "./../actor/index.ts";
+import type { HandlebarsRenderOptions } from "./../../../foundry/client/applications/api/handlebars-application.d.mts";
+import { AbstractEffectPF2e, AfflictionPF2e, ConditionPF2e, EffectPF2e } from "./../item/index.ts";
+import type { TokenDocumentPF2e } from "./../scene/token-document/document.ts";
 
 export class EffectsPanel extends fa.api.HandlebarsApplicationMixin(fa.api.ApplicationV2) {
     get #token(): TokenDocumentPF2e | null;

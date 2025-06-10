@@ -1,14 +1,14 @@
-import { ApplicationRenderOptions } from "@client/applications/_types.mjs";
-import ApplicationV2 from "@client/applications/api/application.mjs";
-import Application, { AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
+import { ApplicationRenderOptions } from "./../../applications/_types.mjs";
+import ApplicationV2 from "./../../applications/api/application.mjs";
+import Application, { AppV1RenderOptions } from "./../../appv1/api/application-v1.mjs";
 import {
     DatabaseAction,
     DatabaseCreateOperation,
     DatabaseOperation,
     DatabaseUpdateOperation,
     Document,
-} from "@common/abstract/_module.mjs";
-import Collection from "@common/utils/collection.mjs";
+} from "./../../../common/abstract/_module.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import User from "../user.mjs";
 
 /**

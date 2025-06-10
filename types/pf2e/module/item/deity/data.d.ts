@@ -1,7 +1,7 @@
-import { AttributeString, SkillSlug } from "@actor/types.ts";
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, OtherTagsOnly } from "@item/base/data/system.ts";
-import { BaseWeaponType } from "@item/weapon/types.ts";
+import { AttributeString, SkillSlug } from "./../../actor/types.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { BaseItemSourcePF2e, ItemSystemData, ItemSystemSource, OtherTagsOnly } from "./../base/data/system.ts";
+import { BaseWeaponType } from "./../weapon/types.ts";
 import { DeityDomain, Sanctification } from "./types.ts";
 type DeitySource = BaseItemSourcePF2e<"deity", DeitySystemSource>;
 type DeitySystemSource = ItemSystemSource & {

@@ -1,4 +1,4 @@
-import { Point } from "@common/_types.mjs";
+import { Point } from "./../../../../common/_types.mjs";
 
 /**
  * A ray for the purposes of computing sight and collision

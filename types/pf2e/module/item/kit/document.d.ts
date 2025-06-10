@@ -1,9 +1,9 @@
-import { ActorPF2e } from "@actor";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_module.mjs";
-import { ItemPF2e, PhysicalItemPF2e } from "@item";
-import { ClassTrait } from "@item/class/types.ts";
-import { Price } from "@item/physical/data.ts";
-import { Size } from "@module/data.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_module.mjs";
+import { ItemPF2e, PhysicalItemPF2e } from "./../index.ts";
+import { ClassTrait } from "./../class/types.ts";
+import { Price } from "./../physical/data.ts";
+import { Size } from "./../../data.ts";
 import { KitSource, KitSystemData, KitEntryData } from "./data.ts";
 declare class KitPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     static get validTraits(): Record<ClassTrait, string>;

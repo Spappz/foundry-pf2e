@@ -1,11 +1,11 @@
-import { ActorPF2e } from "@actor";
-import { CraftingAbility } from "@actor/character/crafting/ability.ts";
-import { DatabaseCreateCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { ItemPF2e } from "@item";
-import { ActionCost, Frequency, RawItemChatData } from "@item/base/data/index.ts";
-import { RangeData } from "@item/types.ts";
-import { RuleElementOptions, RuleElementPF2e } from "@module/rules/index.ts";
-import { EnrichmentOptionsPF2e } from "@system/text-editor.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { CraftingAbility } from "./../../actor/character/crafting/ability.ts";
+import { DatabaseCreateCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { ItemPF2e } from "./../index.ts";
+import { ActionCost, Frequency, RawItemChatData } from "./../base/data/index.ts";
+import { RangeData } from "./../types.ts";
+import { RuleElementOptions, RuleElementPF2e } from "./../../rules/index.ts";
+import { EnrichmentOptionsPF2e } from "./../../system/text-editor.ts";
 import { AbilitySource, AbilitySystemData } from "./data.ts";
 import { AbilityTrait } from "./types.ts";
 declare class AbilityItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {

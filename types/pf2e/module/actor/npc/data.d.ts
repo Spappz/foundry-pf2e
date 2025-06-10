@@ -1,4 +1,4 @@
-import { ActorPF2e } from "@actor/base.ts";
+import { ActorPF2e } from "./../base.ts";
 import {
     Abilities,
     BaseCreatureSource,
@@ -19,20 +19,20 @@ import {
     LabeledSpeed,
     SaveData,
     SenseData,
-} from "@actor/creature/data.ts";
+} from "./../creature/data.ts";
 import {
     ActorAttributesSource,
     ActorFlagsPF2e,
     AttributeBasedTraceData,
     HitPointsStatistic,
     StrikeData,
-} from "@actor/data/base.ts";
-import { InitiativeTraceData } from "@actor/initiative.ts";
-import { ModifierPF2e, StatisticModifier } from "@actor/modifiers.ts";
-import { ActorAlliance, SaveType, SkillSlug } from "@actor/types.ts";
-import { MeleePF2e } from "@item";
-import { PublicationData, ValueAndMax } from "@module/data.ts";
-import { RawPredicate } from "@system/predication.ts";
+} from "./../data/base.ts";
+import { InitiativeTraceData } from "./../initiative.ts";
+import { ModifierPF2e, StatisticModifier } from "./../modifiers.ts";
+import { ActorAlliance, SaveType, SkillSlug } from "./../types.ts";
+import { MeleePF2e } from "./../../item/index.ts";
+import { PublicationData, ValueAndMax } from "./../../data.ts";
+import { RawPredicate } from "./../../system/predication.ts";
 type NPCSource = BaseCreatureSource<"npc", NPCSystemSource> & {
     flags: DeepPartial<NPCFlags>;
 };

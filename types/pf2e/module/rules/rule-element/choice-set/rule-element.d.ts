@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { ItemPF2e } from "@item";
-import { PickableThing } from "@module/apps/pick-a-thing-prompt.ts";
+import { ActorPF2e } from "./../../../actor/index.ts";
+import { ItemPF2e } from "./../../../item/index.ts";
+import { PickableThing } from "./../../../apps/pick-a-thing-prompt.ts";
 import { RuleElementOptions, RuleElementPF2e } from "../base.ts";
 import { ModelPropsFromRESchema } from "../data.ts";
 import { AllowedDropsData, ChoiceSetPackQuery, ChoiceSetSchema, ChoiceSetSource, UninflatedChoiceSet } from "./data.ts";

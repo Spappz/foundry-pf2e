@@ -1,11 +1,11 @@
-import { DatabaseCreateCallbackOptions } from "@common/abstract/_types.mjs";
+import { DatabaseCreateCallbackOptions } from "./../abstract/_types.mjs";
 import {
     ActiveEffectChangeMode,
     DocumentOwnershipLevel,
     DocumentOwnershipString,
     ImageFilePath,
     UserAction,
-} from "@common/constants.mjs";
+} from "./../constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { ActorUUID, BaseActor, BaseItem, BaseUser, ItemUUID } from "./_module.mjs";

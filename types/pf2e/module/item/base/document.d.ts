@@ -1,8 +1,8 @@
-import { ActorPF2e } from "@actor/base.ts";
-import { DialogV2Configuration } from "@client/applications/api/dialog.mjs";
-import { DocumentHTMLEmbedConfig } from "@client/applications/ux/text-editor.mjs";
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
+import { ActorPF2e } from "./../../actor/base.ts";
+import { DialogV2Configuration } from "./../../../../foundry/client/applications/api/dialog.mjs";
+import { DocumentHTMLEmbedConfig } from "./../../../../foundry/client/applications/ux/text-editor.mjs";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { DropCanvasData } from "./../../../../foundry/client/helpers/hooks.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
@@ -10,13 +10,13 @@ import {
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     Document,
-} from "@common/abstract/_module.mjs";
-import { ImageFilePath, RollMode } from "@common/constants.mjs";
-import { PhysicalItemPF2e } from "@item";
-import { ItemOriginFlag } from "@module/chat-message/data.ts";
-import { ChatMessagePF2e } from "@module/chat-message/document.ts";
-import { RuleElementOptions, RuleElementPF2e } from "@module/rules/index.ts";
-import { EnrichmentOptionsPF2e, RollDataPF2e } from "@system/text-editor.ts";
+} from "./../../../../foundry/common/abstract/_module.mjs";
+import { ImageFilePath, RollMode } from "./../../../../foundry/common/constants.mjs";
+import { PhysicalItemPF2e } from "./../index.ts";
+import { ItemOriginFlag } from "./../../chat-message/data.ts";
+import { ChatMessagePF2e } from "./../../chat-message/document.ts";
+import { RuleElementOptions, RuleElementPF2e } from "./../../rules/index.ts";
+import { EnrichmentOptionsPF2e, RollDataPF2e } from "./../../system/text-editor.ts";
 import { ItemInstances } from "../types.ts";
 import {
     ItemFlagsPF2e,

@@ -1,5 +1,5 @@
-import Document, { DocumentMetadata } from "@common/abstract/document.mjs";
-import { ImageFilePath, TokenDisplayMode, TokenDisposition, VideoFilePath } from "@common/constants.mjs";
+import Document, { DocumentMetadata } from "./../abstract/document.mjs";
+import { ImageFilePath, TokenDisplayMode, TokenDisposition, VideoFilePath } from "./../constants.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseActorDelta, BaseScene } from "./_module.mjs";

@@ -1,7 +1,7 @@
-import { ActorType, CreaturePF2e } from "@actor";
-import { ActorCommitData } from "@actor/types.ts";
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { AnyChoiceField } from "@system/schema-data-fields.ts";
+import { ActorType, CreaturePF2e } from "./../../actor/index.ts";
+import { ActorCommitData } from "./../../actor/types.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { AnyChoiceField } from "./../../system/schema-data-fields.ts";
 import { RuleElementPF2e, RuleElementOptions } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

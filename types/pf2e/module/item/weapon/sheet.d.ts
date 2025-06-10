@@ -1,7 +1,7 @@
-import { FormSelectOption } from "@client/applications/forms/fields.mjs";
-import { ItemSheetOptions } from "@item/base/sheet/sheet.ts";
-import { MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "@item/physical/index.ts";
-import { SheetOptions } from "@module/sheet/helpers.ts";
+import { FormSelectOption } from "./../../../../foundry/client/applications/forms/fields.mjs";
+import { ItemSheetOptions } from "./../base/sheet/sheet.ts";
+import { MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "./../physical/index.ts";
+import { SheetOptions } from "./../../sheet/helpers.ts";
 import { ComboWeaponMeleeUsage, SpecificWeaponData } from "./data.ts";
 import { WeaponPF2e } from "./document.ts";
 export declare class WeaponSheetPF2e extends PhysicalItemSheetPF2e<WeaponPF2e> {

@@ -1,4 +1,4 @@
-import { GridType, MovementDirection } from "@common/constants.mjs";
+import { GridType, MovementDirection } from "./../constants.mjs";
 import { Color, ColorSource } from "pixi.js";
 import { Point, Rectangle } from "../_types.mjs";
 

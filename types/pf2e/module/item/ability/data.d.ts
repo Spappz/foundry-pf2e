@@ -1,6 +1,6 @@
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { ImageFilePath } from "@common/constants.mjs";
-import { ItemSystemModel, ItemSystemSchema } from "@item/base/data/model.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { ItemSystemModel, ItemSystemSchema } from "./../base/data/model.ts";
 import {
     ActionType,
     BaseItemSourcePF2e,
@@ -8,9 +8,9 @@ import {
     FrequencyInterval,
     FrequencySource,
     ItemSystemSource,
-} from "@item/base/data/system.ts";
-import { OneToThree } from "@module/data.ts";
-import { SlugField } from "@system/schema-data-fields.ts";
+} from "./../base/data/system.ts";
+import { OneToThree } from "./../../data.ts";
+import { SlugField } from "./../../system/schema-data-fields.ts";
 import { AbilityItemPF2e } from "./document.ts";
 import { AbilityTraitToggles } from "./trait-toggles.ts";
 import { AbilityTrait, ActionCategory } from "./types.ts";

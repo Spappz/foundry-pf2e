@@ -1,4 +1,4 @@
-import AlphaBlurFilter from "@client/canvas/rendering/filters/blur.mjs";
+import AlphaBlurFilter from "./../../../canvas/rendering/filters/blur.mjs";
 import CachedContainer from "../../containers/advanced/cached-container.mjs";
 import { CanvasVisionContainer } from "../_types.mjs";
 

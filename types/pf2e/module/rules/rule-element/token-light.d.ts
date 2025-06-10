@@ -1,5 +1,5 @@
-import { LightDataSchema } from "@common/data/data.mjs";
-import { SchemaField } from "@common/data/fields.mjs";
+import { LightDataSchema } from "./../../../../foundry/common/data/data.mjs";
+import { SchemaField } from "./../../../../foundry/common/data/fields.mjs";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema } from "./data.ts";
 import fields = foundry.data.fields;

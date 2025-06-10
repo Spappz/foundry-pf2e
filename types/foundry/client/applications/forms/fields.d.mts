@@ -1,4 +1,4 @@
-import { FormGroupConfig, FormInputConfig } from "@common/data/_types.mjs";
+import { FormGroupConfig, FormInputConfig } from "./../../../common/data/_types.mjs";
 import { HTMLMultiSelectElement } from "../elements/multi-select.mjs";
 
 /** Create a standardized form field group. */

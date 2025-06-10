@@ -1,16 +1,16 @@
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import { DocumentConstructionContext } from "./../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import { DataField } from "@common/data/fields.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import { DataField } from "./../../common/data/fields.mjs";
 import BaseActiveEffect, {
     ActiveEffectSource,
     EffectChangeData,
     EffectDurationData,
-} from "@common/documents/active-effect.mjs";
+} from "./../../common/documents/active-effect.mjs";
 import { Actor, BaseActor, BaseItem, BaseUser, Item } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 

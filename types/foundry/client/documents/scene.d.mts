@@ -1,15 +1,15 @@
-import { SceneDimensions } from "@client/_types.mjs";
-import { TokenAnimationOptions } from "@client/canvas/placeables/token.mjs";
+import { SceneDimensions } from "./../_types.mjs";
+import { TokenAnimationOptions } from "./../canvas/placeables/token.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
-import { ImageFilePath } from "@common/constants.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import EmbeddedCollection from "./../../common/abstract/embedded-collection.mjs";
+import { ImageFilePath } from "./../../common/constants.mjs";
 import SceneConfig from "../applications/sheets/scene-config.mjs";
 import {
     AmbientLightDocument,

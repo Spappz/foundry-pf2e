@@ -1,4 +1,4 @@
-import { ObjectFieldOptions } from "@common/data/_module.mjs";
+import { ObjectFieldOptions } from "./../data/_module.mjs";
 import * as fields from "../data/fields.mjs";
 
 /**

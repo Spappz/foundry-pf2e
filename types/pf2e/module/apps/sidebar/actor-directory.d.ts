@@ -1,7 +1,7 @@
-import { ActorPF2e } from "@actor";
-import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "@client/applications/api/handlebars-application.mjs";
-import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
+import { ContextMenuEntry } from "./../../../../foundry/client/applications/ux/context-menu.mjs";
+import { DropCanvasData } from "./../../../../foundry/client/helpers/hooks.mjs";
 /** Extend ActorDirectory to show more information */
 declare class ActorDirectoryPF2e<TActor extends ActorPF2e<null>> extends fa.sidebar.tabs.ActorDirectory<TActor> {
     #private;

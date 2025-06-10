@@ -1,6 +1,6 @@
-import { CanvasVisibilityTextureConfiguration } from "@client/_module.mjs";
-import FogExploration from "@client/documents/fog-exploration.mjs";
-import { EventEmitter } from "@common/utils/event-emitter.mjs";
+import { CanvasVisibilityTextureConfiguration } from "./../../_module.mjs";
+import FogExploration from "./../../documents/fog-exploration.mjs";
+import { EventEmitter } from "./../../../common/utils/event-emitter.mjs";
 import { SpriteMesh } from "../containers/_module.mjs";
 
 /**

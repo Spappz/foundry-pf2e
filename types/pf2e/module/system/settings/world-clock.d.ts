@@ -1,5 +1,5 @@
-import type { ApplicationConfiguration, FormFooterButton } from "@client/applications/_module.d.mts";
-import type { FormDataExtended } from "@client/applications/ux/_module.d.mts";
+import type { ApplicationConfiguration, FormFooterButton } from "./../../../../foundry/client/applications/_module.d.mts";
+import type { FormDataExtended } from "./../../../../foundry/client/applications/ux/_module.d.mts";
 import fields = foundry.data.fields;
 
 interface SettingsContext {

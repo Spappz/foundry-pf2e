@@ -1,4 +1,4 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, DrawingFillType, ImageFilePath } from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, DrawingFillType, ImageFilePath } from "./../constants.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";

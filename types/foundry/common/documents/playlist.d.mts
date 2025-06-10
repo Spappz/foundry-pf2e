@@ -1,4 +1,4 @@
-import { PlaylistMode, PlaylistSortMode } from "@common/constants.mjs";
+import { PlaylistMode, PlaylistSortMode } from "./../constants.mjs";
 import { Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseFolder, BasePlaylistSound } from "./_module.mjs";

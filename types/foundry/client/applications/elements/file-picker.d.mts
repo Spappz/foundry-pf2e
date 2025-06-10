@@ -1,4 +1,4 @@
-import { FormInputConfig } from "@common/data/_module.mjs";
+import { FormInputConfig } from "./../../../common/data/_module.mjs";
 import FilePicker, { FilePickerFileType } from "../apps/file-picker.mjs";
 import AbstractFormInputElement from "./form-element.mjs";
 

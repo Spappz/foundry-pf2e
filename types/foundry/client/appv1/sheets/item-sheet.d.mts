@@ -1,4 +1,4 @@
-import Item from "@client/documents/item.mjs";
+import Item from "./../../documents/item.mjs";
 import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api/document-sheet-v1.mjs";
 
 /**

@@ -1,7 +1,7 @@
-import { SceneDimensions } from "@client/_types.mjs";
-import { Point } from "@common/_types.mjs";
-import { CanvasPerformanceMode } from "@common/constants.mjs";
-import { GridlessGrid, HexagonalGrid, SquareGrid } from "@common/grid/_module.mjs";
+import { SceneDimensions } from "./../_types.mjs";
+import { Point } from "./../../common/_types.mjs";
+import { CanvasPerformanceMode } from "./../../common/constants.mjs";
+import { GridlessGrid, HexagonalGrid, SquareGrid } from "./../../common/grid/_module.mjs";
 import {
     AmbientLightDocument,
     MeasuredTemplateDocument,

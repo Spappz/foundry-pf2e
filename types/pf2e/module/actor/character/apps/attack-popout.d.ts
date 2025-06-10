@@ -1,6 +1,6 @@
-import { ApplicationV1HeaderButton } from "@client/appv1/api/application-v1.mjs";
-import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
-import { EffectTrait } from "@item/abstract-effect/types.ts";
+import { ApplicationV1HeaderButton } from "./../../../../../foundry/client/appv1/api/application-v1.mjs";
+import { ActorSheetOptions } from "./../../../../../foundry/client/appv1/sheets/actor-sheet.mjs";
+import { EffectTrait } from "./../../../item/abstract-effect/types.ts";
 import { CharacterStrike } from "../data.ts";
 import { CharacterPF2e } from "../document.ts";
 import { CharacterSheetPF2e, CharacterSheetData } from "../sheet.ts";

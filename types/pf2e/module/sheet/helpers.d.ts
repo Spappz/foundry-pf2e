@@ -1,9 +1,9 @@
-import { ActorPF2e } from "@actor";
-import { default as Application } from "@client/appv1/api/application-v1.mjs";
-import { TooltipDirection } from "@client/helpers/interaction/tooltip-manager.mjs";
-import { RollMode } from "@common/constants.mjs";
-import { ItemUUID } from "@common/documents/_module.mjs";
-import { ItemPF2e } from "@item";
+import { ActorPF2e } from "./../actor/index.ts";
+import { default as Application } from "./../../../foundry/client/appv1/api/application-v1.mjs";
+import { TooltipDirection } from "./../../../foundry/client/helpers/interaction/tooltip-manager.mjs";
+import { RollMode } from "./../../../foundry/common/constants.mjs";
+import { ItemUUID } from "./../../../foundry/common/documents/_module.mjs";
+import { ItemPF2e } from "./../item/index.ts";
 /** Prepare form options on an item or actor sheet */
 declare function createSheetOptions(
     options: Record<

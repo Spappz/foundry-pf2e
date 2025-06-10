@@ -1,9 +1,9 @@
-import { CreatureSheetData, Language, ResourceData } from "@actor/creature/index.ts";
-import { Sense } from "@actor/creature/sense.ts";
-import { SheetClickActionHandlers } from "@actor/sheet/base.ts";
-import { AbilityViewData, InventoryItem } from "@actor/sheet/data-types.ts";
-import { AttributeString, SaveType } from "@actor/types.ts";
-import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
+import { CreatureSheetData, Language, ResourceData } from "./../creature/index.ts";
+import { Sense } from "./../creature/sense.ts";
+import { SheetClickActionHandlers } from "./../sheet/base.ts";
+import { AbilityViewData, InventoryItem } from "./../sheet/data-types.ts";
+import { AttributeString, SaveType } from "./../types.ts";
+import { ActorSheetOptions } from "./../../../../foundry/client/appv1/sheets/actor-sheet.mjs";
 import {
     AncestryPF2e,
     BackgroundPF2e,
@@ -13,15 +13,15 @@ import {
     HeritagePF2e,
     PhysicalItemPF2e,
     ItemPF2e,
-} from "@item";
-import { TraitToggleViewData } from "@item/ability/trait-toggles.ts";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
-import { CoinsPF2e } from "@item/physical/coins.ts";
-import { MagicTradition } from "@item/spell/types.ts";
-import { SpellcastingSheetData } from "@item/spellcasting-entry/types.ts";
-import { DropCanvasItemDataPF2e } from "@module/canvas/drop-canvas-data.ts";
-import { LabeledValueAndMax, ZeroToFour } from "@module/data.ts";
-import { DamageType } from "@system/damage/types.ts";
+} from "./../../item/index.ts";
+import { TraitToggleViewData } from "./../../item/ability/trait-toggles.ts";
+import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
+import { CoinsPF2e } from "./../../item/physical/coins.ts";
+import { MagicTradition } from "./../../item/spell/types.ts";
+import { SpellcastingSheetData } from "./../../item/spellcasting-entry/types.ts";
+import { DropCanvasItemDataPF2e } from "./../../canvas/drop-canvas-data.ts";
+import { LabeledValueAndMax, ZeroToFour } from "./../../data.ts";
+import { DamageType } from "./../../system/damage/types.ts";
 import { CreatureSheetPF2e } from "../creature/sheet.ts";
 import { CharacterConfig } from "./config.ts";
 import { CraftingAbilitySheetData } from "./crafting/ability.ts";

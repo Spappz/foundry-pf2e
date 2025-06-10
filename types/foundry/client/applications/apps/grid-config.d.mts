@@ -1,4 +1,4 @@
-import Scene from "@client/documents/scene.mjs";
+import Scene from "./../../documents/scene.mjs";
 import { FormFooterButton } from "../_types.mjs";
 import {
     DocumentSheetConfiguration,

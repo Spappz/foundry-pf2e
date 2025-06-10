@@ -1,6 +1,6 @@
-import { Weakness } from "@actor/data/iwr.ts";
-import { WeaknessType } from "@actor/types.ts";
-import { StrictArrayField } from "@system/schema-data-fields.ts";
+import { Weakness } from "./../../../actor/data/iwr.ts";
+import { WeaknessType } from "./../../../actor/types.ts";
+import { StrictArrayField } from "./../../../system/schema-data-fields.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleValue } from "../data.ts";
 import { IWRException, IWRExceptionField, IWRRuleElement, IWRRuleSchema } from "./base.ts";
 /** @category RuleElement */

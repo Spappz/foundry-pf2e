@@ -1,15 +1,15 @@
-import { CreaturePF2e, FamiliarPF2e } from "@actor";
-import { CreatureSpeeds, LabeledSpeed } from "@actor/creature/data.ts";
-import { CreatureUpdateCallbackOptions, ResourceData } from "@actor/creature/types.ts";
-import { ActorInitiative } from "@actor/initiative.ts";
-import { StatisticModifier } from "@actor/modifiers.ts";
-import { AttributeString, MovementType } from "@actor/types.ts";
-import { AncestryPF2e, BackgroundPF2e, ClassPF2e, DeityPF2e, FeatPF2e, HeritagePF2e, WeaponPF2e } from "@item";
-import { ItemType } from "@item/base/data/index.ts";
-import { ZeroToTwo } from "@module/data.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
-import { RollParameters } from "@system/rolls.ts";
-import { Statistic } from "@system/statistic/index.ts";
+import { CreaturePF2e, FamiliarPF2e } from "./../index.ts";
+import { CreatureSpeeds, LabeledSpeed } from "./../creature/data.ts";
+import { CreatureUpdateCallbackOptions, ResourceData } from "./../creature/types.ts";
+import { ActorInitiative } from "./../initiative.ts";
+import { StatisticModifier } from "./../modifiers.ts";
+import { AttributeString, MovementType } from "./../types.ts";
+import { AncestryPF2e, BackgroundPF2e, ClassPF2e, DeityPF2e, FeatPF2e, HeritagePF2e, WeaponPF2e } from "./../../item/index.ts";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { ZeroToTwo } from "./../../data.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { RollParameters } from "./../../system/rolls.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { CharacterCrafting } from "./crafting/index.ts";
 import {
     BaseWeaponProficiencyKey,

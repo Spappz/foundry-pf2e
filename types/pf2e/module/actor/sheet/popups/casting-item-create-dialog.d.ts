@@ -1,7 +1,7 @@
-import { ActorPF2e } from "@actor";
-import { SpellPF2e } from "@item";
-import { SpellConsumableItemType } from "@item/consumable/spell-consumables.ts";
-import { OneToTen } from "@module/data.ts";
+import { ActorPF2e } from "./../../index.ts";
+import { SpellPF2e } from "./../../../item/index.ts";
+import { SpellConsumableItemType } from "./../../../item/consumable/spell-consumables.ts";
+import { OneToTen } from "./../../../data.ts";
 import appv1 = foundry.appv1;
 interface FormInputData extends appv1.api.FormApplicationData<ActorPF2e> {
     itemTypeOptions?: object;

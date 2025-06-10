@@ -1,4 +1,4 @@
-import DiceTerm from "@client/dice/terms/dice.mjs";
+import DiceTerm from "./../../dice/terms/dice.mjs";
 import Roll from "../../dice/roll.mjs";
 import {
     ApplicationClosingOptions,

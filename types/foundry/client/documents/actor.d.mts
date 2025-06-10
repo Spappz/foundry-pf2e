@@ -1,12 +1,12 @@
-import Token from "@client/canvas/placeables/token.mjs";
+import Token from "./../canvas/placeables/token.mjs";
 import {
     DatabaseCreateOperation,
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import { ImageFilePath, VideoFilePath } from "./../../common/constants.mjs";
 import ActorSheet from "../appv1/sheets/actor-sheet.mjs";
 import { ActiveEffect, ActorUUID, BaseActor, Combat, Item, Scene, TokenDocument } from "./_module.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";

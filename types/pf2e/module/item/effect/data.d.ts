@@ -1,14 +1,14 @@
-import { ModelPropsFromSchema, SourceFromSchema } from "@common/data/fields.mjs";
+import { ModelPropsFromSchema, SourceFromSchema } from "./../../../../foundry/common/data/fields.mjs";
 import {
     DurationDataSchema,
     EffectBadgeCounterSchema,
     EffectBadgeFormulaSchema,
     EffectBadgeValueSchema,
     EffectContextField,
-} from "@item/abstract-effect/data.ts";
-import { AbstractEffectSchema, EffectAuraData, EffectBadge } from "@item/abstract-effect/index.ts";
-import { ItemSystemModel } from "@item/base/data/model.ts";
-import { BaseItemSourcePF2e, ItemFlagsPF2e, ItemSourceFlagsPF2e, ItemSystemSource } from "@item/base/data/system.ts";
+} from "./../abstract-effect/data.ts";
+import { AbstractEffectSchema, EffectAuraData, EffectBadge } from "./../abstract-effect/index.ts";
+import { ItemSystemModel } from "./../base/data/model.ts";
+import { BaseItemSourcePF2e, ItemFlagsPF2e, ItemSourceFlagsPF2e, ItemSystemSource } from "./../base/data/system.ts";
 import { EffectPF2e } from "./document.ts";
 import fields = foundry.data.fields;
 type EffectSource = BaseItemSourcePF2e<"effect", EffectSystemSource> & {

@@ -1,7 +1,7 @@
-import { RawModifier, StatisticModifier } from "@actor/modifiers.ts";
-import { ApplicationV1Options } from "@client/appv1/api/application-v1.mjs";
-import { RollMode } from "@common/constants.mjs";
-import { RollSubstitution } from "@module/rules/synthetics.ts";
+import { RawModifier, StatisticModifier } from "./../../actor/modifiers.ts";
+import { ApplicationV1Options } from "./../../../../foundry/client/appv1/api/application-v1.mjs";
+import { RollMode } from "./../../../../foundry/common/constants.mjs";
+import { RollSubstitution } from "./../../rules/synthetics.ts";
 import { CheckCheckContext } from "./types.ts";
 /**
  * Dialog for excluding certain modifiers before rolling a check.

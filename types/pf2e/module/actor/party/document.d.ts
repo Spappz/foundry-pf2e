@@ -1,17 +1,17 @@
-import { ActorPF2e, CreaturePF2e } from "@actor";
-import { ActorUpdateCallbackOptions } from "@actor/base.ts";
+import { ActorPF2e, CreaturePF2e } from "./../index.ts";
+import { ActorUpdateCallbackOptions } from "./../base.ts";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DataModelValidationOptions,
-} from "@common/abstract/_module.mjs";
-import { UserAction } from "@common/constants.mjs";
-import { ActorUUID } from "@common/documents/_module.mjs";
-import { ItemType } from "@item/base/data/index.ts";
-import { RuleElementPF2e } from "@module/rules/index.ts";
-import { RuleElementSchema } from "@module/rules/rule-element/data.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
-import { Statistic } from "@system/statistic/index.ts";
+} from "./../../../../foundry/common/abstract/_module.mjs";
+import { UserAction } from "./../../../../foundry/common/constants.mjs";
+import { ActorUUID } from "./../../../../foundry/common/documents/_module.mjs";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { RuleElementPF2e } from "./../../rules/index.ts";
+import { RuleElementSchema } from "./../../rules/rule-element/data.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { PartySource, PartySystemData } from "./data.ts";
 import { PartyCampaign } from "./types.ts";
 declare class PartyPF2e<

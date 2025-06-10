@@ -1,4 +1,4 @@
-import Collection from "@common/utils/collection.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import { WorldDocument } from "../_module.mjs";
 import DirectoryCollectionMixin from "../abstract/directory-collection-mixin.mjs";
 import DocumentCollection from "../abstract/document-collection.mjs";

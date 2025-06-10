@@ -1,11 +1,11 @@
-import { PhysicalItemSource } from "@item/base/data/index.ts";
+import { PhysicalItemSource } from "./../base/data/index.ts";
 import {
     BasePhysicalItemSource,
     Investable,
     PhysicalItemTraits,
     PhysicalSystemData,
     PhysicalSystemSource,
-} from "@item/physical/data.ts";
+} from "./../physical/data.ts";
 import { EquipmentTrait } from "./types.ts";
 type EquipmentSource = BasePhysicalItemSource<"equipment", EquipmentSystemSource>;
 interface EquipmentSystemSource extends Investable<PhysicalSystemSource> {

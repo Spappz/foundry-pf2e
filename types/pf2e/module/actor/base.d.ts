@@ -1,31 +1,31 @@
-import { ActorAlliance, ActorDimensions, ActorInstances, ApplyDamageParams, AuraData, SaveType } from "@actor/types.ts";
-import { DialogV2Configuration } from "@client/applications/api/dialog.mjs";
-import { ActorUUID } from "@client/documents/_module.mjs";
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import { ActorAlliance, ActorDimensions, ActorInstances, ApplyDamageParams, AuraData, SaveType } from ".//types.ts";
+import { DialogV2Configuration } from "./../../../foundry/client/applications/api/dialog.mjs";
+import { ActorUUID } from "./../../../foundry/client/documents/_module.mjs";
+import { DocumentConstructionContext } from "./../../../foundry/common/_types.mjs";
 import {
     DatabaseCreateOperation,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateOperation,
     Document,
-} from "@common/abstract/_module.mjs";
-import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
-import { AbstractEffectPF2e, ConditionPF2e, ContainerPF2e, PhysicalItemPF2e, ShieldPF2e, ItemPF2e } from "@item";
-import { ItemSourcePF2e, ItemType, PhysicalItemSource } from "@item/base/data/index.ts";
-import { ConditionKey, ConditionSlug, ConditionSource } from "@item/condition/index.ts";
-import { EffectSource } from "@item/effect/data.ts";
-import { ActiveEffectPF2e } from "@module/active-effect.ts";
-import { TokenPF2e } from "@module/canvas/index.ts";
-import { AppliedDamageFlag } from "@module/chat-message/index.ts";
-import { Size } from "@module/data.ts";
-import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.ts";
-import { RuleElementSynthetics } from "@module/rules/index.ts";
-import { RuleElementPF2e } from "@module/rules/rule-element/base.ts";
-import { UserPF2e } from "@module/user/document.ts";
-import { ScenePF2e } from "@scene/document.ts";
-import { TokenDocumentPF2e } from "@scene/token-document/document.ts";
-import { DamageType } from "@system/damage/types.ts";
-import { ArmorStatistic, PerceptionStatistic, Statistic, StatisticDifficultyClass } from "@system/statistic/index.ts";
-import { RollDataPF2e } from "@system/text-editor.ts";
+} from "./../../../foundry/common/abstract/_module.mjs";
+import { ImageFilePath, VideoFilePath } from "./../../../foundry/common/constants.mjs";
+import { AbstractEffectPF2e, ConditionPF2e, ContainerPF2e, PhysicalItemPF2e, ShieldPF2e, ItemPF2e } from "./../item/index.ts";
+import { ItemSourcePF2e, ItemType, PhysicalItemSource } from "./../item/base/data/index.ts";
+import { ConditionKey, ConditionSlug, ConditionSource } from "./../item/condition/index.ts";
+import { EffectSource } from "./../item/effect/data.ts";
+import { ActiveEffectPF2e } from "./../active-effect.ts";
+import { TokenPF2e } from "./../canvas/index.ts";
+import { AppliedDamageFlag } from "./../chat-message/index.ts";
+import { Size } from "./../data.ts";
+import { CombatantPF2e, EncounterPF2e } from "./../encounter/index.ts";
+import { RuleElementSynthetics } from "./../rules/index.ts";
+import { RuleElementPF2e } from "./../rules/rule-element/base.ts";
+import { UserPF2e } from "./../user/document.ts";
+import { ScenePF2e } from "./../scene/document.ts";
+import { TokenDocumentPF2e } from "./../scene/token-document/document.ts";
+import { DamageType } from "./../system/damage/types.ts";
+import { ArmorStatistic, PerceptionStatistic, Statistic, StatisticDifficultyClass } from "./../system/statistic/index.ts";
+import { RollDataPF2e } from "./../system/text-editor.ts";
 import { ActorConditions } from "./conditions.ts";
 import { Abilities, VisionLevel } from "./creature/data.ts";
 import { GetReachParameters, ModeOfBeing, ResourceData } from "./creature/types.ts";

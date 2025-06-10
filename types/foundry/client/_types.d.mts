@@ -1,8 +1,8 @@
-import { DeepReadonly, ElevatedPoint, Point, SocketRequest, SocketResponse, TokenPosition } from "@common/_types.mjs";
-import { DataModel } from "@common/abstract/_module.mjs";
-import { DataField } from "@common/data/fields.mjs";
-import { EffectDurationData } from "@common/documents/active-effect.mjs";
-import { GridMeasurePathCostFunction3D, GridOffset3D } from "@common/grid/_types.mjs";
+import { DeepReadonly, ElevatedPoint, Point, SocketRequest, SocketResponse, TokenPosition } from "./../common/_types.mjs";
+import { DataModel } from "./../common/abstract/_module.mjs";
+import { DataField } from "./../common/data/fields.mjs";
+import { EffectDurationData } from "./../common/documents/active-effect.mjs";
+import { GridMeasurePathCostFunction3D, GridOffset3D } from "./../common/grid/_types.mjs";
 import { DocumentHTMLEmbedConfig } from "./applications/ux/text-editor.mjs";
 import { AVSettingsData } from "./av/settings.mjs";
 import { CanvasAnimationData, CanvasAnimationEasingFunction } from "./canvas/animation/_types.mjs";

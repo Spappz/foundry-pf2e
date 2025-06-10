@@ -1,4 +1,4 @@
-import { Point } from "@common/_types.mjs";
+import { Point } from "./../../../common/_types.mjs";
 import GridLayer from "../layers/grid.mjs";
 import CanvasGroupMixin from "./canvas-group-mixin.mjs";
 

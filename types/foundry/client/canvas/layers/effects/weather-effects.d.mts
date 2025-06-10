@@ -2,8 +2,8 @@ import FullCanvasObjectMixin from "../../containers/advanced/full-canvas-mixin.m
 import CanvasLayer, { CanvasLayerOptions } from "../base/canvas-layer.mjs";
 import VoidFilter from "../../rendering/filters/void.mjs";
 import WeatherOcclusionMaskFilter from "../../rendering/filters/weather-occlusion-mask.mjs";
-import { ParticleEffect } from "@client/canvas/containers/_module.mjs";
-import { WeatherShaderEffect } from "@client/canvas/rendering/shaders/_module.mjs";
+import { ParticleEffect } from "./../../../canvas/containers/_module.mjs";
+import { WeatherShaderEffect } from "./../../../canvas/rendering/shaders/_module.mjs";
 
 /**
  * A CanvasLayer for displaying visual effects like weather, transitions, flashes, or more.

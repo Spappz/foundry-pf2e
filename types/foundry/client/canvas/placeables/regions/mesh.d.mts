@@ -1,5 +1,5 @@
-import AbstractBaseShader from "@client/canvas/rendering/shaders/base-shader.mjs";
-import { Point } from "@common/_types.mjs";
+import AbstractBaseShader from "./../../../canvas/rendering/shaders/base-shader.mjs";
+import { Point } from "./../../../../common/_types.mjs";
 import Region from "../region.mjs";
 
 /**

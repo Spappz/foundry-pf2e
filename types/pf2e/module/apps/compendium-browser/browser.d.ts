@@ -1,7 +1,7 @@
-import { AbilityTrait, ActionCategory } from "@item/ability/index.ts";
-import { ActionType } from "@item/base/data/index.ts";
-import { BaseSpellcastingEntry } from "@item/spellcasting-entry/index.ts";
-import { SvelteApplicationMixin } from "@module/sheet/mixin.svelte.ts";
+import { AbilityTrait, ActionCategory } from "./../../item/ability/index.ts";
+import { ActionType } from "./../../item/base/data/index.ts";
+import { BaseSpellcastingEntry } from "./../../item/spellcasting-entry/index.ts";
+import { SvelteApplicationMixin } from "./../../sheet/mixin.svelte.ts";
 import { BrowserTab, BrowserTabs, ContentTabName, PackInfo, SourceInfo, TabData, TabName } from "./data";
 import { PackLoader } from "./loader";
 import { BrowserFilter } from "./tabs/data";

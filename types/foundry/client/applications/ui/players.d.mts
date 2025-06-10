@@ -1,4 +1,4 @@
-import User from "@client/documents/user.mjs";
+import User from "./../../documents/user.mjs";
 import { ApplicationConfiguration } from "../_module.mjs";
 import ApplicationV2 from "../api/application.mjs";
 import HandlebarsApplicationMixin, { HandlebarsTemplatePart } from "../api/handlebars-application.mjs";

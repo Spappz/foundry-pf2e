@@ -1,4 +1,4 @@
-import { AbilityItemPF2e } from "@item";
+import { AbilityItemPF2e } from "./../index.ts";
 import { FeatPF2e } from "./document.ts";
 /**
  * Whether a feat item can have key ability options

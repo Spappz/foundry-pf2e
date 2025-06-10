@@ -1,4 +1,4 @@
-import { PhysicalItemPF2e } from "@item";
+import { PhysicalItemPF2e } from "./../../../item/index.ts";
 import appv1 = foundry.appv1;
 declare class SelectItemDialog extends appv1.api.Application {
     #private;

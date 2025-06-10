@@ -1,18 +1,18 @@
-import { ActorPF2e } from "@actor";
-import { PrototypeTokenPF2e } from "@actor/data/base.ts";
-import { TrackedAttributesDescription } from "@client/_types.mjs";
-import { TokenResourceData } from "@client/canvas/placeables/token.mjs";
-import { TokenUpdateCallbackOptions } from "@client/documents/token.mjs";
-import { Point } from "@common/_types.mjs";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { PrototypeTokenPF2e } from "./../../actor/data/base.ts";
+import { TrackedAttributesDescription } from "./../../../../foundry/client/_types.mjs";
+import { TokenResourceData } from "./../../../../foundry/client/canvas/placeables/token.mjs";
+import { TokenUpdateCallbackOptions } from "./../../../../foundry/client/documents/token.mjs";
+import { Point } from "./../../../../foundry/common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseOperation,
-} from "@common/abstract/_types.mjs";
-import { default as Document } from "@common/abstract/document.mjs";
-import { TokenPF2e } from "@module/canvas/index.ts";
-import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.ts";
-import { DifficultTerrainGrade, RegionDocumentPF2e } from "@scene";
+} from "./../../../../foundry/common/abstract/_types.mjs";
+import { default as Document } from "./../../../../foundry/common/abstract/document.mjs";
+import { TokenPF2e } from "./../../canvas/index.ts";
+import { CombatantPF2e, EncounterPF2e } from "./../../encounter/index.ts";
+import { DifficultTerrainGrade, RegionDocumentPF2e } from "./../index.ts";
 import { ScenePF2e } from "../document.ts";
 import { TokenAura } from "./aura/index.ts";
 import { TokenFlagsPF2e } from "./data.ts";

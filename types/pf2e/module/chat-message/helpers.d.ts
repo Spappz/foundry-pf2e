@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { RollMode } from "@common/constants.mjs";
-import { AbilityItemPF2e, FeatPF2e } from "@item";
+import { ActorPF2e } from "./../actor/index.ts";
+import { RollMode } from "./../../../foundry/common/constants.mjs";
+import { AbilityItemPF2e, FeatPF2e } from "./../item/index.ts";
 import { ChatContextFlag, CheckContextChatFlag } from "./data.ts";
 import { ChatMessagePF2e } from "./document.ts";
 declare function isCheckContextFlag(flag?: ChatContextFlag): flag is CheckContextChatFlag;

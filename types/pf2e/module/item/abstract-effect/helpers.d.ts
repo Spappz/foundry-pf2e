@@ -1,4 +1,4 @@
-import { AbstractEffectPF2e } from "@item/index.ts";
+import { AbstractEffectPF2e } from "./../index.ts";
 import { DurationData } from "./data.ts";
 export declare function calculateRemainingDuration(
     effect: AbstractEffectPF2e,

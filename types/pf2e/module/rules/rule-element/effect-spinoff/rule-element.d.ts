@@ -1,6 +1,6 @@
-import { ActorPF2e } from "@actor";
-import { PhysicalItemPF2e } from "@item";
-import { SlugField } from "@system/schema-data-fields.ts";
+import { ActorPF2e } from "./../../../actor/index.ts";
+import { PhysicalItemPF2e } from "./../../../item/index.ts";
+import { SlugField } from "./../../../system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "../base.ts";
 import { ModelPropsFromRESchema, RuleElementSchema, RuleElementSource } from "../data.ts";
 import fields = foundry.data.fields;

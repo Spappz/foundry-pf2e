@@ -1,4 +1,4 @@
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import { DocumentConstructionContext } from "./../_types.mjs";
 import Collection, { CollectionGetOptions } from "../utils/collection.mjs";
 import Document from "./document.mjs";
 

@@ -1,11 +1,11 @@
-import { FormSelectOption } from "@client/applications/forms/fields.mjs";
-import { ProseMirrorEditor } from "@client/applications/ux/_module.mjs";
-import { ApplicationV1HeaderButton, AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
-import { DataField } from "@common/data/fields.mjs";
-import { ItemPF2e } from "@item";
-import { Rarity } from "@module/data.ts";
-import { RuleElementSource } from "@module/rules/index.ts";
-import { SheetOptions, TagifyEntry } from "@module/sheet/helpers.ts";
+import { FormSelectOption } from "./../../../../../foundry/client/applications/forms/fields.mjs";
+import { ProseMirrorEditor } from "./../../../../../foundry/client/applications/ux/_module.mjs";
+import { ApplicationV1HeaderButton, AppV1RenderOptions } from "./../../../../../foundry/client/appv1/api/application-v1.mjs";
+import { DataField } from "./../../../../../foundry/common/data/fields.mjs";
+import { ItemPF2e } from "./../../index.ts";
+import { Rarity } from "./../../../data.ts";
+import { RuleElementSource } from "./../../../rules/index.ts";
+import { SheetOptions, TagifyEntry } from "./../../../sheet/helpers.ts";
 import { Plugin } from "prosemirror-state";
 declare class ItemSheetPF2e<TItem extends ItemPF2e> extends fav1.sheets.ItemSheet<TItem, ItemSheetOptions> {
     #private;

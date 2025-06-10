@@ -1,4 +1,4 @@
-import { EquipmentTrait } from "@item/equipment/data.ts";
+import { EquipmentTrait } from "./../equipment/data.ts";
 import {
     BasePhysicalItemSource,
     BulkData,
@@ -6,7 +6,7 @@ import {
     PhysicalItemTraits,
     PhysicalSystemData,
     PhysicalSystemSource,
-} from "@item/physical/data.ts";
+} from "./../physical/data.ts";
 type ContainerSource = BasePhysicalItemSource<"backpack", ContainerSystemSource>;
 type ContainerTraits = PhysicalItemTraits<EquipmentTrait>;
 interface ContainerSystemSource extends Investable<PhysicalSystemSource> {

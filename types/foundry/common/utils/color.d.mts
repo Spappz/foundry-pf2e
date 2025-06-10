@@ -1,4 +1,4 @@
-import { HexColorString } from "@common/constants.mjs";
+import { HexColorString } from "./../constants.mjs";
 
 /**
  * A representation of a color in hexadecimal format.

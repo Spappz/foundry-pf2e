@@ -1,11 +1,11 @@
-import { RegionEvent } from "@client/documents/region.mjs";
-import { UserPF2e } from "@module/user/document.ts";
+import { RegionEvent } from "./../../../../foundry/client/documents/region.mjs";
+import { UserPF2e } from "./../../user/document.ts";
 import {
     EnvironmentBehaviorType,
     EnvironmentFeatureBehaviorType,
     RegionBehaviorPF2e,
     RegionDocumentPF2e,
-} from "@scene";
+} from "./../index.ts";
 import { DIFFICULT_TERRAIN_GRADES } from "./values.ts";
 import coreBehaviors = foundry.data.regionBehaviors;
 type RegionEventPF2e = RegionEvent<RegionDocumentPF2e, UserPF2e>;

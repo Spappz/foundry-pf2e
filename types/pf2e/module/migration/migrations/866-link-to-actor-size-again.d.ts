@@ -1,5 +1,5 @@
-import { ActorPF2e } from "@actor";
-import { ActorSourcePF2e } from "@actor/data/index.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { ActorSourcePF2e } from "./../../actor/data/index.ts";
 import { MigrationBase } from "../base.ts";
 export declare class Migration866LinkToActorSizeAgain extends MigrationBase {
     static version: number;

@@ -1,5 +1,5 @@
-import { Rolled } from "@client/dice/_module.mjs";
-import { ZeroToThree } from "@module/data.ts";
+import { Rolled } from "./../../../foundry/client/dice/_module.mjs";
+import { ZeroToThree } from "./../data.ts";
 import { CheckRoll } from "./check/roll.ts";
 import { Predicate } from "./predication.ts";
 import { StatisticDifficultyClass } from "./statistic/index.ts";

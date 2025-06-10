@@ -1,7 +1,7 @@
-import { StringField } from "@common/data/fields.mjs";
-import { UserVisibility } from "@scripts/ui/user-visibility.ts";
-import { DegreeOfSuccessString } from "@system/degree-of-success.ts";
-import { DataUnionField, StrictStringField } from "@system/schema-data-fields.ts";
+import { StringField } from "./../../../../foundry/common/data/fields.mjs";
+import { UserVisibility } from "./../../../scripts/ui/user-visibility.ts";
+import { DegreeOfSuccessString } from "./../../system/degree-of-success.ts";
+import { DataUnionField, StrictStringField } from "./../../system/schema-data-fields.ts";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

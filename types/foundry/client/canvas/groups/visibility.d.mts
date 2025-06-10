@@ -1,5 +1,5 @@
-import { PointVisionSource } from "@client/canvas/sources/_module.mjs";
-import { Point } from "@common/_types.mjs";
+import { PointVisionSource } from "./../../canvas/sources/_module.mjs";
+import { Point } from "./../../../common/_types.mjs";
 import { CanvasVisibilityTestConfiguration, CanvasVisibilityTextureConfiguration } from "../../_types.mjs";
 import { CanvasVisionContainer } from "../layers/_types.mjs";
 import { AmbientLight, Token } from "../placeables/_module.mjs";

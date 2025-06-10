@@ -1,5 +1,5 @@
-import { ActorPF2e } from "@actor";
-import { PhysicalItemPF2e } from "@item";
+import { ActorPF2e } from "./../../index.ts";
+import { PhysicalItemPF2e } from "./../../../item/index.ts";
 import appv1 = foundry.appv1;
 declare class ItemTransferDialog extends appv1.api.FormApplication<PhysicalItemPF2e, MoveLootOptions> {
     #private;

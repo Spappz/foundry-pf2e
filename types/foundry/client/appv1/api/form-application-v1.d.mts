@@ -1,4 +1,4 @@
-import { EditorCreateOptions } from "@client/applications/ux/prosemirror-editor.mjs";
+import { EditorCreateOptions } from "./../../applications/ux/prosemirror-editor.mjs";
 import { Plugin } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import Application, { AppV1RenderOptions, ApplicationV1Options } from "./application-v1.mjs";

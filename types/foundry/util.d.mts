@@ -1,5 +1,5 @@
-import { DataSchema, DatabaseUpdateOperation } from "@common/abstract/_module.mjs";
-import Collection from "@common/utils/collection.mjs";
+import { DataSchema, DatabaseUpdateOperation } from "./common/abstract/_module.mjs";
+import Collection from "./common/utils/collection.mjs";
 import type DataModel from "./common/abstract/data.mjs";
 
 declare global {

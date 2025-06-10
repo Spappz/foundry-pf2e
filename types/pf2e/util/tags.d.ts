@@ -1,5 +1,5 @@
-import { TraitViewData } from "@actor/data/base.ts";
-import { HTMLTagifyTagsElement } from "@system/html-elements/tagify-tags.ts";
+import { TraitViewData } from "./../module/actor/data/base.ts";
+import { HTMLTagifyTagsElement } from "./../module/system/html-elements/tagify-tags.ts";
 import { default as Tagify, TagifySettings } from "@yaireo/tagify";
 declare function traitSlugToObject(trait: string, dictionary: Record<string, string | undefined>): TraitViewData;
 /** Create a tagify select menu out of a JSON input element */

@@ -1,6 +1,6 @@
-import { Immunity } from "@actor/data/iwr.ts";
-import { ImmunityType } from "@actor/types.ts";
-import { StrictArrayField } from "@system/schema-data-fields.ts";
+import { Immunity } from "./../../../actor/data/iwr.ts";
+import { ImmunityType } from "./../../../actor/types.ts";
+import { StrictArrayField } from "./../../../system/schema-data-fields.ts";
 import { ModelPropsFromRESchema } from "../data.ts";
 import { IWRException, IWRExceptionField, IWRRuleElement, IWRRuleSchema } from "./base.ts";
 /** @category RuleElement */

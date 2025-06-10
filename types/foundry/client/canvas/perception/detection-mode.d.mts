@@ -1,4 +1,4 @@
-import { CanvasVisibilityTest, CanvasVisibilityTestConfiguration } from "@client/_module.mjs";
+import { CanvasVisibilityTest, CanvasVisibilityTestConfiguration } from "./../../_module.mjs";
 import * as fields from "../../../common/data/fields.mjs";
 import { PlaceableObject, Token } from "../placeables/_module.mjs";
 import PointVisionSource from "../sources/point-vision-source.mjs";

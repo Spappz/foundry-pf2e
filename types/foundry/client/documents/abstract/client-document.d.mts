@@ -1,14 +1,14 @@
-import ApplicationV2 from "@client/applications/api/application.mjs";
-import HTMLDocumentEmbedElement from "@client/applications/elements/document-embed.mjs";
+import ApplicationV2 from "./../../applications/api/application.mjs";
+import HTMLDocumentEmbedElement from "./../../applications/elements/document-embed.mjs";
 import {
     DocumentHTMLEmbedConfig,
     EnrichmentAnchorOptions,
     EnrichmentOptions,
-} from "@client/applications/ux/text-editor.mjs";
-import Application from "@client/appv1/api/application-v1.mjs";
-import { DropCanvasData } from "@client/helpers/hooks.mjs";
-import { Collection, SortOptions } from "@client/utils/_module.mjs";
-import { DocumentConstructionContext } from "@common/_types.mjs";
+} from "./../../applications/ux/text-editor.mjs";
+import Application from "./../../appv1/api/application-v1.mjs";
+import { DropCanvasData } from "./../../helpers/hooks.mjs";
+import { Collection, SortOptions } from "./../../utils/_module.mjs";
+import { DocumentConstructionContext } from "./../../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
@@ -16,9 +16,9 @@ import {
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_module.mjs";
-import Document from "@common/abstract/document.mjs";
-import { DocumentOwnershipLevel } from "@common/constants.mjs";
+} from "./../../../common/abstract/_module.mjs";
+import Document from "./../../../common/abstract/document.mjs";
+import { DocumentOwnershipLevel } from "./../../../common/constants.mjs";
 import { BaseUser } from "../_module.mjs";
 import CompendiumCollection from "../collections/compendium-collection.mjs";
 

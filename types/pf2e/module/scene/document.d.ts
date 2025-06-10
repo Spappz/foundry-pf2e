@@ -1,10 +1,10 @@
-import { SceneUpdateOptions } from "@client/documents/scene.mjs";
+import { SceneUpdateOptions } from "./../../../foundry/client/documents/scene.mjs";
 import {
     DatabaseDeleteOperation,
     DatabaseUpdateOperation,
     Document,
     EmbeddedCollection,
-} from "@common/abstract/_module.mjs";
+} from "./../../../foundry/common/abstract/_module.mjs";
 import { SceneFlagsPF2e } from "./data.ts";
 import {
     AmbientLightDocumentPF2e,

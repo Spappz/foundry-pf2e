@@ -1,7 +1,7 @@
-import { ActorType, CharacterPF2e } from "@actor";
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { ItemPF2e } from "@item";
-import { PredicateField } from "@system/schema-data-fields.ts";
+import { ActorType, CharacterPF2e } from "./../../actor/index.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { ItemPF2e } from "./../../item/index.ts";
+import { PredicateField } from "./../../system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema, RuleElementSource } from "./data.ts";
 import fields = foundry.data.fields;

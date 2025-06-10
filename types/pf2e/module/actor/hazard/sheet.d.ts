@@ -1,5 +1,5 @@
-import { ActorSheetPF2e, SheetClickActionHandlers } from "@actor/sheet/base.ts";
-import { ActorSheetOptions } from "@client/appv1/sheets/actor-sheet.mjs";
+import { ActorSheetPF2e, SheetClickActionHandlers } from "./../sheet/base.ts";
+import { ActorSheetOptions } from "./../../../../foundry/client/appv1/sheets/actor-sheet.mjs";
 import { HazardPF2e } from "./document.ts";
 import { HazardSheetData } from "./types.ts";
 export declare class HazardSheetPF2e extends ActorSheetPF2e<HazardPF2e> {

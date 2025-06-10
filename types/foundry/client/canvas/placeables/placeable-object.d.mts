@@ -1,12 +1,12 @@
-import { CanvasDocument } from "@client/documents/abstract/canvas-document.mjs";
-import User from "@client/documents/user.mjs";
-import { Point } from "@common/_types.mjs";
+import { CanvasDocument } from "./../../documents/abstract/canvas-document.mjs";
+import User from "./../../documents/user.mjs";
+import { Point } from "./../../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
-import { UserAction } from "@common/constants.mjs";
+} from "./../../../common/abstract/_types.mjs";
+import { UserAction } from "./../../../common/constants.mjs";
 import { ControlIcon } from "../containers/_module.mjs";
 import { MouseInteractionManager, RenderFlag, RenderFlags } from "../interaction/_module.mjs";
 import { PlaceablesLayer } from "../layers/_module.mjs";

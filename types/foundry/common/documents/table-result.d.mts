@@ -1,4 +1,4 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, TableResultType } from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, TableResultType } from "./../constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import * as documents from "./_module.mjs";

@@ -1,14 +1,14 @@
-import { ActorPF2e } from "@actor";
-import { AttributeString } from "@actor/types.ts";
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { ConsumablePF2e, MeleePF2e, ShieldPF2e, PhysicalItemPF2e } from "@item";
-import { ItemSourcePF2e, RawItemChatData } from "@item/base/data/index.ts";
-import { NPCAttackTrait } from "@item/melee/types.ts";
-import { PhysicalItemConstructionContext } from "@item/physical/document.ts";
-import { IdentificationStatus, MystifiedData } from "@item/physical/index.ts";
-import { RangeData } from "@item/types.ts";
-import { StrikeRuleElement } from "@module/rules/rule-element/strike.ts";
-import { EnrichmentOptionsPF2e } from "@system/text-editor.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { ConsumablePF2e, MeleePF2e, ShieldPF2e, PhysicalItemPF2e } from "./../index.ts";
+import { ItemSourcePF2e, RawItemChatData } from "./../base/data/index.ts";
+import { NPCAttackTrait } from "./../melee/types.ts";
+import { PhysicalItemConstructionContext } from "./../physical/document.ts";
+import { IdentificationStatus, MystifiedData } from "./../physical/index.ts";
+import { RangeData } from "./../types.ts";
+import { StrikeRuleElement } from "./../../rules/rule-element/strike.ts";
+import { EnrichmentOptionsPF2e } from "./../../system/text-editor.ts";
 import { WeaponDamage, WeaponFlags, WeaponSource, WeaponSystemData } from "./data.ts";
 import { BaseWeaponType, OtherWeaponTag, WeaponCategory, WeaponGroup, WeaponReloadTime, WeaponTrait } from "./types.ts";
 declare class WeaponPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {

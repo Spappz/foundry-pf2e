@@ -1,7 +1,7 @@
-import { ActorPF2e } from "@actor";
-import { ApplicationV1Options } from "@client/appv1/api/_module.mjs";
-import { RollMode } from "@common/constants.mjs";
-import { ItemPF2e } from "@item";
+import { ActorPF2e } from "./../module/actor/index.ts";
+import { ApplicationV1Options } from "./../../foundry/client/appv1/api/_module.mjs";
+import { RollMode } from "./../../foundry/common/constants.mjs";
+import { ItemPF2e } from "./../module/item/index.ts";
 /**
  * @category Other
  */

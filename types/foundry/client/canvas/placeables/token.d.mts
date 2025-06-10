@@ -12,16 +12,16 @@ import {
     TokenMovementWaypoint,
     TokenPlannedMovement,
     TokenTerrainMovementWaypoint,
-} from "@client/_types.mjs";
-import { TokenDocument, User } from "@client/documents/_module.mjs";
-import { ColorSource, ElevatedPoint, Point, TokenDimensions, TokenPosition } from "@common/_types.mjs";
+} from "./../../_types.mjs";
+import { TokenDocument, User } from "./../../documents/_module.mjs";
+import { ColorSource, ElevatedPoint, Point, TokenDimensions, TokenPosition } from "./../../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
-import { TokenDisplayMode, WallRestrictionType } from "@common/constants.mjs";
-import Color from "@common/utils/color.mjs";
+} from "./../../../common/abstract/_types.mjs";
+import { TokenDisplayMode, WallRestrictionType } from "./../../../common/constants.mjs";
+import Color from "./../../../common/utils/color.mjs";
 import { CanvasAnimationAttribute, CanvasAnimationOptions } from "../animation/_types.mjs";
 import { PreciseText } from "../containers/_module.mjs";
 import PolygonVertex from "../geometry/edges/vertex.mjs";

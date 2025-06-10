@@ -1,4 +1,4 @@
-import Color from "@common/utils/color.mjs";
+import Color from "./../../../common/utils/color.mjs";
 import CanvasGroupMixin from "./canvas-group-mixin.mjs";
 
 /**

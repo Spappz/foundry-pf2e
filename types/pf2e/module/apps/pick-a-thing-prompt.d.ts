@@ -1,6 +1,6 @@
-import type { ItemPF2e } from "@item";
-import type { UserPF2e } from "@module/user/document.ts";
-import { Predicate } from "@system/predication.ts";
+import type { ItemPF2e } from "./../item/index.ts";
+import type { UserPF2e } from "./../user/document.ts";
+import { Predicate } from "./../system/predication.ts";
 import Tagify from "@yaireo/tagify";
 
 /** Prompt the user to pick from a number of options */

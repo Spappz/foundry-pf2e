@@ -1,4 +1,4 @@
-import { ActorType } from "@actor/types.ts";
+import { ActorType } from "./../../actor/types.ts";
 import { ModelPropsFromRESchema } from "./data.ts";
 import { RuleElementPF2e, RuleElementSchema } from "./index.ts";
 import fields = foundry.data.fields;

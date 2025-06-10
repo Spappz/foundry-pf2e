@@ -1,5 +1,5 @@
-import { ActorType, CreaturePF2e } from "@actor";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { ActorType, CreaturePF2e } from "./../../actor/index.ts";
+import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
 import { RuleElementPF2e } from "./base.ts";
 import { ModelPropsFromRESchema, ResolvableValueField, RuleElementSchema } from "./data.ts";
 import fields = foundry.data.fields;

@@ -1,14 +1,14 @@
-import Roll, { Rolled } from "@client/dice/roll.mjs";
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import Roll, { Rolled } from "./../dice/roll.mjs";
+import { DocumentConstructionContext } from "./../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import { RollMode } from "@common/constants.mjs";
-import BaseChatMessage, { ChatMessageSource, ChatSpeakerData } from "@common/documents/chat-message.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import { RollMode } from "./../../common/constants.mjs";
+import BaseChatMessage, { ChatMessageSource, ChatSpeakerData } from "./../../common/documents/chat-message.mjs";
 import { Actor, BaseUser, Scene, TokenDocument, User } from "./_module.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 

@@ -1,16 +1,16 @@
-import { ActorPF2e } from "@actor";
+import { ActorPF2e } from "./../actor/index.ts";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DataModelConstructionContext,
-} from "@common/abstract/_types.mjs";
-import { ItemPF2e } from "@item";
-import { EffectAreaShape } from "@item/spell/types.ts";
-import { MeasuredTemplatePF2e } from "@module/canvas/measured-template.ts";
-import { ItemOriginFlag } from "@module/chat-message/data.ts";
-import { ChatMessagePF2e } from "@module/chat-message/document.ts";
+} from "./../../../foundry/common/abstract/_types.mjs";
+import { ItemPF2e } from "./../item/index.ts";
+import { EffectAreaShape } from "./../item/spell/types.ts";
+import { MeasuredTemplatePF2e } from "./../canvas/measured-template.ts";
+import { ItemOriginFlag } from "./../chat-message/data.ts";
+import { ChatMessagePF2e } from "./../chat-message/document.ts";
 import { ScenePF2e } from "./document.ts";
-import { DocumentFlags } from "@common/data/_types.mjs";
+import { DocumentFlags } from "./../../../foundry/common/data/_types.mjs";
 declare class MeasuredTemplateDocumentPF2e<
     TParent extends ScenePF2e | null = ScenePF2e | null,
 > extends MeasuredTemplateDocument<TParent> {

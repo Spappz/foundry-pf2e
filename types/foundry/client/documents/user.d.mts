@@ -1,5 +1,5 @@
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { UserPermission } from "@common/constants.mjs";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../common/abstract/_types.mjs";
+import { UserPermission } from "./../../common/constants.mjs";
 import Token from "../canvas/placeables/token.mjs";
 import UserTargets from "../canvas/placeables/tokens/targets.mjs";
 import { BaseUser, Macro, TokenDocument, UserUUID } from "./_module.mjs";

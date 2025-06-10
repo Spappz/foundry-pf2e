@@ -1,4 +1,4 @@
-import PointSourcePolygon from "@client/canvas/geometry/shapes/source-polygon.mjs";
+import PointSourcePolygon from "./../../../../foundry/client/canvas/geometry/shapes/source-polygon.mjs";
 import { TokenPF2e } from "../token/index.ts";
 /** Subclassed to include hearing detection */
 declare class PointVisionSourcePF2e<TObject extends TokenPF2e = TokenPF2e> extends foundry.canvas.sources

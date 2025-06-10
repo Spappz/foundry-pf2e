@@ -1,4 +1,4 @@
-import type * as fields from "@common/data/fields.mjs";
+import type * as fields from "./../../../common/data/fields.mjs";
 import { RegionBehaviorType } from "./base.mjs";
 
 /** The data model for a behavior that pauses the game when a player-controlled Token enters the Region. */

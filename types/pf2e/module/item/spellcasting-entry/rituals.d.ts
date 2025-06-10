@@ -1,5 +1,5 @@
-import { ActorPF2e } from "@actor";
-import { SpellPF2e } from "@item";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { SpellPF2e } from "./../index.ts";
 import { SpellCollection } from "./collection.ts";
 import { BaseSpellcastingEntry, CastOptions, SpellcastingSheetData } from "./types.ts";
 /** An in-memory spellcasting entry for rituals */

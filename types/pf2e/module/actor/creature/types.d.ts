@@ -1,8 +1,8 @@
-import { ActorPF2e, ActorUpdateCallbackOptions, ActorUpdateOperation } from "@actor/base.ts";
-import { CREATURE_ACTOR_TYPES } from "@actor/values.ts";
-import { AbilityItemPF2e, MeleePF2e, WeaponPF2e } from "@item";
-import { LabeledValueAndMax } from "@module/data.ts";
-import { TokenDocumentPF2e } from "@scene/index.ts";
+import { ActorPF2e, ActorUpdateCallbackOptions, ActorUpdateOperation } from "./../base.ts";
+import { CREATURE_ACTOR_TYPES } from "./../values.ts";
+import { AbilityItemPF2e, MeleePF2e, WeaponPF2e } from "./../../item/index.ts";
+import { LabeledValueAndMax } from "./../../data.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
 import { LANGUAGES_BY_RARITY, SENSE_TYPES } from "./values.ts";
 /** A `CreaturePF2e` subtype string */
 type CreatureActorType = (typeof CREATURE_ACTOR_TYPES)[number];

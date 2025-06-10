@@ -1,4 +1,4 @@
-import { TooltipDirection } from "@client/helpers/interaction/tooltip-manager.mjs";
+import { TooltipDirection } from "./../helpers/interaction/tooltip-manager.mjs";
 
 /**
  * A step in a Tour

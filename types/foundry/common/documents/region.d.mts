@@ -1,4 +1,4 @@
-import { Document, DocumentMetadata, EmbeddedCollection } from "@common/abstract/_module.mjs";
+import { Document, DocumentMetadata, EmbeddedCollection } from "./../abstract/_module.mjs";
 import { REGION_VISIBILITY } from "../constants.mjs";
 import { BaseShapeData } from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";

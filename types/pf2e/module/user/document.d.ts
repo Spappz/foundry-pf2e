@@ -1,8 +1,8 @@
-import { ActorPF2e } from "@actor";
-import { default as UserTargets } from "@client/canvas/placeables/tokens/targets.mjs";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
-import { TokenPF2e } from "@module/canvas/index.ts";
-import { ScenePF2e, TokenDocumentPF2e } from "@scene";
+import { ActorPF2e } from "./../actor/index.ts";
+import { default as UserTargets } from "./../../../foundry/client/canvas/placeables/tokens/targets.mjs";
+import { DatabaseUpdateCallbackOptions } from "./../../../foundry/common/abstract/_types.mjs";
+import { TokenPF2e } from "./../canvas/index.ts";
+import { ScenePF2e, TokenDocumentPF2e } from "./../scene/index.ts";
 import { UserFlagsPF2e, UserSettingsPF2e, UserSourcePF2e } from "./data.ts";
 declare class UserPF2e extends User {
     prepareData(): void;

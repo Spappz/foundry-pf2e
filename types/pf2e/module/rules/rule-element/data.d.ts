@@ -1,4 +1,4 @@
-import { PredicateField, SlugField } from "@system/schema-data-fields.ts";
+import { PredicateField, SlugField } from "./../../system/schema-data-fields.ts";
 import fields = foundry.data.fields;
 type RuleElementSource = {
     key: string;

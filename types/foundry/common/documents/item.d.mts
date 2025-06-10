@@ -1,4 +1,4 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, UserAction } from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, UserAction } from "./../constants.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseActiveEffect, BaseActor, BaseFolder, BaseUser, ItemUUID } from "./_module.mjs";

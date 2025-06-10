@@ -1,4 +1,4 @@
-import User from "@client/documents/user.mjs";
+import User from "./../../documents/user.mjs";
 import {
     ApplicationClosingOptions,
     ApplicationConfiguration,

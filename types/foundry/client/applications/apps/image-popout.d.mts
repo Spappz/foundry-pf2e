@@ -1,4 +1,4 @@
-import Document from "@common/abstract/document.mjs";
+import Document from "./../../../common/abstract/document.mjs";
 import { ApplicationConfiguration, ApplicationRenderContext } from "../_types.mjs";
 import {
     ApplicationV2,

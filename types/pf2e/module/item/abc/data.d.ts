@@ -1,6 +1,6 @@
-import { ImageFilePath } from "@common/constants.mjs";
-import { ItemUUID } from "@common/documents/_module.mjs";
-import { ItemSystemData, ItemSystemSource } from "@item/base/data/system.ts";
+import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { ItemUUID } from "./../../../../foundry/common/documents/_module.mjs";
+import { ItemSystemData, ItemSystemSource } from "./../base/data/system.ts";
 import fields = foundry.data.fields;
 interface ABCFeatureEntryData {
     uuid: string;

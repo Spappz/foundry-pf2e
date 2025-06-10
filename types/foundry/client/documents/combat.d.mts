@@ -5,11 +5,11 @@ import {
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
-import { ChatMessageCreateOperation } from "@common/documents/chat-message.mjs";
-import BaseCombat from "@common/documents/combat.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import EmbeddedCollection from "./../../common/abstract/embedded-collection.mjs";
+import { ChatMessageCreateOperation } from "./../../common/documents/chat-message.mjs";
+import BaseCombat from "./../../common/documents/combat.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 import Combatant from "./combatant.mjs";
 

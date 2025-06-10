@@ -1,4 +1,4 @@
-import VisualEffectsMaskingFilter from "@client/canvas/rendering/filters/effects-masking.mjs";
+import VisualEffectsMaskingFilter from "./../../../canvas/rendering/filters/effects-masking.mjs";
 import CanvasLayer from "../base/canvas-layer.mjs";
 
 /**

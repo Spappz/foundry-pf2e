@@ -3,7 +3,7 @@ import SpriteMesh from "../../containers/elements/sprite-mesh.mjs";
 import PointSourceMesh from "../../containers/elements/point-source-mesh.mjs";
 import CachedContainer from "../../containers/advanced/cached-container.mjs";
 import BaselineIlluminationSamplerShader from "../../rendering/shaders/samplers/baseline-illumination.mjs";
-import { VisualEffectsMaskingFilter } from "@client/canvas/rendering/filters/_module.mjs";
+import { VisualEffectsMaskingFilter } from "./../../../canvas/rendering/filters/_module.mjs";
 
 /**
  * A CanvasLayer for displaying illumination visual effects

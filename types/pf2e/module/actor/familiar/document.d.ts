@@ -1,12 +1,12 @@
-import { CreaturePF2e, CharacterPF2e } from "@actor";
-import { CreatureUpdateCallbackOptions } from "@actor/creature/index.ts";
-import { DatabaseDeleteCallbackOptions } from "@common/abstract/_types.mjs";
-import { ActorUUID } from "@common/documents/_module.mjs";
-import { ItemType } from "@item/base/data/index.ts";
-import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.ts";
-import { RuleElementPF2e } from "@module/rules/index.ts";
-import { TokenDocumentPF2e } from "@scene";
-import { Statistic } from "@system/statistic/index.ts";
+import { CreaturePF2e, CharacterPF2e } from "./../index.ts";
+import { CreatureUpdateCallbackOptions } from "./../creature/index.ts";
+import { DatabaseDeleteCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import { ActorUUID } from "./../../../../foundry/common/documents/_module.mjs";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { CombatantPF2e, EncounterPF2e } from "./../../encounter/index.ts";
+import { RuleElementPF2e } from "./../../rules/index.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { FamiliarSource, FamiliarSystemData } from "./data.ts";
 declare class FamiliarPF2e<
     TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,

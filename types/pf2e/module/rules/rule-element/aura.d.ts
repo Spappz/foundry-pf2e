@@ -1,8 +1,8 @@
-import { SaveType } from "@actor/types.ts";
-import { HexColorString } from "@common/constants.mjs";
-import { ItemUUID } from "@common/documents/_module.mjs";
-import { EffectTrait } from "@item/abstract-effect/types.ts";
-import { DataUnionField, PredicateField, StrictArrayField } from "@system/schema-data-fields.ts";
+import { SaveType } from "./../../actor/types.ts";
+import { HexColorString } from "./../../../../foundry/common/constants.mjs";
+import { ItemUUID } from "./../../../../foundry/common/documents/_module.mjs";
+import { EffectTrait } from "./../../item/abstract-effect/types.ts";
+import { DataUnionField, PredicateField, StrictArrayField } from "./../../system/schema-data-fields.ts";
 import { RuleElementOptions, RuleElementPF2e } from "./base.ts";
 import {
     ModelPropsFromRESchema,

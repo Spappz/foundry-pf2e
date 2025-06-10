@@ -1,4 +1,4 @@
-import { ImageFilePath } from "@common/constants.mjs";
+import { ImageFilePath } from "./../../common/constants.mjs";
 import Token from "../canvas/placeables/token.mjs";
 import { BaseMacro } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";

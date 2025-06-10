@@ -8,17 +8,17 @@ import {
     CreatureSaves,
     CreatureTraitsData,
     SkillData,
-} from "@actor/creature/data.ts";
-import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
-import { ModifierPF2e } from "@actor/modifiers.ts";
-import { AttributeString } from "@actor/types.ts";
+} from "./../creature/data.ts";
+import { ActorSystemModel, ActorSystemSchema } from "./../data/model.ts";
+import { ModifierPF2e } from "./../modifiers.ts";
+import { AttributeString } from "./../types.ts";
 import {
     ModelPropFromDataField,
     ModelPropsFromSchema,
     SourceFromDataField,
     SourceFromSchema,
-} from "@common/data/fields.mjs";
-import { StatisticTraceData } from "@system/statistic/data.ts";
+} from "./../../../../foundry/common/data/fields.mjs";
+import { StatisticTraceData } from "./../../system/statistic/data.ts";
 import { FamiliarPF2e } from "./document.ts";
 import fields = foundry.data.fields;
 type FamiliarSource = BaseCreatureSource<"familiar", FamiliarSystemSource>;

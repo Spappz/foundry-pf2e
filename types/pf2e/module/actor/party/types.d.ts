@@ -1,6 +1,6 @@
-import { DataModel, DataSchema } from "@common/abstract/_module.mjs";
-import { ItemType } from "@item/base/data/index.ts";
-import { Statistic } from "@system/statistic/index.ts";
+import { DataModel, DataSchema } from "./../../../../foundry/common/abstract/_module.mjs";
+import { ItemType } from "./../../item/base/data/index.ts";
+import { Statistic } from "./../../system/statistic/index.ts";
 import { PartySystemData } from "./data.ts";
 /** Interface for a party campaign implementation, alternative data preparation used by parties for special campaigns */
 interface PartyCampaign extends DataModel<PartySystemData, DataSchema> {

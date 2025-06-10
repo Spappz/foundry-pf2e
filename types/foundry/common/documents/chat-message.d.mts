@@ -1,7 +1,7 @@
-import Roll from "@client/dice/roll.mjs";
-import { DatabaseCreateCallbackOptions, DatabaseCreateOperation } from "@common/abstract/_types.mjs";
-import { AudioFilePath, ChatMessageStyle, DocumentOwnershipLevel, RollMode } from "@common/constants.mjs";
-import { DocumentFlags } from "@common/data/_module.mjs";
+import Roll from "./../../client/dice/roll.mjs";
+import { DatabaseCreateCallbackOptions, DatabaseCreateOperation } from "./../abstract/_types.mjs";
+import { AudioFilePath, ChatMessageStyle, DocumentOwnershipLevel, RollMode } from "./../constants.mjs";
+import { DocumentFlags } from "./../data/_module.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import BaseUser from "./user.mjs";

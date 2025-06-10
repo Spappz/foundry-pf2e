@@ -1,8 +1,8 @@
-import { ModifierType } from "@actor/modifiers.ts";
-import { FlatModifierRuleElement, FlatModifierSource } from "@module/rules/rule-element/flat-modifier.ts";
-import { DamageCategoryUnique } from "@system/damage/types.ts";
+import { ModifierType } from "./../../../../actor/modifiers.ts";
+import { FlatModifierRuleElement, FlatModifierSource } from "./../../../../rules/rule-element/flat-modifier.ts";
+import { DamageCategoryUnique } from "./../../../../system/damage/types.ts";
 import { RuleElementForm, RuleElementFormSheetData } from "./base.ts";
-import { FormSelectOption } from "@client/applications/forms/fields.mjs";
+import { FormSelectOption } from "./../../../../../../foundry/client/applications/forms/fields.mjs";
 /** Form handler for the flat modifier rule element */
 declare class FlatModifierForm extends RuleElementForm<FlatModifierSource, FlatModifierRuleElement> {
     template: string;

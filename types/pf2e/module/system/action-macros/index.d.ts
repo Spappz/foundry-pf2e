@@ -3,7 +3,7 @@ import { whirlingThrow } from "./athletics/whirling-throw.ts";
 import { tamper } from "./class/inventor/tamper.ts";
 import { craft, repair } from "./crafting/index.ts";
 import { bonMot } from "./diplomacy/bon-mot.ts";
-import { Action } from "@actor/actions/index.ts";
+import { Action } from "./../../actor/actions/index.ts";
 import * as balance from "./acrobatics/balance.ts";
 import * as maneuverInFlight from "./acrobatics/maneuver-in-flight.ts";
 import * as squeeze from "./acrobatics/squeeze.ts";

@@ -1,5 +1,5 @@
-import { NPCPF2e } from "@actor";
-import { NPCSkillData } from "@actor/npc/data.ts";
+import { NPCPF2e } from "./../index.ts";
+import { NPCSkillData } from "./../npc/data.ts";
 import appv1 = foundry.appv1;
 /** Specialized form to setup skills for an NPC character. */
 export declare class NPCSkillsEditor extends appv1.api.DocumentSheet<NPCPF2e> {

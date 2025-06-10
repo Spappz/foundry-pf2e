@@ -4,8 +4,8 @@ import {
     DatabaseDeleteOperation,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
 import { BasePlaylist, BaseUser, PlaylistSound } from "./_module.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 import CompendiumCollection from "./collections/compendium-collection.mjs";

@@ -1,6 +1,6 @@
-import { TokenConstrainMovementPathOptions } from "@client/_module.mjs";
-import TokenConfig from "@client/applications/sheets/token/token-config.mjs";
-import { DocumentConstructionContext, ElevatedPoint, TokenDimensions, TokenPosition } from "@common/_types.mjs";
+import { TokenConstrainMovementPathOptions } from "./../_module.mjs";
+import TokenConfig from "./../applications/sheets/token/token-config.mjs";
+import { DocumentConstructionContext, ElevatedPoint, TokenDimensions, TokenPosition } from "./../../common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
@@ -10,11 +10,11 @@ import {
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
     DataModelConstructionContext,
-} from "@common/abstract/_types.mjs";
-import Document from "@common/abstract/document.mjs";
-import { ImageFilePath } from "@common/constants.mjs";
-import { SchemaField } from "@common/data/fields.mjs";
-import Collection from "@common/utils/collection.mjs";
+} from "./../../common/abstract/_types.mjs";
+import Document from "./../../common/abstract/document.mjs";
+import { ImageFilePath } from "./../../common/constants.mjs";
+import { SchemaField } from "./../../common/data/fields.mjs";
+import Collection from "./../../common/utils/collection.mjs";
 import Token, { TokenAnimationOptions, TokenResourceData } from "../canvas/placeables/token.mjs";
 import {
     Actor,

@@ -1,6 +1,6 @@
-import DrawingHUD from "@client/applications/hud/drawing-hud.mjs";
-import { Point } from "@common/_types.mjs";
-import Collection from "@common/utils/collection.mjs";
+import DrawingHUD from "./../../applications/hud/drawing-hud.mjs";
+import { Point } from "./../../../common/_types.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import Drawing from "../placeables/drawing.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";

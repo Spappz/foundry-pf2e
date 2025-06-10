@@ -1,5 +1,5 @@
-import { ArmyPF2e, CharacterPF2e, FamiliarPF2e, HazardPF2e, LootPF2e, NPCPF2e, PartyPF2e, VehiclePF2e } from "@actor";
-import { SenseAcuity } from "@actor/creature/types.ts";
+import { ArmyPF2e, CharacterPF2e, FamiliarPF2e, HazardPF2e, LootPF2e, NPCPF2e, PartyPF2e, VehiclePF2e } from "./../../module/actor/index.ts";
+import { SenseAcuity } from "./../../module/actor/creature/types.ts";
 import {
     AbilityItemPF2e,
     AfflictionPF2e,
@@ -25,9 +25,9 @@ import {
     SpellcastingEntryPF2e,
     TreasurePF2e,
     WeaponPF2e,
-} from "@item";
-import { WeaponReloadTime } from "@item/weapon/types.ts";
-import { JournalSheetPF2e } from "@module/journal-entry/sheet.ts";
+} from "./../../module/item/index.ts";
+import { WeaponReloadTime } from "./../../module/item/weapon/types.ts";
+import { JournalSheetPF2e } from "./../../module/journal-entry/sheet.ts";
 export type StatusEffectIconTheme = "default" | "blackWhite";
 export declare const PF2ECONFIG: {
     defaultPartyId: string;
@@ -1070,7 +1070,7 @@ export declare const PF2ECONFIG: {
     >;
     otherArmorTags: Record<"shoddy", string>;
     otherConsumableTags: Record<import("../../module/item/consumable/types.ts").OtherConsumableTag, string>;
-    otherWeaponTags: Record<import("@item/weapon/types.ts").OtherWeaponTag, string>;
+    otherWeaponTags: Record<import("./../../module/item/weapon/types.ts").OtherWeaponTag, string>;
     actionTraits: {
         "certain-kill": string;
         summon: string;
@@ -5095,7 +5095,7 @@ export declare const PF2ECONFIG: {
         silver: string;
         "cold-iron": string;
     };
-    languages: Record<import("@actor/creature/types.ts").Language, string>;
+    languages: Record<import("./../../module/actor/creature/types.ts").Language, string>;
     attackEffects: {
         grab: string;
         "improved-grab": string;

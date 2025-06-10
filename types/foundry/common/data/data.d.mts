@@ -1,5 +1,5 @@
-import { DataModelConstructionContext } from "@common/abstract/_types.mjs";
-import { ImageFilePath, ShapeDataType, TileOcclusionMode, VideoFilePath } from "@common/constants.mjs";
+import { DataModelConstructionContext } from "./../abstract/_types.mjs";
+import { ImageFilePath, ShapeDataType, TileOcclusionMode, VideoFilePath } from "./../constants.mjs";
 import DataModel from "../abstract/data.mjs";
 import * as documents from "../documents/_module.mjs";
 import { TokenSchema } from "../documents/token.mjs";

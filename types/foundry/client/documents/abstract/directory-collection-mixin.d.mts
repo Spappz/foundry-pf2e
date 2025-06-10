@@ -1,5 +1,5 @@
-import Document from "@common/abstract/document.mjs";
-import Collection from "@common/utils/collection.mjs";
+import Document from "./../../../common/abstract/document.mjs";
+import Collection from "./../../../common/utils/collection.mjs";
 import { Adventure, Folder, Setting, WorldDocument } from "../_module.mjs";
 import CompendiumCollection from "../collections/compendium-collection.mjs";
 import DocumentCollection from "./document-collection.mjs";

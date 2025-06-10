@@ -1,10 +1,10 @@
-import { ModelPropsFromSchema, SourceFromSchema } from "@common/data/fields.mjs";
-import { AbstractEffectSchema, DurationData } from "@item/abstract-effect/data.ts";
-import { ItemType } from "@item/base/data/index.ts";
-import { ItemSystemModel } from "@item/base/data/model.ts";
-import { BaseItemSourcePF2e, ItemSystemSource } from "@item/base/data/system.ts";
-import { DamageType } from "@system/damage/index.ts";
-import { DamageRoll } from "@system/damage/roll.ts";
+import { ModelPropsFromSchema, SourceFromSchema } from "./../../../../foundry/common/data/fields.mjs";
+import { AbstractEffectSchema, DurationData } from "./../abstract-effect/data.ts";
+import { ItemType } from "./../base/data/index.ts";
+import { ItemSystemModel } from "./../base/data/model.ts";
+import { BaseItemSourcePF2e, ItemSystemSource } from "./../base/data/system.ts";
+import { DamageType } from "./../../system/damage/index.ts";
+import { DamageRoll } from "./../../system/damage/roll.ts";
 import { ConditionPF2e } from "./document.ts";
 import { ConditionSlug } from "./types.ts";
 import fields = foundry.data.fields;

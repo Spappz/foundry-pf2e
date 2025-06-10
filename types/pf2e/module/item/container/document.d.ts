@@ -1,10 +1,10 @@
-import { ActorPF2e } from "@actor";
-import { EnrichmentOptions } from "@client/applications/ux/text-editor.mjs";
-import { DatabaseUpdateCallbackOptions } from "@common/abstract/_module.mjs";
-import { RawItemChatData } from "@item/base/data/index.ts";
-import { EquipmentTrait } from "@item/equipment/data.ts";
-import { Bulk } from "@item/physical/bulk.ts";
-import { PhysicalItemPF2e } from "@item/physical/document.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { EnrichmentOptions } from "./../../../../foundry/client/applications/ux/text-editor.mjs";
+import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_module.mjs";
+import { RawItemChatData } from "./../base/data/index.ts";
+import { EquipmentTrait } from "./../equipment/data.ts";
+import { Bulk } from "./../physical/bulk.ts";
+import { PhysicalItemPF2e } from "./../physical/document.ts";
 import { ContainerSource, ContainerSystemData } from "./data.ts";
 declare class ContainerPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     static get validTraits(): Record<EquipmentTrait, string>;

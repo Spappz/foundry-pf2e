@@ -1,12 +1,12 @@
-import Region from "@client/canvas/placeables/region.mjs";
-import RegionDocument from "@client/documents/region.mjs";
+import Region from "./../../canvas/placeables/region.mjs";
+import RegionDocument from "./../../documents/region.mjs";
 import {
     BaseShapeData,
     CircleShapeData,
     EllipseShapeData,
     PolygonShapeData,
     RectangleShapeData,
-} from "@common/data/data.mjs";
+} from "./../../../common/data/data.mjs";
 
 /**
  * A shape of a {@link RegionDocument}.

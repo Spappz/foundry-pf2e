@@ -1,4 +1,4 @@
-import { ModifierAdjustment, RawModifier } from "@actor/modifiers.ts";
+import { ModifierAdjustment, RawModifier } from "./../../modifiers.ts";
 import { KingdomCharter, KingdomGovernment, KingdomHeartland } from "./schema.ts";
 import { KingdomAbility, KingdomLeadershipRole, KingdomSkill } from "./types.ts";
 declare const KINGDOM_ABILITIES: readonly ["culture", "economy", "loyalty", "stability"];

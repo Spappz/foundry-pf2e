@@ -1,5 +1,5 @@
-import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "@item/base/sheet/sheet.ts";
-import { CoinsPF2e } from "@item/physical/index.ts";
+import { ItemSheetDataPF2e, ItemSheetOptions, ItemSheetPF2e } from "./../base/sheet/sheet.ts";
+import { CoinsPF2e } from "./../physical/index.ts";
 import { KitEntryData } from "./data.ts";
 import { KitPF2e } from "./document.ts";
 declare class KitSheetPF2e extends ItemSheetPF2e<KitPF2e> {

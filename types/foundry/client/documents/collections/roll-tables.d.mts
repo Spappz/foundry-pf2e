@@ -1,4 +1,4 @@
-import RollTableDirectory from "@client/applications/sidebar/tabs/roll-table-directory.mjs";
+import RollTableDirectory from "./../../applications/sidebar/tabs/roll-table-directory.mjs";
 import WorldCollection from "../abstract/world-collection.mjs";
 import RollTable from "../roll-table.mjs";
 

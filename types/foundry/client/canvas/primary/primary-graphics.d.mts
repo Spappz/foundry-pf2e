@@ -1,4 +1,4 @@
-import { Point } from "@common/_types.mjs";
+import { Point } from "./../../../common/_types.mjs";
 import { SmoothGraphics } from "@pixi/graphics-smooth";
 import PrimaryCanvasObjectMixin from "./primary-canvas-object.mjs";
 

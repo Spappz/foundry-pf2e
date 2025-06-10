@@ -2,7 +2,7 @@ import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
     DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
+} from "./../../common/abstract/_types.mjs";
 import { BaseFogExploration } from "./_module.mjs";
 import ClientDocumentMixin from "./abstract/client-document.mjs";
 

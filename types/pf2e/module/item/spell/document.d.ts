@@ -1,29 +1,29 @@
-import { ActorPF2e } from "@actor";
-import { AttributeString } from "@actor/types.ts";
-import { Rolled } from "@client/dice/roll.mjs";
-import { DocumentConstructionContext } from "@common/_types.mjs";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { Rolled } from "./../../../../foundry/client/dice/roll.mjs";
+import { DocumentConstructionContext } from "./../../../../foundry/common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseUpdateCallbackOptions,
     DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
-import { RollMode } from "@common/constants.mjs";
-import { ItemUUID } from "@common/documents/_module.mjs";
-import { ConsumablePF2e, ItemPF2e } from "@item";
-import { ItemSourcePF2e, RawItemChatData } from "@item/base/data/index.ts";
-import { ItemDescriptionData } from "@item/base/data/system.ts";
-import { SpellSlotGroupId } from "@item/spellcasting-entry/collection.ts";
-import { BaseSpellcastingEntry } from "@item/spellcasting-entry/types.ts";
-import { RangeData } from "@item/types.ts";
-import { MeasuredTemplatePF2e } from "@module/canvas/index.ts";
-import { ChatMessagePF2e, ItemOriginFlag } from "@module/chat-message/index.ts";
-import { OneToTen, Rarity, ZeroToTwo } from "@module/data.ts";
-import { TokenDocumentPF2e } from "@scene";
-import { CheckRoll } from "@system/check/index.ts";
-import { DamageRoll } from "@system/damage/roll.ts";
-import { DamageDamageContext, DamageKind, SpellDamageTemplate } from "@system/damage/types.ts";
-import { StatisticRollParameters } from "@system/statistic/index.ts";
-import { EnrichmentOptionsPF2e, RollDataPF2e } from "@system/text-editor.ts";
+} from "./../../../../foundry/common/abstract/_types.mjs";
+import { RollMode } from "./../../../../foundry/common/constants.mjs";
+import { ItemUUID } from "./../../../../foundry/common/documents/_module.mjs";
+import { ConsumablePF2e, ItemPF2e } from "./../index.ts";
+import { ItemSourcePF2e, RawItemChatData } from "./../base/data/index.ts";
+import { ItemDescriptionData } from "./../base/data/system.ts";
+import { SpellSlotGroupId } from "./../spellcasting-entry/collection.ts";
+import { BaseSpellcastingEntry } from "./../spellcasting-entry/types.ts";
+import { RangeData } from "./../types.ts";
+import { MeasuredTemplatePF2e } from "./../../canvas/index.ts";
+import { ChatMessagePF2e, ItemOriginFlag } from "./../../chat-message/index.ts";
+import { OneToTen, Rarity, ZeroToTwo } from "./../../data.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
+import { CheckRoll } from "./../../system/check/index.ts";
+import { DamageRoll } from "./../../system/damage/roll.ts";
+import { DamageDamageContext, DamageKind, SpellDamageTemplate } from "./../../system/damage/types.ts";
+import { StatisticRollParameters } from "./../../system/statistic/index.ts";
+import { EnrichmentOptionsPF2e, RollDataPF2e } from "./../../system/text-editor.ts";
 import { SpellArea, SpellHeightenLayer, SpellOverlayType, SpellSource, SpellSystemData } from "./data.ts";
 import { SpellOverlayCollection } from "./overlay.ts";
 import { MagicTradition, SpellTrait } from "./types.ts";

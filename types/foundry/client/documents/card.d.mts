@@ -1,4 +1,4 @@
-import { ChatMessageCreateOperation } from "@common/documents/chat-message.mjs";
+import { ChatMessageCreateOperation } from "./../../common/documents/chat-message.mjs";
 import { BaseCard, CardFaceData, Cards, ChatMessage } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 

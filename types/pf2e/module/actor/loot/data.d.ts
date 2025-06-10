@@ -1,5 +1,5 @@
-import { BaseActorSourcePF2e, FlankingData } from "@actor/data/base.ts";
-import { ActorSystemModel, ActorSystemSchema } from "@actor/data/model.ts";
+import { BaseActorSourcePF2e, FlankingData } from "./../data/base.ts";
+import { ActorSystemModel, ActorSystemSchema } from "./../data/model.ts";
 import { LootPF2e } from "./document.ts";
 import fields = foundry.data.fields;
 /** The stored source data of a loot actor */

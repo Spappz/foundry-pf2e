@@ -1,43 +1,43 @@
-import { ActorPF2e } from "@actor";
-import { Action } from "@actor/actions/index.ts";
-import { AutomaticBonusProgression as ABP } from "@actor/character/automatic-bonus-progression.ts";
-import { ElementalBlast } from "@actor/character/elemental-blast.ts";
-import { FeatGroupData } from "@actor/character/feats/index.ts";
-import { CheckModifier, ModifierPF2e, ModifierType, StatisticModifier } from "@actor/modifiers.ts";
-import { default as Hotbar } from "@client/applications/ui/hotbar.mjs";
-import { default as Config } from "@client/config.mjs";
-import { default as WallDocument } from "@client/documents/wall.mjs";
-import { FoundryUI } from "@client/ui.mjs";
-import { CompendiumUUID } from "@client/utils/_module.mjs";
-import { SettingConfig } from "@common/_types.mjs";
-import { ImageFilePath, RollMode, UserRole } from "@common/constants.mjs";
-import { ItemPF2e, PhysicalItemPF2e } from "@item";
-import { ConditionSource } from "@item/condition/data.ts";
-import { CoinsPF2e } from "@item/physical/helpers.ts";
-import { ActiveEffectPF2e } from "@module/active-effect.ts";
+import { ActorPF2e } from "./module/actor/index.ts";
+import { Action } from "./module/actor/actions/index.ts";
+import { AutomaticBonusProgression as ABP } from "./module/actor/character/automatic-bonus-progression.ts";
+import { ElementalBlast } from "./module/actor/character/elemental-blast.ts";
+import { FeatGroupData } from "./module/actor/character/feats/index.ts";
+import { CheckModifier, ModifierPF2e, ModifierType, StatisticModifier } from "./module/actor/modifiers.ts";
+import { default as Hotbar } from "./../foundry/client/applications/ui/hotbar.mjs";
+import { default as Config } from "./../foundry/client/config.mjs";
+import { default as WallDocument } from "./../foundry/client/documents/wall.mjs";
+import { FoundryUI } from "./../foundry/client/ui.mjs";
+import { CompendiumUUID } from "./../foundry/client/utils/_module.mjs";
+import { SettingConfig } from "./../foundry/common/_types.mjs";
+import { ImageFilePath, RollMode, UserRole } from "./../foundry/common/constants.mjs";
+import { ItemPF2e, PhysicalItemPF2e } from "./module/item/index.ts";
+import { ConditionSource } from "./module/item/condition/data.ts";
+import { CoinsPF2e } from "./module/item/physical/helpers.ts";
+import { ActiveEffectPF2e } from "./module/active-effect.ts";
 import {
     CompendiumBrowser,
     CompendiumBrowserSettings,
     CompendiumBrowserSources,
-} from "@module/apps/compendium-browser/browser.ts";
-import { EffectsPanel } from "@module/apps/effects-panel.ts";
-import { LicenseViewer } from "@module/apps/license-viewer/app.ts";
+} from "./module/apps/compendium-browser/browser.ts";
+import { EffectsPanel } from "./module/apps/effects-panel.ts";
+import { LicenseViewer } from "./module/apps/license-viewer/app.ts";
 import {
     ActorDirectoryPF2e,
     ChatLogPF2e,
     CompendiumDirectoryPF2e,
     EncounterTracker,
     ItemDirectoryPF2e,
-} from "@module/apps/sidebar/index.ts";
-import { WorldClock } from "@module/apps/world-clock/app.ts";
-import { CanvasPF2e, EffectsCanvasGroupPF2e } from "@module/canvas/index.ts";
-import { StatusEffects } from "@module/canvas/status-effects.ts";
-import { ChatMessagePF2e } from "@module/chat-message/index.ts";
-import { ActorsPF2e } from "@module/collection/actors.ts";
-import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.ts";
-import { MacroPF2e } from "@module/macro.ts";
-import { RuleElementPF2e, RuleElements } from "@module/rules/index.ts";
-import { UserPF2e } from "@module/user/index.ts";
+} from "./module/apps/sidebar/index.ts";
+import { WorldClock } from "./module/apps/world-clock/app.ts";
+import { CanvasPF2e, EffectsCanvasGroupPF2e } from "./module/canvas/index.ts";
+import { StatusEffects } from "./module/canvas/status-effects.ts";
+import { ChatMessagePF2e } from "./module/chat-message/index.ts";
+import { ActorsPF2e } from "./module/collection/actors.ts";
+import { CombatantPF2e, EncounterPF2e } from "./module/encounter/index.ts";
+import { MacroPF2e } from "./module/macro.ts";
+import { RuleElementPF2e, RuleElements } from "./module/rules/index.ts";
+import { UserPF2e } from "./module/user/index.ts";
 import {
     AmbientLightDocumentPF2e,
     MeasuredTemplateDocumentPF2e,
@@ -46,9 +46,9 @@ import {
     ScenePF2e,
     TileDocumentPF2e,
     TokenDocumentPF2e,
-} from "@scene";
-import { PF2ECONFIG, StatusEffectIconTheme } from "@scripts/config/index.ts";
-import { DicePF2e } from "@scripts/dice.ts";
+} from "./module/scene/index.ts";
+import { PF2ECONFIG, StatusEffectIconTheme } from "./scripts/config/index.ts";
+import { DicePF2e } from "./scripts/dice.ts";
 import {
     calculateXP,
     checkPrompt,
@@ -59,22 +59,22 @@ import {
     rollItemMacro,
     stealthForSelected,
     xpFromEncounter,
-} from "@scripts/macros/index.ts";
-import { remigrate } from "@scripts/system/remigrate.ts";
-import { CheckPF2e } from "@system/check/index.ts";
-import { ConditionManager } from "@system/conditions/manager.ts";
-import { EffectTracker } from "@system/effect-tracker.ts";
-import { ModuleArt } from "@system/module-art.ts";
-import { Predicate } from "@system/predication.ts";
+} from "./scripts/macros/index.ts";
+import { remigrate } from "./scripts/system/remigrate.ts";
+import { CheckPF2e } from "./module/system/check/index.ts";
+import { ConditionManager } from "./module/system/conditions/manager.ts";
+import { EffectTracker } from "./module/system/effect-tracker.ts";
+import { ModuleArt } from "./module/system/module-art.ts";
+import { Predicate } from "./module/system/predication.ts";
 import {
     CustomDamageData,
     HomebrewTag,
     HomebrewTraitSettingsKey,
     LanguageSettings,
-} from "@system/settings/homebrew/index.ts";
-import { WorldClockSettingData } from "@system/settings/world-clock.ts";
-import { TextEditorPF2e } from "@system/text-editor.ts";
-import { sluggify } from "@util";
+} from "./module/system/settings/homebrew/index.ts";
+import { WorldClockSettingData } from "./module/system/settings/world-clock.ts";
+import { TextEditorPF2e } from "./module/system/text-editor.ts";
+import { sluggify } from "./util/index.ts";
 import { default as EnJSON } from "../static/lang/en.json";
 import Game = foundry.Game;
 interface ClientSettingsPF2e extends fh.ClientSettings {

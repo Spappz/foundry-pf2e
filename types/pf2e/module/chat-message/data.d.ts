@@ -1,15 +1,15 @@
-import { RawDamageDice, RawModifier } from "@actor/modifiers.ts";
-import { ActorUUID, TokenDocumentUUID } from "@client/documents/_module.mjs";
-import { DocumentUUID } from "@client/utils/_module.mjs";
-import { RollMode } from "@common/constants.mjs";
-import { ChatMessageFlags } from "@common/documents/chat-message.mjs";
-import { ItemType, SpellSource } from "@item/base/data/index.ts";
-import { MagicTradition } from "@item/spell/types.ts";
-import { ZeroToTwo } from "@module/data.ts";
-import { RollNoteSource } from "@module/notes.ts";
-import { CheckCheckContext } from "@system/check/index.ts";
-import { DamageDamageContext } from "@system/damage/types.ts";
-import { CheckDC, DegreeAdjustmentsRecord, DegreeOfSuccessString } from "@system/degree-of-success.ts";
+import { RawDamageDice, RawModifier } from "./../actor/modifiers.ts";
+import { ActorUUID, TokenDocumentUUID } from "./../../../foundry/client/documents/_module.mjs";
+import { DocumentUUID } from "./../../../foundry/client/utils/_module.mjs";
+import { RollMode } from "./../../../foundry/common/constants.mjs";
+import { ChatMessageFlags } from "./../../../foundry/common/documents/chat-message.mjs";
+import { ItemType, SpellSource } from "./../item/base/data/index.ts";
+import { MagicTradition } from "./../item/spell/types.ts";
+import { ZeroToTwo } from "./../data.ts";
+import { RollNoteSource } from "./../notes.ts";
+import { CheckCheckContext } from "./../system/check/index.ts";
+import { DamageDamageContext } from "./../system/damage/types.ts";
+import { CheckDC, DegreeAdjustmentsRecord, DegreeOfSuccessString } from "./../system/degree-of-success.ts";
 type ChatMessageSourcePF2e = foundry.documents.ChatMessageSource & {
     flags: ChatMessageFlagsPF2e;
 };

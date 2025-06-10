@@ -1,5 +1,5 @@
-import { ActorPF2e } from "@actor";
-import { MovementType } from "@actor/types.ts";
+import { ActorPF2e } from "./../../actor/index.ts";
+import { MovementType } from "./../../actor/types.ts";
 import { BaseTagSelector, TagSelectorData } from "./base.ts";
 import { SelectableTagField, TagSelectorOptions } from "./index.ts";
 declare class SpeedSelector<TActor extends ActorPF2e> extends BaseTagSelector<TActor> {

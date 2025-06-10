@@ -1,5 +1,5 @@
-import { Point } from "@common/_types.mjs";
-import { CodeMirrorInputConfig, CodeMirrorLanguage } from "@common/data/_types.mjs";
+import { Point } from "./../../../../common/_types.mjs";
+import { CodeMirrorInputConfig, CodeMirrorLanguage } from "./../../../../common/data/_types.mjs";
 import AbstractFormInputElement from "../form-element.mjs";
 
 interface HTMLCodeMirrorOptions {

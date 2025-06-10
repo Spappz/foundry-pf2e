@@ -4,8 +4,8 @@ import {
     PhysicalItemTraits,
     PhysicalSystemData,
     PhysicalSystemSource,
-} from "@item/physical/data.ts";
-import { CarriedUsage } from "@item/physical/usage.ts";
+} from "./../physical/data.ts";
+import { CarriedUsage } from "./../physical/usage.ts";
 type TreasureSource = BasePhysicalItemSource<"treasure", TreasureSystemSource>;
 interface TreasureSystemSource extends PhysicalSystemSource {
     traits: PhysicalItemTraits<never>;

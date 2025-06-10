@@ -1,6 +1,6 @@
-import { default as Localization, TranslationDictionaryValue } from "@client/helpers/localization.mjs";
-import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
-import { ActionCost } from "@item/base/data/system.ts";
+import { default as Localization, TranslationDictionaryValue } from "./../../foundry/client/helpers/localization.mjs";
+import { ImageFilePath, VideoFilePath } from "./../../foundry/common/constants.mjs";
+import { ActionCost } from "./../module/item/base/data/system.ts";
 import { default as Sortable } from "sortablejs";
 /**
  * Given an array and a key function, create a map where the key is the value that

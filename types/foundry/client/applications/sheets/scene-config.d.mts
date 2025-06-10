@@ -1,4 +1,4 @@
-import Scene from "@client/documents/scene.mjs";
+import Scene from "./../../documents/scene.mjs";
 import { ApplicationClosingOptions, ApplicationFormConfiguration, ApplicationTabsConfiguration } from "../_types.mjs";
 import DocumentSheetV2, { DocumentSheetConfiguration, DocumentSheetRenderContext } from "../api/document-sheet.mjs";
 import HandlebarsApplicationMixin, {

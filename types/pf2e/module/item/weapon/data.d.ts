@@ -1,6 +1,6 @@
-import { AttributeString } from "@actor/types.ts";
-import { PhysicalItemSource } from "@item/base/data/index.ts";
-import { ItemFlagsPF2e } from "@item/base/data/system.ts";
+import { AttributeString } from "./../../actor/types.ts";
+import { PhysicalItemSource } from "./../base/data/index.ts";
+import { ItemFlagsPF2e } from "./../base/data/system.ts";
 import {
     BasePhysicalItemSource,
     Investable,
@@ -10,9 +10,9 @@ import {
     PhysicalSystemData,
     PhysicalSystemSource,
     UsageDetails,
-} from "@item/physical/index.ts";
-import { ZeroToFour } from "@module/data.ts";
-import { DamageDieSize, DamageType } from "@system/damage/index.ts";
+} from "./../physical/index.ts";
+import { ZeroToFour } from "./../../data.ts";
+import { DamageDieSize, DamageType } from "./../../system/damage/index.ts";
 import { WeaponTraitToggles } from "./trait-toggles.ts";
 import {
     BaseWeaponType,

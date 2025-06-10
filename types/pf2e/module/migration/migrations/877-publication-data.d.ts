@@ -1,5 +1,5 @@
-import { ActorSourcePF2e } from "@actor/data/index.ts";
-import { ItemSourcePF2e } from "@item/base/data/index.ts";
+import { ActorSourcePF2e } from "./../../actor/data/index.ts";
+import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
 import { MigrationBase } from "../base.ts";
 /** Standardize location and structure of actor/item publication data */
 export declare class Migration877PublicationData extends MigrationBase {

@@ -1,4 +1,4 @@
-import { TokenShape } from "@client/canvas/placeables/token.mjs";
+import { TokenShape } from "./../client/canvas/placeables/token.mjs";
 import ApplicationV2 from "../client/applications/api/application.mjs";
 import Application from "../client/appv1/api/application-v1.mjs";
 import { DataModelConstructionContext } from "./abstract/_types.mjs";

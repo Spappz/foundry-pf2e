@@ -1,4 +1,4 @@
-import { TokenRulerData } from "@client/_module.mjs";
+import { TokenRulerData } from "./../../../_module.mjs";
 import Token from "../token.mjs";
 
 /**

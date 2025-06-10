@@ -1,11 +1,11 @@
-import { ItemUUID } from "@client/documents/_module.mjs";
-import { EquipmentTrait } from "@item/equipment/data.ts";
+import { ItemUUID } from "./../../../../foundry/client/documents/_module.mjs";
+import { EquipmentTrait } from "./../equipment/data.ts";
 import {
     BasePhysicalItemSource,
     PhysicalItemTraits,
     PhysicalSystemData,
     PhysicalSystemSource,
-} from "@item/physical/data.ts";
+} from "./../physical/data.ts";
 type BookSource = BasePhysicalItemSource<"book", BookSystemSource>;
 type BookTraits = PhysicalItemTraits<EquipmentTrait>;
 interface BookSystemSource extends PhysicalSystemSource {

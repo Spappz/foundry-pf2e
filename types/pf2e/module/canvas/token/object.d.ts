@@ -1,8 +1,8 @@
-import { TokenAnimationOptions, TokenResourceData, TokenShape } from "@client/canvas/placeables/token.mjs";
-import { TokenUpdateCallbackOptions } from "@client/documents/token.mjs";
-import { Point } from "@common/_types.mjs";
-import { UserPF2e } from "@module/user/document.ts";
-import { TokenDocumentPF2e } from "@scene";
+import { TokenAnimationOptions, TokenResourceData, TokenShape } from "./../../../../foundry/client/canvas/placeables/token.mjs";
+import { TokenUpdateCallbackOptions } from "./../../../../foundry/client/documents/token.mjs";
+import { Point } from "./../../../../foundry/common/_types.mjs";
+import { UserPF2e } from "./../../user/document.ts";
+import { TokenDocumentPF2e } from "./../../scene/index.ts";
 import { TokenLayerPF2e } from "../index.ts";
 import { AuraRenderers } from "./aura/index.ts";
 import { FlankingHighlightRenderer } from "./flanking-highlight/renderer.ts";

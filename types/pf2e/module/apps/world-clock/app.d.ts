@@ -1,7 +1,7 @@
 import type {
     HandlebarsRenderOptions,
     HandlebarsTemplatePart,
-} from "@client/applications/api/handlebars-application.d.mts";
+} from "./../../../../foundry/client/applications/api/handlebars-application.d.mts";
 import { DateTime } from "luxon";
 
 interface WorldClockData {

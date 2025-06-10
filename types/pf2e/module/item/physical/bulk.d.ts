@@ -1,4 +1,4 @@
-import { Size } from "@module/data.ts";
+import { Size } from "./../../data.ts";
 interface StackDefinition {
     size: number;
     lightBulk: number;

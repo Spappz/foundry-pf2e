@@ -1,4 +1,4 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, VideoFilePath } from "./../constants.mjs";
 import Document, { DocumentMetadata } from "../abstract/document.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseCards, BaseUser } from "./_module.mjs";
