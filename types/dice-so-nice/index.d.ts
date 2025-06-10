@@ -1,6 +1,6 @@
 export {};
 
-declare module "@client/helpers/hooks.mjs" {
+declare module "../foundry/client/helpers/hooks.mjs" {
     namespace Hooks {
         function on(
             hook: "diceSoNiceMessageProcessed",
