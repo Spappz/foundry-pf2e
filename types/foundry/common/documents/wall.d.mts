@@ -60,6 +60,14 @@ type WallSchema = {
     doorSound: fields.StringField<string, string, false, false, false>;
     /** Configuration of threshold data for this wall */
     threshold: fields.SchemaField<WallThresholdSchema>;
+    animation: fields.SchemaField<
+        WallAnimationSchema,
+        fields.SourceFromSchema<WallAnimationSchema>,
+        fields.ModelPropsFromSchema<WallAnimationSchema>,
+        true,
+        true,
+        true
+    >;
     /** An object of optional key/value flags */
     flags: fields.DocumentFlagsField;
 };
@@ -73,6 +81,16 @@ type WallThresholdSchema = {
     sound: fields.NumberField<number, number, true, true, true>;
     /** Whether to attenuate the source radius when passing through the wall */
     attenuation: fields.BooleanField;
+};
+
+type WallAnimationSchema = {
+    direction: fields.NumberField<number, number, true, false, true>;
+    double: fields.BooleanField;
+    duration: fields.NumberField<number, number, true, false, true>;
+    flip: fields.BooleanField;
+    strength: fields.NumberField<number, number, true, false, true>;
+    texture: fields.FilePathField;
+    type: fields.StringField;
 };
 
 export type WallSource = fields.SourceFromSchema<WallSchema>;
