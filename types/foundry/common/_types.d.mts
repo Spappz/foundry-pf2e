@@ -1,10 +1,9 @@
-import { TokenShape } from "./../client/canvas/placeables/token.mjs";
 import ApplicationV2 from "../client/applications/api/application.mjs";
 import Application from "../client/appv1/api/application-v1.mjs";
 import { DataModelConstructionContext } from "./abstract/_types.mjs";
 import DataModel from "./abstract/data.mjs";
 import Document from "./abstract/document.mjs";
-import * as CONST from "./constants.mjs";
+import { TokenShapeType } from "./constants.mjs";
 import { DataField } from "./data/fields.mjs";
 import { GridOffset2D } from "./grid/_types.mjs";
 import Color from "./utils/color.mjs";
@@ -283,7 +282,7 @@ interface TokenPosition extends ElevatedPoint {
     /** The height in grid spaces (positive). */
     height: number;
     /** The shape type (see {@link CONST.TOKEN_SHAPES}). */
-    shape: CONST.TokenShapeType;
+    shape: TokenShapeType;
 }
 
 type TokenDimensions = Pick<TokenPosition, "width" | "height" | "shape">;

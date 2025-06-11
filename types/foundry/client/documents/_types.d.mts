@@ -368,7 +368,7 @@ interface TokenMeasuredMovementWaypoint {
     /**
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      */
-    shape: CONST.TokenShapeType;
+    shape: TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      */
@@ -443,7 +443,7 @@ interface TokenMeasureMovementPathWaypoint {
     height?: number;
 
     /** The shape type (see {@link CONST.TOKEN_SHAPES}). Default: the previous or source shape. */
-    shape?: CONST.TokenShapeType;
+    shape?: TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                             Default: the previous or prepared movement action.
@@ -497,7 +497,7 @@ interface TokenGetCompleteMovementPathWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *            Default: the previous or source shape.
      */
-    shape?: CONST.TokenShapeType;
+    shape?: TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                   Default: the previous or prepared movement action.
@@ -557,7 +557,7 @@ interface TokenSegmentizeMovementWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *            Default: the previous or source shape.
      */
-    shape?: CONST.TokenShapeType;
+    shape?: TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                   Default: the previous or prepared movement action.

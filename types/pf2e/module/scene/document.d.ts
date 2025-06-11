@@ -14,6 +14,8 @@ import {
     TokenDocumentPF2e,
 } from "./index.ts";
 import { SceneConfigPF2e } from "./sheet.ts";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 declare class ScenePF2e extends Scene {
     #private;
     /** Is the rules-based vision setting enabled? */
