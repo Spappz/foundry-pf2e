@@ -1051,6 +1051,8 @@ export const TOKEN_TURN_MARKER_MODES: Readonly<{
     CUSTOM: 2;
 }>;
 
+export type TokenTurnMarkerMode = (typeof TOKEN_TURN_MARKER_MODES)[keyof typeof TOKEN_TURN_MARKER_MODES];
+
 /**
  * The possible shapes of Tokens.
  */

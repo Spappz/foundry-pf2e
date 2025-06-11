@@ -1,5 +1,12 @@
 import Document, { DocumentMetadata } from "./../abstract/document.mjs";
-import { ImageFilePath, TokenDisplayMode, TokenDisposition, VideoFilePath } from "./../constants.mjs";
+import {
+    ImageFilePath,
+    TokenDisplayMode,
+    TokenDisposition,
+    TokenShapeType,
+    TokenTurnMarkerMode,
+    VideoFilePath,
+} from "./../constants.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseActorDelta, BaseScene } from "./_module.mjs";
@@ -50,36 +57,30 @@ type TokenSchema = {
     actorId: fields.ForeignDocumentField<string>;
     /** Does this Token uniquely represent a singular Actor, or is it one of many? */
     actorLink: fields.BooleanField;
-    /**
-     * The ActorDelta embedded document which stores the differences between this token and the base actor it
-     * represents.
-     */
-    // delta: ActorDeltaField;
-    appendNumber: fields.BooleanField;
-    prependAdjective: fields.BooleanField;
+    /** The ActorDelta embedded document which stores the differences between this token and the base actor it represents. */
+    //delta: ActorDeltaField;
     /** The width of the Token in grid units */
     width: fields.NumberField<number, number, true, false>;
     /** The height of the Token in grid units */
     height: fields.NumberField<number, number, true, false>;
     /** The token's texture on the canvas. */
     texture: data.TextureData;
-    hexagonalShape: fields.NumberField;
+    /** The shape of the Token */
+    shape: fields.NumberField<TokenShapeType, TokenShapeType, true, false, true>;
     /** The x-coordinate of the top-left corner of the Token */
     x: fields.NumberField<number, number, true, false>;
     /** The y-coordinate of the top-left corner of the Token */
     y: fields.NumberField<number, number, true, false>;
     /** The vertical elevation of the Token, in distance units */
     elevation: fields.NumberField<number, number, true, false>;
+    /** The sort order */
     sort: fields.NumberField<number, number, true, false, true>;
+    /** Is the Token currently locked? A locked token cannot be moved or rotated via standard keyboard or mouse interaction. */
     locked: fields.BooleanField;
     /** Prevent the Token image from visually rotating? */
     lockRotation: fields.BooleanField;
     /** The rotation of the Token in degrees, from 0 to 360. A value of 0 represents a southward-facing Token. */
     rotation: fields.AngleField;
-    /** An array of effect icon paths which are displayed on the Token */
-    effects: fields.ArrayField<
-        fields.FilePathField<ImageFilePath | VideoFilePath, ImageFilePath | VideoFilePath, true, false>
-    >;
     /** The opacity of the token image */
     alpha: fields.AlphaField;
     /** Is the Token currently hidden from player view? */
@@ -132,21 +133,36 @@ type TokenSchema = {
             range: fields.NumberField<number, number, true, true, true>;
         }>
     >;
+    /** Configuration of occlusion options */
     occludable: fields.SchemaField<{
+        /** Occlusion radius. */
         radius: fields.NumberField<number, number, false, false>;
     }>;
     ring: fields.SchemaField<{
+        /** Dynamic Token ring is enabled? */
         enabled: fields.BooleanField;
         colors: fields.SchemaField<{
+            /** Color of the ring. */
             ring: fields.ColorField;
+            /** Color of the background (behind the token, inside the ring). */
             background: fields.ColorField;
         }>;
+        /** Numerical bitmask to toggle effects. Default: 0x01 */
         effects: fields.NumberField<number, number, true, false, true>;
         subject: fields.SchemaField<{
+            /** Scale of the subject texture. */
             scale: fields.NumberField;
+            /** Path of the subject texture. */
             texture: fields.FilePathField<ImageFilePath>;
         }>;
     }>;
+    turnMarker: fields.SchemaField<{
+        mode: fields.NumberField<TokenTurnMarkerMode, TokenTurnMarkerMode, true, false, true>;
+        animation: fields.StringField<string, string, true, true, true>;
+        src: fields.FilePathField<ImageFilePath | VideoFilePath>;
+        disposition: fields.BooleanField;
+    }>;
+    movementAction: fields.StringField<string, string, true, true, true>;
     /** An object of optional key/value flags */
     flags: fields.DocumentFlagsField;
 };
