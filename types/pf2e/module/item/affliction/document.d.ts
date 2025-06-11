@@ -1,6 +1,9 @@
 import { ActorPF2e } from "./../../actor/index.ts";
 import { DocumentConstructionContext } from "./../../../../foundry/common/_types.mjs";
-import { DatabaseCreateCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "./../../../../foundry/common/abstract/_types.mjs";
 import { ItemPF2e } from "./../index.ts";
 import { AbstractEffectPF2e, EffectBadgeCounter } from "./../abstract-effect/index.ts";
 import { AfflictionDamageTemplate, DamageDamageContext } from "./../../system/damage/index.ts";

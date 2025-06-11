@@ -1,4 +1,11 @@
-import { DeepReadonly, ElevatedPoint, Point, SocketRequest, SocketResponse, TokenPosition } from "./../common/_types.mjs";
+import {
+    DeepReadonly,
+    ElevatedPoint,
+    Point,
+    SocketRequest,
+    SocketResponse,
+    TokenPosition,
+} from "./../common/_types.mjs";
 import { DataModel } from "./../common/abstract/_module.mjs";
 import { DataField } from "./../common/data/fields.mjs";
 import { EffectDurationData } from "./../common/documents/active-effect.mjs";
@@ -82,7 +89,7 @@ export interface TokenMeasuredMovementWaypoint {
     height: number;
 
     /** The shape type (see {@link CONST.TOKEN_SHAPES}). */
-    shape: TokenShape;
+    shape: CONST.TokenShapeType;
 
     /** The movement action from the previous to this waypoint. */
     action: string;
@@ -145,7 +152,7 @@ export interface TokenMeasureMovementPathWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *                        Default: the previous or source shape.
      */
-    shape?: TokenShape;
+    shape?: CONST.TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                             Default: `CONFIG.Token.movement.defaultAction`.
@@ -207,7 +214,7 @@ export interface TokenGetCompleteMovementPathWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *              Default: the previous or prepared shape.
      */
-    shape?: TokenShape;
+    shape?: CONST.TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                   Default: `CONFIG.Token.movement.defaultAction`.
@@ -276,7 +283,7 @@ export interface TokenFindMovementPathWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *           Default: the previous or source shape.
      */
-    shape?: TokenShape;
+    shape?: CONST.TokenShapeType;
 
     /**
      * The movement action from the previous to this waypoint.
@@ -334,7 +341,7 @@ export interface TokenConstrainMovementPathWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *              Default: the previous or source shape.
      */
-    shape?: TokenShape;
+    shape?: CONST.TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                   Default: `CONFIG.Token.movement.defaultAction`.
@@ -402,7 +409,7 @@ export interface TokenSegmentizeMovementWaypoint {
      * The shape type (see {@link CONST.TOKEN_SHAPES}).
      *              Default: the previous or source shape.
      */
-    shape?: TokenShape;
+    shape?: CONST.TokenShapeType;
     /**
      * The movement action from the previous to this waypoint.
      *                   Default: `CONFIG.Token.movement.defaultAction`.

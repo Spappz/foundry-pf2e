@@ -1,6 +1,9 @@
 import { FormSelectOption } from "./../../../../../foundry/client/applications/forms/fields.mjs";
 import { ProseMirrorEditor } from "./../../../../../foundry/client/applications/ux/_module.mjs";
-import { ApplicationV1HeaderButton, AppV1RenderOptions } from "./../../../../../foundry/client/appv1/api/application-v1.mjs";
+import {
+    ApplicationV1HeaderButton,
+    AppV1RenderOptions,
+} from "./../../../../../foundry/client/appv1/api/application-v1.mjs";
 import { DataField } from "./../../../../../foundry/common/data/fields.mjs";
 import { ItemPF2e } from "./../../index.ts";
 import { Rarity } from "./../../../data.ts";

@@ -1,7 +1,10 @@
 import { ActorPF2e } from "./../actor/index.ts";
 import { StrikeData } from "./../actor/data/base.ts";
 import { DataModelConstructionContext } from "./../../../foundry/common/abstract/_module.mjs";
-import { ChatMessageCreateCallbackOptions, ChatMessageCreateOperation } from "./../../../foundry/common/documents/chat-message.mjs";
+import {
+    ChatMessageCreateCallbackOptions,
+    ChatMessageCreateOperation,
+} from "./../../../foundry/common/documents/chat-message.mjs";
 import { ItemPF2e } from "./../item/index.ts";
 import { UserPF2e } from "./../user/index.ts";
 import { ScenePF2e, TokenDocumentPF2e } from "./../scene/index.ts";

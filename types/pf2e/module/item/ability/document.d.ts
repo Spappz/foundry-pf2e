@@ -1,6 +1,9 @@
 import { ActorPF2e } from "./../../actor/index.ts";
 import { CraftingAbility } from "./../../actor/character/crafting/ability.ts";
-import { DatabaseCreateCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "./../../../../foundry/common/abstract/_types.mjs";
 import { ItemPF2e } from "./../index.ts";
 import { ActionCost, Frequency, RawItemChatData } from "./../base/data/index.ts";
 import { RangeData } from "./../types.ts";

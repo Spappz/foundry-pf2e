@@ -3,7 +3,12 @@ import { DataSchema } from "./../../../../../foundry/common/abstract/_types.mjs"
 import { ImageFilePath } from "./../../../../../foundry/common/constants.mjs";
 import { ItemUUID } from "./../../../../../foundry/common/documents/_module.mjs";
 import { ZeroToFour } from "./../../../data.ts";
-import { DataUnionField, RecordField, StrictBooleanField, StrictStringField } from "./../../../system/schema-data-fields.ts";
+import {
+    DataUnionField,
+    RecordField,
+    StrictBooleanField,
+    StrictStringField,
+} from "./../../../system/schema-data-fields.ts";
 import {
     FameType,
     KingdomAbility,

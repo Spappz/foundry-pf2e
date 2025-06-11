@@ -1,4 +1,7 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "./../../../../foundry/client/applications/_types.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderContext,
+} from "./../../../../foundry/client/applications/_types.mjs";
 import { HandlebarsRenderOptions } from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
 import { ContextMenuEntry } from "./../../../../foundry/client/applications/ux/context-menu.mjs";
 import { CompendiumIndexData } from "./../../../../foundry/client/documents/collections/compendium-collection.mjs";

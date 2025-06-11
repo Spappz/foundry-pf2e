@@ -1,4 +1,8 @@
-import { TokenAnimationOptions, TokenResourceData, TokenShape } from "./../../../../foundry/client/canvas/placeables/token.mjs";
+import {
+    TokenAnimationOptions,
+    TokenResourceData,
+    TokenShape,
+} from "./../../../../foundry/client/canvas/placeables/token.mjs";
 import { TokenUpdateCallbackOptions } from "./../../../../foundry/client/documents/token.mjs";
 import { Point } from "./../../../../foundry/common/_types.mjs";
 import { UserPF2e } from "./../../user/document.ts";

@@ -9,7 +9,14 @@ import {
     Document,
 } from "./../../../foundry/common/abstract/_module.mjs";
 import { ImageFilePath, VideoFilePath } from "./../../../foundry/common/constants.mjs";
-import { AbstractEffectPF2e, ConditionPF2e, ContainerPF2e, PhysicalItemPF2e, ShieldPF2e, ItemPF2e } from "./../item/index.ts";
+import {
+    AbstractEffectPF2e,
+    ConditionPF2e,
+    ContainerPF2e,
+    PhysicalItemPF2e,
+    ShieldPF2e,
+    ItemPF2e,
+} from "./../item/index.ts";
 import { ItemSourcePF2e, ItemType, PhysicalItemSource } from "./../item/base/data/index.ts";
 import { ConditionKey, ConditionSlug, ConditionSource } from "./../item/condition/index.ts";
 import { EffectSource } from "./../item/effect/data.ts";
@@ -24,7 +31,12 @@ import { UserPF2e } from "./../user/document.ts";
 import { ScenePF2e } from "./../scene/document.ts";
 import { TokenDocumentPF2e } from "./../scene/token-document/document.ts";
 import { DamageType } from "./../system/damage/types.ts";
-import { ArmorStatistic, PerceptionStatistic, Statistic, StatisticDifficultyClass } from "./../system/statistic/index.ts";
+import {
+    ArmorStatistic,
+    PerceptionStatistic,
+    Statistic,
+    StatisticDifficultyClass,
+} from "./../system/statistic/index.ts";
 import { RollDataPF2e } from "./../system/text-editor.ts";
 import { ActorConditions } from "./conditions.ts";
 import { Abilities, VisionLevel } from "./creature/data.ts";

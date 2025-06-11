@@ -1,5 +1,9 @@
 import { ActorPF2e } from "./../../../actor/index.ts";
-import { SingleCheckAction, SingleCheckActionVariant, SingleCheckActionVariantData } from "./../../../actor/actions/index.ts";
+import {
+    SingleCheckAction,
+    SingleCheckActionVariant,
+    SingleCheckActionVariantData,
+} from "./../../../actor/actions/index.ts";
 import { ItemPF2e } from "./../../../item/index.ts";
 import { CheckContextData, CheckContextOptions, CheckMacroContext } from "./../../action-macros/types.ts";
 import { SkillActionOptions } from "../index.ts";

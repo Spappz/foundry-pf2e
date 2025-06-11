@@ -1,6 +1,9 @@
 import { ActorPF2e } from "./../../actor/index.ts";
 import { ApplicationRenderContext } from "./../../../../foundry/client/applications/_types.mjs";
-import { DocumentSheetConfiguration, DocumentSheetRenderContext } from "./../../../../foundry/client/applications/api/document-sheet.mjs";
+import {
+    DocumentSheetConfiguration,
+    DocumentSheetRenderContext,
+} from "./../../../../foundry/client/applications/api/document-sheet.mjs";
 import { HandlebarsRenderOptions } from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
 import { default as FormDataExtended } from "./../../../../foundry/client/applications/ux/form-data-extended.mjs";
 import { DatabaseCreateOperation, DatabaseUpdateOperation } from "./../../../../foundry/common/abstract/_types.mjs";

@@ -1,5 +1,8 @@
 import { ActorPF2e } from "./../../actor/index.ts";
-import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
+import {
+    HandlebarsRenderOptions,
+    HandlebarsTemplatePart,
+} from "./../../../../foundry/client/applications/api/handlebars-application.mjs";
 import { ContextMenuEntry } from "./../../../../foundry/client/applications/ux/context-menu.mjs";
 import { DropCanvasData } from "./../../../../foundry/client/helpers/hooks.mjs";
 /** Extend ActorDirectory to show more information */

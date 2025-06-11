@@ -1,4 +1,8 @@
-import { FastHealingRuleElement, FastHealingSource, FastHealingType } from "./../../../../rules/rule-element/fast-healing.ts";
+import {
+    FastHealingRuleElement,
+    FastHealingSource,
+    FastHealingType,
+} from "./../../../../rules/rule-element/fast-healing.ts";
 import { RuleElementForm, RuleElementFormSheetData } from "./base.ts";
 declare class FastHealingForm extends RuleElementForm<FastHealingSource, FastHealingRuleElement> {
     template: string;

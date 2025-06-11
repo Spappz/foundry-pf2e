@@ -283,7 +283,7 @@ interface TokenPosition extends ElevatedPoint {
     /** The height in grid spaces (positive). */
     height: number;
     /** The shape type (see {@link CONST.TOKEN_SHAPES}). */
-    shape: TokenShape;
+    shape: CONST.TokenShapeType;
 }
 
 type TokenDimensions = Pick<TokenPosition, "width" | "height" | "shape">;

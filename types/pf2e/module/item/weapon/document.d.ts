@@ -1,6 +1,9 @@
 import { ActorPF2e } from "./../../actor/index.ts";
 import { AttributeString } from "./../../actor/types.ts";
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
+import {
+    DatabaseDeleteCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "./../../../../foundry/common/abstract/_types.mjs";
 import { ConsumablePF2e, MeleePF2e, ShieldPF2e, PhysicalItemPF2e } from "./../index.ts";
 import { ItemSourcePF2e, RawItemChatData } from "./../base/data/index.ts";
 import { NPCAttackTrait } from "./../melee/types.ts";

@@ -1,4 +1,13 @@
-import { ArmyPF2e, CharacterPF2e, FamiliarPF2e, HazardPF2e, LootPF2e, NPCPF2e, PartyPF2e, VehiclePF2e } from "./../../module/actor/index.ts";
+import {
+    ArmyPF2e,
+    CharacterPF2e,
+    FamiliarPF2e,
+    HazardPF2e,
+    LootPF2e,
+    NPCPF2e,
+    PartyPF2e,
+    VehiclePF2e,
+} from "./../../module/actor/index.ts";
 import { SenseAcuity } from "./../../module/actor/creature/types.ts";
 import {
     AbilityItemPF2e,
