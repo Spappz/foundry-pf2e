@@ -77,7 +77,7 @@ import { TextEditorPF2e } from "./module/system/text-editor.ts";
 import { sluggify } from "./util/index.ts";
 import { default as EnJSON } from "../static/lang/en.json";
 import Game = foundry.Game;
-interface ClientSettingsPF2e extends fh.ClientSettings {
+export interface ClientSettingsPF2e extends fh.ClientSettings {
     get(
         module: "core",
         key: "compendiumConfiguration",
