@@ -35,6 +35,7 @@ export { default as BaseUser, UserSource } from "./user.mjs";
 export { default as BaseWall, WallSource } from "./wall.mjs";
 
 export type ActorUUID = `Actor.${string}` | `${TokenDocumentUUID}.Actor.${string}` | CompendiumActorUUID;
+export type ChatMessageUUID = `ChatMessage.${string}`;
 export type CompendiumActorUUID = `Compendium.${string}.Actor.${string}`;
 export type CompendiumItemUUID = `Compendium.${string}.Item.${string}`;
 export type EmbeddedItemUUID = `Actor.${string}.Item.${string}`;
