@@ -1,7 +1,7 @@
 import { FormSelectOption } from "./../../../../foundry/client/applications/forms/fields.mjs";
 import { ItemSheetOptions } from "./../base/sheet/sheet.ts";
 import { MaterialSheetData, PhysicalItemSheetData, PhysicalItemSheetPF2e, RUNE_DATA } from "./../physical/index.ts";
-import { SheetOptions } from "./../../sheet/helpers.ts";
+import { AdjustedValue, SheetOptions } from "./../../sheet/helpers.ts";
 import { ComboWeaponMeleeUsage, SpecificWeaponData } from "./data.ts";
 import { WeaponPF2e } from "./document.ts";
 export declare class WeaponSheetPF2e extends PhysicalItemSheetPF2e<WeaponPF2e> {
@@ -28,6 +28,7 @@ interface WeaponSheetData extends PhysicalItemSheetData<WeaponPF2e> {
     damageDie: typeof CONFIG.PF2E.damageDie;
     damageDieFaces: Record<string, string>;
     damageTypes: typeof CONFIG.PF2E.damageTypes;
+    expend: AdjustedValue | null;
     groups: typeof CONFIG.PF2E.weaponGroups;
     isBomb: boolean;
     isComboWeapon: boolean;

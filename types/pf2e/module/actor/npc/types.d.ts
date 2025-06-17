@@ -9,8 +9,7 @@ import { TagifyEntry } from "./../../sheet/helpers.ts";
 import { ArmorClassTraceData } from "./../../system/statistic/index.ts";
 import { NPCAttributes, NPCPerceptionData, NPCSaveData, NPCSkillData, NPCSystemData } from "./data.ts";
 import { NPCPF2e, NPCStrike } from "./index.ts";
-import { ImageFilePath, VideoFilePath } from "./../../../../foundry/common/constants.mjs";
-
+import { ImageFilePath, VideoFilePath } from "../../../../foundry/common/constants.mjs";
 interface ActionsDetails {
     label: string;
     actions: AbilityViewData[];

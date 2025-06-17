@@ -101,6 +101,7 @@ declare const RUNE_DATA: {
             shadow: ArmorPropertyRuneData<"shadow">;
             ethereal: ArmorPropertyRuneData<"ethereal">;
             portable: ArmorPropertyRuneData<"portable">;
+            ready: ArmorPropertyRuneData<"ready">;
             acidResistant: ArmorPropertyRuneData<"acidResistant">;
             advancing: ArmorPropertyRuneData<"advancing">;
             aimAiding: ArmorPropertyRuneData<"aimAiding">;
@@ -145,7 +146,6 @@ declare const RUNE_DATA: {
             moderateDread: ArmorPropertyRuneData<"moderateDread">;
             quenching: ArmorPropertyRuneData<"quenching">;
             raiment: ArmorPropertyRuneData<"raiment">;
-            ready: ArmorPropertyRuneData<"ready">;
             rockBraced: ArmorPropertyRuneData<"rockBraced">;
             sinisterKnight: ArmorPropertyRuneData<"sinisterKnight">;
             sizeChanging: ArmorPropertyRuneData<"sizeChanging">;
@@ -167,7 +167,6 @@ declare const RUNE_DATA: {
             unholy: WeaponPropertyRuneData<"unholy">;
             vorpal: WeaponPropertyRuneData<"vorpal">;
             astral: WeaponPropertyRuneData<"astral">;
-            speed: WeaponPropertyRuneData<"speed">;
             ancestralEchoing: WeaponPropertyRuneData<"ancestralEchoing">;
             anchoring: WeaponPropertyRuneData<"anchoring">;
             ashen: WeaponPropertyRuneData<"ashen">;
@@ -175,6 +174,7 @@ declare const RUNE_DATA: {
             bane: WeaponPropertyRuneData<"bane">;
             bloodbane: WeaponPropertyRuneData<"bloodbane">;
             bloodthirsty: WeaponPropertyRuneData<"bloodthirsty">;
+            bolkasBlessing: WeaponPropertyRuneData<"bolkasBlessing">;
             brilliant: WeaponPropertyRuneData<"brilliant">;
             called: WeaponPropertyRuneData<"called">;
             coating: WeaponPropertyRuneData<"coating">;
@@ -203,6 +203,7 @@ declare const RUNE_DATA: {
             greaterAshen: WeaponPropertyRuneData<"greaterAshen">;
             greaterAstral: WeaponPropertyRuneData<"greaterAstral">;
             greaterBloodbane: WeaponPropertyRuneData<"greaterBloodbane">;
+            greaterBolkasBlessing: WeaponPropertyRuneData<"greaterBolkasBlessing">;
             greaterBrilliant: WeaponPropertyRuneData<"greaterBrilliant">;
             greaterCorrosive: WeaponPropertyRuneData<"greaterCorrosive">;
             greaterCrushing: WeaponPropertyRuneData<"greaterCrushing">;
@@ -215,9 +216,11 @@ declare const RUNE_DATA: {
             greaterFrost: WeaponPropertyRuneData<"greaterFrost">;
             greaterHauling: WeaponPropertyRuneData<"greaterHauling">;
             greaterImpactful: WeaponPropertyRuneData<"greaterImpactful">;
+            greaterKolssOath: WeaponPropertyRuneData<"greaterKolssOath">;
             greaterRooting: WeaponPropertyRuneData<"greaterRooting">;
             greaterShock: WeaponPropertyRuneData<"greaterShock">;
             greaterThundering: WeaponPropertyRuneData<"greaterThundering">;
+            greaterTruddsStrength: WeaponPropertyRuneData<"greaterTruddsStrength">;
             grievous: WeaponPropertyRuneData<"grievous">;
             hauling: WeaponPropertyRuneData<"hauling">;
             hopeful: WeaponPropertyRuneData<"hopeful">;
@@ -226,6 +229,7 @@ declare const RUNE_DATA: {
             impossible: WeaponPropertyRuneData<"impossible">;
             keen: WeaponPropertyRuneData<"keen">;
             kinWarding: WeaponPropertyRuneData<"kinWarding">;
+            kolssOath: WeaponPropertyRuneData<"kolssOath">;
             majorFanged: WeaponPropertyRuneData<"majorFanged">;
             majorRooting: WeaponPropertyRuneData<"majorRooting">;
             merciful: WeaponPropertyRuneData<"merciful">;
@@ -237,9 +241,11 @@ declare const RUNE_DATA: {
             shifting: WeaponPropertyRuneData<"shifting">;
             shock: WeaponPropertyRuneData<"shock">;
             shockwave: WeaponPropertyRuneData<"shockwave">;
+            speed: WeaponPropertyRuneData<"speed">;
             spellStoring: WeaponPropertyRuneData<"spellStoring">;
             swarming: WeaponPropertyRuneData<"swarming">;
             thundering: WeaponPropertyRuneData<"thundering">;
+            truddsStrength: WeaponPropertyRuneData<"truddsStrength">;
             trueRooting: WeaponPropertyRuneData<"trueRooting">;
             underwater: WeaponPropertyRuneData<"underwater">;
             wounding: WeaponPropertyRuneData<"wounding">;

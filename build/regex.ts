@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { glob } from "glob";
 import * as path from "path/posix";
 
-const files = await glob("./types/foundry/**/*.mts", {
+const files = await glob("./types/pf2e/**/*.ts", {
     dotRelative: true,
     posix: true,
 });
@@ -12,16 +12,17 @@ for (const file of files) {
     let data = fs.readFileSync(file, "utf8");
 
     // Import - Double Quotes
-    // data = data.replace(/^import (.*?) from '(.*?)';$/gm, `import $1 from "$2";`);
+    data = data.replace(/^import (.*?) from '(.*?)';$/gm, `import $1 from "$2";`);
+    data = data.replace(/import\('(.*?)'\)/gm, `import\("$1"\)`);
 
     // Import - *.d.ts
-    // data = data.replace(/^import (.*?) from "(.*?)\.d\.ts";$/gm, `import $1 from "$2.ts";`);
+    data = data.replace(/^import (.*?) from "(.*?)\.d\.ts";$/gm, `import $1 from "$2.ts";`);
 
     // Import - *.d.mts
-    // data = data.replace(/^import (.*?) from "(.*?)\.d\.mts";$/gm, `import $1 from "$2.mjs";`);
+    data = data.replace(/^import (.*?) from "(.*?)\.d\.mts";$/gm, `import $1 from "$2.mjs";`);
 
     // Import - @actor
-    /* data = data.replace(/"@actor"/gm, (_substring: string) => {
+    data = data.replace(/"@actor"/gm, (_substring: string) => {
         const relative = path.relative(dir, "./types/pf2e/module/actor/index.ts");
         return `"./${relative}"`;
     });
@@ -84,7 +85,7 @@ for (const file of files) {
     data = data.replace(/"@util\/(.*?)"/gm, (_substring: string, g1: string) => {
         const relative = path.relative(dir, "./types/pf2e/util/");
         return `"./${relative}/${g1}"`;
-    }); */
+    });
 
     // Import - @client/*
     data = data.replace(/"@client\/(.*?)"/gm, (_substring: string, g1: string) => {

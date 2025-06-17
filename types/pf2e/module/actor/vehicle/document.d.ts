@@ -1,9 +1,8 @@
 import { ActorDimensions } from "./../types.ts";
-import { DatabaseUpdateCallbackOptions } from "./../../../../foundry/common/abstract/_types.mjs";
 import { ItemType } from "./../../item/base/data/index.ts";
 import { TokenDocumentPF2e } from "./../../scene/index.ts";
 import { ArmorStatistic, Statistic, StatisticDifficultyClass } from "./../../system/statistic/index.ts";
-import { ActorPF2e, HitPointsSummary } from "../base.ts";
+import { ActorPF2e, ActorUpdateCallbackOptions, HitPointsSummary } from "../base.ts";
 import { TokenDimensions, VehicleSource, VehicleSystemData } from "./data.ts";
 declare class VehiclePF2e<
     TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null,
@@ -21,7 +20,7 @@ declare class VehiclePF2e<
     private prepareSaves;
     protected _preUpdate(
         changed: DeepPartial<this["_source"]>,
-        options: DatabaseUpdateCallbackOptions,
+        options: ActorUpdateCallbackOptions,
         user: fd.BaseUser,
     ): Promise<boolean | void>;
 }

@@ -1,15 +1,17 @@
 import { Size } from "./../../data.ts";
 export declare class ActorSizePF2e {
+    #private;
     /** The size category of this category */
     value: Size;
-    /** The length dimension of this actor's space: corresponds with token height */
-    length: number;
-    /** The width dimension of this actor's space */
-    width: number;
-    /** The default space (in a Pathfinder 2e rules context) of each size */
-    private static defaultSpaces;
-    /** A ranked ordering of sizes */
-    private static sizeRanks;
+    /** The length dimension of this actor's space in feet: corresponds with token `height` */
+    long: number;
+    /** The width dimension of this actor's space in feet */
+    wide: number;
+    /** The actor dimensions as canvas square-grid values */
+    get tokenDimensions(): {
+        width: number;
+        height: number;
+    };
     /**
      * @param value A size category
      * @param [length] A length of a Pathfinder "space"

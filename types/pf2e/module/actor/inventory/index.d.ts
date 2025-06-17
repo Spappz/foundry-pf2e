@@ -5,7 +5,7 @@ import { Coins } from "./../../item/physical/data.ts";
 import { CoinsPF2e } from "./../../item/physical/helpers.ts";
 import { DelegatedCollection } from "./../../../util/index.ts";
 import { InventoryBulk } from "./bulk.ts";
-import { DatabaseDeleteOperation } from "./../../../../foundry/common/abstract/_types.mjs";
+import { DatabaseDeleteOperation } from "../../../../foundry/common/abstract/_module.mjs";
 declare class ActorInventory<TActor extends ActorPF2e> extends DelegatedCollection<PhysicalItemPF2e<TActor>> {
     actor: TActor;
     bulk: InventoryBulk;

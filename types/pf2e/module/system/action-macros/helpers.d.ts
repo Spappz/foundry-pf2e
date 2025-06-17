@@ -37,7 +37,11 @@ declare class ActionMacroHelpers {
         actor: ActorPF2e | null;
     };
     static getWeaponPotencyModifier(item: WeaponPF2e<ActorPF2e>, selector: string): ModifierPF2e | null;
-    static getApplicableEquippedWeapons(actor: ActorPF2e, trait: WeaponTrait): WeaponPF2e<ActorPF2e>[];
+    static getBestEquippedItemForAction(
+        actor: ActorPF2e,
+        traits: WeaponTrait[],
+        selector: string,
+    ): WeaponPF2e<ActorPF2e> | null;
     /** Attempts to get the label for the given statistic using a slug */
     static getSimpleCheckLabel(slug: string): string | null;
 }

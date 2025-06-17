@@ -6,9 +6,8 @@ declare class ItemAttacher<TItem extends PhysicalItemPF2e> extends PickAThingPro
     static DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
     static PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
     constructor({ item }: { item: TItem });
-    get title(): string;
     protected getSelection(event: MouseEvent): PickableThing<PhysicalItemPF2e> | null;
     resolveSelection(): Promise<PickableThing<PhysicalItemPF2e> | null>;
-    protected _onRender(context: object, options: fa.ApplicationRenderOptions): Promise<void>;
+    _onRender(context: object, options: fa.ApplicationRenderOptions): Promise<void>;
 }
 export { ItemAttacher };

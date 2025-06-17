@@ -18,7 +18,7 @@ import { LabeledNumber, Size, ValueAndMax, ValueAndMaybeMax, ZeroToThree } from 
 import { ArmorClassTraceData } from "./../../system/statistic/index.ts";
 import { PerceptionTraceData } from "./../../system/statistic/perception.ts";
 import { CreatureActorType, CreatureTrait, Language, SenseAcuity, SenseType, SpecialVisionType } from "./types.ts";
-import { ImageFilePath } from "./../../../../foundry/common/constants.mjs";
+import { ImageFilePath } from "../../../../foundry/common/constants.mjs";
 type BaseCreatureSource<
     TType extends CreatureActorType,
     TSystemSource extends CreatureSystemSource,

@@ -30,7 +30,6 @@ import { ItemDescriptionData, ItemTrait } from "./data/system.ts";
 import { ItemSheetPF2e } from "./sheet/sheet.ts";
 /** The basic `Item` subclass for the system */
 declare class ItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends Item<TParent> {
-    #private;
     /** Additional item roll options not derived from an item's own data */
     specialOptions: string[];
     /** The item that granted this item, if any */
@@ -55,11 +54,7 @@ declare class ItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> exte
      * Set a source ID on a dropped embedded item without a full data reset
      * This is currently necessary as of 10.291 due to system measures to prevent premature data preparation
      */
-    static fromDropData<T extends typeof Document>(
-        this: T,
-        data: object,
-        options?: object,
-    ): Promise<InstanceType<T> | null>;
+    static fromDropData<T extends Document>(this: ConstructorOf<T>, data: object, options?: object): Promise<T | null>;
     /** Check this item's type (or whether it's one among multiple types) without a call to `instanceof` */
     isOfType<T extends ItemType>(...types: T[]): this is ItemInstances<TParent>[T];
     isOfType(type: "physical"): this is PhysicalItemPF2e<TParent>;
@@ -166,7 +161,6 @@ declare class ItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> exte
         options: DatabaseUpdateCallbackOptions,
         user: fd.BaseUser,
     ): Promise<boolean | void>;
-    protected _preDelete(options: DatabaseDeleteCallbackOptions, user: fd.BaseUser): Promise<boolean | void>;
     /** Call onCreate rule-element hooks */
     protected _onCreate(data: ItemSourcePF2e, options: DatabaseCreateCallbackOptions, userId: string): void;
     /** Refresh the Item Directory if this item isn't embedded */

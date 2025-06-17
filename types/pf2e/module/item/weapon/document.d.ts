@@ -51,8 +51,6 @@ declare class WeaponPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> ex
     get baseDamage(): WeaponDamage;
     /** Does this weapon deal damage? */
     get dealsDamage(): boolean;
-    /** The number of units of ammunition required to attack with this weapon */
-    get ammoRequired(): number;
     get ammo(): ConsumablePF2e<ActorPF2e> | WeaponPF2e<ActorPF2e> | null;
     get otherTags(): Set<OtherWeaponTag>;
     acceptsSubitem(candidate: PhysicalItemPF2e): boolean;

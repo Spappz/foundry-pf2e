@@ -14,11 +14,6 @@ declare class TextEditorPF2e extends foundry.applications.ux.TextEditor {
     ): Promise<HTMLAnchorElement | null>;
     /** Replace core static method to conditionally handle inline damage roll clicks */
     static _onClickInlineRoll(event: PointerEvent): Promise<ChatMessage | undefined>;
-    /** Remove once https://github.com/foundryvtt/foundryvtt/issues/12933 is fixed */
-    protected static _embedContent(
-        match: RegExpMatchArray,
-        options?: EnrichmentOptionsPF2e,
-    ): Promise<HTMLElement | null>;
     static processUserVisibility(content: string, options: EnrichmentOptionsPF2e): string;
     static enrichString(data: RegExpMatchArray, options?: EnrichmentOptionsPF2e): Promise<HTMLElement | null>;
     /**

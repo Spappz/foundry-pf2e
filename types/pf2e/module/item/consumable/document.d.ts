@@ -6,7 +6,7 @@ import { TrickMagicItemEntry } from "./../spellcasting-entry/trick.ts";
 import { ValueAndMax } from "./../../data.ts";
 import { ConsumableSource, ConsumableSystemData } from "./data.ts";
 import { ConsumableCategory, ConsumableTrait, OtherConsumableTag } from "./types.ts";
-import { EnrichmentOptions } from "./../../../../foundry/client/applications/ux/text-editor.mjs";
+import { EnrichmentOptions } from "../../../../foundry/client/applications/ux/text-editor.mjs";
 declare class ConsumablePF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     /** A cached copy of embeddedSpell, lazily regenerated every data preparation cycle */
     private _embeddedSpell;

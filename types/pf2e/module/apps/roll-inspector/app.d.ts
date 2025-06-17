@@ -1,40 +1,19 @@
-import { ApplicationConfiguration, FormFooterButton } from "./../../../../foundry/client/applications/_module.mjs";
-import fields = foundry.data.fields;
-interface SettingsContext {
-    rootId: string;
-    fields: WorldClockSettingSchema;
-    settings: WorldClockSettingData;
-    dateThemes: Record<string, string>;
-    timeConventions: Record<12 | 24, string>;
-    buttons: FormFooterButton[];
-}
-type WorldClockSettingSchema = {
-    dateTheme: fields.StringField<"AR" | "IC" | "AD" | "CE", "AR" | "IC" | "AD" | "CE", true, false, true>;
-    playersCanView: fields.BooleanField;
-    showClockButton: fields.BooleanField;
-    syncDarkness: fields.BooleanField;
-    timeConvention: fields.NumberField<12 | 24, 12 | 24, true, false, true>;
-    worldCreatedOn: fields.StringField<string, string, true, true, true>;
-};
-export interface WorldClockSettingData extends fields.SourceFromSchema<WorldClockSettingSchema> {}
-declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
-    readonly parts: Record<string, HTMLElement>;
-    _configureRenderOptions(options: fa.api.HandlebarsRenderOptions): void;
-    _configureRenderParts(options: fa.api.HandlebarsRenderOptions): Record<string, fa.api.HandlebarsTemplatePart>;
-    _renderHTML(context: object, options: fa.api.HandlebarsRenderOptions): Promise<Record<string, HTMLElement>>;
-    _preparePartContext(
-        partId: string,
-        context: fa.ApplicationRenderContext,
-        options: fa.api.HandlebarsRenderOptions,
-    ): Promise<fa.ApplicationRenderContext>;
+import { RawDamageDice, RawModifier } from "./../../actor/modifiers.ts";
+import { ApplicationConfiguration } from "./../../../../foundry/client/applications/_types.mjs";
+import { ChatContextFlag } from "./../../chat-message/data.ts";
+import { ChatMessagePF2e } from "./../../chat-message/document.ts";
+import { SvelteApplicationRenderContext } from "./../../sheet/mixin.svelte.ts";
+declare const RollInspector_base: ((abstract new (...args: any[]) => {
+    root: import("svelte").Component<any>;
+    $state: object;
+    "__#27@#mount": object;
+    _renderHTML(context: SvelteApplicationRenderContext): Promise<SvelteApplicationRenderContext>;
     _replaceHTML(
-        result: Record<string, HTMLElement>,
+        result: SvelteApplicationRenderContext,
         content: HTMLElement,
-        options: fa.api.HandlebarsRenderOptions,
+        options: fa.ApplicationRenderOptions,
     ): void;
-    _preSyncPartState(partId: string, newElement: HTMLElement, priorElement: HTMLElement, state: object): void;
-    _syncPartState(partId: string, newElement: HTMLElement, priorElement: HTMLElement, state: object): void;
-    _attachPartListeners(partId: string, htmlElement: HTMLElement, options: fa.api.HandlebarsRenderOptions): void;
+    _onClose(options: fa.ApplicationClosingOptions): void;
     options: ApplicationConfiguration;
     readonly window: {
         header: HTMLElement;
@@ -139,6 +118,27 @@ declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
               }
             | undefined,
     ): Promise</* elided*/ any>;
+    _configureRenderOptions(options: {
+        force?: boolean | undefined;
+        position?:
+            | {
+                  top?: number | undefined;
+                  left?: number | undefined;
+                  width?: number | "auto" | undefined;
+                  height?: number | "auto" | undefined;
+                  scale?: number | undefined;
+                  zIndex?: number | undefined;
+              }
+            | undefined;
+        window?:
+            | {
+                  title?: string | undefined;
+                  icon?: string | false | undefined;
+                  controls?: boolean | undefined;
+              }
+            | undefined;
+        isFirstRender?: boolean | undefined;
+    }): void;
     _prepareContext(options: fa.ApplicationRenderOptions): Promise<object>;
     _prepareTabs(group: string): Record<string, fa.ApplicationTab>;
     _getTabsConfig(group: string): fa.ApplicationTabsConfiguration | null;
@@ -174,7 +174,6 @@ declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
     _preRender(context: object, options: fa.ApplicationRenderOptions): Promise<void>;
     _onRender(context: object, options: fa.ApplicationRenderOptions): Promise<void>;
     _preClose(options: fa.ApplicationClosingOptions): Promise<void>;
-    _onClose(options: fa.ApplicationClosingOptions): void;
     _prePosition(position: fa.ApplicationPosition): void;
     _onPosition(position: fa.ApplicationPosition): void;
     _attachFrameListeners(): void;
@@ -205,25 +204,43 @@ declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
     ): void;
     dispatchEvent(event: Event): boolean;
 }) & {
-    PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
+    DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
 }) &
     typeof fa.api.ApplicationV2;
-export declare class WorldClockSettings extends WorldClockSettings_base {
-    #private;
-    constructor(options?: DeepPartial<ApplicationConfiguration>);
-    static DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
-    static PARTS: {
-        settings: {
-            template: string;
-            root: boolean;
+declare class RollInspector extends RollInspector_base {
+    static DEFAULT_OPTIONS: {
+        position: {
+            width: number;
+            height: number;
         };
-        footer: {
-            template: string;
+        window: {
+            icon: string;
+            title: string;
+            resizable: boolean;
         };
     };
-    /** Register World Clock settings and this menu. */
-    static registerSettings(): void;
-    static localizeSchema(): void;
-    _prepareContext(): Promise<SettingsContext>;
+    root: import("svelte/legacy").LegacyComponentType;
+    message: ChatMessagePF2e;
+    constructor(
+        options: DeepPartial<ApplicationConfiguration> & {
+            message: ChatMessagePF2e;
+        },
+    );
+    _prepareContext(): Promise<RollInspectorContext>;
 }
-export {};
+interface RollInspectorContext extends SvelteApplicationRenderContext {
+    state: RollInspectorState;
+}
+interface RollInspectorState {
+    context: ChatContextFlag;
+    domains: string[];
+    modifiers: RawModifier[];
+    dice: RawDamageDice[];
+    rollOptions: string[];
+    contextualOptions: {
+        header: string;
+        options: string[];
+    }[];
+}
+export { RollInspector };
+export type { RollInspectorContext };

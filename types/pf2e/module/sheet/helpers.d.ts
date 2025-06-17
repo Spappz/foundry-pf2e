@@ -96,7 +96,6 @@ declare function createTooltipListener(
         /** If given, the tooltip will spawn on elements that match this selector */
         selector?: string;
         locked?: boolean;
-        themeGroup?: "applications" | "interface";
         direction?: TooltipDirection;
         cssClass?: string;
         render: (element: HTMLElement) => Promise<HTMLElement | null>;

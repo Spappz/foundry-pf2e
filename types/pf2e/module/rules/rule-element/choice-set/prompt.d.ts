@@ -24,12 +24,12 @@ declare class ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, stri
     static DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
     static PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
     _prepareContext(): Promise<ChoiceSetTemplateData>;
-    protected _onRender(context: object, options: HandlebarsRenderOptions): Promise<void>;
+    _onRender(context: object, options: HandlebarsRenderOptions): Promise<void>;
     /** Return early if there is only one choice */
     resolveSelection(): Promise<PickableThing<string | number | object> | null>;
-    protected _onClose(options: fa.ApplicationClosingOptions): void;
+    _onClose(options: fa.ApplicationClosingOptions): void;
     /** Handle a dropped homebrew item */
-    protected _onDrop(event: DragEvent): Promise<void>;
+    _onDrop(event: DragEvent): Promise<void>;
 }
 interface ChoiceSetPrompt extends PickAThingPrompt<ItemPF2e<ActorPF2e>, string | number | object> {
     getSelection(event: MouseEvent): ChoiceSetChoice | null;

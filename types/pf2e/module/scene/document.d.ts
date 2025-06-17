@@ -34,6 +34,14 @@ declare class ScenePF2e extends Scene {
     prepareData(): void;
     /** Toggle Unrestricted Global Vision according to scene darkness level */
     prepareBaseData(): void;
+    /** Synchronize a token's dimensions with its actor's size category. */
+    syncTokenDimensions(
+        tokenDoc: TokenDocumentPF2e,
+        dimensions: {
+            width: number;
+            height: number;
+        },
+    ): void;
     _onUpdate(changed: DeepPartial<this["_source"]>, options: SceneUpdateOptions, userId: string): void;
     protected _onUpdateDescendantDocuments<P extends Document>(
         parent: P,

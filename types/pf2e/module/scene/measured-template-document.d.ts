@@ -10,7 +10,7 @@ import { MeasuredTemplatePF2e } from "./../canvas/measured-template.ts";
 import { ItemOriginFlag } from "./../chat-message/data.ts";
 import { ChatMessagePF2e } from "./../chat-message/document.ts";
 import { ScenePF2e } from "./document.ts";
-import { DocumentFlags } from "./../../../foundry/common/data/_types.mjs";
+import { DocumentFlags } from "../../../foundry/common/data/_module.mjs";
 declare class MeasuredTemplateDocumentPF2e<
     TParent extends ScenePF2e | null = ScenePF2e | null,
 > extends MeasuredTemplateDocument<TParent> {

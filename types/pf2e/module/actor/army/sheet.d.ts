@@ -7,7 +7,7 @@ import { ItemSourcePF2e } from "./../../item/base/data/index.ts";
 import { DropCanvasItemDataPF2e } from "./../../canvas/drop-canvas-data.ts";
 import { AdjustedValue } from "./../../sheet/helpers.ts";
 import { ArmyPF2e } from "./document.ts";
-import { ClientDocument } from "./../../../../foundry/client/documents/abstract/client-document.mjs";
+import { ClientDocument } from "../../../../foundry/client/documents/abstract/_module.mjs";
 declare class ArmySheetPF2e extends ActorSheetPF2e<ArmyPF2e> {
     #private;
     /** Basic war actions are sheet data. Note that they cannot ever work with rule elements */

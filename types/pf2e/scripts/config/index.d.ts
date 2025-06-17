@@ -3631,7 +3631,10 @@ export declare const PF2ECONFIG: {
         yaoguai: string;
     };
     shieldTraits: {
+        alchemical: string;
         apex: string;
+        artifact: string;
+        aura: string;
         "deflecting-bludgeoning": string;
         "deflecting-physical-ranged": string;
         "deflecting-piercing": string;

@@ -2573,7 +2573,10 @@ declare const equipmentTraits: {
     yaoguai: string;
 };
 declare const shieldTraits: {
+    alchemical: string;
     apex: string;
+    artifact: string;
+    aura: string;
     "deflecting-bludgeoning": string;
     "deflecting-physical-ranged": string;
     "deflecting-piercing": string;

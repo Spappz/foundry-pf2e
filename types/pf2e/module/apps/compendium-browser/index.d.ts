@@ -1,1 +1,1 @@
-export { CompendiumBrowser } from "./browser";
+export { CompendiumBrowser } from "./browser.ts";

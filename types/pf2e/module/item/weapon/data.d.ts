@@ -62,6 +62,7 @@ interface WeaponSystemSource extends Investable<PhysicalSystemSource> {
     };
     range: WeaponRangeIncrement | null;
     maxRange?: number | null;
+    expend?: number | null;
     reload: {
         value: WeaponReloadTime | null;
     };
@@ -134,6 +135,8 @@ interface WeaponSystemData
     baseItem: BaseWeaponType | null;
     material: WeaponMaterialData;
     maxRange: number | null;
+    /** The amount of ammunition used everytime this weapon is fired */
+    expend: number | null;
     reload: {
         value: WeaponReloadTime | null;
         /** Whether the ammunition (or the weapon itself, if thrown) should be consumed upon firing */

@@ -1,5 +1,5 @@
-import { PlaceablesLayerPointerEvent } from "./../../../foundry/client/canvas/layers/base/placeables-layer.mjs";
-import { Point } from "./../../../foundry/common/_types.mjs";
+import { PlaceablesLayerPointerEvent } from "../../../foundry/client/canvas/layers/base/placeables-layer.mjs";
+import { Point } from "../../../foundry/common/_types.mjs";
 import { RegionDocumentPF2e } from "./../scene/region-document/document.ts";
 /** Add support for drag/drop repositioning of regions. */
 declare class RegionPF2e<TDocument extends RegionDocumentPF2e = RegionDocumentPF2e> extends fc.placeables

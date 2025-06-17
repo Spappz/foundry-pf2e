@@ -149,6 +149,11 @@ declare class ActorPF2e<TParent extends TokenDocumentPF2e | null = TokenDocument
     getSelfRollOptions(prefix?: "self" | "target" | "origin"): string[];
     /** The actor's reach: a meaningful implementation is found in `CreaturePF2e` and `HazardPF2e`. */
     getReach(_options: GetReachParameters): number;
+    /**
+     * @inheritdoc
+     * Overriden to also clone dependent tokens if keepId is true
+     */
+    clone(data?: Record<string, unknown>, context?: DocumentCloneContext): this;
     /** Create a clone of this actor to recalculate its statistics with ephemeral effects and roll options included */
     getContextualClone(rollOptions: string[], ephemeralEffects?: (ConditionSource | EffectSource)[]): this;
     /** Apply effects from an aura: will later be expanded to handle effects from measured templates */
@@ -215,6 +220,11 @@ declare class ActorPF2e<TParent extends TokenDocumentPF2e | null = TokenDocument
         value?: boolean,
         suboption?: string | null,
     ): Promise<boolean | null>;
+    /** Ensure newly-created tokens have dimensions matching this actor's size category */
+    getTokenDocument(
+        data?: DeepPartial<foundry.documents.TokenSource>,
+        options?: DocumentConstructionContext<this>,
+    ): Promise<NonNullable<TParent>>;
     /**
      * Handle how changes to a Token attribute bar are applied to the Actor.
      *
@@ -340,20 +350,26 @@ declare class ActorPF2e<TParent extends TokenDocumentPF2e | null = TokenDocument
         },
     ): Promise<boolean | void>;
     /** Store certain data to be checked in _onUpdateDescendantDocuments */
-    protected _preUpdateDescendantDocuments<P extends Document>(
-        parent: P,
+    protected _preUpdateDescendantDocuments(
+        parent: Document,
         collection: string,
         changes: Record<string, unknown>[],
-        options: DatabaseUpdateOperation<P>,
+        options: DatabaseUpdateOperation<Document> & {
+            previous?: object;
+        },
         userId: string,
     ): void;
     /** Overriden to handle max hp updates when certain items changes. */
-    protected _onUpdateDescendantDocuments<P extends Document>(
-        parent: P,
+    protected _onUpdateDescendantDocuments(
+        parent: Document,
         collection: string,
-        documents: Document<P>[],
+        documents: Document<Document>[],
         changes: Record<string, unknown>[],
-        options: DatabaseUpdateOperation<P>,
+        options: DatabaseUpdateOperation<Document> & {
+            previous?: {
+                maxHitPoints?: number;
+            };
+        },
         userId: string,
     ): void;
     /** Redirect to `toggleCondition` if possible. */

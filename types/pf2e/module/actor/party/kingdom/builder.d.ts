@@ -5,7 +5,7 @@ import { KingdomCHG } from "./schema.ts";
 import { KingdomAbility } from "./types.ts";
 import { KingdomCHGData } from "./values.ts";
 import appv1 = foundry.appv1;
-import { FormSelectOption } from "./../../../../../foundry/client/applications/forms/fields.mjs";
+import { FormSelectOption } from "../../../../../foundry/client/applications/forms/fields.mjs";
 declare const KINGDOM_BUILD_CATEGORIES: readonly ["charter", "heartland", "government"];
 type KingdomBuildCategory = (typeof KINGDOM_BUILD_CATEGORIES)[number];
 type CurrentSelections = Record<KingdomBuildCategory, string | null>;

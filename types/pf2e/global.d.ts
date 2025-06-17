@@ -27,7 +27,6 @@ import {
     ChatLogPF2e,
     CompendiumDirectoryPF2e,
     EncounterTracker,
-    ItemDirectoryPF2e,
 } from "./module/apps/sidebar/index.ts";
 import { WorldClock } from "./module/apps/world-clock/app.ts";
 import { CanvasPF2e, EffectsCanvasGroupPF2e } from "./module/canvas/index.ts";
@@ -77,7 +76,7 @@ import { TextEditorPF2e } from "./module/system/text-editor.ts";
 import { sluggify } from "./util/index.ts";
 import { default as EnJSON } from "../static/lang/en.json";
 import Game = foundry.Game;
-export interface ClientSettingsPF2e extends fh.ClientSettings {
+interface ClientSettingsPF2e extends fh.ClientSettings {
     get(
         module: "core",
         key: "compendiumConfiguration",
@@ -170,7 +169,6 @@ interface GamePF2e
         UserPF2e
     > {
     pf2e: {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
         actions: Record<string, Function> & Collection<string, Action>;
         compendiumBrowser: CompendiumBrowser;
         licenseViewer: LicenseViewer;
@@ -327,8 +325,8 @@ declare global {
         export import fh = foundry.helpers;
         export import fu = foundry.utils;
         const ui: FoundryUI<
-            ActorDirectoryPF2e<ActorPF2e<null>>,
-            ItemDirectoryPF2e<ItemPF2e<null>>,
+            ActorDirectoryPF2e,
+            fa.sidebar.tabs.ItemDirectory<ItemPF2e<null>>,
             ChatLogPF2e,
             CompendiumDirectoryPF2e,
             EncounterTracker<EncounterPF2e | null>,

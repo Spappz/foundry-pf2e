@@ -17,7 +17,7 @@ import {
     SheetInventory,
 } from "./data-types.ts";
 import { ItemSummaryRenderer } from "./item-summary-renderer.ts";
-import Tabs from "./../../../../foundry/client/applications/ux/tabs.mjs";
+import { Tabs } from "../../../../foundry/client/applications/ux/_module.mjs";
 /**
  * Extend the basic ActorSheet class to do all the PF2e things!
  * This sheet is an Abstract layer which is not used.

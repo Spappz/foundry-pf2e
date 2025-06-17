@@ -1,23 +1,7 @@
-import { ApplicationConfiguration, FormFooterButton } from "./../../../../foundry/client/applications/_module.mjs";
-import fields = foundry.data.fields;
-interface SettingsContext {
-    rootId: string;
-    fields: WorldClockSettingSchema;
-    settings: WorldClockSettingData;
-    dateThemes: Record<string, string>;
-    timeConventions: Record<12 | 24, string>;
-    buttons: FormFooterButton[];
-}
-type WorldClockSettingSchema = {
-    dateTheme: fields.StringField<"AR" | "IC" | "AD" | "CE", "AR" | "IC" | "AD" | "CE", true, false, true>;
-    playersCanView: fields.BooleanField;
-    showClockButton: fields.BooleanField;
-    syncDarkness: fields.BooleanField;
-    timeConvention: fields.NumberField<12 | 24, 12 | 24, true, false, true>;
-    worldCreatedOn: fields.StringField<string, string, true, true, true>;
-};
-export interface WorldClockSettingData extends fields.SourceFromSchema<WorldClockSettingSchema> {}
-declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
+import { ActorPF2e } from "./../../actor/index.ts";
+import { ApplicationConfiguration } from "./../../../../foundry/client/applications/_module.mjs";
+import { DamageType } from "./../../system/damage/types.ts";
+declare const PersistentDamageEditor_base: ((abstract new (...args: any[]) => {
     readonly parts: Record<string, HTMLElement>;
     _configureRenderOptions(options: fa.api.HandlebarsRenderOptions): void;
     _configureRenderParts(options: fa.api.HandlebarsRenderOptions): Record<string, fa.api.HandlebarsTemplatePart>;
@@ -208,22 +192,34 @@ declare const WorldClockSettings_base: ((abstract new (...args: any[]) => {
     PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
 }) &
     typeof fa.api.ApplicationV2;
-export declare class WorldClockSettings extends WorldClockSettings_base {
+declare class PersistentDamageEditor extends PersistentDamageEditor_base {
     #private;
-    constructor(options?: DeepPartial<ApplicationConfiguration>);
-    static DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
-    static PARTS: {
-        settings: {
-            template: string;
-            root: boolean;
-        };
-        footer: {
-            template: string;
-        };
-    };
-    /** Register World Clock settings and this menu. */
-    static registerSettings(): void;
-    static localizeSchema(): void;
-    _prepareContext(): Promise<SettingsContext>;
+    static DEFAULT_OPTIONS: DeepPartial<fa.ApplicationConfiguration>;
+    static PARTS: Record<string, fa.api.HandlebarsTemplatePart>;
+    actor: ActorPF2e;
+    selectedItemId: string | null;
+    constructor(options: DeepPartial<ApplicationConfiguration> & PersistentDamageDialogOptions);
+    _prepareContext(): Promise<PersistentDialogContext>;
+    _onChangeForm(formConfig: fa.ApplicationFormConfiguration, event: Event): void;
 }
-export {};
+interface PersistentDamageDialogOptions {
+    actor: ActorPF2e;
+    selectedItemId?: string;
+}
+interface PersistentDialogContext {
+    selectedItemId: string | null;
+    existing: DamageEntryData[];
+    damageTypes: DamageTypeData[];
+}
+interface DamageEntryData {
+    id: string;
+    active: boolean;
+    formula: string;
+    damageType: DamageType;
+    dc: number;
+}
+interface DamageTypeData {
+    type: string;
+    label: string;
+}
+export { PersistentDamageEditor };

@@ -34,8 +34,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "ac-bonus": ItemAlterationValidator<{
         itemType: fields.StringField<"armor" | "shield", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -45,8 +45,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "area-size": ItemAlterationValidator<{
         itemType: fields.StringField<"spell", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -57,7 +57,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"effect", ItemType, true, false, false>;
         mode: fields.StringField<
             "override" | "downgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -67,8 +67,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "badge-value": ItemAlterationValidator<{
         itemType: fields.StringField<"condition" | "effect", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -85,7 +85,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -96,7 +96,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"armor", ItemType, true, false, false>;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -106,8 +106,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "check-penalty": ItemAlterationValidator<{
         itemType: fields.StringField<"armor", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -117,8 +117,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "damage-dice-faces": ItemAlterationValidator<{
         itemType: fields.StringField<"weapon", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -128,8 +128,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "damage-dice-number": ItemAlterationValidator<{
         itemType: fields.StringField<"weapon", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -140,7 +140,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"weapon", ItemType, true, false, false>;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -173,7 +173,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"spell", ItemType, true, false, false>;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -219,7 +219,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "override" | "add",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -246,8 +246,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "dex-cap": ItemAlterationValidator<{
         itemType: fields.StringField<"armor", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -257,8 +257,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "focus-point-cost": ItemAlterationValidator<{
         itemType: fields.StringField<"spell", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "add",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -274,8 +274,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
             false
         >;
         mode: fields.StringField<
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -291,8 +291,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
             false
         >;
         mode: fields.StringField<
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -309,7 +309,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -346,8 +346,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "pd-recovery-dc": ItemAlterationValidator<{
         itemType: fields.StringField<"condition", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -358,7 +358,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"condition", ItemType, true, false, false>;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -382,7 +382,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "override",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -399,7 +399,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"weapon", ItemType, true, false, false>;
         mode: fields.StringField<
             "override" | "multiply" | "add" | "subtract" | "remove",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -410,7 +410,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         itemType: fields.StringField<"weapon", ItemType, true, false, false>;
         mode: fields.StringField<
             "override" | "multiply" | "add" | "subtract" | "remove",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -420,8 +420,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "frequency-max": ItemAlterationValidator<{
         itemType: fields.StringField<"action" | "feat", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -431,8 +431,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "frequency-per": ItemAlterationValidator<{
         itemType: fields.StringField<"action" | "feat", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -472,7 +472,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "add" | "subtract" | "remove",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -482,8 +482,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     "speed-penalty": ItemAlterationValidator<{
         itemType: fields.StringField<"armor" | "shield", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -493,8 +493,8 @@ declare const ITEM_ALTERATION_VALIDATORS: {
     strength: ItemAlterationValidator<{
         itemType: fields.StringField<"armor", ItemType, true, false, false>;
         mode: fields.StringField<
-            "override" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "add" | "subtract" | "remove",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false
@@ -531,7 +531,7 @@ declare const ITEM_ALTERATION_VALIDATORS: {
         >;
         mode: fields.StringField<
             "add" | "subtract" | "remove",
-            "override" | "multiply" | "add" | "subtract" | "remove" | "downgrade" | "upgrade",
+            "override" | "upgrade" | "downgrade" | "multiply" | "add" | "subtract" | "remove",
             true,
             false,
             false

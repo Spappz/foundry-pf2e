@@ -2,7 +2,7 @@ import { ActorPF2e } from "./../index.ts";
 import { SenseData } from "./data.ts";
 import { SenseAcuity, SenseType } from "./index.ts";
 import fields = foundry.data.fields;
-import { DataModelConstructionContext } from "./../../../../foundry/common/abstract/_module.mjs";
+import { DataModelConstructionContext } from "../../../../foundry/common/abstract/_module.mjs";
 
 declare class Sense extends foundry.abstract.DataModel<ActorPF2e, SenseSchema> {
     constructor(data: SenseConstructorParams, options: DataModelConstructionContext<ActorPF2e>);

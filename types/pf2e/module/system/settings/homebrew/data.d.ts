@@ -4,7 +4,6 @@ import { ModelPropsFromSchema, SetField, StringField } from "./../../../../../fo
 import { BaseArmorType } from "./../../../item/armor/types.ts";
 import { BaseWeaponType } from "./../../../item/weapon/types.ts";
 import { MenuTemplateData } from "../menu.ts";
-
 declare const HOMEBREW_ELEMENT_KEYS: readonly [
     "languages",
     "armorGroups",

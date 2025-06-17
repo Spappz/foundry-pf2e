@@ -16,7 +16,7 @@ import { DifficultTerrainGrade, RegionDocumentPF2e } from "./../index.ts";
 import { ScenePF2e } from "../document.ts";
 import { TokenAura } from "./aura/index.ts";
 import { TokenFlagsPF2e } from "./data.ts";
-import { TokenConfigPF2e } from "./sheet.ts";
+import { TokenConfigPF2e } from "./sheets/token-config.ts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 declare class TokenDocumentPF2e<TParent extends ScenePF2e | null = ScenePF2e | null> extends TokenDocument<TParent> {
@@ -94,7 +94,7 @@ declare class TokenDocumentPF2e<TParent extends ScenePF2e | null = ScenePF2e | n
         userId: string,
     ): void;
     protected _onRelatedUpdate(
-        update:
+        update?:
             | {
                   _id?: string;
                   [key: string]: unknown;
@@ -103,7 +103,7 @@ declare class TokenDocumentPF2e<TParent extends ScenePF2e | null = ScenePF2e | n
                   _id?: string;
                   [key: string]: unknown;
               }[],
-        operation: Partial<DatabaseOperation<Document | null>>,
+        operation?: Partial<DatabaseOperation<Document | null>>,
     ): void;
     protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }

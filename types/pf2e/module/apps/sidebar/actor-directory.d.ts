@@ -6,9 +6,11 @@ import {
 import { ContextMenuEntry } from "./../../../../foundry/client/applications/ux/context-menu.mjs";
 import { DropCanvasData } from "./../../../../foundry/client/helpers/hooks.mjs";
 /** Extend ActorDirectory to show more information */
-declare class ActorDirectoryPF2e<TActor extends ActorPF2e<null>> extends fa.sidebar.tabs.ActorDirectory<TActor> {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+declare class ActorDirectoryPF2e extends fa.sidebar.tabs.ActorDirectory<ActorPF2e<null>> {
     #private;
-    static DEFAULT_OPTIONS: DeepPartial<fa.sidebar.DocumentDirectoryConfiguration>;
+    static DEFAULT_OPTIONS: Partial<fa.sidebar.DocumentDirectoryConfiguration>;
     static PARTS: Record<string, HandlebarsTemplatePart>;
     protected static _entryPartial: string;
     _preparePartContext(partId: string, context: object, options: HandlebarsRenderOptions): Promise<object>;

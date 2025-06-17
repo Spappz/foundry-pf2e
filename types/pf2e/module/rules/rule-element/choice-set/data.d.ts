@@ -12,7 +12,7 @@ import {
 } from "./../../../system/schema-data-fields.ts";
 import { RuleElementSchema, RuleElementSource } from "../data.ts";
 import fields = foundry.data.fields;
-import { ModelPropsFromSchema, SourceFromSchema } from "./../../../../../foundry/common/data/fields.mjs";
+import { ModelPropsFromSchema, SourceFromSchema } from "../../../../../foundry/common/data/fields.mjs";
 type ChoiceSetSchema = RuleElementSchema & {
     /**
      * The options from which the user can choose. If a string is provided, it is treated as a reference to a record in
