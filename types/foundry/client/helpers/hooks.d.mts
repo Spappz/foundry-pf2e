@@ -178,6 +178,7 @@ export namespace Hooks {
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function off(hook: string, fn: (...args: any[]) => boolean | void | Promise<boolean | void>): void;
+    function off(hook: string, fn: number): void;
 
     /**
      * Call all hook listeners in the order in which they were registered
