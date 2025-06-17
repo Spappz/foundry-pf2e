@@ -9,7 +9,7 @@ import {
 import Document from "./../../common/abstract/document.mjs";
 import { RollMode } from "./../../common/constants.mjs";
 import BaseChatMessage, { ChatMessageSource, ChatSpeakerData } from "./../../common/documents/chat-message.mjs";
-import { Actor, BaseUser, Scene, TokenDocument, User } from "./_module.mjs";
+import { Actor, BaseUser, ChatMessageUUID, Scene, TokenDocument, User } from "./_module.mjs";
 import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 
 interface ClientBaseChatMessageStatic extends Omit<typeof BaseChatMessage, "new">, ClientDocumentStatic {}
@@ -159,6 +159,10 @@ declare class ChatMessage<TUser extends User | null = User | null> extends Clien
 
     /** Export the content of the chat message into a standardized log format */
     export(): string;
+}
+
+declare interface ChatMessage {
+    get uuid(): ChatMessageUUID;
 }
 
 declare namespace ChatMessage {
