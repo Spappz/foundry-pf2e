@@ -3,16 +3,34 @@ import FogExploration from "./../../documents/fog-exploration.mjs";
 import { EventEmitter } from "./../../../common/utils/event-emitter.mjs";
 import { SpriteMesh } from "../containers/_module.mjs";
 import { Point } from "../../../common/_types.mjs";
+import TextureExtractor from "../texture-extractor.d.mts";
 
 /**
  * A fog of war management class which is the singleton canvas.fog instance.
  */
 export default class FogManager extends EventEmitter {
+    static emittedEvents: ["explored"];
+
     /** The FogExploration document which applies to this canvas view */
     exploration: FogExploration | null;
 
+    /** Texture extractor */
+    get extractor(): TextureExtractor;
+
     /** Define the number of fog refresh needed before the fog texture is extracted and pushed to the server. */
     static COMMIT_THRESHOLD: number;
+
+    /** The explored data. */
+    #explored: {
+        pixels: Uint8ClampedArray;
+        width: number;
+        height: number;
+        resolution: number;
+        offset: number;
+        stride: number;
+        buffer: ArrayBuffer;
+        extracting: boolean;
+    };
 
     /* -------------------------------------------- */
     /*  Fog Manager Properties                      */
