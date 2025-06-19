@@ -3,7 +3,7 @@ import FogExploration from "./../../documents/fog-exploration.mjs";
 import { EventEmitter } from "./../../../common/utils/event-emitter.mjs";
 import { SpriteMesh } from "../containers/_module.mjs";
 import { Point } from "../../../common/_types.mjs";
-import TextureExtractor from "../texture-extractor.d.mts";
+import TextureExtractor from "../texture-extractor.mjs";
 
 /**
  * A fog of war management class which is the singleton canvas.fog instance.
