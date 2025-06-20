@@ -161,16 +161,37 @@ export default interface Config<
 > {
     /** Configure debugging flags to display additional information */
     debug: {
+        applications: boolean;
+        audio: boolean;
+        combat: boolean;
         dice: boolean;
         documents: boolean;
-        fog: boolean;
+        fog: {
+            extractor: boolean;
+            manager: boolean;
+        };
         hooks: boolean;
-        sight: boolean;
-        sightRays: boolean;
         av: boolean;
         avclient: boolean;
+        i18n: boolean;
         mouseInteraction: boolean;
         time: boolean;
+        keybindings: boolean;
+        polygons: boolean;
+        gamepad: boolean;
+        canvas: {
+            primary: {
+                bounds: boolean;
+            };
+        };
+        queries: boolean;
+        rollParsing: boolean;
+        loader: {
+            load: boolean;
+            cache: boolean;
+            eviction: boolean;
+            memory: boolean;
+        };
     };
 
     time: {
